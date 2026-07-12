@@ -18,5 +18,8 @@
   "rewrites": [
     { "source": "/panel", "destination": "/panel/teskilat-paneli-v3.html" },
     { "source": "/", "destination": "/index.html" }
+  ],
+  "redirects": [
+    { "source": "/panel/v3", "destination": "/panel/teskilat-paneli-v3", "permanent": false }
   ]
 }
