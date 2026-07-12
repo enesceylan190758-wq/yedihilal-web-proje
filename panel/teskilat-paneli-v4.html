@@ -723,6 +723,28 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
 <!-- ============ VERİ KAYNAĞI (gizli) ============ -->
 <section class="sayfa" id="s-veri">
   <div class="ayet" data-ayet="veri"></div>
+
+  <div class="kart" id="csvYonetimKart" style="margin-bottom:18px">
+    <div class="kbas"><h2>CSV Yönetimi</h2>
+      <span class="yan">Yönetici — ilçe envanteri ve kaynak dosyaları</span></div>
+    <div class="kgov">
+      <p style="font-size:12.5px;color:#413B31;margin-bottom:10px">
+        Canlı CSV kaynağını seçin, tabloyu panelde görün, dosyayı açın veya bilgisayarınızdan yeni CSV yükleyin.</p>
+      <div class="cipler" id="csvKaynakCipler" style="margin-bottom:12px"></div>
+      <div id="csvKaynakUrl" class="notk" style="font-size:11.5px;margin-bottom:12px;word-break:break-all"></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+        <button class="btn ana" id="bCsvAc" type="button">CSV'yi Aç</button>
+        <button class="btn alt" id="bCsvYenile" type="button">Kaynaktan Yenile</button>
+        <button class="btn" id="bCsvIndir" type="button">Güncel CSV İndir</button>
+        <button class="btn gizle" id="bCsvYukle" type="button">Dosyadan Yükle</button>
+        <input type="file" id="csvYukle" accept=".csv,text/csv" class="gizle">
+      </div>
+      <div class="durum" id="durumCsv"></div>
+      <div class="et" style="margin-top:14px">Canlı önizleme — <span id="csvSatSay">39</span> ilçe</div>
+      <div class="tsar" id="csvOnizle" style="max-height:400px;margin-top:8px"></div>
+    </div>
+  </div>
+
   <div class="iki">
     <div>
       <div class="kart"><div class="kbas"><h2>1 · Okuma — Google Sheets'ten Panele</h2></div>
@@ -1058,6 +1080,10 @@ let kullanicilar = JSON.parse(JSON.stringify(D.kullanicilar));
 let acikSekmeler = D.sekmeler.filter(s=>s[2]==="acik").map(s=>s[0]);
 let etkinlikler = D.etkinlik.map(e=>({tarih:e[0],tip:e[1],baslik:e[2],ilce:e[3],kisi:e[4],not:e[5]}));
 let kirli = {}, kirliDiger = {}, yazUrl = "", syncToken = "", aktifSekme = "genel", acikIlce = null, DZ = false;
+let csvKaynaklar = [
+  {ad:"Canlı İlçe CSV", url:"https://www.yhteskilat.org/data/ilceler.csv"},
+  {ad:"Google Sheets", url:"https://docs.google.com/spreadsheets/d/1IvpVwTdwmnyccD95zO4Hb4SqiRnzxb4VeSZ-T3HyPxw/export?format=csv&gid=0"}
+];
 let renkMod = "karne", bolgeDuzen = false;
 const HAT_RENK_VARSAYILAN = {B1:"#E4B23C", B2:"#A83A32", B3:"#3E8E6B", B4:"#5A6B7C"};
 let hatRenk = {...HAT_RENK_VARSAYILAN};
@@ -2151,24 +2177,99 @@ async function panelConfigYukle(){
       yazUrl = cfg.yazUrl;
       $("#yazUrl").value = cfg.yazUrl;
     }
+    if(cfg.csvKaynaklar && cfg.csvKaynaklar.length){
+      csvKaynaklar = cfg.csvKaynaklar;
+    } else {
+      if(cfg.csvUrl) csvKaynaklar[0].url = cfg.csvUrl;
+      if(cfg.csvUrlSheets) csvKaynaklar[1].url = cfg.csvUrlSheets;
+    }
     if(cfg.csvUrl){
       $("#csvUrl").value = cfg.csvUrl;
       await sheetsBagla(cfg.csvUrl, true);
     }
   }catch(e){ console.warn("panel-config yuklenemedi", e); }
 }
+function csvKaynakTip(url){
+  return /docs\.google\.com|googleusercontent\.com/.test(url) ? "Google Sheets" : "CSV";
+}
+function csvYonetimCiz(){
+  const oniz = $("#csvOnizle");
+  if(!oniz) return;
+  const yonet = baskanMi() || duzenleyebilir("veri");
+  $("#bCsvYukle").classList.toggle("gizle", !yonet);
+  const cur = ($("#csvUrl") && $("#csvUrl").value.trim()) || "";
+  const chips = $("#csvKaynakCipler");
+  if(chips){
+    chips.innerHTML = csvKaynaklar.filter(k=>k.url).map(k=>
+      `<button type="button" class="cip ${cur===k.url?"on":""}" data-csv-url="${esc(k.url)}">${esc(k.ad)}</button>`
+    ).join("");
+    $$("#csvKaynakCipler [data-csv-url]").forEach(b=> b.onclick = ()=>{
+      $("#csvUrl").value = b.dataset.csvUrl;
+      sheetsBagla(b.dataset.csvUrl);
+    });
+  }
+  const urlEl = $("#csvKaynakUrl");
+  if(urlEl){
+    urlEl.innerHTML = cur
+      ? `Aktif kaynak (${csvKaynakTip(cur)}): <a href="${esc(cur)}" target="_blank" rel="noopener">${esc(cur)}</a>`
+      : "Henüz CSV kaynağı bağlı değil — yukarıdan bir kaynak seçin veya URL yapıştırın.";
+  }
+  $("#csvSatSay").textContent = D.ilceler.length;
+  const cols = [
+    ["ad","İlçe"],["hat","Hat"],["durum","Durum"],["temsilci","Temsilci"],["tel","Tel"],
+    ["risk","Risk"],["onc","Önc."],["asama","Aşama"],["yk","YK"],["toplanti","Top."],["merkez","Merkez"]
+  ];
+  oniz.innerHTML = `<table>
+    <thead><tr>${cols.map(([,lb])=>`<th class="dz">${lb}</th>`).join("")}</tr></thead>
+    <tbody>${D.ilceler.map(i=>`<tr>${cols.map(([k])=>{
+      const t = esc(i[k]==null||i[k]===""?"—":i[k]);
+      return k==="ad" ? `<td><b>${t}</b></td>` : `<td>${t}</td>`;
+    }).join("")}</tr>`).join("")}
+    </tbody></table>`;
+}
 async function sheetsBagla(url, sessiz){
   try{
     const r = await fetch(url,{cache:"no-store"});
-    if(!r.ok) throw new Error("Bağlantıya ulaşılamadı ("+r.status+"). Tablonun 'Web'de yayınla' ile yayınlandığından emin olun.");
+    if(!r.ok) throw new Error("Bağlantıya ulaşılamadı ("+r.status+"). Tablonun yayınlandığından emin olun.");
     const n = csvOku(await r.text());
     ciz();
     $("#nkt").classList.add("canli");
-    $("#kaynakYzi").textContent = `Canlı · Google Sheets · ${n} ilçe · ${new Date().toLocaleTimeString("tr-TR",{hour:"2-digit",minute:"2-digit"})}`;
+    const tip = csvKaynakTip(url);
+    $("#kaynakYzi").textContent = `Canlı · ${tip} · ${n} ilçe · ${new Date().toLocaleTimeString("tr-TR",{hour:"2-digit",minute:"2-digit"})}`;
     if(!sessiz) durumYaz("#durumOku","ok",`Bağlandı. ${n} ilçenin verisi okundu.`);
+    if(!sessiz && $("#durumCsv")) durumYaz("#durumCsv","ok",`${n} ilçe yüklendi (${tip}).`);
     const u = new URL(location.href); u.searchParams.set("veri",url); history.replaceState(null,"",u);
-  }catch(e){ durumYaz("#durumOku","hata", e.message||"Bağlantı kurulamadı."); $("#nkt").classList.remove("canli"); }
+  }catch(e){
+    durumYaz("#durumOku","hata", e.message||"Bağlantı kurulamadı.");
+    if($("#durumCsv")) durumYaz("#durumCsv","hata", e.message||"CSV okunamadı.");
+    $("#nkt").classList.remove("canli");
+  }
 }
+$("#bCsvAc").onclick = ()=>{
+  const u = $("#csvUrl").value.trim();
+  if(!u) return durumYaz("#durumCsv","hata","Önce bir CSV kaynağı seçin veya bağlayın.");
+  window.open(u,"_blank","noopener");
+};
+$("#bCsvYenile").onclick = ()=>{
+  const u = $("#csvUrl").value.trim();
+  if(!u) return durumYaz("#durumCsv","hata","Yenilenecek kaynak yok.");
+  sheetsBagla(u);
+};
+$("#bCsvIndir").onclick = ()=>{
+  indirCsv();
+  durumYaz("#durumCsv","ok","Güncel veri CSV olarak indirildi.");
+};
+$("#bCsvYukle").onclick = ()=> $("#csvYukle").click();
+$("#csvYukle").onchange = async e=>{
+  const f = e.target.files[0];
+  if(!f) return;
+  try{
+    const n = csvOku(await f.text());
+    ciz();
+    durumYaz("#durumCsv","ok",`${f.name} yüklendi — ${n} ilçe güncellendi. Değişiklikleri Kaydet ile Sheets'e yazın.`);
+  }catch(err){ durumYaz("#durumCsv","hata", err.message); }
+  e.target.value = "";
+};
 $("#bBagla").onclick = ()=>{
   const u = $("#csvUrl").value.trim();
   if(!u) return durumYaz("#durumOku","hata","Önce yayınlanmış CSV bağlantısını yapıştırın.");
@@ -2293,7 +2394,7 @@ document.addEventListener("keydown", e=>{ if(e.key==="Escape") modalKapat(); });
 /* ============ ÇİZ ============ */
 function ciz(){
   hesapla(); kpiler(); saglar(); tablo(); hedefler(); bolgeCiz(); komisyonCiz();
-  digerCiz(); klsCiz(); takvimCiz(); hrtAracCiz(); haritaCiz();
+  digerCiz(); klsCiz(); csvYonetimCiz(); takvimCiz(); hrtAracCiz(); haritaCiz();
   programCiz(); ziyaretCiz(); faaliyetCiz(); tutanakCiz(); arsivCiz(); kilavuzCiz(); ayarlarCiz();
   kpiGrafik(); ayetCiz(); ilkeCiz(); kaydetDurum(); kaydetBar();
   duzBagla();

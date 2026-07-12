@@ -1,6 +1,10 @@
 {
   "csvUrl": "https://www.yhteskilat.org/data/ilceler.csv",
   "csvUrlSheets": "https://docs.google.com/spreadsheets/d/1IvpVwTdwmnyccD95zO4Hb4SqiRnzxb4VeSZ-T3HyPxw/export?format=csv&gid=0",
+  "csvKaynaklar": [
+    {"ad": "Canlı İlçe CSV", "url": "https://www.yhteskilat.org/data/ilceler.csv"},
+    {"ad": "Google Sheets", "url": "https://docs.google.com/spreadsheets/d/1IvpVwTdwmnyccD95zO4Hb4SqiRnzxb4VeSZ-T3HyPxw/export?format=csv&gid=0"}
+  ],
   "yazUrl": "",
   "syncToken": "qjxX2O3nqEm_fVuHdL_sHDecHux6_wi1",
   "sheetId": "1IvpVwTdwmnyccD95zO4Hb4SqiRnzxb4VeSZ-T3HyPxw",
