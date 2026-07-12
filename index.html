@@ -3,24 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retell AI Web Demo</title>
+    <title>YediHilal Sesli Asistan</title>
     <style>
-        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background: #f0f2f5; }
-        .card { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center; }
-        h1 { margin-bottom: 20px; color: #333; }
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; background: linear-gradient(135deg, #1a472a 0%, #2d5a3d 100%); margin: 0; }
+        .card { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); text-align: center; max-width: 420px; width: 90%; }
+        .logo { font-size: 48px; margin-bottom: 8px; }
+        h1 { margin: 0 0 8px; color: #1a472a; font-size: 24px; }
+        .subtitle { color: #666; font-size: 14px; margin-bottom: 24px; }
         .status { margin-bottom: 20px; font-weight: bold; color: #666; }
-        button { padding: 15px 30px; font-size: 18px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 8px; transition: 0.3s; }
-        button:hover { background: #0056b3; }
+        button { padding: 15px 30px; font-size: 18px; cursor: pointer; background: #1a472a; color: white; border: none; border-radius: 8px; transition: 0.3s; width: 100%; }
+        button:hover { background: #0f2e1a; }
         button:disabled { background: #ccc; cursor: not-allowed; }
-        .active { color: green; }
-        .error { color: red; }
+        .active { color: #1a472a; }
+        .error { color: #dc3545; }
+        .info { margin-top: 20px; font-size: 12px; color: #888; line-height: 1.5; }
     </style>
 </head>
 <body>
     <div class="card">
-        <h1>🎙️ MJA Dental Asistan Demo</h1>
+        <div class="logo">🌙</div>
+        <h1>YediHilal Sesli Asistan</h1>
+        <p class="subtitle">Yedi Tepeden Yedi Kıtaya</p>
         <div id="status" class="status">Aramaya Hazır</div>
         <button id="toggleBtn">Konuşmayı Başlat</button>
+        <p class="info">Projelerimiz, başvuru süreçleri ve gönüllülük hakkında sorularınızı yanıtlayabilirim.</p>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/retell-client-js-sdk@latest/dist/index.umd.js"></script>
@@ -30,9 +36,7 @@
         const statusEl = document.getElementById('status');
         let isCalling = false;
 
-        // Listen to events
         retellWebClient.on("call_started", () => {
-            console.log("Call started");
             statusEl.textContent = "📞 Görüşme Sürüyor...";
             statusEl.className = "status active";
             toggleBtn.textContent = "Görüşmeyi Bitir";
@@ -40,7 +44,6 @@
         });
 
         retellWebClient.on("call_ended", () => {
-            console.log("Call ended");
             resetUI();
         });
 
@@ -55,7 +58,7 @@
             statusEl.textContent = "Aramaya Hazır";
             statusEl.className = "status";
             toggleBtn.textContent = "Konuşmayı Başlat";
-            toggleBtn.style.background = "#007bff";
+            toggleBtn.style.background = "#1a472a";
             toggleBtn.disabled = false;
             isCalling = false;
         }
@@ -66,21 +69,15 @@
             } else {
                 toggleBtn.disabled = true;
                 statusEl.textContent = "Bağlanıyor...";
-                
+
                 try {
-                    // Get Access Token from our server
-                    const response = await fetch("http://localhost:8000/register-call", { method: "POST" });
+                    const response = await fetch("/register-call", { method: "POST" });
                     if (!response.ok) throw new Error("Token alınamadı");
-                    
+
                     const data = await response.json();
-                    
-                    // Start Call
-                    await retellWebClient.startCall({
-                        accessToken: data.access_token,
-                    });
+                    await retellWebClient.startCall({ accessToken: data.access_token });
                     isCalling = true;
                     toggleBtn.disabled = false;
-                    
                 } catch (err) {
                     console.error(err);
                     statusEl.textContent = "Hata: Sunucuya bağlanılamadı";

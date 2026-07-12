@@ -1,20 +1,46 @@
-# Retell AI Custom LLM Kurulumu (Windows)
+# YediHilal Sesli Asistan Kurulumu (Windows)
 
-Bu sistem, Retell AI'ın sizin bilgisayarınızdaki "Zeka" (Gemini) ile konuşmasını sağlar.
+Bu sistem, Retell AI üzerinden YediHilal Derneği'nin sesli asistanını
+Gemini yapay zekası ile çalıştırır.
 
-## Kurulum Adımları
+## Gereksinimler
 
-1.  **Klasörü Kopyalayın:** Bu klasörü bilgisayarınıza alın.
-2.  **Ngrok Kurun:**
-    *   Windows bilgisayarınızda Ngrok yüklü olmalıdır (ngrok.com).
-    *   `ngrok.exe` dosyasını bu klasörün içine atarsanız daha kolay olur.
-3.  **Başlatın:** `baslat_windows.bat` dosyasına çift tıklayın.
-    *   İki pencere açılacak: Biri sunucu, biri Ngrok.
-    *   Ngrok penceresindeki `https://....ngrok-free.app` adresini kopyalayın.
-4.  **Retell Ayarı:**
-    *   Retell Dashboard > Agents > Agent'ınızı seçin.
-    *   LLM Ayarını "Custom LLM" yapın.
-    *   URL kısmına kopyaladığınız adresi yapıştırın ve sonuna `/llm-websocket` ekleyin.
-    *   Örnek: `wss://kdsjfksdf.ngrok-free.app/llm-websocket`
+- Python 3.10+
+- Ngrok (ngrok.com)
+- Retell AI hesabı ve API anahtarı
+- Google Gemini API anahtarı
 
-Artık arama geldiğinde cevapları sizin bilgisayarınız verecek!
+## Kurulum
+
+1. **Ortam değişkenlerini ayarlayın:**
+   - `.env.example` dosyasını `.env` olarak kopyalayın
+   - `RETELL_API_KEY`, `RETELL_AGENT_ID`, `GEMINI_API_KEY` değerlerini doldurun
+
+2. **Ngrok kurun:**
+   - `ngrok.exe` dosyasını proje klasörüne koyabilirsiniz
+
+3. **Başlatın:** `baslat_windows.bat` dosyasına çift tıklayın
+   - Ngrok penceresindeki `https://....ngrok-free.app` adresini kopyalayın
+   - `.env` dosyasına ekleyin: `LLM_WEBSOCKET_URL=wss://ADRES/llm-websocket`
+
+4. **Retell agent'ı yapılandırın:**
+   ```
+   python configure_agent.py
+   ```
+
+5. **Web demo:** Tarayıcıda `http://localhost:8080` adresini açın
+
+## Retell Dashboard Ayarı
+
+- Agents > Agent'ınızı seçin
+- LLM: Custom LLM
+- URL: `wss://xxxx.ngrok-free.app/llm-websocket`
+
+## Asistan Özellikleri
+
+- YediHilal projeleri hakkında bilgi (7 Güzel Okuma, Tematik Kamplar vb.)
+- Başvuru ve kayıt süreçleri
+- Gönüllülük yönlendirmesi
+- Türkçe sesli görüşme desteği
+
+Detaylı bilgi: https://yedihilal.org

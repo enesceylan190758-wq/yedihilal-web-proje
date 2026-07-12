@@ -1,6 +1,6 @@
 @echo off
 echo ==========================================
-echo   Retell AI Custom LLM Server (Gemini) - Otomatik
+echo   YediHilal Sesli Asistan - Otomatik Baslat
 echo ==========================================
 
 echo.

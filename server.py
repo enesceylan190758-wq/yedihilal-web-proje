@@ -1,4 +1,7 @@
-import os
+"""
+Legacy entry point — use custom_llm_server.py instead.
+The unified server on port 8080 serves both the web demo and LLM WebSocket.
+"""
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware

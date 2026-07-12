@@ -1,6 +1,6 @@
 @echo off
 echo ==========================================
-echo   Retell AI Custom LLM Server (Gemini)
+echo   YediHilal Sesli Asistan (Gemini + Retell)
 echo ==========================================
 
 echo.
@@ -14,7 +14,10 @@ start cmd /k "ngrok http 8080"
 echo.
 echo Adim 3: Python sunucusu baslatiliyor...
 echo.
-echo Sunucu aktif. Retell Dashboard'a Ngrok URL'sini girmeyi unutmayin!
+echo Web demo: http://localhost:8080
+echo Ngrok URL'sini .env dosyasindaki LLM_WEBSOCKET_URL alanina yazin.
+echo Agent ayari icin: python configure_agent.py
+echo.
 echo (Durdurmak icin CTRL + C tusuna basin)
 echo.
 
