@@ -1,0 +1,18 @@
+{
+  "csvUrl": "",
+  "yazUrl": "",
+  "syncToken": "BURAYA_GUVENLI_BIR_TOKEN_YAZIN",
+  "sheetId": "GOOGLE_SHEETS_DOSYA_ID_BURAYA",
+  "kullanicilar": [
+    {
+      "id": "abdulkadir",
+      "sifre": "DEGISTIRIN",
+      "ad": "Abdülkadir Yaşar",
+      "gorev": "Teşkilat Başkanı / İl Başkan Yrd.",
+      "tel": "05xx xxx xx 00",
+      "rol": "baskan",
+      "yetki": "gor_veri",
+      "sekmeler": ["genel", "karne", "hat", "bolge", "komisyon", "takvim", "program", "stk", "vizyon", "kilavuz", "birim", "reis", "ekip", "aday", "ziyaret", "faaliyet", "tutanak", "arsiv", "veri", "ayarlar"]
+    }
+  ]
+}

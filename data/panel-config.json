@@ -1,0 +1,58 @@
+{
+  "csvUrl": "",
+  "yazUrl": "",
+  "syncToken": "qjxX2O3nqEm_fVuHdL_sHDecHux6_wi1",
+  "sheetId": "",
+  "kullanicilar": [
+    {
+      "id": "abdulkadir",
+      "sifre": "pR3JS2pa",
+      "ad": "Abdülkadir Yaşar",
+      "gorev": "Teşkilat Başkanı / İl Başkan Yrd.",
+      "tel": "05xx xxx xx 00",
+      "rol": "baskan",
+      "yetki": "gor_veri",
+      "sekmeler": ["genel", "karne", "hat", "bolge", "komisyon", "takvim", "program", "stk", "vizyon", "kilavuz", "birim", "reis", "ekip", "aday", "ziyaret", "faaliyet", "tutanak", "arsiv", "veri", "ayarlar"]
+    },
+    {
+      "id": "mucahit",
+      "sifre": "wl-7WSD4",
+      "ad": "Mücahit Tiryaki",
+      "gorev": "Sekreterya Birimi",
+      "tel": "05xx xxx xx 11",
+      "rol": "koordinator",
+      "yetki": "gor_veri",
+      "sekmeler": ["genel", "karne", "komisyon", "takvim", "stk", "kilavuz", "faaliyet", "tutanak", "arsiv"]
+    },
+    {
+      "id": "oguzhan",
+      "sifre": "q-OYqUb6",
+      "ad": "Oğuzhan Koçalak",
+      "gorev": "Yeni Teşkilat + İnsan Kıymetleri",
+      "tel": "05xx xxx xx 12",
+      "rol": "koordinator",
+      "yetki": "gor_veri",
+      "sekmeler": ["genel", "hat", "takvim", "program", "stk", "kilavuz", "aday", "ziyaret"]
+    },
+    {
+      "id": "mehmet",
+      "sifre": "oHvRH1Vf",
+      "ad": "Mehmet Menteş",
+      "gorev": "Bölge Takipçisi — B4 Marmara",
+      "tel": "05xx xxx xx 13",
+      "rol": "koordinator",
+      "yetki": "gor_veri",
+      "sekmeler": ["genel", "karne", "bolge", "komisyon", "takvim", "program", "kilavuz", "ziyaret", "faaliyet"]
+    },
+    {
+      "id": "nusret",
+      "sifre": "ku0C82ln",
+      "ad": "Nusret Onur Anlı",
+      "gorev": "Bölge Takipçisi — B3 Boğaz",
+      "tel": "05xx xxx xx 14",
+      "rol": "koordinator",
+      "yetki": "gor",
+      "sekmeler": ["genel", "karne", "bolge", "komisyon", "takvim", "program", "kilavuz"]
+    }
+  ]
+}

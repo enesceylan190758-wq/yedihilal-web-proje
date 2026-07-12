@@ -113,15 +113,19 @@ Her sayfanın sağ üstündeki **Dışa Aktar** çipi:
 
 ## 5. Deneme hesapları
 
-| ID | Şifre | Kim | Yetki | Sekme |
-|---|---|---|---|---|
-| `abdulkadir` | `yh2026` | Abdülkadir Yaşar — Teşkilat Başkanı | Tam yetki | **20** (hepsi + Ayarlar) |
-| `mucahit` | `yh2026` | Mücahit Tiryaki — Sekreterya | Görür + veri girer | 9 |
-| `oguzhan` | `yh2026` | Oğuzhan Koçalak — Yeni Teşkilat | Görür + veri girer | 8 |
-| `mehmet` | `yh2026` | Mehmet Menteş — B4 Takipçisi | Görür + veri girer | 9 |
-| `nusret` | `yh2026` | Nusret Onur Anlı — B3 Takipçisi | **Sadece görür** | 7 |
+> **Güncelleme:** Şifreler artık `data/panel-config.json` dosyasında. Demo `yh2026` kaldırıldı.
+
+| ID | Kim | Yetki | Sekme |
+|---|---|---|---|
+| `abdulkadir` | Abdülkadir Yaşar — Teşkilat Başkanı | Tam yetki | **20** (hepsi + Ayarlar) |
+| `mucahit` | Mücahit Tiryaki — Sekreterya | Görür + veri girer | 9 |
+| `oguzhan` | Oğuzhan Koçalak — Yeni Teşkilat | Görür + veri girer | 8 |
+| `mehmet` | Mehmet Menteş — B4 Takipçisi | Görür + veri girer | 9 |
+| `nusret` | Nusret Onur Anlı — B3 Takipçisi | **Sadece görür** | 7 |
 
 Giriş yapmadan: **10 sekme** (YK üyesinin göreceği).
+
+Şifreler için: [`docs/KURULUM_v4_OPERASYON.md`](KURULUM_v4_OPERASYON.md)
 
 ---
 

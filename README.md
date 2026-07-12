@@ -37,13 +37,17 @@ python3 -m http.server 8080
 
 https://www.yhteskilat.org/panel/teskilat-paneli-v4
 
-## Deneme hesapları (prototip — canlıda kaldırın)
+## Yapılandırma ve Sheets senkron
 
-| ID | Şifre |
-|----|-------|
-| abdulkadir | yh2026 |
-| mucahit | yh2026 |
-| mehmet | yh2026 |
+- `data/panel-config.json` — CSV URL, Apps Script URL, sync token, kullanıcılar
+- `scripts/sheets-sync.gs` — Google Apps Script yazma uç noktası
+- `docs/KURULUM_v4_OPERASYON.md` — adım adım kurulum
+
+Panel açılınca `panel-config.json` otomatik yüklenir.
+
+## Deneme / giriş hesapları
+
+Şifreler artık HTML'de değil; `data/panel-config.json` içinde. Canlı kullanımdan önce **Ayarlar** sekmesinden değiştirin.
 
 ## Vercel deploy
 
