@@ -11,7 +11,7 @@
  * 6. Aynı token'ı data/panel-config.json → syncToken alanına yazın
  */
 
-const SHEET_ID = 'GOOGLE_SHEETS_DOSYA_ID_BURAYA';
+const SHEET_ID = '1IvpVwTdwmnyccD95zO4Hb4SqiRnzxb4VeSZ-T3HyPxw';
 const SYNC_TOKEN = 'BURAYA_GUVENLI_BIR_TOKEN_YAZIN';
 
 function doPost(e) {
