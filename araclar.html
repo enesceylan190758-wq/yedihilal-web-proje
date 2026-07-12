@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>YediHilal İstanbul — Araçlar</title>
+<style>
+  :root{--bordo:#7B1010;--altin:#E4B23C;--kagit:#F7F4ED;--hat:#DDD4C0;--sil:#7C7263}
+  *{box-sizing:border-box}
+  body{margin:0;background:#EFECE5;color:#14120F;font-family:"Segoe UI",system-ui,sans-serif;font-size:15px;line-height:1.5}
+  .kap{max-width:920px;margin:0 auto;padding:32px 20px 48px}
+  header{display:flex;align-items:center;gap:14px;border-bottom:3px solid var(--bordo);padding-bottom:14px;margin-bottom:28px}
+  .hilal{width:52px;height:52px;border-radius:6px;background:#141414;color:var(--altin);display:flex;align-items:center;justify-content:center;font-size:28px}
+  h1{margin:0;font-size:22px;color:var(--bordo)}
+  .alt{margin:4px 0 0;font-size:13px;color:var(--sil)}
+  .grid{display:grid;gap:14px}
+  .kart{display:block;background:var(--kagit);border:1px solid var(--hat);border-radius:10px;padding:18px 20px;text-decoration:none;color:inherit}
+  .kart:hover{border-color:var(--bordo);box-shadow:0 4px 14px rgba(0,0,0,.08)}
+  .kart b{display:block;font-size:16px;color:var(--bordo);margin-bottom:4px}
+  .kart span{display:block;font-size:13px;color:var(--sil)}
+  .kart.ana{border:2px solid var(--altin)}
+  .bolum{margin-top:28px}
+  .bolum h2{font-size:14px;color:var(--bordo);margin:0 0 10px}
+  .dosya{font-size:13px;padding:8px 0;border-bottom:1px solid var(--hat);display:flex;justify-content:space-between;gap:12px}
+  .dosya a{color:var(--bordo);font-weight:600;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="kap">
+  <header>
+    <div class="hilal">☾</div>
+    <div>
+      <h1>YediHilal İstanbul</h1>
+      <p class="alt">Teşkilatlanma araçları · v3 · 39 ilçe · 4 hat</p>
+    </div>
+  </header>
+  <div class="grid">
+    <a class="kart ana" href="panel/teskilat-paneli-v3.html">
+      <b>Teşkilat Kontrol Paneli v3</b>
+      <span>Ana panel: harita, karne, takvim, yetki, Sheets senkron. İl YK sunumu.</span>
+    </a>
+    <a class="kart" href="harita/canli-teskilat-haritasi.html">
+      <b>Canlı Teşkilat Haritası (v1)</b>
+      <span>JSON/CSV import-export, eşleştirme modu.</span>
+    </a>
+    <a class="kart" href="harita/istanbul-4-bolge-haritasi.html">
+      <b>4 Bölge Şematik Harita</b>
+      <span>Toplantı taslak haritası, yazdır/PDF.</span>
+    </a>
+    <a class="kart" href="harita/harita-boyama-araci.html">
+      <b>Harita Boyama Aracı</b>
+      <span>Wikimedia SVG boyama.</span>
+    </a>
+  </div>
+  <div class="bolum">
+    <h2>DOKÜMANTASYON</h2>
+    <div class="dosya"><span>Kurulum ve çalışma düzeni v3</span><a href="docs/ISTANBUL_PANEL_CALISMA_DUZENI_v3.md">Oku</a></div>
+    <div class="dosya"><span>İlçe karne dashboard (Excel)</span><a href="docs/YediHilal_Ilce_Karne_ve_Dashboard_Sistemi_v2__1__f90f.xlsx" download>İndir</a></div>
+    <div class="dosya"><span>Teşkilatlanma çalışma dosyası v3</span><a href="docs/YediHilal_Istanbul_Teskilatlanma_Calisma_Dosyasi_v3__1__5f49.xlsx" download>İndir</a></div>
+    <div class="dosya"><span>Harita eşleştirme JSON</span><a href="data/yedihilal_harita_eslestirme.json" download>İndir</a></div>
+  </div>
+</div>
+</body>
+</html>
