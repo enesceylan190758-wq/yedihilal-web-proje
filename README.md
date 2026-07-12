@@ -43,7 +43,7 @@ https://www.yhteskilat.org/panel/teskilat-paneli-v4
 - `scripts/sheets-sync.gs` — Google Apps Script yazma uç noktası
 - `docs/KURULUM_v4_OPERASYON.md` — adım adım kurulum
 
-Panel açılınca `panel-config.json` otomatik yüklenir.
+Panel açılınca `panel-config.json` otomatik yüklenir. **Okuma kaynağı** hazır: `data/ilceler.csv` (39 ilçe, canlı sitede otomatik bağlanır). Google Sheets yazma senkronu için Apps Script kurulumu ayrıca gerekir.
 
 ## Deneme / giriş hesapları
 
