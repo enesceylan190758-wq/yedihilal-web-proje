@@ -1,0 +1,6 @@
+sesli-asistan/
+__pycache__/
+*.py
+*.pyc
+inspect_output.txt
+.git/
