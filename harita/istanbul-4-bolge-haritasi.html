@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>YediHilal İstanbul — 4 Bölge Teşkilat Haritası</title>
+<style>
+  :root {
+    --bordo:#7B1010; --altin:#BF8F00; --kagit:#FBFAF7; --murekkep:#1D1B18;
+  }
+  * { box-sizing:border-box; }
+  body {
+    margin:0; padding:26px 22px 40px; background:#EFECE5; color:var(--murekkep);
+    font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;
+  }
+  .sayfa {
+    max-width:1640px; margin:0 auto; background:var(--kagit);
+    border:1px solid #DED8CC; border-radius:10px; padding:26px 28px 30px;
+    box-shadow:0 2px 18px rgba(0,0,0,.06);
+  }
+  header { display:flex; align-items:flex-end; justify-content:space-between;
+           gap:20px; border-bottom:3px solid var(--bordo); padding-bottom:14px; margin-bottom:6px; flex-wrap:wrap; }
+  .marka { display:flex; align-items:center; gap:14px; }
+  .hilal { width:52px; height:52px; border-radius:6px; background:#141414;
+            display:flex; align-items:center; justify-content:center;
+            color:var(--altin); font-size:30px; line-height:1; flex:0 0 auto; }
+  h1 { margin:0; font-size:23px; letter-spacing:.2px; color:var(--bordo); }
+  .alt1 { margin:3px 0 0; font-size:13px; color:#6B655C; }
+  .sayac { text-align:right; font-size:12px; color:#6B655C; }
+  .sayac b { display:block; font-size:30px; color:var(--bordo); line-height:1.1; }
+  .arac { display:flex; gap:8px; margin:14px 0 6px; flex-wrap:wrap; }
+  button { font:inherit; font-size:13px; padding:7px 14px; border-radius:6px; cursor:pointer;
+            border:1px solid #C9C2B4; background:#fff; color:#3A3630; }
+  button:hover { border-color:var(--bordo); color:var(--bordo); }
+  button.ana { background:var(--bordo); color:#fff; border-color:var(--bordo); }
+  .ipucu { font-size:12px; color:#87806F; margin:2px 0 14px; }
+  .harita { width:100%; border:1px solid #E2DCD0; border-radius:8px; background:var(--kagit); overflow:hidden; }
+  svg { width:100%; height:auto; display:block; }
+  .sea { font:600 13px "Segoe UI",Arial; fill:#5E8AA8; letter-spacing:3px; }
+  .bos { font:700 13px "Segoe UI",Arial; fill:#40729B; letter-spacing:4px; }
+  .yaka { font:700 13px "Segoe UI",Arial; fill:#7B1010; letter-spacing:1.6px; }
+  .ad { font:600 13px "Segoe UI",Arial; }
+  .alt { font:500 10px "Segoe UI",Arial; opacity:.75; }
+  .ilce { cursor:pointer; }
+  .ilce rect { transition:filter .12s ease; }
+  .ilce:hover rect { filter:brightness(.94); }
+  .ilce:focus { outline:none; }
+  .ilce:focus rect { stroke-width:3.4; }
+  .tik { opacity:0; }
+  .ilce.acik .tik { opacity:1; }
+  .ilce.acik rect { stroke-width:3.6; }
+  .lejant { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:10px 26px; margin-top:18px; }
+  .lg { display:flex; gap:10px; align-items:flex-start; }
+  .sw { width:22px; height:22px; border-radius:5px; border:2px solid; flex:0 0 auto; margin-top:1px; }
+  .lg b { display:block; font-size:13px; }
+  .lgs { display:block; font-size:11.5px; color:#7A7367; margin-top:1px; }
+  footer { margin-top:20px; padding-top:12px; border-top:1px solid #E2DCD0;
+            display:flex; justify-content:space-between; gap:16px; font-size:11.5px; color:#87806F; flex-wrap:wrap; }
+  .motto { font-style:italic; color:var(--bordo); font-weight:600; }
+  @media print {
+    @page { size:A4 landscape; margin:8mm; }
+    body { background:#fff; padding:0; }
+    .sayfa { box-shadow:none; border:none; max-width:none; padding:0; }
+    .arac, .ipucu { display:none; }
+    .harita { border:none; }
+  }
+</style>
+</head>
+<body>
+<div class="sayfa">
+  <header>
+    <div class="marka">
+      <div class="hilal">☾</div>
+      <div>
+        <h1>İSTANBUL TEŞKİLAT HARİTASI — 4 BÖLGE</h1>
+        <p class="alt1">YediHilal · İl Teşkilatlanma Birimi · 2026–2027 dönemi · 39 ilçe</p>
+      </div>
+    </div>
+    <div class="sayac">İŞARETLENEN İLÇE<b id="sayi">0 / 39</b></div>
+  </header>
+
+  <div class="arac">
+    <button class="ana" onclick="window.print()">Yazdır / PDF olarak kaydet</button>
+    <button onclick="temizle()">İşaretleri temizle</button>
+  </div>
+  <p class="ipucu">Boş taslaktır. Ekranda bir ilçeye tıklayınca işaretlenir (✓) — toplantıda kullanmak için. Yazdırırken işaretler de basılır; tamamen boş çıktı için önce «İşaretleri temizle» deyin.</p>
+
+  <div class="harita">
+    <svg viewBox="0 0 1580 530" role="img" aria-label="İstanbul 39 ilçe, 4 bölge şematik haritası">
+<rect x="0" y="0" width="1580" height="530" fill="#FBFAF7"/>
+<rect x="20" y="24" width="1540" height="42" rx="8" fill="#DCE9F2"/>
+<text x="790" y="51" text-anchor="middle" class="sea">K A R A D E N İ Z</text>
+<rect x="20" y="452" width="1540" height="46" rx="8" fill="#DCE9F2"/>
+<text x="790" y="481" text-anchor="middle" class="sea">M A R M A R A   D E N İ Z İ</text>
+<rect x="836" y="70" width="56" height="378" rx="10" fill="#C5DCEC"/>
+<text x="864.0" y="264" text-anchor="middle" class="bos" transform="rotate(-90 864.0 264)">İ S T A N B U L   B O Ğ A Z I</text>
+<text x="36" y="76" class="yaka">AVRUPA YAKASI · 25 İLÇE</text>
+<text x="916" y="76" class="yaka">ANADOLU YAKASI · 14 İLÇE</text>
+<g class="ilce" data-b="2" tabindex="0" role="button" aria-label="Çatalca"><rect x="166" y="84" width="122" height="52" rx="7" fill="#FFE599" stroke="#BF8F00" stroke-width="1.6"/><text x="227.0" y="116" text-anchor="middle" class="ad" fill="#BF8F00">Çatalca</text><path class="tik" d="M 262 100 l 6 7 l 12 -14" fill="none" stroke="#BF8F00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="2" tabindex="0" role="button" aria-label="Arnavutköy"><rect x="296" y="84" width="122" height="52" rx="7" fill="#FFE599" stroke="#BF8F00" stroke-width="1.6"/><text x="357.0" y="116" text-anchor="middle" class="ad" fill="#BF8F00">Arnavutköy</text><path class="tik" d="M 392 100 l 6 7 l 12 -14" fill="none" stroke="#BF8F00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="1" tabindex="0" role="button" aria-label="Sultangazi"><rect x="426" y="84" width="122" height="52" rx="7" fill="#F4CCCC" stroke="#A61C00" stroke-width="1.6"/><text x="487.0" y="116" text-anchor="middle" class="ad" fill="#A61C00">Sultangazi</text><path class="tik" d="M 522 100 l 6 7 l 12 -14" fill="none" stroke="#A61C00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="1" tabindex="0" role="button" aria-label="Eyüpsultan"><rect x="556" y="84" width="122" height="52" rx="7" fill="#F4CCCC" stroke="#A61C00" stroke-width="1.6"/><text x="617.0" y="116" text-anchor="middle" class="ad" fill="#A61C00">Eyüpsultan</text><path class="tik" d="M 652 100 l 6 7 l 12 -14" fill="none" stroke="#A61C00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="1" tabindex="0" role="button" aria-label="Sarıyer"><rect x="686" y="84" width="122" height="52" rx="7" fill="#F4CCCC" stroke="#A61C00" stroke-width="1.6"/><text x="747.0" y="116" text-anchor="middle" class="ad" fill="#A61C00">Sarıyer</text><path class="tik" d="M 782 100 l 6 7 l 12 -14" fill="none" stroke="#A61C00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="2" tabindex="0" role="button" aria-label="Başakşehir"><rect x="296" y="144" width="122" height="52" rx="7" fill="#FFE599" stroke="#BF8F00" stroke-width="1.6"/><text x="357.0" y="176" text-anchor="middle" class="ad" fill="#BF8F00">Başakşehir</text><path class="tik" d="M 392 160 l 6 7 l 12 -14" fill="none" stroke="#BF8F00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="1" tabindex="0" role="button" aria-label="Gaziosmanpaşa"><rect x="426" y="144" width="122" height="52" rx="7" fill="#F4CCCC" stroke="#A61C00" stroke-width="1.6"/><text x="487.0" y="176" text-anchor="middle" class="ad" fill="#A61C00">Gaziosmanpaşa</text><path class="tik" d="M 522 160 l 6 7 l 12 -14" fill="none" stroke="#A61C00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="1" tabindex="0" role="button" aria-label="Kağıthane"><rect x="556" y="144" width="122" height="52" rx="7" fill="#F4CCCC" stroke="#A61C00" stroke-width="1.6"/><text x="617.0" y="176" text-anchor="middle" class="ad" fill="#A61C00">Kağıthane</text><path class="tik" d="M 652 160 l 6 7 l 12 -14" fill="none" stroke="#A61C00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="1" tabindex="0" role="button" aria-label="Şişli"><rect x="686" y="144" width="122" height="52" rx="7" fill="#F4CCCC" stroke="#A61C00" stroke-width="1.6"/><text x="747.0" y="176" text-anchor="middle" class="ad" fill="#A61C00">Şişli</text><path class="tik" d="M 782 160 l 6 7 l 12 -14" fill="none" stroke="#A61C00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="2" tabindex="0" role="button" aria-label="Silivri"><rect x="36" y="204" width="122" height="52" rx="7" fill="#FFE599" stroke="#BF8F00" stroke-width="1.6"/><text x="97.0" y="236" text-anchor="middle" class="ad" fill="#BF8F00">Silivri</text><path class="tik" d="M 132 220 l 6 7 l 12 -14" fill="none" stroke="#BF8F00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="2" tabindex="0" role="button" aria-label="Büyükçekmece"><rect x="166" y="204" width="122" height="52" rx="7" fill="#FFE599" stroke="#BF8F00" stroke-width="1.6"/><text x="227.0" y="236" text-anchor="middle" class="ad" fill="#BF8F00">Büyükçekmece</text><path class="tik" d="M 262 220 l 6 7 l 12 -14" fill="none" stroke="#BF8F00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="2" tabindex="0" role="button" aria-label="Esenyurt"><rect x="296" y="204" width="122" height="52" rx="7" fill="#FFE599" stroke="#BF8F00" stroke-width="1.6"/><text x="357.0" y="236" text-anchor="middle" class="ad" fill="#BF8F00">Esenyurt</text><path class="tik" d="M 392 220 l 6 7 l 12 -14" fill="none" stroke="#BF8F00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="2" tabindex="0" role="button" aria-label="Esenler"><rect x="426" y="204" width="122" height="52" rx="7" fill="#FFE599" stroke="#BF8F00" stroke-width="1.6"/><text x="487.0" y="236" text-anchor="middle" class="ad" fill="#BF8F00">Esenler</text><path class="tik" d="M 522 220 l 6 7 l 12 -14" fill="none" stroke="#BF8F00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="1" tabindex="0" role="button" aria-label="Bayrampaşa"><rect x="556" y="204" width="122" height="52" rx="7" fill="#F4CCCC" stroke="#A61C00" stroke-width="1.6"/><text x="617.0" y="236" text-anchor="middle" class="ad" fill="#A61C00">Bayrampaşa</text><path class="tik" d="M 652 220 l 6 7 l 12 -14" fill="none" stroke="#A61C00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="1" tabindex="0" role="button" aria-label="Beşiktaş"><rect x="686" y="204" width="122" height="52" rx="7" fill="#F4CCCC" stroke="#A61C00" stroke-width="1.6"/><text x="747.0" y="236" text-anchor="middle" class="ad" fill="#A61C00">Beşiktaş</text><path class="tik" d="M 782 220 l 6 7 l 12 -14" fill="none" stroke="#A61C00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="2" tabindex="0" role="button" aria-label="Beylikdüzü"><rect x="166" y="264" width="122" height="52" rx="7" fill="#FFE599" stroke="#BF8F00" stroke-width="1.6"/><text x="227.0" y="296" text-anchor="middle" class="ad" fill="#BF8F00">Beylikdüzü</text><path class="tik" d="M 262 280 l 6 7 l 12 -14" fill="none" stroke="#BF8F00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="2" tabindex="0" role="button" aria-label="Küçükçekmece"><rect x="296" y="264" width="122" height="52" rx="7" fill="#FFE599" stroke="#BF8F00" stroke-width="1.6"/><text x="357.0" y="296" text-anchor="middle" class="ad" fill="#BF8F00">Küçükçekmece</text><path class="tik" d="M 392 280 l 6 7 l 12 -14" fill="none" stroke="#BF8F00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="2" tabindex="0" role="button" aria-label="Bağcılar"><rect x="426" y="264" width="122" height="52" rx="7" fill="#FFE599" stroke="#BF8F00" stroke-width="1.6"/><text x="487.0" y="296" text-anchor="middle" class="ad" fill="#BF8F00">Bağcılar</text><path class="tik" d="M 522 280 l 6 7 l 12 -14" fill="none" stroke="#BF8F00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="1" tabindex="0" role="button" aria-label="Beyoğlu"><rect x="556" y="264" width="122" height="52" rx="7" fill="#F4CCCC" stroke="#A61C00" stroke-width="1.6"/><text x="617.0" y="296" text-anchor="middle" class="ad" fill="#A61C00">Beyoğlu</text><path class="tik" d="M 652 280 l 6 7 l 12 -14" fill="none" stroke="#A61C00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="1" tabindex="0" role="button" aria-label="Fatih"><rect x="686" y="264" width="122" height="52" rx="7" fill="#F4CCCC" stroke="#A61C00" stroke-width="1.6"/><text x="747.0" y="296" text-anchor="middle" class="ad" fill="#A61C00">Fatih</text><path class="tik" d="M 782 280 l 6 7 l 12 -14" fill="none" stroke="#A61C00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="2" tabindex="0" role="button" aria-label="Avcılar"><rect x="296" y="324" width="122" height="52" rx="7" fill="#FFE599" stroke="#BF8F00" stroke-width="1.6"/><text x="357.0" y="356" text-anchor="middle" class="ad" fill="#BF8F00">Avcılar</text><path class="tik" d="M 392 340 l 6 7 l 12 -14" fill="none" stroke="#BF8F00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="2" tabindex="0" role="button" aria-label="Bahçelievler"><rect x="426" y="324" width="122" height="52" rx="7" fill="#FFE599" stroke="#BF8F00" stroke-width="1.6"/><text x="487.0" y="356" text-anchor="middle" class="ad" fill="#BF8F00">Bahçelievler</text><path class="tik" d="M 522 340 l 6 7 l 12 -14" fill="none" stroke="#BF8F00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="2" tabindex="0" role="button" aria-label="Güngören"><rect x="556" y="324" width="122" height="52" rx="7" fill="#FFE599" stroke="#BF8F00" stroke-width="1.6"/><text x="617.0" y="356" text-anchor="middle" class="ad" fill="#BF8F00">Güngören</text><path class="tik" d="M 652 340 l 6 7 l 12 -14" fill="none" stroke="#BF8F00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="2" tabindex="0" role="button" aria-label="Bakırköy"><rect x="426" y="384" width="122" height="52" rx="7" fill="#FFE599" stroke="#BF8F00" stroke-width="1.6"/><text x="487.0" y="416" text-anchor="middle" class="ad" fill="#BF8F00">Bakırköy</text><path class="tik" d="M 522 400 l 6 7 l 12 -14" fill="none" stroke="#BF8F00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="2" tabindex="0" role="button" aria-label="Zeytinburnu"><rect x="556" y="384" width="122" height="52" rx="7" fill="#FFE599" stroke="#BF8F00" stroke-width="1.6"/><text x="617.0" y="416" text-anchor="middle" class="ad" fill="#BF8F00">Zeytinburnu</text><path class="tik" d="M 652 400 l 6 7 l 12 -14" fill="none" stroke="#BF8F00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="4" tabindex="0" role="button" aria-label="Şile"><rect x="1306" y="84" width="122" height="52" rx="7" fill="#C6E0B4" stroke="#375623" stroke-width="1.6"/><text x="1367.0" y="116" text-anchor="middle" class="ad" fill="#375623">Şile</text><path class="tik" d="M 1402 100 l 6 7 l 12 -14" fill="none" stroke="#375623" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="3" tabindex="0" role="button" aria-label="Beykoz"><rect x="916" y="144" width="122" height="52" rx="7" fill="#BDD7EE" stroke="#1F4E79" stroke-width="1.6"/><text x="977.0" y="176" text-anchor="middle" class="ad" fill="#1F4E79">Beykoz</text><path class="tik" d="M 1012 160 l 6 7 l 12 -14" fill="none" stroke="#1F4E79" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="3" tabindex="0" role="button" aria-label="Çekmeköy"><rect x="1176" y="144" width="122" height="52" rx="7" fill="#BDD7EE" stroke="#1F4E79" stroke-width="1.6"/><text x="1237.0" y="176" text-anchor="middle" class="ad" fill="#1F4E79">Çekmeköy</text><path class="tik" d="M 1272 160 l 6 7 l 12 -14" fill="none" stroke="#1F4E79" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="3" tabindex="0" role="button" aria-label="Üsküdar (Kirazlıtepe)"><rect x="916" y="204" width="122" height="52" rx="7" fill="#BDD7EE" stroke="#1F4E79" stroke-width="1.6"/><text x="977.0" y="230" text-anchor="middle" class="ad" fill="#1F4E79">Üsküdar</text><text x="977.0" y="245" text-anchor="middle" class="alt" fill="#1F4E79">(Kirazlıtepe)</text><path class="tik" d="M 1012 220 l 6 7 l 12 -14" fill="none" stroke="#1F4E79" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="3" tabindex="0" role="button" aria-label="Ümraniye"><rect x="1046" y="204" width="122" height="52" rx="7" fill="#BDD7EE" stroke="#1F4E79" stroke-width="1.6"/><text x="1107.0" y="236" text-anchor="middle" class="ad" fill="#1F4E79">Ümraniye</text><path class="tik" d="M 1142 220 l 6 7 l 12 -14" fill="none" stroke="#1F4E79" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="3" tabindex="0" role="button" aria-label="Sancaktepe"><rect x="1176" y="204" width="122" height="52" rx="7" fill="#BDD7EE" stroke="#1F4E79" stroke-width="1.6"/><text x="1237.0" y="236" text-anchor="middle" class="ad" fill="#1F4E79">Sancaktepe</text><path class="tik" d="M 1272 220 l 6 7 l 12 -14" fill="none" stroke="#1F4E79" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="4" tabindex="0" role="button" aria-label="Sultanbeyli"><rect x="1306" y="204" width="122" height="52" rx="7" fill="#C6E0B4" stroke="#375623" stroke-width="1.6"/><text x="1367.0" y="236" text-anchor="middle" class="ad" fill="#375623">Sultanbeyli</text><path class="tik" d="M 1402 220 l 6 7 l 12 -14" fill="none" stroke="#375623" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="3" tabindex="0" role="button" aria-label="Ataşehir"><rect x="1046" y="264" width="122" height="52" rx="7" fill="#BDD7EE" stroke="#1F4E79" stroke-width="1.6"/><text x="1107.0" y="296" text-anchor="middle" class="ad" fill="#1F4E79">Ataşehir</text><path class="tik" d="M 1142 280 l 6 7 l 12 -14" fill="none" stroke="#1F4E79" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="4" tabindex="0" role="button" aria-label="Kadıköy"><rect x="916" y="324" width="122" height="52" rx="7" fill="#C6E0B4" stroke="#375623" stroke-width="1.6"/><text x="977.0" y="356" text-anchor="middle" class="ad" fill="#375623">Kadıköy</text><path class="tik" d="M 1012 340 l 6 7 l 12 -14" fill="none" stroke="#375623" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="4" tabindex="0" role="button" aria-label="Maltepe"><rect x="1046" y="324" width="122" height="52" rx="7" fill="#C6E0B4" stroke="#375623" stroke-width="1.6"/><text x="1107.0" y="356" text-anchor="middle" class="ad" fill="#375623">Maltepe</text><path class="tik" d="M 1142 340 l 6 7 l 12 -14" fill="none" stroke="#375623" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="4" tabindex="0" role="button" aria-label="Kartal"><rect x="1176" y="324" width="122" height="52" rx="7" fill="#C6E0B4" stroke="#375623" stroke-width="1.6"/><text x="1237.0" y="356" text-anchor="middle" class="ad" fill="#375623">Kartal</text><path class="tik" d="M 1272 340 l 6 7 l 12 -14" fill="none" stroke="#375623" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="4" tabindex="0" role="button" aria-label="Pendik"><rect x="1306" y="324" width="122" height="52" rx="7" fill="#C6E0B4" stroke="#375623" stroke-width="1.6"/><text x="1367.0" y="356" text-anchor="middle" class="ad" fill="#375623">Pendik</text><path class="tik" d="M 1402 340 l 6 7 l 12 -14" fill="none" stroke="#375623" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="4" tabindex="0" role="button" aria-label="Tuzla"><rect x="1436" y="324" width="122" height="52" rx="7" fill="#C6E0B4" stroke="#375623" stroke-width="1.6"/><text x="1497.0" y="356" text-anchor="middle" class="ad" fill="#375623">Tuzla</text><path class="tik" d="M 1532 340 l 6 7 l 12 -14" fill="none" stroke="#375623" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="ilce" data-b="4" tabindex="0" role="button" aria-label="Adalar"><rect x="916" y="384" width="122" height="52" rx="7" fill="#C6E0B4" stroke="#375623" stroke-width="1.6"/><text x="977.0" y="416" text-anchor="middle" class="ad" fill="#375623">Adalar</text><path class="tik" d="M 1012 400 l 6 7 l 12 -14" fill="none" stroke="#375623" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+    </svg>
+  </div>
+
+  <div class="lejant">
+<div class="lg"><span class="sw" style="background:#F4CCCC;border-color:#A61C00"></span><div><b style="color:#A61C00">BÖLGE 1 — HALİÇ HATTI</b><span class="lgs">Tarihî merkez, Haliç ve Boğaz'ın Avrupa yakası · 10 ilçe</span></div></div>
+<div class="lg"><span class="sw" style="background:#FFE599;border-color:#BF8F00"></span><div><b style="color:#BF8F00">BÖLGE 2 — TRAKYA HATTI</b><span class="lgs">Avrupa yakasının batısı — iç batı ve dış batı · 15 ilçe</span></div></div>
+<div class="lg"><span class="sw" style="background:#BDD7EE;border-color:#1F4E79"></span><div><b style="color:#1F4E79">BÖLGE 3 — BOĞAZ HATTI</b><span class="lgs">Anadolu yakasının kuzeyi, Boğaz ve çevresi · 6 ilçe</span></div></div>
+<div class="lg"><span class="sw" style="background:#C6E0B4;border-color:#375623"></span><div><b style="color:#375623">BÖLGE 4 — MARMARA HATTI</b><span class="lgs">Anadolu yakasının Marmara sahili · 8 ilçe</span></div></div>
+  </div>
+
+  <footer>
+    <span>Şematik gösterimdir; ilçeler gerçek sınır ve ölçekleriyle değil, birbirlerine göre konumlarıyla yerleştirilmiştir. Bölgeler coğrafi hatlara göre kurulmuştur.</span>
+    <span class="motto">Biz zaferden değil seferden sorumluyuz.</span>
+  </footer>
+</div>
+
+<script>
+  const kutular = document.querySelectorAll('.ilce');
+  const sayi = document.getElementById('sayi');
+  function guncelle() {
+    sayi.textContent = document.querySelectorAll('.ilce.acik').length + ' / 39';
+  }
+  kutular.forEach(k => {
+    const cevir = () => { k.classList.toggle('acik'); guncelle(); };
+    k.addEventListener('click', cevir);
+    k.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); cevir(); }
+    });
+  });
+  function temizle() {
+    kutular.forEach(k => k.classList.remove('acik'));
+    guncelle();
+  }
+</script>
+</body>
+</html>

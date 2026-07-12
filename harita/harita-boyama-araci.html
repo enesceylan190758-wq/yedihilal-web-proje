@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>YediHilal İstanbul — 4 Bölge Harita Boyama Aracı</title>
+<style>
+  :root{ --bordo:#7B1010; --altin:#BF8F00; --kagit:#FBFAF7; --hat:#E2DCD0; --sil:#7A7367; }
+  *{box-sizing:border-box}
+  body{margin:0;background:#EFECE5;color:#1D1B18;
+       font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;font-size:14px}
+  .kap{max-width:1700px;margin:0 auto;padding:20px 18px 40px}
+  header{display:flex;align-items:center;gap:14px;border-bottom:3px solid var(--bordo);
+         padding-bottom:12px;margin-bottom:16px;flex-wrap:wrap}
+  .hilal{width:46px;height:46px;border-radius:6px;background:#141414;color:var(--altin);
+         display:flex;align-items:center;justify-content:center;font-size:26px;flex:0 0 auto}
+  h1{margin:0;font-size:20px;color:var(--bordo);letter-spacing:.2px}
+  .alt{margin:2px 0 0;font-size:12.5px;color:var(--sil)}
+  .say{margin-left:auto;text-align:right;font-size:11.5px;color:var(--sil)}
+  .say b{display:block;font-size:26px;color:var(--bordo);line-height:1.1}
+
+  .duzen{display:grid;grid-template-columns:296px 1fr;gap:16px;align-items:start}
+  @media(max-width:980px){.duzen{grid-template-columns:1fr}}
+
+  .yan{background:var(--kagit);border:1px solid var(--hat);border-radius:10px;padding:14px;
+       position:sticky;top:14px;max-height:calc(100vh - 40px);overflow:auto}
+  .bgrup{margin-bottom:12px}
+  .bbas{display:flex;align-items:center;gap:8px;font-weight:700;font-size:12.5px;
+        padding:6px 8px;border-radius:6px;margin-bottom:5px}
+  .il{display:flex;align-items:center;gap:7px;padding:4px 8px;border-radius:5px;cursor:pointer;
+      font-size:13px;border:1px solid transparent}
+  .il:hover{background:#F1EDE4}
+  .il.sec{border-color:var(--bordo);background:#FBEFEF;font-weight:600}
+  .il.ok{color:var(--sil)}
+  .nok{width:9px;height:9px;border-radius:50%;flex:0 0 auto;background:#D6D0C4}
+  .il.ok .nok{background:#3F8A3F}
+
+  .sag{background:var(--kagit);border:1px solid var(--hat);border-radius:10px;padding:14px}
+  .arac{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;align-items:center}
+  button{font:inherit;font-size:13px;padding:7px 13px;border-radius:6px;cursor:pointer;
+         border:1px solid #C9C2B4;background:#fff;color:#3A3630}
+  button:hover{border-color:var(--bordo);color:var(--bordo)}
+  button.ana{background:var(--bordo);color:#fff;border-color:var(--bordo)}
+  button:disabled{opacity:.45;cursor:not-allowed}
+  label.sw{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#3A3630;cursor:pointer}
+
+  #drop{border:2px dashed #C9C2B4;border-radius:10px;padding:46px 20px;text-align:center;
+        color:var(--sil);background:#fff;cursor:pointer}
+  #drop.uzeri{border-color:var(--bordo);background:#FBEFEF;color:var(--bordo)}
+  #drop b{display:block;font-size:16px;color:#1D1B18;margin-bottom:6px}
+  #drop small{display:block;margin-top:8px;font-size:12px;line-height:1.6}
+
+  #tuval{position:relative;background:#fff;border:1px solid var(--hat);border-radius:8px;overflow:hidden}
+  #tuval svg{width:100%;height:auto;display:block}
+  #tuval .sekil{cursor:crosshair}
+  #tuval .sekil:hover{filter:brightness(.9)}
+  .baslik{display:none;padding:12px 16px 0}
+  .baslik h2{margin:0;font-size:17px;color:var(--bordo)}
+  .baslik p{margin:2px 0 0;font-size:12px;color:var(--sil)}
+
+  .lej{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:8px 22px;margin-top:14px}
+  .lg{display:flex;gap:9px;align-items:flex-start}
+  .kare{width:20px;height:20px;border-radius:5px;border:2px solid;flex:0 0 auto;margin-top:1px}
+  .lg b{display:block;font-size:12.5px}
+  .lg span{display:block;font-size:11px;color:var(--sil)}
+
+  .dip{margin-top:14px;padding-top:10px;border-top:1px solid var(--hat);
+       font-size:11px;color:var(--sil);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+  .motto{color:var(--bordo);font-weight:600;font-style:italic}
+  .uyari{background:#FFF8E1;border:1px solid #E8D48A;border-radius:8px;padding:10px 12px;
+         font-size:12.5px;color:#6B5A12;margin-bottom:12px;line-height:1.55}
+  .uyari a{color:#7B1010}
+  @media print{
+    @page{size:A4 landscape;margin:8mm}
+    body{background:#fff}
+    .kap{max-width:none;padding:0}
+    .yan,.arac,.uyari,#drop{display:none!important}
+    .duzen{display:block}
+    .sag{border:none;padding:0}
+    header{margin-bottom:8px}
+    .say{display:none}
+    .baslik{display:block!important}
+  }
+</style>
+</head>
+<body>
+<div class="kap">
+  <header>
+    <div class="hilal">☾</div>
+    <div>
+      <h1>İSTANBUL 4 BÖLGE — HARİTA BOYAMA ARACI</h1>
+      <p class="alt">YediHilal · İl Teşkilatlanma Birimi · 39 ilçe, 4 coğrafi hat</p>
+    </div>
+    <div class="say">BOYANAN İLÇE<b id="sayac">0 / 39</b></div>
+  </header>
+
+  <div class="uyari">
+    <b>Nasıl kullanılır:</b> Wikimedia Commons'tan İstanbul ilçe haritasının <b>SVG</b> dosyasını indir
+    (<a href="https://commons.wikimedia.org/wiki/Category:SVG_maps_of_Istanbul" target="_blank" rel="noopener">Commons → SVG maps of Istanbul</a>
+    kategorisinde <i>Istanbul districts blank.svg</i> veya <i>Istanbul-map-blank.svg</i>).
+    Dosyayı aşağıya sürükle. Araç ilçeleri isimlerinden tanıyıp otomatik boyar; tanıyamadıklarını
+    soldaki listeden seçip harita üzerinde tıklayarak sen atarsın. Bitince yazdır veya PNG olarak indir.
+    <br><b>Not:</b> Commons haritaları çoğunlukla CC lisanslıdır — çıktının bir köşesinde kaynak/çizer adını belirtmeyi unutma.
+  </div>
+
+  <div class="duzen">
+    <aside class="yan" id="yan"></aside>
+
+    <section class="sag">
+      <div class="arac">
+        <button class="ana" id="btnAc">SVG dosyası seç</button>
+        <input type="file" id="dosya" accept=".svg,image/svg+xml" hidden>
+        <button id="btnYazdir" disabled>Yazdır / PDF</button>
+        <button id="btnPng" disabled>PNG indir</button>
+        <button id="btnSvg" disabled>SVG indir</button>
+        <button id="btnSifirla" disabled>Renkleri sıfırla</button>
+        <label class="sw"><input type="checkbox" id="cbAd" checked> İlçe isimlerini göster</label>
+      </div>
+
+      <div id="drop">
+        <b>Haritayı buraya sürükle</b>
+        SVG dosyası (.svg)
+        <small>Dosya tarayıcından çıkmaz; hiçbir yere yüklenmez.</small>
+      </div>
+
+      <div class="baslik" id="baslik">
+        <h2>İSTANBUL TEŞKİLAT HARİTASI — 4 BÖLGE</h2>
+        <p>YediHilal · İl Teşkilatlanma Birimi · 2026–2027</p>
+      </div>
+      <div id="tuval" hidden></div>
+
+      <div class="lej" id="lejant"></div>
+
+      <div class="dip">
+        <span id="kaynak">Harita kaynağı: (indirdiğin dosyanın çizeri / lisansı buraya yazılır)</span>
+        <span class="motto">Biz zaferden değil seferden sorumluyuz.</span>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+const ILCELER = [{"ad": "Fatih", "tam": "Fatih", "b": 1, "keys": ["fatih"]}, {"ad": "Eyüpsultan", "tam": "Eyüpsultan", "b": 1, "keys": ["eyupsultan", "eyup"]}, {"ad": "Gaziosmanpaşa", "tam": "Gaziosmanpaşa", "b": 1, "keys": ["gaziosmanpasa"]}, {"ad": "Sultangazi", "tam": "Sultangazi", "b": 1, "keys": ["sultangazi"]}, {"ad": "Bayrampaşa", "tam": "Bayrampaşa", "b": 1, "keys": ["bayrampasa"]}, {"ad": "Kağıthane", "tam": "Kağıthane", "b": 1, "keys": ["kagithane"]}, {"ad": "Beyoğlu", "tam": "Beyoğlu", "b": 1, "keys": ["beyoglu"]}, {"ad": "Şişli", "tam": "Şişli", "b": 1, "keys": ["sisli"]}, {"ad": "Sarıyer", "tam": "Sarıyer", "b": 1, "keys": ["sariyer"]}, {"ad": "Beşiktaş", "tam": "Beşiktaş", "b": 1, "keys": ["besiktas"]}, {"ad": "Bağcılar", "tam": "Bağcılar", "b": 2, "keys": ["bagcilar"]}, {"ad": "Bahçelievler", "tam": "Bahçelievler", "b": 2, "keys": ["bahcelievler"]}, {"ad": "Esenler", "tam": "Esenler", "b": 2, "keys": ["esenler"]}, {"ad": "Güngören", "tam": "Güngören", "b": 2, "keys": ["gungoren"]}, {"ad": "Küçükçekmece", "tam": "Küçükçekmece", "b": 2, "keys": ["kucukcekmece"]}, {"ad": "Başakşehir", "tam": "Başakşehir", "b": 2, "keys": ["basaksehir"]}, {"ad": "Esenyurt", "tam": "Esenyurt", "b": 2, "keys": ["esenyurt"]}, {"ad": "Zeytinburnu", "tam": "Zeytinburnu", "b": 2, "keys": ["zeytinburnu"]}, {"ad": "Bakırköy", "tam": "Bakırköy", "b": 2, "keys": ["bakirkoy"]}, {"ad": "Avcılar", "tam": "Avcılar", "b": 2, "keys": ["avcilar"]}, {"ad": "Beylikdüzü", "tam": "Beylikdüzü", "b": 2, "keys": ["beylikduzu"]}, {"ad": "Büyükçekmece", "tam": "Büyükçekmece", "b": 2, "keys": ["buyukcekmece"]}, {"ad": "Arnavutköy", "tam": "Arnavutköy", "b": 2, "keys": ["arnavutkoy"]}, {"ad": "Çatalca", "tam": "Çatalca", "b": 2, "keys": ["catalca"]}, {"ad": "Silivri", "tam": "Silivri", "b": 2, "keys": ["silivri"]}, {"ad": "Üsküdar", "tam": "Üsküdar (Kirazlıtepe)", "b": 3, "keys": ["uskudar", "uskudarkirazlitepe"]}, {"ad": "Ümraniye", "tam": "Ümraniye", "b": 3, "keys": ["umraniye"]}, {"ad": "Sancaktepe", "tam": "Sancaktepe", "b": 3, "keys": ["sancaktepe"]}, {"ad": "Çekmeköy", "tam": "Çekmeköy", "b": 3, "keys": ["cekmekoy"]}, {"ad": "Ataşehir", "tam": "Ataşehir", "b": 3, "keys": ["atasehir"]}, {"ad": "Beykoz", "tam": "Beykoz", "b": 3, "keys": ["beykoz"]}, {"ad": "Kadıköy", "tam": "Kadıköy", "b": 4, "keys": ["kadikoy"]}, {"ad": "Kartal", "tam": "Kartal", "b": 4, "keys": ["kartal"]}, {"ad": "Pendik", "tam": "Pendik", "b": 4, "keys": ["pendik"]}, {"ad": "Maltepe", "tam": "Maltepe", "b": 4, "keys": ["maltepe"]}, {"ad": "Sultanbeyli", "tam": "Sultanbeyli", "b": 4, "keys": ["sultanbeyli"]}, {"ad": "Tuzla", "tam": "Tuzla", "b": 4, "keys": ["tuzla"]}, {"ad": "Şile", "tam": "Şile", "b": 4, "keys": ["sile"]}, {"ad": "Adalar", "tam": "Adalar", "b": 4, "keys": ["adalar"]}];
+const BOLGE   = {"1": {"ad": "HALİÇ HATTI", "alt": "Tarihî merkez, Haliç ve Boğaz'ın Avrupa yakası", "renk": "#F4CCCC", "koyu": "#A61C00", "yaka": "AVRUPA"}, "2": {"ad": "TRAKYA HATTI", "alt": "Avrupa yakasının batısı — iç batı ve dış batı", "renk": "#FFE599", "koyu": "#BF8F00", "yaka": "AVRUPA"}, "3": {"ad": "BOĞAZ HATTI", "alt": "Anadolu yakasının kuzeyi, Boğaz ve çevresi", "renk": "#BDD7EE", "koyu": "#1F4E79", "yaka": "ANADOLU"}, "4": {"ad": "MARMARA HATTI", "alt": "Anadolu yakasının Marmara sahili", "renk": "#C6E0B4", "koyu": "#375623", "yaka": "ANADOLU"}};
+const NOTR = "#EDEAE3", NOTR_C = "#B9B2A4";
+
+let secili = null;          // sidebar'da seçili ilçe
+const atama = {};           // ilçe adı -> SVG şekli
+let svgEl = null;
+
+/* ---------- yardımcı ---------- */
+function nrm(s){
+  if(!s) return "";
+  const tr = {"ı":"i","İ":"i","ş":"s","Ş":"s","ğ":"g","Ğ":"g","ü":"u","Ü":"u",
+              "ö":"o","Ö":"o","ç":"c","Ç":"c","â":"a","î":"i","û":"u"};
+  return s.split("").map(c=>tr[c]||c).join("")
+          .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+          .toLowerCase().replace(/[^a-z0-9]/g,"");
+}
+
+/* ---------- kenar çubuğu ---------- */
+function yanKur(){
+  const y = document.getElementById("yan");
+  y.innerHTML = "";
+  [1,2,3,4].forEach(b=>{
+    const bi = BOLGE[b];
+    const g = document.createElement("div"); g.className="bgrup";
+    const h = document.createElement("div"); h.className="bbas";
+    h.style.background = bi.renk; h.style.color = bi.koyu;
+    h.textContent = "BÖLGE "+b+" — "+bi.ad;
+    g.appendChild(h);
+    ILCELER.filter(i=>i.b===b).forEach(i=>{
+      const d = document.createElement("div");
+      d.className="il"; d.dataset.ad=i.ad;
+      d.innerHTML = '<span class="nok"></span>'+i.ad;
+      d.onclick = ()=>{
+        secili = (secili===i.ad) ? null : i.ad;
+        document.querySelectorAll(".il").forEach(e=>e.classList.toggle("sec", e.dataset.ad===secili));
+      };
+      g.appendChild(d);
+    });
+    y.appendChild(g);
+  });
+  const l = document.getElementById("lejant");
+  l.innerHTML = [1,2,3,4].map(b=>{
+    const bi=BOLGE[b], n=ILCELER.filter(i=>i.b===b).length;
+    return '<div class="lg"><span class="kare" style="background:'+bi.renk+';border-color:'+bi.koyu+'"></span>'+
+           '<div><b style="color:'+bi.koyu+'">BÖLGE '+b+' — '+bi.ad+'</b><span>'+bi.alt+' · '+n+' ilçe</span></div></div>';
+  }).join("");
+}
+
+function guncelle(){
+  const n = Object.keys(atama).length;
+  document.getElementById("sayac").textContent = n+" / 39";
+  document.querySelectorAll(".il").forEach(e=>e.classList.toggle("ok", !!atama[e.dataset.ad]));
+}
+
+/* ---------- boyama ---------- */
+function boya(ilceAd, sekil){
+  const il = ILCELER.find(i=>i.ad===ilceAd); if(!il||!sekil) return;
+  if(atama[ilceAd] && atama[ilceAd]!==sekil) notrle(atama[ilceAd]);
+  const bi = BOLGE[il.b];
+  sekil.style.fill = bi.renk;
+  sekil.style.stroke = bi.koyu;
+  sekil.style.strokeWidth = "1.4";
+  sekil.dataset.ilce = ilceAd;
+  atama[ilceAd] = sekil;
+  etiket(ilceAd, sekil, bi.koyu);
+  guncelle();
+}
+function notrle(sekil){
+  sekil.style.fill = NOTR; sekil.style.stroke = NOTR_C; sekil.style.strokeWidth = "1";
+  const ad = sekil.dataset.ilce;
+  if(ad){ const t = svgEl.querySelector('[data-etiket="'+ad+'"]'); if(t) t.remove(); delete atama[ad]; }
+  delete sekil.dataset.ilce;
+}
+function etiket(ad, sekil, renk){
+  const eski = svgEl.querySelector('[data-etiket="'+ad+'"]'); if(eski) eski.remove();
+  let bb; try{ bb = sekil.getBBox(); }catch(e){ return; }
+  const t = document.createElementNS("http://www.w3.org/2000/svg","text");
+  t.setAttribute("x", bb.x + bb.width/2);
+  t.setAttribute("y", bb.y + bb.height/2);
+  t.setAttribute("text-anchor","middle");
+  t.setAttribute("dominant-baseline","middle");
+  t.setAttribute("data-etiket", ad);
+  t.setAttribute("class","etiket");
+  const boy = Math.max(7, Math.min(15, bb.width/7));
+  t.setAttribute("style","font:700 "+boy+"px Segoe UI,Arial;fill:"+renk+
+                 ";paint-order:stroke;stroke:#fff;stroke-width:2.6px;stroke-linejoin:round;pointer-events:none;"+
+                 (document.getElementById("cbAd").checked ? "" : "display:none"));
+  t.textContent = ad;
+  svgEl.appendChild(t);
+}
+
+/* ---------- SVG yükleme ---------- */
+function yukle(metin){
+  const tuval = document.getElementById("tuval");
+  tuval.innerHTML = metin; tuval.hidden = false;
+  document.getElementById("drop").hidden = true;
+  svgEl = tuval.querySelector("svg");
+  if(!svgEl){ alert("Dosyada SVG bulunamadı."); return; }
+  svgEl.removeAttribute("width"); svgEl.removeAttribute("height");
+  if(!svgEl.getAttribute("viewBox")) svgEl.setAttribute("viewBox","0 0 2321 1554");
+
+  const sekiller = [...svgEl.querySelectorAll("path,polygon,polyline,rect,ellipse,circle")]
+    .filter(s=>{ try{ const b=s.getBBox(); return b.width>4 && b.height>4; }catch(e){ return false; } });
+
+  sekiller.forEach(s=>{
+    s.classList.add("sekil");
+    s.style.fill = NOTR; s.style.stroke = NOTR_C; s.style.strokeWidth = "1";
+    s.addEventListener("click", ev=>{
+      ev.stopPropagation();
+      if(s.dataset.ilce){ notrle(s); guncelle(); return; }
+      if(!secili){ alert("Önce soldaki listeden bir ilçe seç, sonra haritada o ilçeye tıkla."); return; }
+      boya(secili, s);
+    });
+  });
+
+  /* otomatik eşleştirme */
+  let bulunan = 0;
+  sekiller.forEach(s=>{
+    const ipuclari = [s.id, s.getAttribute("inkscape:label"), s.getAttribute("data-name"),
+                      s.getAttribute("aria-label"), s.getAttribute("name"),
+                      s.querySelector("title")?.textContent,
+                      s.parentElement?.id, s.parentElement?.getAttribute("inkscape:label"),
+                      s.parentElement?.querySelector(":scope > title")?.textContent];
+    const anahtarlar = ipuclari.filter(Boolean).map(nrm);
+    if(!anahtarlar.length) return;
+    const il = ILCELER.find(i=>i.keys.some(k=>anahtarlar.some(a=>a===k || (a.length>3 && a.includes(k)))));
+    if(il && !atama[il.ad]){ boya(il.ad, s); bulunan++; }
+  });
+
+  ["btnYazdir","btnPng","btnSvg","btnSifirla"].forEach(id=>document.getElementById(id).disabled=false);
+  guncelle();
+  const mesaj = bulunan
+    ? bulunan+" ilçe isminden otomatik tanındı ve boyandı. Kalanları soldan seçip haritada tıkla."
+    : "Bu haritada ilçe isimleri etiket olarak yok — hepsini elle atayacaksın: soldan bir ilçe seç, haritada o bölgeye tıkla. Yanlış tıklarsan aynı yere tekrar tıkla, geri alır.";
+  setTimeout(()=>alert(mesaj), 60);
+}
+
+/* ---------- olaylar ---------- */
+const drop = document.getElementById("drop"), dosya = document.getElementById("dosya");
+document.getElementById("btnAc").onclick = ()=>dosya.click();
+drop.onclick = ()=>dosya.click();
+dosya.onchange = e=>{ const f=e.target.files[0]; if(f) f.text().then(yukle); };
+["dragenter","dragover"].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.add("uzeri");}));
+["dragleave","drop"].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.remove("uzeri");}));
+drop.addEventListener("drop", e=>{ const f=e.dataTransfer.files[0]; if(f) f.text().then(yukle); });
+
+document.getElementById("cbAd").onchange = e=>{
+  if(!svgEl) return;
+  svgEl.querySelectorAll(".etiket").forEach(t=>t.style.display = e.target.checked ? "" : "none");
+};
+document.getElementById("btnSifirla").onclick = ()=>{
+  if(!svgEl) return;
+  Object.values(atama).forEach(s=>notrle(s));
+  svgEl.querySelectorAll(".etiket").forEach(t=>t.remove());
+  guncelle();
+};
+document.getElementById("btnYazdir").onclick = ()=>window.print();
+
+function svgMetni(){
+  const k = svgEl.cloneNode(true);
+  k.setAttribute("xmlns","http://www.w3.org/2000/svg");
+  return new XMLSerializer().serializeToString(k);
+}
+document.getElementById("btnSvg").onclick = ()=>{
+  const blob = new Blob([svgMetni()], {type:"image/svg+xml"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob); a.download = "YediHilal_Istanbul_4_Bolge.svg"; a.click();
+};
+document.getElementById("btnPng").onclick = ()=>{
+  const vb = (svgEl.getAttribute("viewBox")||"0 0 2321 1554").split(/\s+/).map(Number);
+  const w = vb[2]||2321, h = vb[3]||1554, ol = 2;
+  const img = new Image();
+  img.onload = ()=>{
+    const c = document.createElement("canvas");
+    c.width = w*ol; c.height = h*ol;
+    const x = c.getContext("2d");
+    x.fillStyle = "#FBFAF7"; x.fillRect(0,0,c.width,c.height);
+    x.drawImage(img,0,0,c.width,c.height);
+    const a = document.createElement("a");
+    a.href = c.toDataURL("image/png"); a.download = "YediHilal_Istanbul_4_Bolge.png"; a.click();
+  };
+  img.onerror = ()=>alert("PNG üretilemedi. 'SVG indir' ile kaydedip yazdırmayı deneyin.");
+  img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgMetni());
+};
+
+yanKur(); guncelle();
+</script>
+</body>
+</html>

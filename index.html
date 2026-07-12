@@ -1,91 +1,66 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YediHilal Sesli Asistan</title>
-    <style>
-        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; background: linear-gradient(135deg, #1a472a 0%, #2d5a3d 100%); margin: 0; }
-        .card { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); text-align: center; max-width: 420px; width: 90%; }
-        .logo { font-size: 48px; margin-bottom: 8px; }
-        h1 { margin: 0 0 8px; color: #1a472a; font-size: 24px; }
-        .subtitle { color: #666; font-size: 14px; margin-bottom: 24px; }
-        .status { margin-bottom: 20px; font-weight: bold; color: #666; }
-        button { padding: 15px 30px; font-size: 18px; cursor: pointer; background: #1a472a; color: white; border: none; border-radius: 8px; transition: 0.3s; width: 100%; }
-        button:hover { background: #0f2e1a; }
-        button:disabled { background: #ccc; cursor: not-allowed; }
-        .active { color: #1a472a; }
-        .error { color: #dc3545; }
-        .info { margin-top: 20px; font-size: 12px; color: #888; line-height: 1.5; }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>YediHilal İstanbul — Teşkilatlanma Araçları</title>
+<style>
+  :root{--bordo:#7B1010;--altin:#BF8F00;--kagit:#FBFAF7;--hat:#E2DCD0;--sil:#7A7367}
+  *{box-sizing:border-box}
+  body{margin:0;background:#EFECE5;color:#1D1B18;font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;font-size:15px;line-height:1.5}
+  .kap{max-width:920px;margin:0 auto;padding:32px 20px 48px}
+  header{display:flex;align-items:center;gap:14px;border-bottom:3px solid var(--bordo);padding-bottom:14px;margin-bottom:28px}
+  .hilal{width:52px;height:52px;border-radius:6px;background:#141414;color:var(--altin);display:flex;align-items:center;justify-content:center;font-size:28px;flex:0 0 auto}
+  h1{margin:0;font-size:22px;color:var(--bordo)}
+  .alt{margin:4px 0 0;font-size:13px;color:var(--sil)}
+  .grid{display:grid;gap:14px}
+  .kart{display:block;background:var(--kagit);border:1px solid var(--hat);border-radius:10px;padding:18px 20px;text-decoration:none;color:inherit;transition:border-color .15s,box-shadow .15s}
+  .kart:hover{border-color:var(--bordo);box-shadow:0 4px 14px rgba(0,0,0,.08)}
+  .kart b{display:block;font-size:16px;color:var(--bordo);margin-bottom:4px}
+  .kart span{display:block;font-size:13px;color:var(--sil)}
+  .kart.ana{border-color:var(--bordo);border-width:2px}
+  .bolum{margin-top:28px}
+  .bolum h2{font-size:14px;color:var(--bordo);margin:0 0 10px;letter-spacing:.3px}
+  .dosya{font-size:13px;padding:8px 0;border-bottom:1px solid var(--hat);display:flex;justify-content:space-between;gap:12px}
+  .dosya a{color:var(--bordo);text-decoration:none;font-weight:600}
+  .dosya a:hover{text-decoration:underline}
+  footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--hat);font-size:12px;color:var(--sil);font-style:italic;color:var(--bordo);font-weight:600}
+</style>
 </head>
 <body>
-    <div class="card">
-        <div class="logo">🌙</div>
-        <h1>YediHilal Sesli Asistan</h1>
-        <p class="subtitle">Yedi Tepeden Yedi Kıtaya</p>
-        <div id="status" class="status">Aramaya Hazır</div>
-        <button id="toggleBtn">Konuşmayı Başlat</button>
-        <p class="info">Projelerimiz, başvuru süreçleri ve gönüllülük hakkında sorularınızı yanıtlayabilirim.</p>
+<div class="kap">
+  <header>
+    <div class="hilal">☾</div>
+    <div>
+      <h1>YediHilal İstanbul Teşkilatlanma</h1>
+      <p class="alt">İl Teşkilatlanma Birimi · 39 ilçe · 4 coğrafi hat · 2026–2027</p>
     </div>
+  </header>
 
-    <script src="https://cdn.jsdelivr.net/npm/retell-client-js-sdk@latest/dist/index.umd.js"></script>
-    <script>
-        const retellWebClient = new retell.RetellWebClient();
-        const toggleBtn = document.getElementById('toggleBtn');
-        const statusEl = document.getElementById('status');
-        let isCalling = false;
+  <div class="grid">
+    <a class="kart ana" href="harita/canli-teskilat-haritasi.html">
+      <b>Canlı Teşkilat Haritası</b>
+      <span>39 ilçe, KPI paneli, ilçe karnesi, Excel/JSON import-export. Ana çalışma aracı.</span>
+    </a>
+    <a class="kart" href="harita/istanbul-4-bolge-haritasi.html">
+      <b>4 Bölge Şematik Harita</b>
+      <span>Toplantıda ilçe işaretleme, yazdır/PDF. Boş taslak.</span>
+    </a>
+    <a class="kart" href="harita/harita-boyama-araci.html">
+      <b>Harita Boyama Aracı</b>
+      <span>Wikimedia SVG yükleyip 4 bölgeye göre otomatik boyama.</span>
+    </a>
+  </div>
 
-        retellWebClient.on("call_started", () => {
-            statusEl.textContent = "📞 Görüşme Sürüyor...";
-            statusEl.className = "status active";
-            toggleBtn.textContent = "Görüşmeyi Bitir";
-            toggleBtn.style.background = "#dc3545";
-        });
+  <div class="bolum">
+    <h2>ÇALIŞMA DOSYALARI</h2>
+    <div class="dosya"><span>İlçe karne ve dashboard (Excel)</span><a href="docs/YediHilal_Ilce_Karne_ve_Dashboard_Sistemi_v2__1__f90f.xlsx" download>İndir</a></div>
+    <div class="dosya"><span>Teşkilatlanma çalışma dosyası v3 (Excel)</span><a href="docs/YediHilal_Istanbul_Teskilatlanma_Calisma_Dosyasi_v3__1__5f49.xlsx" download>İndir</a></div>
+    <div class="dosya"><span>Teşkilatlanma birimi el kitabı (Word)</span><a href="docs/YediHilal_Teskilatlanma_Birimi_El_Kitabi__1__c449.docx" download>İndir</a></div>
+    <div class="dosya"><span>Harita eşleştirme verisi (JSON)</span><a href="data/yedihilal_harita_eslestirme.json" download>İndir</a></div>
+  </div>
 
-        retellWebClient.on("call_ended", () => {
-            resetUI();
-        });
-
-        retellWebClient.on("error", (error) => {
-            console.error("Error:", error);
-            statusEl.textContent = "❌ Hata: " + error.message;
-            statusEl.className = "status error";
-            resetUI();
-        });
-
-        function resetUI() {
-            statusEl.textContent = "Aramaya Hazır";
-            statusEl.className = "status";
-            toggleBtn.textContent = "Konuşmayı Başlat";
-            toggleBtn.style.background = "#1a472a";
-            toggleBtn.disabled = false;
-            isCalling = false;
-        }
-
-        toggleBtn.addEventListener('click', async () => {
-            if (isCalling) {
-                retellWebClient.stopCall();
-            } else {
-                toggleBtn.disabled = true;
-                statusEl.textContent = "Bağlanıyor...";
-
-                try {
-                    const response = await fetch("/register-call", { method: "POST" });
-                    if (!response.ok) throw new Error("Token alınamadı");
-
-                    const data = await response.json();
-                    await retellWebClient.startCall({ accessToken: data.access_token });
-                    isCalling = true;
-                    toggleBtn.disabled = false;
-                } catch (err) {
-                    console.error(err);
-                    statusEl.textContent = "Hata: Sunucuya bağlanılamadı";
-                    statusEl.className = "status error";
-                    toggleBtn.disabled = false;
-                }
-            }
-        });
-    </script>
+  <footer>Biz zaferden değil seferden sorumluyuz.</footer>
+</div>
 </body>
 </html>

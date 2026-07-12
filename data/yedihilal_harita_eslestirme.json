@@ -1,0 +1,712 @@
+{
+ "atama": {
+  "Beykoz": [
+   2
+  ],
+  "Şile": [
+   3
+  ],
+  "Adalar": [
+   17,
+   15,
+   20,
+   21
+  ],
+  "Çekmeköy": [
+   1
+  ],
+  "Üsküdar": [
+   16
+  ],
+  "Ümraniye": [
+   11
+  ],
+  "Sancaktepe": [
+   9
+  ],
+  "Kadıköy": [
+   19
+  ],
+  "Maltepe": [
+   10
+  ],
+  "Ataşehir": [
+   12
+  ],
+  "Kartal": [
+   7
+  ],
+  "Pendik": [
+   8
+  ],
+  "Sultanbeyli": [
+   4
+  ],
+  "Tuzla": [
+   5
+  ],
+  "Sarıyer": [
+   14
+  ],
+  "Çatalca": [
+   45
+  ],
+  "Arnavutköy": [
+   37
+  ],
+  "Silivri": [
+   48
+  ],
+  "Büyükçekmece": [
+   43
+  ],
+  "Beylikdüzü": [
+   44
+  ],
+  "Avcılar": [
+   41
+  ],
+  "Esenyurt": [
+   42
+  ],
+  "Başakşehir": [
+   36
+  ],
+  "Küçükçekmece": [
+   38
+  ],
+  "Bakırköy": [
+   32
+  ],
+  "Zeytinburnu": [
+   31
+  ],
+  "Fatih": [
+   29
+  ],
+  "Beyoğlu": [
+   26
+  ],
+  "Beşiktaş": [
+   23
+  ],
+  "Şişli": [
+   24,
+   25
+  ],
+  "Eyüpsultan": [
+   28
+  ],
+  "Sultangazi": [
+   30
+  ],
+  "Bahçelievler": [
+   39
+  ],
+  "Bağcılar": [
+   40
+  ],
+  "Esenler": [
+   34
+  ],
+  "Güngören": [
+   35
+  ],
+  "Kağıthane": [
+   22
+  ],
+  "Gaziosmanpaşa": [
+   27
+  ],
+  "Bayrampaşa": [
+   33
+  ]
+ },
+ "veri": [
+  {
+   "ad": "Fatih",
+   "tam": "Fatih",
+   "b": 1,
+   "durum": "HEDEF",
+   "onc": 1,
+   "takipci": "BOŞ",
+   "temsilci": "",
+   "risk": "—",
+   "karne": "",
+   "yk": "",
+   "asama": "1 - Koordinatör arayışı",
+   "not": "Tarihî yarımada. İHL ve üniversite yoğunluğu en yüksek ilçe. Cami merkezli çalışma için en verimli zemin.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Eyüpsultan",
+   "tam": "Eyüpsultan",
+   "b": 1,
+   "durum": "HEDEF",
+   "onc": 1,
+   "takipci": "BOŞ",
+   "temsilci": "",
+   "risk": "—",
+   "karne": "",
+   "yk": "",
+   "asama": "1 - Koordinatör arayışı",
+   "not": "Cami merkezli çalışmanın sembol ilçesi. Genç nüfus yoğun.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Gaziosmanpaşa",
+   "tam": "Gaziosmanpaşa",
+   "b": 1,
+   "durum": "HEDEF",
+   "onc": 1,
+   "takipci": "BOŞ",
+   "temsilci": "",
+   "risk": "—",
+   "karne": "",
+   "yk": "",
+   "asama": "1 - Koordinatör arayışı",
+   "not": "Yoğun genç nüfus, muhafazakâr doku. Öncelikli açılış adayı.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Sultangazi",
+   "tam": "Sultangazi",
+   "b": 1,
+   "durum": "HEDEF",
+   "onc": 1,
+   "takipci": "BOŞ",
+   "temsilci": "",
+   "risk": "—",
+   "karne": "",
+   "yk": "",
+   "asama": "1 - Koordinatör arayışı",
+   "not": "Genç nüfus çok yüksek. Kağıthane ekibi buradan isim çıkarabilir.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Bayrampaşa",
+   "tam": "Bayrampaşa",
+   "b": 1,
+   "durum": "HEDEF",
+   "onc": 1,
+   "takipci": "BOŞ",
+   "temsilci": "",
+   "risk": "—",
+   "karne": "",
+   "yk": "",
+   "asama": "1 - Koordinatör arayışı",
+   "not": "Merkezî konum, ulaşımı kolay.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Kağıthane",
+   "tam": "Kağıthane",
+   "b": 1,
+   "durum": "MEVCUT",
+   "onc": 0,
+   "takipci": "BOŞ",
+   "temsilci": "Adem Abi",
+   "risk": "Yüksek",
+   "karne": 39,
+   "yk": 10,
+   "asama": "",
+   "not": "MEVCUT — Adem Abi. Kadro yaşlanmış, gençleşme şart.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Beyoğlu",
+   "tam": "Beyoğlu",
+   "b": 1,
+   "durum": "HEDEF",
+   "onc": 2,
+   "takipci": "BOŞ",
+   "temsilci": "",
+   "risk": "—",
+   "karne": "",
+   "yk": "",
+   "asama": "1 - Koordinatör arayışı",
+   "not": "Karma doku. Önce cami ve okul ağı kurulmalı.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Şişli",
+   "tam": "Şişli",
+   "b": 1,
+   "durum": "HEDEF",
+   "onc": 2,
+   "takipci": "BOŞ",
+   "temsilci": "",
+   "risk": "—",
+   "karne": "",
+   "yk": "",
+   "asama": "1 - Koordinatör arayışı",
+   "not": "Zor zemin. Üniversite üzerinden girilebilir.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Sarıyer",
+   "tam": "Sarıyer",
+   "b": 1,
+   "durum": "HEDEF",
+   "onc": 2,
+   "takipci": "BOŞ",
+   "temsilci": "",
+   "risk": "—",
+   "karne": "",
+   "yk": "",
+   "asama": "1 - Koordinatör arayışı",
+   "not": "Üniversite yoğunluğu (Boğaziçi, İTÜ). Üniversite birimi ile koordineli.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Beşiktaş",
+   "tam": "Beşiktaş",
+   "b": 1,
+   "durum": "HEDEF",
+   "onc": 3,
+   "takipci": "BOŞ",
+   "temsilci": "",
+   "risk": "—",
+   "karne": "",
+   "yk": "",
+   "asama": "1 - Koordinatör arayışı",
+   "not": "En zor zemin. Şimdilik erteleme, üniversite çalışması ile sınırlı tut.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Bağcılar",
+   "tam": "Bağcılar",
+   "b": 2,
+   "durum": "MEVCUT",
+   "onc": 0,
+   "takipci": "BOŞ",
+   "temsilci": "",
+   "risk": "Düşük",
+   "karne": 36,
+   "yk": 8,
+   "asama": "",
+   "not": "MEVCUT — genel olarak iyi. Eğitimci takviyesi teyit edilmeli.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Bahçelievler",
+   "tam": "Bahçelievler",
+   "b": 2,
+   "durum": "MEVCUT",
+   "onc": 0,
+   "takipci": "BOŞ",
+   "temsilci": "Yusuf Hoca",
+   "risk": "Orta",
+   "karne": 63,
+   "yk": 20,
+   "asama": "",
+   "not": "MEVCUT — Yusuf Hoca. Okul merkezli aktif ekip, teşkilat düzenine entegre değil.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Esenler",
+   "tam": "Esenler",
+   "b": 2,
+   "durum": "MEVCUT",
+   "onc": 0,
+   "takipci": "BOŞ",
+   "temsilci": "",
+   "risk": "Yüksek",
+   "karne": 58,
+   "yk": 10,
+   "asama": "",
+   "not": "MEVCUT — durgun. Genç temsilci ve yeni kadro şart.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Güngören",
+   "tam": "Güngören",
+   "b": 2,
+   "durum": "HEDEF",
+   "onc": 1,
+   "takipci": "BOŞ",
+   "temsilci": "",
+   "risk": "—",
+   "karne": "",
+   "yk": "",
+   "asama": "1 - Koordinatör arayışı",
+   "not": "Bağcılar ve Bahçelievler'in tam ortasında. En kolay açılacak ilçe.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Küçükçekmece",
+   "tam": "Küçükçekmece",
+   "b": 2,
+   "durum": "HEDEF",
+   "onc": 1,
+   "takipci": "BOŞ",
+   "temsilci": "",
+   "risk": "—",
+   "karne": "",
+   "yk": "",
+   "asama": "1 - Koordinatör arayışı",
+   "not": "İstanbul'un en kalabalık ilçelerinden. Genç nüfus çok yüksek.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Başakşehir",
+   "tam": "Başakşehir",
+   "b": 2,
+   "durum": "HEDEF",
+   "onc": 1,
+   "takipci": "BOŞ",
+   "temsilci": "asd",
+   "risk": "—",
+   "karne": 412,
+   "yk": "",
+   "asama": "1 - Koordinatör arayışı",
+   "not": "Yeni yerleşim, genç aile yoğunluğu. Cami ve okul altyapısı güçlü.",
+   "aksiyon": "asd"
+  },
+  {
+   "ad": "Esenyurt",
+   "tam": "Esenyurt",
+   "b": 2,
+   "durum": "HEDEF",
+   "onc": 1,
+   "takipci": "BOŞ",
+   "temsilci": "",
+   "risk": "—",
+   "karne": "",
+   "yk": "",
+   "asama": "1 - Koordinatör arayışı",
+   "not": "Devasa genç nüfus. Zor ama getirisi en yüksek ilçelerden.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Zeytinburnu",
+   "tam": "Zeytinburnu",
+   "b": 2,
+   "durum": "HEDEF",
+   "onc": 1,
+   "takipci": "BOŞ",
+   "temsilci": "",
+   "risk": "—",
+   "karne": "",
+   "yk": "",
+   "asama": "1 - Koordinatör arayışı",
+   "not": "Yoğun doku, İHL güçlü.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Bakırköy",
+   "tam": "Bakırköy",
+   "b": 2,
+   "durum": "HEDEF",
+   "onc": 2,
+   "takipci": "BOŞ",
+   "temsilci": "",
+   "risk": "—",
+   "karne": "",
+   "yk": "",
+   "asama": "1 - Koordinatör arayışı",
+   "not": "Karma doku. Okul üzerinden girilir.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Avcılar",
+   "tam": "Avcılar",
+   "b": 2,
+   "durum": "HEDEF",
+   "onc": 2,
+   "takipci": "BOŞ",
+   "temsilci": "",
+   "risk": "—",
+   "karne": "",
+   "yk": "",
+   "asama": "1 - Koordinatör arayışı",
+   "not": "Üniversite (İstanbul Üniv. Avcılar) üzerinden girilebilir.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Beylikdüzü",
+   "tam": "Beylikdüzü",
+   "b": 2,
+   "durum": "HEDEF",
+   "onc": 2,
+   "takipci": "BOŞ",
+   "temsilci": "",
+   "risk": "—",
+   "karne": "",
+   "yk": "",
+   "asama": "1 - Koordinatör arayışı",
+   "not": "Yeni yerleşim, orta vadeli hedef.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Büyükçekmece",
+   "tam": "Büyükçekmece",
+   "b": 2,
+   "durum": "HEDEF",
+   "onc": 2,
+   "takipci": "BOŞ",
+   "temsilci": "",
+   "risk": "—",
+   "karne": "",
+   "yk": "",
+   "asama": "1 - Koordinatör arayışı",
+   "not": "Orta vadeli hedef.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Arnavutköy",
+   "tam": "Arnavutköy",
+   "b": 2,
+   "durum": "HEDEF",
+   "onc": 2,
+   "takipci": "BOŞ",
+   "temsilci": "",
+   "risk": "—",
+   "karne": "",
+   "yk": "",
+   "asama": "1 - Koordinatör arayışı",
+   "not": "Muhafazakâr doku, potansiyel yüksek ama uzak.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Çatalca",
+   "tam": "Çatalca",
+   "b": 2,
+   "durum": "HEDEF",
+   "onc": 3,
+   "takipci": "BOŞ",
+   "temsilci": "",
+   "risk": "—",
+   "karne": "",
+   "yk": "",
+   "asama": "1 - Koordinatör arayışı",
+   "not": "Uzak, düşük nüfus. Şimdilik erteleme.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Silivri",
+   "tam": "Silivri",
+   "b": 2,
+   "durum": "HEDEF",
+   "onc": 3,
+   "takipci": "BOŞ",
+   "temsilci": "",
+   "risk": "—",
+   "karne": "",
+   "yk": "",
+   "asama": "1 - Koordinatör arayışı",
+   "not": "Uzak, düşük öncelik. 3. yıl konusu.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Üsküdar",
+   "tam": "Üsküdar (Kirazlıtepe)",
+   "b": 3,
+   "durum": "MEVCUT",
+   "onc": 0,
+   "takipci": "Nusret Onur Anlı",
+   "temsilci": "",
+   "risk": "KRİTİK",
+   "karne": 32.5,
+   "yk": 12,
+   "asama": "",
+   "not": "MEVCUT — KRİTİK. Kadro eriyor, acil genç ekip ve genç temsilci gerek. Genel Merkez de Üsküdar'da.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Ümraniye",
+   "tam": "Ümraniye",
+   "b": 3,
+   "durum": "MEVCUT",
+   "onc": 0,
+   "takipci": "Nusret Onur Anlı",
+   "temsilci": "Ulvi Abi",
+   "risk": "Yüksek",
+   "karne": 35,
+   "yk": 6,
+   "asama": "",
+   "not": "MEVCUT — Ulvi Abi süreçleri takip edemiyor. Akif Kökalan üzerinden görev dağılımı.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Sancaktepe",
+   "tam": "Sancaktepe",
+   "b": 3,
+   "durum": "HEDEF",
+   "onc": 1,
+   "takipci": "Nusret Onur Anlı",
+   "temsilci": "",
+   "risk": "—",
+   "karne": "",
+   "yk": "",
+   "asama": "1 - Koordinatör arayışı",
+   "not": "Ümraniye ekibinden isim çıkabilir. Genç nüfus yoğun.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Çekmeköy",
+   "tam": "Çekmeköy",
+   "b": 3,
+   "durum": "HEDEF",
+   "onc": 1,
+   "takipci": "Nusret Onur Anlı",
+   "temsilci": "",
+   "risk": "—",
+   "karne": "",
+   "yk": "",
+   "asama": "1 - Koordinatör arayışı",
+   "not": "Muhafazakâr doku, yeni yerleşim. Yüksek potansiyel.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Ataşehir",
+   "tam": "Ataşehir",
+   "b": 3,
+   "durum": "HEDEF",
+   "onc": 1,
+   "takipci": "Nusret Onur Anlı",
+   "temsilci": "",
+   "risk": "—",
+   "karne": "",
+   "yk": "",
+   "asama": "1 - Koordinatör arayışı",
+   "not": "Merkezî, ulaşımı kolay. Orta vadede açılabilir.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Beykoz",
+   "tam": "Beykoz",
+   "b": 3,
+   "durum": "HEDEF",
+   "onc": 2,
+   "takipci": "Nusret Onur Anlı",
+   "temsilci": "",
+   "risk": "—",
+   "karne": "",
+   "yk": "",
+   "asama": "1 - Koordinatör arayışı",
+   "not": "Dağınık yerleşim, ulaşım zor. Cami ağı üzerinden girilir.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Kadıköy",
+   "tam": "Kadıköy",
+   "b": 4,
+   "durum": "MEVCUT",
+   "onc": 0,
+   "takipci": "Mehmet Menteş",
+   "temsilci": "",
+   "risk": "Düşük",
+   "karne": 41.5,
+   "yk": 9,
+   "asama": "",
+   "not": "MEVCUT — başkan ve ekip uyumlu, faaliyet hacmi düşük. Mahalleleşme pilotu adayı.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Kartal",
+   "tam": "Kartal",
+   "b": 4,
+   "durum": "MEVCUT",
+   "onc": 0,
+   "takipci": "Mehmet Menteş",
+   "temsilci": "",
+   "risk": "Düşük",
+   "karne": 46.5,
+   "yk": 11,
+   "asama": "",
+   "not": "MEVCUT — ÖRNEK TEMSİLCİLİK. Yaz okulu düzenli, ekip sağlam. Model olarak sunulmalı.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Pendik",
+   "tam": "Pendik",
+   "b": 4,
+   "durum": "MEVCUT",
+   "onc": 0,
+   "takipci": "Mehmet Menteş",
+   "temsilci": "Osman Nuri (vekâleten)",
+   "risk": "KRİTİK",
+   "karne": 30,
+   "yk": 11,
+   "asama": "",
+   "not": "MEVCUT — KRİTİK. Asil temsilci yok, vekâlet belirsiz, ekip dağılma riski.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Maltepe",
+   "tam": "Maltepe",
+   "b": 4,
+   "durum": "HEDEF",
+   "onc": 1,
+   "takipci": "Mehmet Menteş",
+   "temsilci": "",
+   "risk": "—",
+   "karne": "",
+   "yk": "",
+   "asama": "1 - Koordinatör arayışı",
+   "not": "Kartal ve Kadıköy'ün arasında. İki ekipten de isim çıkabilir.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Sultanbeyli",
+   "tam": "Sultanbeyli",
+   "b": 4,
+   "durum": "HEDEF",
+   "onc": 1,
+   "takipci": "Mehmet Menteş",
+   "temsilci": "",
+   "risk": "—",
+   "karne": "",
+   "yk": "",
+   "asama": "1 - Koordinatör arayışı",
+   "not": "Muhafazakâr doku, genç nüfus yoğun. Pendik toparlanınca sıra bunda.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Tuzla",
+   "tam": "Tuzla",
+   "b": 4,
+   "durum": "HEDEF",
+   "onc": 2,
+   "takipci": "Mehmet Menteş",
+   "temsilci": "",
+   "risk": "—",
+   "karne": "",
+   "yk": "",
+   "asama": "1 - Koordinatör arayışı",
+   "not": "Üniversite (Sabancı) ve sanayi. Orta vadeli.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Şile",
+   "tam": "Şile",
+   "b": 4,
+   "durum": "HEDEF",
+   "onc": 3,
+   "takipci": "Mehmet Menteş",
+   "temsilci": "",
+   "risk": "—",
+   "karne": "",
+   "yk": "",
+   "asama": "1 - Koordinatör arayışı",
+   "not": "Uzak, düşük nüfus. Erteleme.",
+   "aksiyon": ""
+  },
+  {
+   "ad": "Adalar",
+   "tam": "Adalar",
+   "b": 4,
+   "durum": "HEDEF",
+   "onc": 3,
+   "takipci": "Mehmet Menteş",
+   "temsilci": "",
+   "risk": "—",
+   "karne": "",
+   "yk": "",
+   "asama": "1 - Koordinatör arayışı",
+   "not": "Çok küçük nüfus. Teşkilat açılması gerekmez, program bazlı temas yeterli.",
+   "aksiyon": ""
+  }
+ ]
+}
