@@ -30,8 +30,6 @@ body{
   min-height:100vh;
   color:var(--murekkep);font-family:"IBM Plex Sans",system-ui,sans-serif;
   font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
-body.giris-kapali main,body.giris-kapali nav,body.giris-kapali .kaydetBar{display:none!important}
-body.giris-kapali #mGiris .kapat{display:none}
 .mono{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
 h1,h2,h3{font-family:"Archivo",sans-serif;letter-spacing:-.015em}
 button,input,select,textarea{font:inherit;font-family:inherit}
@@ -1192,7 +1190,7 @@ const $ = s=>document.querySelector(s), $$ = s=>[...document.querySelectorAll(s)
 const esc = s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
 /* ============ YETKİ ============ */
-const gorebilir = k => !!oturum && oturum.sekmeler.includes(k);
+const gorebilir = k => oturum ? oturum.sekmeler.includes(k) : acikSekmeler.includes(k);
 const duzenleyebilir = k => !!oturum && oturum.sekmeler.includes(k) &&
   (oturum.yetki==="veri" || oturum.yetki==="gor_veri");
 const baskanMi = () => !!oturum && oturum.rol==="baskan";
@@ -1268,16 +1266,16 @@ const ekipAdlari = ()=> ["BOŞ", ...D.ekip.map(k=>k[0])];
 
 /* ============ NAV ============ */
 function navCiz(){
-  if(!oturum){
+  const gorunur = D.sekmeler.filter(s=>{
+    if(s[2]==="baskan") return baskanMi();
+    if(s[2]==="gizli")  return !!oturum && oturum.sekmeler.includes(s[0]);
+    return gorebilir(s[0]);
+  });
+  if(!gorunur.length){
     $("#nvi").innerHTML = "";
     $$(".sayfa").forEach(x=>x.classList.remove("on"));
     return;
   }
-  const gorunur = D.sekmeler.filter(s=>{
-    if(s[2]==="baskan") return baskanMi();
-    if(s[2]==="gizli")  return oturum && oturum.sekmeler.includes(s[0]);
-    return gorebilir(s[0]);
-  });
   $("#nvi").innerHTML = gorunur.map(s=>
     `<button data-s="${s[0]}" class="${s[0]===aktifSekme?"on":""} ${s[2]!=="acik"?"ozel":""}">${s[1]}</button>`).join("");
   $$("#nvi button").forEach(b=> b.onclick = ()=> sekmeAc(b.dataset.s));
@@ -2461,7 +2459,6 @@ function oturumUygula(u){
   $("#kimRol").textContent = `${u.gorev} · ${yz}`;
   $("#bGiris").classList.add("gizle");
   $("#bCikis").classList.remove("gizle");
-  document.body.classList.remove("giris-kapali");
 }
 function oturumKaydet(id){
   try{ sessionStorage.setItem(OTURUM_KEY, id); }catch(e){}
@@ -2478,10 +2475,6 @@ function oturumYukle(){
     oturumUygula(u);
     return true;
   }catch(e){ return false; }
-}
-function girisZorunluGoster(){
-  document.body.classList.toggle("giris-kapali", !oturum);
-  if(!oturum) modalAc("#mGiris");
 }
 function girisYap(){
   const id = $("#gId").value.trim().toLowerCase();
@@ -2504,7 +2497,6 @@ $("#bCikis").onclick = ()=>{
   $("#bGiris").classList.remove("gizle");
   $("#bCikis").classList.add("gizle");
   aktifSekme = "genel";
-  girisZorunluGoster();
   navCiz(); ciz();
 };
 
@@ -2514,15 +2506,13 @@ function modalAc(sel){
   $(sel).classList.add("ac"); $("#perde").classList.add("ac");
 }
 function modalKapat(){
-  if(!oturum && $("#mGiris").classList.contains("ac")) return;
   $$(".modal").forEach(m=>m.classList.remove("ac"));
   $("#cek").classList.remove("ac"); $("#cek").setAttribute("aria-hidden","true");
   $("#perde").classList.remove("ac"); acikIlce = null;
 }
 $$("[data-kapat]").forEach(b=> b.onclick = modalKapat);
-$("#perde").onclick = ()=>{ if(!oturum) return; modalKapat(); };
+$("#perde").onclick = modalKapat;
 document.addEventListener("keydown", e=>{
-  if(e.key==="Escape" && !oturum) return;
   if(e.key==="Escape") modalKapat();
 });
 
@@ -3201,7 +3191,6 @@ function ayarlarCiz(){
 
 panelConfigYukle().then(()=>{
   oturumYukle();
-  girisZorunluGoster();
   disaCiz();
   navCiz(); ciz();
   const qv = new URLSearchParams(location.search).get("veri");
