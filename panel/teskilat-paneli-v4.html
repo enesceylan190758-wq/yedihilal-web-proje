@@ -9,22 +9,22 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --gece:#1F1C17; --gece2:#2A2620; --gece3:#332E26; --cizgi:#3E382E;
-  --altin:#E4B23C; --altin2:#F0C766; --altin-sol:#8A6D2A;
-  --kagit:#F5F0E6; --kagit2:#EBE4D6; --hat:#D4C9B4; --sil:#5F5749; --murekkep:#14120F;
-  --a:#E4B23C; --b:#C9962F; --c:#B4713A; --d:#A83A32; --ok:#3E8E6B;
-  --su:#C7DAE6; --kara:#D9E6EE;
-  --arka-ust:#F7F2E8; --arka-orta:#EDE6D8; --arka-alt:#E6DFD0;
-  --kart-yuz:rgba(255,255,255,.94); --kart-golge:0 1px 2px rgba(20,18,15,.04),0 10px 28px rgba(20,18,15,.07);
-  --kart-bas:rgba(248,244,236,.98);
+  --gece:#132A1E; --gece2:#1A3829; --gece3:#234635; --cizgi:#2E5440;
+  --altin:#D4AF37; --altin2:#E8C84A; --altin-sol:#9A7B1E;
+  --kagit:#F2F7F3; --kagit2:#E6EFE9; --hat:#B8CEBA; --sil:#4A5E52; --murekkep:#0F1A14;
+  --a:#D4AF37; --b:#B8962E; --c:#3E8E6B; --d:#A83A32; --ok:#2D7A52;
+  --su:#C7DAE6; --kara:#D5E8DC;
+  --arka-ust:#F0F6F1; --arka-orta:#E4EDE6; --arka-alt:#D6E6DA;
+  --kart-yuz:rgba(252,254,252,.95); --kart-golge:0 1px 2px rgba(15,26,20,.05),0 10px 28px rgba(45,90,66,.09);
+  --kart-bas:rgba(240,248,242,.98);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{background:var(--arka-alt)}
 body{
   background:
-    radial-gradient(ellipse 72% 48% at 12% -8%,rgba(228,178,60,.11) 0%,transparent 58%),
-    radial-gradient(ellipse 55% 38% at 96% 102%,rgba(31,28,23,.06) 0%,transparent 52%),
-    radial-gradient(ellipse 40% 30% at 50% 50%,rgba(255,252,245,.45) 0%,transparent 70%),
+    radial-gradient(ellipse 72% 48% at 12% -8%,rgba(212,175,55,.13) 0%,transparent 58%),
+    radial-gradient(ellipse 55% 38% at 96% 102%,rgba(45,90,66,.10) 0%,transparent 52%),
+    radial-gradient(ellipse 40% 30% at 50% 50%,rgba(240,248,242,.55) 0%,transparent 70%),
     linear-gradient(168deg,var(--arka-ust) 0%,var(--arka-orta) 46%,var(--arka-alt) 100%);
   background-attachment:fixed;
   min-height:100vh;
@@ -40,26 +40,26 @@ button{cursor:pointer;border:0;background:none}
 .gizle{display:none!important}
 
 /* ---------------- ÜST BAR ---------------- */
-header{background:linear-gradient(180deg,#1A1713 0%,#241F19 100%);color:var(--kagit)}
+header{background:linear-gradient(180deg,#0D1F17 0%,#1A3328 100%);color:var(--kagit)}
 .hbar{max-width:1600px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
 .logoKutu{background:#000;border:1px solid var(--altin-sol);border-radius:10px;padding:7px 12px;
   display:flex;align-items:center;justify-content:center;flex:0 0 auto}
 .logoKutu img{height:52px;width:auto;display:block}
 .hbar .t1{font-size:19px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;font-family:"Archivo"}
-.hbar .t2{font-size:12px;color:#B5A991;letter-spacing:.16em;text-transform:uppercase;margin-top:3px}
+.hbar .t2{font-size:12px;color:#9BB8A8;letter-spacing:.16em;text-transform:uppercase;margin-top:3px}
 .sagUst{margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:0}
-.kaynakSat{display:flex;align-items:center;gap:9px;font-size:12.5px;color:#B5A991;padding:0 2px 9px}
-.nokta{width:7px;height:7px;border-radius:50%;background:var(--altin);box-shadow:0 0 0 3px rgba(228,178,60,.16)}
+.kaynakSat{display:flex;align-items:center;gap:9px;font-size:12.5px;color:#9BB8A8;padding:0 2px 9px}
+.nokta{width:7px;height:7px;border-radius:50%;background:var(--altin);box-shadow:0 0 0 3px rgba(212,175,55,.18)}
 .nokta.canli{background:#5CB874;box-shadow:0 0 0 3px rgba(92,184,116,.16)}
 .altinCizgi{height:2px;width:100%;min-width:250px;background:linear-gradient(90deg,transparent,var(--altin))}
 .girisSerit{background:#000;border:1px solid var(--cizgi);border-top:0;border-radius:0 0 9px 9px;
   padding:9px 14px;display:flex;align-items:center;gap:12px;min-width:250px;justify-content:flex-end}
 .girisSerit .kim{font-size:12.5px;color:var(--altin);font-weight:600;font-family:"Archivo"}
-.girisSerit .rl{font-size:11px;color:#7C7263;letter-spacing:.08em;text-transform:uppercase}
-.bGiris{background:var(--altin);color:#14120F;padding:6px 15px;border-radius:6px;font-size:13px;
+.girisSerit .rl{font-size:11px;color:#6E9480;letter-spacing:.08em;text-transform:uppercase}
+.bGiris{background:var(--altin);color:#0F1A14;padding:6px 15px;border-radius:6px;font-size:13px;
   font-weight:700;font-family:"Archivo";letter-spacing:.05em;text-transform:uppercase;transition:.15s}
 .bGiris:hover{background:var(--altin2)}
-.bCikis{background:transparent;border:1px solid #4A4238;color:#B5A991;padding:5px 12px;border-radius:6px;
+.bCikis{background:transparent;border:1px solid #3A5C4A;color:#9BB8A8;padding:5px 12px;border-radius:6px;
   font-size:12px;font-weight:600;font-family:"Archivo";text-transform:uppercase}
 .bCikis:hover{border-color:var(--altin);color:var(--altin)}
 
@@ -68,7 +68,7 @@ nav{background:var(--gece);border-top:1px solid var(--cizgi);border-bottom:2px s
   position:sticky;top:0;z-index:30}
 .nvi{max-width:1600px;margin:0 auto;padding:0 24px;display:flex;gap:2px;overflow-x:auto}
 .nvi::-webkit-scrollbar{height:0}
-nav button{color:#B5A991;padding:12px 15px;font-size:12.5px;font-weight:600;letter-spacing:.08em;
+nav button{color:#9BB8A8;padding:12px 15px;font-size:12.5px;font-weight:600;letter-spacing:.08em;
   text-transform:uppercase;border-bottom:2px solid transparent;white-space:nowrap;font-family:"Archivo";
   margin-bottom:-2px;transition:.15s}
 nav button:hover{color:var(--kagit)}
@@ -77,31 +77,31 @@ nav button.ozel::before{content:"●";font-size:8px;vertical-align:middle;margin
 
 main{max-width:1600px;margin:0 auto;padding:22px 24px 70px;position:relative}
 main::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
-  background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(138,109,42,.018) 39px,rgba(138,109,42,.018) 40px);
+  background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(45,90,66,.022) 39px,rgba(45,90,66,.022) 40px);
   opacity:.55}
 .sayfa{display:none}.sayfa.on{display:block;animation:gir .3s ease}
 @keyframes gir{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
 /* ---------------- HERO ---------------- */
-.hero{background:linear-gradient(155deg,#232019 0%,#2E2921 48%,#252017 100%);
+.hero{background:linear-gradient(155deg,#0F2318 0%,#1A3829 48%,#132E22 100%);
   color:var(--kagit);border-radius:16px;padding:26px 30px;display:grid;
   grid-template-columns:200px 1fr;gap:30px;align-items:center;margin-bottom:20px;
-  border:1px solid #3A3327;box-shadow:0 4px 28px rgba(20,18,15,.18),0 0 0 1px rgba(228,178,60,.06) inset}
+  border:1px solid #2E5440;box-shadow:0 4px 28px rgba(15,26,20,.2),0 0 0 1px rgba(212,175,55,.08) inset}
 .hero::after{content:"";position:absolute}
 .gauge{position:relative;display:flex;align-items:center;justify-content:center}
 .gauge svg{width:186px;height:186px;transform:rotate(-90deg)}
 .gm{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .gm .say{font-family:"IBM Plex Mono";font-size:39px;font-weight:600;color:var(--altin);line-height:1}
-.gm .alt{font-family:"IBM Plex Mono";font-size:15px;color:#A2957F;margin-top:3px}
-.gm .lb{font-size:10.5px;letter-spacing:.16em;color:#7C7263;text-transform:uppercase;margin-top:10px}
+.gm .alt{font-family:"IBM Plex Mono";font-size:15px;color:#8FAF9A;margin-top:3px}
+.gm .lb{font-size:10.5px;letter-spacing:.16em;color:#6E9480;text-transform:uppercase;margin-top:10px}
 .kpiler{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
-.kpi{background:rgba(255,255,255,.045);border:1px solid rgba(228,178,60,.16);border-radius:11px;
+.kpi{background:rgba(255,255,255,.045);border:1px solid rgba(212,175,55,.18);border-radius:11px;
   padding:15px 16px;transition:.18s}
-.kpi:hover{background:rgba(228,178,60,.07);border-color:rgba(228,178,60,.32)}
+.kpi:hover{background:rgba(212,175,55,.08);border-color:rgba(212,175,55,.34)}
 .kpi .v{font-family:"IBM Plex Mono";font-size:27px;font-weight:600;color:#F3EEE3;line-height:1.1}
-.kpi .v em{font-style:normal;font-size:14px;color:#A2957F}
-.kpi .l{font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:#BFB29A;margin-top:7px}
+.kpi .v em{font-style:normal;font-size:14px;color:#8FAF9A}
+.kpi .l{font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:#A8C0B0;margin-top:7px}
 .kpi.uy{border-color:rgba(224,122,114,.34);background:rgba(224,122,114,.07)}
 .kpi.uy .v{color:#E89A93}
 .kpi.al .v{color:var(--altin)}
@@ -110,7 +110,7 @@ main::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
 /* ---------------- KART ---------------- */
 .izgara{display:grid;grid-template-columns:1fr 372px;gap:16px;align-items:start}
 @media(max-width:1160px){.izgara{grid-template-columns:1fr}}
-.kart{background:var(--kart-yuz);border:1px solid rgba(212,201,180,.9);border-radius:12px;overflow:hidden;
+.kart{background:var(--kart-yuz);border:1px solid rgba(168,198,176,.95);border-radius:12px;overflow:hidden;
   margin-bottom:16px;box-shadow:var(--kart-golge);backdrop-filter:blur(6px)}
 .kbas{padding:13px 17px;border-bottom:1px solid var(--hat);display:flex;align-items:center;gap:10px;
   background:var(--kart-bas)}
@@ -123,8 +123,8 @@ main::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
 .hrtSar svg{width:100%;height:100%;display:block;cursor:grab}
 .hrtSar svg.tut{cursor:grabbing}
 .ilcePath{stroke:#fff;stroke-width:.7;transition:fill .18s,filter .12s;cursor:pointer}
-.ilcePath:hover{filter:brightness(1.12) saturate(1.1);stroke-width:1.6;stroke:#14120F}
-.ilcePath.sec{stroke:#14120F;stroke-width:2.2}
+.ilcePath:hover{filter:brightness(1.12) saturate(1.1);stroke-width:1.6;stroke:#0F1A14}
+.ilcePath.sec{stroke:#0F1A14;stroke-width:2.2}
 .hLabel{font-size:10px;fill:#3A3327;pointer-events:none;font-weight:600;text-anchor:middle;
   paint-order:stroke;stroke:rgba(255,255,255,.85);stroke-width:2.4px}
 .zoomBtn{position:absolute;right:14px;bottom:14px;display:flex;flex-direction:column;gap:6px;z-index:5}
@@ -145,12 +145,12 @@ main::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
 .ipuc span{display:flex;justify-content:space-between;gap:14px;color:#B8AC96;padding:1px 0}
 .ipuc span em{font-style:normal;font-family:"IBM Plex Mono";color:var(--kagit)}
 .lejant{display:flex;gap:13px;flex-wrap:wrap;padding:11px 16px;background:var(--gece);font-size:11.5px;
-  color:#B5A991;align-items:center}
+  color:#9BB8A8;align-items:center}
 .lj{display:flex;align-items:center;gap:6px}
 .lj i{width:12px;height:12px;border-radius:3px;display:block;border:1px solid rgba(255,255,255,.18)}
 
 /* ---------------- LİSTE / SATIR ---------------- */
-.sat{display:flex;align-items:center;gap:9px;padding:8px 0;border-bottom:1px solid #F0EBE0;font-size:13.5px}
+.sat{display:flex;align-items:center;gap:9px;padding:8px 0;border-bottom:1px solid #E0EBE3;font-size:13.5px}
 .sat:last-child{border:0}
 .sat .ad{flex:1;font-weight:500}
 .sat .pn{font-family:"IBM Plex Mono";font-weight:600;font-size:14px;min-width:34px;text-align:right}
@@ -174,8 +174,8 @@ th{background:var(--murekkep);color:var(--kagit);padding:10px 9px;text-align:lef
   cursor:pointer;z-index:2}
 th:hover{color:var(--altin)}
 th.dz{cursor:default}
-td{padding:8px 9px;border-bottom:1px solid #F0EBE0;vertical-align:middle}
-tbody tr:hover{background:#FBF8F1}
+td{padding:8px 9px;border-bottom:1px solid #E0EBE3;vertical-align:middle}
+tbody tr:hover{background:#EEF6F0}
 td.n{font-family:"IBM Plex Mono";text-align:right}
 .tsar{overflow:auto;border:1px solid var(--hat);border-radius:12px;background:var(--kart-yuz);
   box-shadow:0 2px 12px rgba(20,18,15,.04)}
@@ -186,10 +186,10 @@ td.n{font-family:"IBM Plex Mono";text-align:right}
 .btn:hover{border-color:var(--murekkep)}
 .btn.ana{background:var(--murekkep);color:var(--kagit);border-color:var(--murekkep)}
 .btn.ana:hover{background:#000}
-.btn.alt{background:var(--altin);color:#14120F;border-color:var(--altin);font-weight:700}
+.btn.alt{background:var(--altin);color:#0F1A14;border-color:var(--altin);font-weight:700}
 .btn.alt:hover{background:var(--altin2)}
 .btn:disabled{opacity:.45;cursor:not-allowed}
-.duz{border:1px solid transparent;border-radius:5px;padding:3px 6px;background:#FFFBF0;
+.duz{border:1px solid transparent;border-radius:5px;padding:3px 6px;background:#F4FBF6;
   font-family:"IBM Plex Mono";font-size:13px;width:100%;min-width:44px}
 .duz:hover{border-color:var(--hat)}
 .duz:focus{border-color:var(--altin);background:#fff;outline:none}
@@ -207,8 +207,8 @@ td.n{font-family:"IBM Plex Mono";text-align:right}
 .tkGrid{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--hat);
   border:1px solid var(--hat);border-radius:10px;overflow:hidden}
 .tkGun{background:#fff;min-height:96px;padding:6px 7px}
-.tkGun.dis{background:#FAF8F3;opacity:.55}
-.tkGun.bugun{background:#FFFBF0}
+.tkGun.dis{background:#EEF5F0;opacity:.55}
+.tkGun.bugun{background:#F4FBF6}
 .tkGun .no{font-family:"IBM Plex Mono";font-size:12px;color:var(--sil);margin-bottom:4px}
 .tkGun.bugun .no{color:var(--altin-sol);font-weight:700}
 .tkBas{background:var(--murekkep);color:var(--kagit);padding:7px;text-align:center;font-size:10.5px;
@@ -222,9 +222,9 @@ td.n{font-family:"IBM Plex Mono";text-align:right}
 .tkAy button:hover{border-color:var(--altin)}
 
 /* ---------------- KİŞİ KARTI ---------------- */
-.kisi{display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid #F0EBE0;
+.kisi{display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid #E0EBE3;
   cursor:pointer;transition:.15s}
-.kisi:hover{background:#FBF8F1;padding-left:6px;padding-right:6px;border-radius:8px;margin:0 -6px}
+.kisi:hover{background:#EEF6F0;padding-left:6px;padding-right:6px;border-radius:8px;margin:0 -6px}
 .avt{width:38px;height:38px;border-radius:10px;background:var(--murekkep);color:var(--altin);
   display:flex;align-items:center;justify-content:center;font-family:"Archivo";font-weight:700;font-size:15px;flex:0 0 auto}
 .avt.bos{background:#FBF0EE;color:var(--d);border:1px dashed var(--d)}
@@ -243,9 +243,9 @@ td.n{font-family:"IBM Plex Mono";text-align:right}
 .modal.gnis{width:min(760px,95vw)}
 .mbas{background:var(--murekkep);color:var(--kagit);padding:18px 22px;position:relative}
 .mbas h2{font-size:19px;font-weight:700}
-.mbas .alt{font-size:12px;color:#B5A991;letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
+.mbas .alt{font-size:12px;color:#9BB8A8;letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
 .mgov{padding:20px 22px}
-.kapat{position:absolute;top:16px;right:16px;border:1px solid #4A4238;color:#B5A991;width:28px;height:28px;
+.kapat{position:absolute;top:16px;right:16px;border:1px solid #3A5C4A;color:#9BB8A8;width:28px;height:28px;
   border-radius:7px;font-size:15px;line-height:1;display:flex;align-items:center;justify-content:center}
 .kapat:hover{color:var(--altin);border-color:var(--altin)}
 .alan{margin-bottom:13px}
@@ -263,17 +263,17 @@ td.n{font-family:"IBM Plex Mono";text-align:right}
 .cek.ac{transform:none}
 .cbas{background:var(--murekkep);color:var(--kagit);padding:20px 22px;position:sticky;top:0;z-index:3}
 .cbas h2{font-size:23px;font-weight:700}
-.cbas .alt{font-size:12px;color:#B5A991;letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
+.cbas .alt{font-size:12px;color:#9BB8A8;letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
 .cSek{display:flex;gap:2px;background:var(--gece2);position:sticky;top:0;z-index:2;padding:0 14px;
   border-bottom:1px solid var(--cizgi)}
-.cSek button{color:#B5A991;padding:10px 13px;font-size:11.5px;font-weight:700;letter-spacing:.07em;
+.cSek button{color:#9BB8A8;padding:10px 13px;font-size:11.5px;font-weight:700;letter-spacing:.07em;
   text-transform:uppercase;font-family:"Archivo";border-bottom:2px solid transparent;margin-bottom:-1px}
 .cSek button.on{color:var(--altin);border-bottom-color:var(--altin)}
 .cSek button:hover{color:var(--kagit)}
 .cgov{padding:20px 22px}
 .cPanel{display:none}.cPanel.on{display:block}
 .krit{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #E8E2D5;font-size:13.5px}
-.krit .kad{flex:1;color:#2E2921}
+.krit .kad{flex:1;color:#2A4538}
 .krit .kdg{font-family:"IBM Plex Mono";font-size:12.5px;color:var(--sil);min-width:56px;text-align:right}
 .krit .kpu{font-family:"IBM Plex Mono";font-weight:600;min-width:54px;text-align:right}
 .et{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--sil);font-family:"Archivo";
@@ -289,7 +289,7 @@ td.n{font-family:"IBM Plex Mono";text-align:right}
 .adim .no{width:32px;height:32px;border-radius:50%;background:var(--murekkep);color:var(--altin);
   display:flex;align-items:center;justify-content:center;font-family:"IBM Plex Mono";font-weight:600;font-size:14px}
 .adim h3{font-size:14.5px;font-weight:700;margin-bottom:3px}
-.adim p{font-size:13.5px;color:#2E2921;margin-bottom:6px}
+.adim p{font-size:13.5px;color:#2A4538;margin-bottom:6px}
 code{font-family:"IBM Plex Mono";font-size:12.5px;background:var(--kagit2);padding:2px 6px;border-radius:5px;
   border:1px solid var(--hat)}
 pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow-x:auto;font-size:12px;
@@ -313,36 +313,36 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
 .yediIlke{display:flex;align-items:center;gap:0;flex:1;justify-content:center;min-width:0;
   padding:0 18px;position:relative}
 .yediIlke::before,.yediIlke::after{content:"";position:absolute;top:50%;width:26px;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(228,178,60,.45))}
+  background:linear-gradient(90deg,transparent,rgba(212,175,55,.5))}
 .yediIlke::before{left:-4px}
 .yediIlke::after{right:-4px;transform:scaleX(-1)}
 .ilkeKart{display:flex;flex-direction:column;align-items:center;gap:5px;padding:6px 11px;
   border-radius:9px;cursor:default;transition:.18s;position:relative;min-width:0}
-.ilkeKart:hover{background:rgba(228,178,60,.09)}
+.ilkeKart:hover{background:rgba(212,175,55,.1)}
 .ilkeHilal{width:24px;height:24px;position:relative;flex:0 0 auto}
 .ilkeHilal svg{width:24px;height:24px;display:block}
 .ilkeNo{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  font-family:"IBM Plex Mono";font-size:10.5px;font-weight:600;color:#E4B23C}
+  font-family:"IBM Plex Mono";font-size:10.5px;font-weight:600;color:#D4AF37}
 .ilkeAd{font-family:"Archivo";font-size:10.5px;font-weight:700;letter-spacing:.08em;
-  text-transform:uppercase;color:#B5A991;white-space:nowrap;transition:.18s}
-.ilkeKart:hover .ilkeAd{color:#E4B23C}
-.ilkeKart.bos .ilkeAd{color:#3E382E;font-style:italic;text-transform:none;letter-spacing:0}
-.ilkeAyrac{width:1px;height:22px;background:rgba(228,178,60,.18);flex:0 0 auto}
+  text-transform:uppercase;color:#9BB8A8;white-space:nowrap;transition:.18s}
+.ilkeKart:hover .ilkeAd{color:#D4AF37}
+.ilkeKart.bos .ilkeAd{color:#3A5C4A;font-style:italic;text-transform:none;letter-spacing:0}
+.ilkeAyrac{width:1px;height:22px;background:rgba(212,175,55,.22);flex:0 0 auto}
 @media(max-width:1400px){.yediIlke .ilkeAd{display:none}.ilkeKart{padding:6px 7px}}
 @media(max-width:900px){.yediIlke{display:none}}
 
 /* ---------------- AYET ŞERİDİ ---------------- */
 .ayet{display:flex;align-items:center;gap:11px;padding:9px 16px;margin-bottom:16px;
-  background:linear-gradient(90deg,rgba(255,252,245,.92),rgba(247,242,232,.55) 72%,transparent);
+  background:linear-gradient(90deg,rgba(240,248,242,.95),rgba(228,240,232,.6) 72%,transparent);
   border-left:2px solid var(--altin);border-radius:0 8px 8px 0;
-  box-shadow:0 1px 8px rgba(228,178,60,.06)}
+  box-shadow:0 1px 8px rgba(45,90,66,.08)}
 .ayet svg{flex:0 0 auto;opacity:.6}
-.ayet .mt{font-size:13.5px;color:#3E382E;font-style:italic;line-height:1.45}
+.ayet .mt{font-size:13.5px;color:#2A4538;font-style:italic;line-height:1.45}
 .ayet .kn{font-size:11.5px;color:var(--altin-sol);font-family:"Archivo";font-weight:700;
   letter-spacing:.05em;white-space:nowrap;margin-left:auto;padding-left:14px}
 @media(max-width:700px){.ayet .kn{display:none}}
-.ayetKk{font-size:12.5px;color:#A2957F;font-style:italic;text-align:center;padding:10px 0 2px;
-  border-top:1px solid rgba(228,178,60,.22);margin-top:14px}
+.ayetKk{font-size:12.5px;color:#6E9480;font-style:italic;text-align:center;padding:10px 0 2px;
+  border-top:1px solid rgba(212,175,55,.24);margin-top:14px}
 
 /* ---------------- HARİTA KONTROL ---------------- */
 .hrtArac{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 16px;
@@ -359,7 +359,7 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
 .renkKutu span{color:var(--sil);letter-spacing:.04em}
 .ilcePath.duzenMod{cursor:crosshair}
 .ilcePath.kritik{stroke:#A83A32;stroke-dasharray:3 2}
-.hPuan{font-size:8.4px;fill:#14120F;pointer-events:none;font-weight:700;text-anchor:middle;
+.hPuan{font-size:8.4px;fill:#0F1A14;pointer-events:none;font-weight:700;text-anchor:middle;
   paint-order:stroke;stroke:rgba(255,255,255,.9);stroke-width:2px;font-family:"IBM Plex Mono"}
 .duzenUyari{display:flex;align-items:center;gap:8px;padding:7px 12px;border-radius:8px;
   background:#FDF6E7;border:1px solid #E8D9A8;font-size:12.5px;color:#8A6D2A;font-weight:600}
@@ -371,12 +371,12 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
   transform:translateY(90px);opacity:0;pointer-events:none;transition:.26s cubic-bezier(.4,0,.2,1)}
 .kaydetBar.ac{transform:none;opacity:1;pointer-events:auto}
 .kaydetBar .say{font-family:"IBM Plex Mono";font-size:14px;color:var(--altin);font-weight:600}
-.kaydetBar .lb{font-size:12px;color:#B5A991}
+.kaydetBar .lb{font-size:12px;color:#9BB8A8}
 .kaydetBar button{padding:8px 16px;border-radius:8px;font-family:"Archivo";font-weight:700;font-size:13px;
   letter-spacing:.03em}
-.kaydetBar .kd{background:var(--altin);color:#14120F}
+.kaydetBar .kd{background:var(--altin);color:#0F1A14}
 .kaydetBar .kd:hover{background:var(--altin2)}
-.kaydetBar .gz{background:transparent;border:1px solid #4A4238;color:#B5A991}
+.kaydetBar .gz{background:transparent;border:1px solid #3A5C4A;color:#9BB8A8}
 .kaydetBar .gz:hover{border-color:var(--altin);color:var(--altin)}
 
 /* ---------------- DIŞA AKTARMA ÇİPİ ---------------- */
@@ -389,9 +389,9 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
   display:none}
 .disaMenu.ac{display:block}
 .disaMenu button{display:flex;align-items:center;gap:10px;width:100%;padding:11px 14px;font-size:13px;
-  text-align:left;border-bottom:1px solid #F0EBE0;color:var(--murekkep)}
+  text-align:left;border-bottom:1px solid #E0EBE3;color:var(--murekkep)}
 .disaMenu button:last-child{border-bottom:0}
-.disaMenu button:hover{background:#FBF8F1}
+.disaMenu button:hover{background:#EEF6F0}
 .disaMenu .ik{width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;
   font-size:10px;font-weight:700;font-family:"Archivo";color:#fff;flex:0 0 auto}
 
@@ -412,8 +412,8 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
 
 /* ---------------- FORM SEKMELERİ ---------------- */
 .formSat{display:grid;grid-template-columns:1fr 200px;gap:10px;align-items:center;padding:9px 0;
-  border-bottom:1px solid #F0EBE0;font-size:14px}
-.formSat .fl{color:#2E2921;font-weight:500}
+  border-bottom:1px solid #E0EBE3;font-size:14px}
+.formSat .fl{color:#2A4538;font-weight:500}
 .formSat input,.formSat select,.formSat textarea{width:100%;padding:8px 11px;border:1px solid var(--hat);
   border-radius:7px;background:#FFFDF8;font-size:13.5px}
 .formSat input:focus,.formSat select:focus{border-color:var(--altin);outline:none;background:#fff}
@@ -428,13 +428,13 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
 .matris th{background:var(--murekkep);color:var(--kagit);padding:9px 7px;font-size:10px;
   writing-mode:vertical-rl;text-orientation:mixed;height:120px;white-space:nowrap;position:sticky;top:44px}
 .matris th:first-child{writing-mode:horizontal-tb;height:auto;text-align:left;min-width:180px}
-.matris td{padding:7px;border-bottom:1px solid #F0EBE0;text-align:center}
+.matris td{padding:7px;border-bottom:1px solid #E0EBE3;text-align:center}
 .matris td:first-child{text-align:left;font-weight:600}
 .matris input[type=checkbox]{width:17px;height:17px;cursor:pointer;accent-color:#8A6D2A}
-.matris tr:hover{background:#FBF8F1}
+.matris tr:hover{background:#EEF6F0}
 .motto{background:var(--murekkep);color:var(--altin);padding:14px 18px;border-radius:11px;text-align:center;
   font-size:14px;font-style:italic;margin:14px 0;border:1px solid var(--altin-sol)}
-.motto b{display:block;font-size:11px;color:#B5A991;font-style:normal;margin-top:6px;letter-spacing:.1em;
+.motto b{display:block;font-size:11px;color:#9BB8A8;font-style:normal;margin-top:6px;letter-spacing:.1em;
   text-transform:uppercase;font-family:"Archivo"}
 @media print{
   header,nav,.disaAktar,.kaydetBar,.hrtArac,.zoomBtn,.gosterim{display:none!important}
@@ -484,10 +484,10 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
         <circle cx="93" cy="93" r="70" fill="none" stroke="#3A3327" stroke-width="3.4"/>
         <circle cx="93" cy="93" r="62" fill="none" stroke="#3A3327" stroke-width="3.4"/>
         <circle cx="93" cy="93" r="54" fill="none" stroke="#3A3327" stroke-width="3.4"/>
-        <circle id="g4" cx="93" cy="93" r="78" fill="none" stroke="#E4B23C" stroke-width="3.4" stroke-linecap="round"/>
-        <circle id="g3" cx="93" cy="93" r="70" fill="none" stroke="#E4B23C" stroke-width="3.4" stroke-linecap="round"/>
-        <circle id="g2" cx="93" cy="93" r="62" fill="none" stroke="#E4B23C" stroke-width="3.4" stroke-linecap="round"/>
-        <circle id="g1" cx="93" cy="93" r="54" fill="none" stroke="#E4B23C" stroke-width="3.4" stroke-linecap="round"/>
+        <circle id="g4" cx="93" cy="93" r="78" fill="none" stroke="#D4AF37" stroke-width="3.4" stroke-linecap="round"/>
+        <circle id="g3" cx="93" cy="93" r="70" fill="none" stroke="#D4AF37" stroke-width="3.4" stroke-linecap="round"/>
+        <circle id="g2" cx="93" cy="93" r="62" fill="none" stroke="#D4AF37" stroke-width="3.4" stroke-linecap="round"/>
+        <circle id="g1" cx="93" cy="93" r="54" fill="none" stroke="#D4AF37" stroke-width="3.4" stroke-linecap="round"/>
       </svg>
       <div class="gm">
         <div class="say mono" id="kapS">9</div>
@@ -895,7 +895,7 @@ function doPost(e) {
       <div id="faal12"></div>
       <div style="display:flex;align-items:center;gap:16px;margin-top:18px;padding:16px;
         background:var(--murekkep);border-radius:11px;color:var(--kagit)">
-        <div><div style="font-size:10px;letter-spacing:.12em;color:#B5A991;text-transform:uppercase">
+        <div><div style="font-size:10px;letter-spacing:.12em;color:#9BB8A8;text-transform:uppercase">
           Hesaplanan Puan</div>
           <div class="mono" id="faalPuan" style="font-size:34px;font-weight:600;color:var(--altin)">0</div></div>
         <div id="faalSinif"></div>
@@ -913,7 +913,7 @@ function doPost(e) {
       <div class="kgov" id="tutBilgi"></div>
       <div class="kgov" style="border-top:1px solid var(--hat)">
         <div class="et">Alınan Kararlar</div>
-        <p style="font-size:12.5px;color:#2E2921;margin-bottom:10px">
+        <p style="font-size:12.5px;color:#2A4538;margin-bottom:10px">
           Her karar: <b>NE + KİM + NE ZAMAN.</b> Üçü yoksa karar değildir.</p>
         <div id="tutKararlar"></div>
         <button class="btn alt gizle" id="kararEkle" style="margin-top:10px">+ Karar</button>
@@ -1084,10 +1084,10 @@ const D = {"ilceler": [{"ad": "Fatih", "hat": "B1", "hatAd": "HALİÇ HATTI", "y
 /* ============ DURUM ============ */
 const KR = D.kriter, ESIK = D.esik, HRT = D.harita;
 D.esik = ESIK;
-const RENK = {A:"#E4B23C",B:"#C9962F",C:"#B4713A",D:"#A83A32"};
+const RENK = {A:"#D4AF37",B:"#B8962E",C:"#3E8E6B",D:"#A83A32"};
 const SIN  = {A:"A — Örnek",B:"B — Sağlıklı",C:"C — Riskli",D:"D — Kritik"};
-const RISKRENK = {"KRİTİK":"#A83A32","Yüksek":"#B4713A","Orta":"#C9962F","Düşük":"#E4B23C","—":"#9A9285"};
-const HEDRENK = {1:"#EFE7D4",2:"#E4DED0",3:"#D8D3C6"};
+const RISKRENK = {"KRİTİK":"#A83A32","Yüksek":"#B4713A","Orta":"#B8962E","Düşük":"#3E8E6B","—":"#7A9488"};
+const HEDRENK = {1:"#E8F0EA",2:"#DCE8DF",3:"#D0E0D4"};
 const TIPRENK = {"Teşkilat Ziyareti":"#C9962F","STK Ziyareti":"#3E8E6B",
   "Yeni Teşkilat Görüşmesi":"#7B6CA8","Program/Kamp":"#A83A32","Toplantı":"#5A6B7C"};
 const RISKLER = ["KRİTİK","Yüksek","Orta","Düşük","—"];
@@ -1105,7 +1105,7 @@ let csvKaynaklar = [
   {ad:"Google Sheets", url:"https://docs.google.com/spreadsheets/d/1IvpVwTdwmnyccD95zO4Hb4SqiRnzxb4VeSZ-T3HyPxw/export?format=csv&gid=0"}
 ];
 let renkMod = "karne", bolgeDuzen = false;
-const HAT_RENK_VARSAYILAN = {B1:"#E4B23C", B2:"#A83A32", B3:"#3E8E6B", B4:"#5A6B7C"};
+const HAT_RENK_VARSAYILAN = {B1:"#D4AF37", B2:"#A83A32", B3:"#3E8E6B", B4:"#5A6B7C"};
 let hatRenk = {...HAT_RENK_VARSAYILAN};
 
 /* ---- Ayet / hadis şeritleri ---- */
@@ -1147,9 +1147,9 @@ function ilkeCiz(){
     return `${ix?'<span class="ilkeAyrac"></span>':''}
     <div class="ilkeKart ${bos?"bos":""}" title="${esc(D.yediIlkeAciklama[ix]||t)}">
       <div class="ilkeHilal">
-        <svg viewBox="0 0 24 24" fill="none" stroke="${bos?"#5C5348":"#E4B23C"}" stroke-width="1.3">
+        <svg viewBox="0 0 24 24" fill="none" stroke="${bos?"#5C5348":"#D4AF37"}" stroke-width="1.3">
           <path d="M16.8 3A9 9 0 1 0 21 14.3 7 7 0 1 1 16.8 3Z"/></svg>
-        <span class="ilkeNo" style="color:${bos?"#5C5348":"#E4B23C"}">${ix+1}</span></div>
+        <span class="ilkeNo" style="color:${bos?"#5C5348":"#D4AF37"}">${ix+1}</span></div>
       <span class="ilkeAd">${esc(bos?"doldurulacak":t)}</span></div>`;
   }).join("");
   if(duz) el.querySelectorAll(".ilkeKart").forEach((k,ix)=>{
@@ -1321,7 +1321,7 @@ function lejantCiz(){
         const m = D.ilceler.filter(i=>i.hat===h.kod && i.durum==="MEVCUT").length;
         return `<span class="lj"><i style="background:${hatRenk[h.kod]}"></i>${h.kod} · ${h.ad} (${m}/${n})</span>`;
       }).join("") + `<span class="lj" style="opacity:.6"><i style="background:#9A9285;opacity:.42"></i>Soluk ton = hedef ilçe</span>`
-    : [["#E4B23C","A — Örnek (65+)"],["#C9962F","B — Sağlıklı (50+)"],["#B4713A","C — Riskli (35+)"],
+    : [["#D4AF37","A — Örnek (65+)"],["#C9962F","B — Sağlıklı (50+)"],["#B4713A","C — Riskli (35+)"],
        ["#A83A32","D — Kritik (<35)"],["#EFE7D4","Hedef · Öncelik 1"],["#E4DED0","Hedef · Öncelik 2"],
        ["#D8D3C6","Hedef · Öncelik 3"]]
       .map(([c,t])=>`<span class="lj"><i style="background:${c}"></i>${t}</span>`).join("");
@@ -1675,19 +1675,19 @@ function cekMevcut(i){
   if(!aks.length) aks.push(["Model temsilcilik — diğerlerine anlatılsın","Başkan","—"]);
   aks.forEach(a=> h += `<div class="krit"><span class="kad"><b>${a[0]}</b>
     <div style="font-size:11px;color:var(--sil)">${a[1]}</div></span>
-    <span class="rz" style="background:#E4B23C22;color:#8A6D2A">${a[2]}</span></div>`);
+    <span class="rz" style="background:#D4AF3722;color:#8A6D2A">${a[2]}</span></div>`);
   h += `</div>`;
   return h;
 }
 function cekHedef(i){
   const ix = ilceIx(i.ad);
-  const c = +i.onc===1 ? RENK.A : "#7C7263";
+  const c = +i.onc===1 ? RENK.A : "#6E9480";
   const su = parseInt(String(i.asama))||1;
   let h = `<div class="cPanel" data-d="kunye">
     <div style="display:flex;gap:9px;margin-bottom:14px;flex-wrap:wrap">
       <span class="rz" style="background:${c}22;color:${c};font-size:12px">HEDEF İLÇE</span>
       <span class="rz" style="background:${c}22;color:${c};font-size:12px">ÖNCELİK ${i.onc}</span>
-      <span class="rz" style="background:#EFEADF;color:#7C7263;font-size:12px">${su}. AŞAMA</span></div>
+      <span class="rz" style="background:#E6EFE9;color:#6E9480;font-size:12px">${su}. AŞAMA</span></div>
     <div class="et">Künye</div>
     <div class="krit"><span class="kad">Bağlı hat</span><span class="kpu" style="font-family:inherit">${i.hatAd}</span></div>
     <div class="krit"><span class="kad">Bölge takipçisi</span>
@@ -1710,7 +1710,7 @@ function cekHedef(i){
     h += `<div class="krit" style="opacity:${gec?.5:akt?1:.42}">
       <span style="width:24px;height:24px;border-radius:50%;flex:0 0 24px;display:flex;align-items:center;
         justify-content:center;font-family:'IBM Plex Mono';font-size:11px;font-weight:600;
-        background:${akt?"#14120F":"#EFEADF"};color:${akt?"#E4B23C":"#7C7263"}">${gec?"✓":j+1}</span>
+        background:${akt?"#0F1A14":"#E6EFE9"};color:${akt?"#D4AF37":"#6E9480"}">${gec?"✓":j+1}</span>
       <span class="kad">${x[0].split("—")[1].trim()}</span>
       <span class="kdg">${x[1]}</span></div>`;
   });
@@ -1738,7 +1738,7 @@ function hedefler(){
   $("#huniDagilim").innerHTML = D.huni.map((h,ix)=>{
     const n = say[ix];
     return `<div class="krit"><span class="kad">${ix+1}. ${h[0].split("—")[1].trim()}</span>
-      <span class="cbg" style="flex:0 0 130px"><i style="width:${Math.max(2,n/30*100)}%;background:${ix===0?"#B4713A":"#E4B23C"}"></i></span>
+      <span class="cbg" style="flex:0 0 130px"><i style="width:${Math.max(2,n/30*100)}%;background:${ix===0?"#B4713A":"#D4AF37"}"></i></span>
       <span class="kpu">${n}</span></div>`;
   }).join("") + `<div class="notk" style="margin-top:14px">
     ${ilerleyen===0
@@ -1749,7 +1749,7 @@ function hedefler(){
   const bas = {1:"ÖNCELİK 1 — Şimdi girilecek",2:"ÖNCELİK 2 — Orta vade",3:"ÖNCELİK 3 — Ertelenen"};
   $("#hedefler").innerHTML = [1,2,3].map(o=>{
     const il = hedef().filter(i=>+i.onc===o);
-    const c = o===1?RENK.A : o===2?"#7C7263" : "#A8A093";
+    const c = o===1?RENK.A : o===2?"#6E9480" : "#A8A093";
     if(!il.length) return "";
     return `<div class="et" style="color:${c};border-color:${c}44">${bas[o]} · ${il.length} ilçe</div>` +
       il.map(i=>{
@@ -1759,7 +1759,7 @@ function hedefler(){
             <div style="font-size:10.5px;color:var(--sil)">${i.hatAd} · ${esc(i["not"])}</div></span>
           ${DZ ? `<span style="flex:0 0 170px">${ed(`ilceler.${ix}.asama`, i.asama, "sel", ASAMALAR)}</span>
                   <span style="flex:0 0 120px">${ed(`ilceler.${ix}.aday`, i.aday, "txt")}</span>`
-               : `<span class="rz" style="background:#EFEADF;color:#7C7263">${String(i.asama||"1").split("—")[0].trim()}. aşama</span>`}
+               : `<span class="rz" style="background:#E6EFE9;color:#6E9480">${String(i.asama||"1").split("—")[0].trim()}. aşama</span>`}
           <span class="rz" style="background:${i.takipci==="BOŞ"?"#A83A3222":"#3E8E6B22"};
             color:${i.takipci==="BOŞ"?"#A83A32":"#3E8E6B"}">${i.takipci==="BOŞ"?"TAKİPÇİ YOK":esc(i.takipci.split(" ")[0])}</span>
         </div>`;
@@ -1774,11 +1774,11 @@ function bolgeCiz(){
     const il = D.ilceler.filter(i=>i.hat===h.kod);
     const m = il.filter(i=>i.durum==="MEVCUT");
     const bos = h.takipci==="BOŞ";
-    return `<div style="padding:15px 0;border-bottom:1px solid #F0EBE0">
+    return `<div style="padding:15px 0;border-bottom:1px solid #E0EBE3">
       <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
         <b style="font-family:'Archivo';font-size:15px">${h.kod} · ${h.ad}</b>
-        <span class="rz" style="background:#EFEADF;color:#7C7263">${h.yaka} YAKASI</span>
-        <span class="rz" style="background:#E4B23C22;color:#8A6D2A">${il.length} İLÇE · ${m.length} MEVCUT</span>
+        <span class="rz" style="background:#E6EFE9;color:#6E9480">${h.yaka} YAKASI</span>
+        <span class="rz" style="background:#D4AF3722;color:#8A6D2A">${il.length} İLÇE · ${m.length} MEVCUT</span>
         <span style="margin-left:auto;display:flex;align-items:center;gap:7px">
           <span style="font-size:10px;letter-spacing:.1em;color:var(--sil);font-weight:700">TAKİPÇİ</span>
           ${DZ ? `<span style="width:190px">${ed(`hatlar.${h.kod}.takipci`, h.takipci, "sel", ekipAdlari())}</span>`
@@ -1814,10 +1814,10 @@ function komisyonCiz(){
   }).join("");
   $("#altBirim").innerHTML = D.birim.map((b,ix)=>{
     const yeni = b[1]==="YENİ", bos = String(b[2]).includes("BOŞ");
-    return `<div style="padding:11px 0;border-bottom:1px solid #F0EBE0">
+    return `<div style="padding:11px 0;border-bottom:1px solid #E0EBE3">
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
         <b style="font-family:'Archivo';font-size:12.5px">${b[0]}</b>
-        <span class="rz" style="background:${yeni?"#E4B23C22":"#3E8E6B22"};color:${yeni?"#8A6D2A":"#3E8E6B"}">${b[1]}</span>
+        <span class="rz" style="background:${yeni?"#D4AF3722":"#3E8E6B22"};color:${yeni?"#8A6D2A":"#3E8E6B"}">${b[1]}</span>
         <span style="margin-left:auto;min-width:150px;text-align:right;font-size:12px;
           color:${bos?"#A83A32":"var(--sil)"};font-weight:${bos?600:400}">
           ${DZ ? ed(`birim.${ix}.2`, b[2], "txt", null, "width:100%") : esc(b[2])}</span></div>
@@ -1836,7 +1836,7 @@ function komisyonCiz(){
     ? `<div class="notk kirmizi" style="margin-top:12px"><b>${
         D.ilceler.filter(i=>D.hatlar[i.hat].takipci==="BOŞ").length} ilçe sahipsiz.</b>
         Takipçisi olmayan hatlarda hiçbir adım atılamaz. Bölge Yapısı sekmesinden atayın.</div>` : "");
-  $("#ritim").innerHTML = D.ritim.map((r,ix)=>`<div style="padding:10px 0;border-bottom:1px solid #F0EBE0">
+  $("#ritim").innerHTML = D.ritim.map((r,ix)=>`<div style="padding:10px 0;border-bottom:1px solid #E0EBE3">
     <div style="display:flex;gap:8px;align-items:baseline">
       <b style="font-family:'Archivo';font-size:12px;min-width:100px">${esc(r[0])}</b>
       <span class="mono" style="font-size:11.5px;color:var(--altin-sol)">${esc(r[1])}</span></div>
@@ -1998,7 +1998,7 @@ function digerCiz(){
   }).join("");
   // --- Vizyon
   DZ = duzenleyebilir("vizyon") || baskanMi();
-  $("#vizyonKart").innerHTML = D.vizyon.map((v,ix)=>`<div style="padding:14px 0;border-bottom:1px solid #F0EBE0">
+  $("#vizyonKart").innerHTML = D.vizyon.map((v,ix)=>`<div style="padding:14px 0;border-bottom:1px solid #E0EBE3">
     <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap">
       <b style="font-family:'Archivo';font-size:15px">${esc(v[1])}</b>
       <span style="font-size:12px;color:var(--sil)">${esc(v[0])}</span>
@@ -2019,13 +2019,13 @@ function digerCiz(){
     ${DZ?`<td><button class="btn sil" data-sil="birimHedef.${ix}">✕</button></td>`:""}</tr>`).join("");
   $("#birimHaftalik").innerHTML = D.ritim.map(r=>`<div class="krit">
     <span class="kad"><b>${esc(r[2])}</b><div style="font-size:11px;color:var(--sil)">${esc(r[4])}</div></span>
-    <span class="rz" style="background:#E4B23C22;color:#8A6D2A">${esc(r[0])}</span></div>`).join("");
+    <span class="rz" style="background:#D4AF3722;color:#8A6D2A">${esc(r[0])}</span></div>`).join("");
   const aylik = [["Temsilciler Aylık Toplantısı","Ayın ilk haftası"],["Faaliyet raporlarının toplanması","Ayın son 3 günü"],
     ["Karne aramaları ve puanlama","Ayın son haftası"],["En az 2 temsilcilik ziyareti","Ay içinde"],
     ["D sınıfı temsilciliklerle birebir","Karne sonrası 10 gün"],["Hedef ilçe ilerleme oturumu","Ayda 1"],
     ["Aday değerlendirme oturumu","Ayda 1"],["Reis'e aylık teşkilat raporu","Ayın ilk haftası"]];
   $("#birimAylik").innerHTML = aylik.map(a=>`<div class="krit">
-    <span class="kad">${a[0]}</span><span class="rz" style="background:#EFEADF;color:#7C7263">${a[1]}</span></div>`).join("");
+    <span class="kad">${a[0]}</span><span class="rz" style="background:#E6EFE9;color:#6E9480">${a[1]}</span></div>`).join("");
   // --- Reis
   DZ = duzenleyebilir("reis") || baskanMi();
   $("#reisEkle").classList.toggle("gizle", !DZ);
@@ -2068,7 +2068,7 @@ function digerCiz(){
   DZ = duzenleyebilir("aday") || baskanMi();
   $("#adayEkle").classList.toggle("gizle", !DZ);
   $("#tbAday").innerHTML = D.aday.map((a,ix)=>{
-    const c = a[6]==="Hazır"?"#3E8E6B" : a[6]==="Yetişiyor"?"#C9962F" : "#7C7263";
+    const c = a[6]==="Hazır"?"#3E8E6B" : a[6]==="Yetişiyor"?"#C9962F" : "#6E9480";
     return `<tr>
       <td><b>${DZ?ed(`aday.${ix}.0`,a[0],"txt"):esc(a[0])}</b></td>
       <td>${DZ?ed(`aday.${ix}.1`,a[1],"sel",D.ilceler.map(i=>i.ad)):esc(a[1])}</td>
@@ -2484,7 +2484,7 @@ function donut(deger, toplam, renk, etiket, altYazi){
   return `<div class="donutKart">
     <div class="donutSvg" style="width:104px;height:104px">
       <svg viewBox="0 0 104 104" style="width:104px;height:104px;transform:rotate(-90deg)">
-        <circle cx="52" cy="52" r="${R}" fill="none" stroke="#EFEADF" stroke-width="11"/>
+        <circle cx="52" cy="52" r="${R}" fill="none" stroke="#E6EFE9" stroke-width="11"/>
         <circle cx="52" cy="52" r="${R}" fill="none" stroke="${renk}" stroke-width="11" stroke-linecap="round"
           stroke-dasharray="${C}" stroke-dashoffset="${C*(1-o)}"
           style="transition:stroke-dashoffset .8s cubic-bezier(.4,0,.2,1)"/>
@@ -2516,8 +2516,8 @@ function kpiGrafik(){
   const riskli = m.filter(i=>i.risk==="KRİTİK"||i.risk==="Yüksek").length;
   const bosHat = Object.values(D.hatlar).filter(h=>h.takipci==="BOŞ").length;
   const g = [
-    donut(m.length, 39, "#E4B23C", "Kapsama"),
-    donut(Math.round(ort), 100, ort>=65?"#E4B23C":ort>=50?"#C9962F":ort>=35?"#B4713A":"#A83A32",
+    donut(m.length, 39, "#D4AF37", "Kapsama"),
+    donut(Math.round(ort), 100, ort>=65?"#D4AF37":ort>=50?"#C9962F":ort>=35?"#B4713A":"#A83A32",
           "Ortalama Puan", ort.toFixed(1).replace(".",",")),
     donut(yatsi, m.length, yatsi?"#C9962F":"#A83A32", "«Yatsıya Kadar»"),
     donut(sabah, m.length, "#3E8E6B", "Sabah Namazı"),
@@ -2616,13 +2616,13 @@ function disaExcel(s){
 function disaHtml(s){
   const v = sayfaVeri(s);
   return `<!DOCTYPE html><html><head><meta charset="utf-8"><title>${v.baslik}</title>
-  <style>body{font-family:Calibri,Arial,sans-serif;font-size:11pt;color:#14120F}
-  h1{color:#8A6D2A;font-size:16pt;border-bottom:2px solid #E4B23C;padding-bottom:6px}
+  <style>body{font-family:Calibri,Arial,sans-serif;font-size:11pt;color:#0F1A14}
+  h1{color:#8A6D2A;font-size:16pt;border-bottom:2px solid #D4AF37;padding-bottom:6px}
   .u{font-size:9pt;color:#5F5749;margin-bottom:14px}
   table{border-collapse:collapse;width:100%;font-size:9.5pt}
-  th{background:#14120F;color:#F8F5EE;padding:7px;text-align:left;border:1px solid #14120F}
-  td{padding:6px;border:1px solid #DDD4C0}
-  tr:nth-child(even) td{background:#F8F5EE}
+  th{background:#0F1A14;color:#F2F7F3;padding:7px;text-align:left;border:1px solid #0F1A14}
+  td{padding:6px;border:1px solid #B8CEBA}
+  tr:nth-child(even) td{background:#F2F7F3}
   .f{margin-top:16px;font-size:8.5pt;color:#5F5749;font-style:italic}</style></head><body>
   <h1>${v.baslik}</h1>
   <div class="u">YediHilal İstanbul · Teşkilatlanma Birimi &nbsp;|&nbsp; ${new Date().toLocaleString("tr-TR")}
@@ -2721,15 +2721,15 @@ function programCiz(){
     }).join("")}
     <tr style="background:var(--murekkep);color:var(--kagit)">
       <td colspan="2"><b>TOPLAM</b></td>
-      ${P.map((_,pi)=>`<td class="n" style="color:#B5A991">${th[pi]}</td>
-        <td class="n" style="color:#E4B23C;font-weight:600">${tp[pi]}</td>`).join("")}
-      <td class="n" style="color:#E4B23C;font-weight:600">${tp.reduce((a,b)=>a+b,0)} / ${th.reduce((a,b)=>a+b,0)}</td></tr>
+      ${P.map((_,pi)=>`<td class="n" style="color:#9BB8A8">${th[pi]}</td>
+        <td class="n" style="color:#D4AF37;font-weight:600">${tp[pi]}</td>`).join("")}
+      <td class="n" style="color:#D4AF37;font-weight:600">${tp.reduce((a,b)=>a+b,0)} / ${th.reduce((a,b)=>a+b,0)}</td></tr>
     </tbody></table>`;
   $("#progGrafik").innerHTML = P.map((p,pi)=>
     donut(tp[pi], th[pi]||1, tp[pi]>=th[pi]&&th[pi]?"#3E8E6B":"#C9962F", p.ad, th[pi]?undefined:"—")).join("")
     + `<div style="width:100%;margin-top:14px">${bar(
         Object.entries(D.progKatilim).map(([ad,v])=>({
-          a:ad, d:v.reduce((a,x)=>a+(+x[1]||0),0), c:"#E4B23C"})), 200)}</div>`;
+          a:ad, d:v.reduce((a,x)=>a+(+x[1]||0),0), c:"#D4AF37"})), 200)}</div>`;
   $("#progGrafik").classList.toggle("gizle", GOS.prog!=="grafik");
   $("#progTablo").classList.toggle("gizle", GOS.prog==="grafik");
 }
@@ -2774,7 +2774,7 @@ function ziyaretCiz(){
     ? D.ziyaretler.map((z,ix)=>`<div class="krit">
         <span class="kad"><b>${esc(z.ilce)}</b>
           <div style="font-size:11.5px;color:var(--sil)">${esc(z.tarih)} · ${esc(z.eden)}</div></span>
-        <span class="rz" style="background:#E4B23C22;color:#8A6D2A">${
+        <span class="rz" style="background:#D4AF3722;color:#8A6D2A">${
           Object.values(z.kontrol||{}).filter(v=>v==="Var").length} / ${D.ziyaretKontrol.length} VAR</span>
         ${duz?`<button class="btn" data-zsil="${ix}">✕</button>`:""}</div>`).join("")
     : `<p style="font-size:13px;color:var(--sil)">Henüz ziyaret kaydedilmedi. Yılda her temsilciliğe en az 1 ziyaret zorunludur.</p>`;
@@ -2879,10 +2879,10 @@ function tutanakCiz(){
   $("#tutGundem").innerHTML = D.gundem.map((g,ix)=>`<div class="krit">
     <span style="width:24px;height:24px;border-radius:50%;flex:0 0 24px;display:flex;align-items:center;
       justify-content:center;font-family:'IBM Plex Mono';font-size:12px;font-weight:600;
-      background:#EFEADF;color:#5F5749">${ix+1}</span>
+      background:#E6EFE9;color:#5F5749">${ix+1}</span>
     <span class="kad"><b>${esc(g[0])}</b>
       <div style="font-size:11.5px;color:var(--sil)">${esc(g[1])}</div></span>
-    <span class="rz" style="background:#E4B23C22;color:#8A6D2A">${esc(g[2])}</span>
+    <span class="rz" style="background:#D4AF3722;color:#8A6D2A">${esc(g[2])}</span>
     <span class="kdg" style="min-width:100px">${esc(g[3])}</span></div>`).join("");
   DZ = duz;
   $("#tutKararlar").innerHTML = D.kararlar.map((k,ix)=>{
@@ -2922,9 +2922,9 @@ function arsivCiz(){
       }
       return `<tr><td><b>${esc(i.ad)}</b></td>
         ${v.map((x,ix)=>{
-          const c = x==null?"#F0EBE0" : x>=65?"#E4B23C" : x>=50?"#C9962F" : x>=35?"#B4713A" : "#A83A32";
+          const c = x==null?"#E0EBE3" : x>=65?"#D4AF37" : x>=50?"#B8962E" : x>=35?"#3E8E6B" : "#A83A32";
           return `<td style="text-align:center;padding:3px">
-            <div class="arsivHuc" style="background:${x==null?"#FAF8F3":c+"26"};color:${x==null?"#C8C0B2":c};
+            <div class="arsivHuc" style="background:${x==null?"#EEF5F0":c+"26"};color:${x==null?"#C8C0B2":c};
               font-weight:${x==null?400:600}">${x==null?"·":String(x).replace(".",",")}</div></td>`;
         }).join("")}
         <td style="text-align:center;color:${tc};font-weight:600;font-family:'IBM Plex Mono'">${tr}</td></tr>`;
@@ -2943,7 +2943,7 @@ function arsivCiz(){
   }).join("");
   $("#arsivGrafik").innerHTML = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto">
     ${[0,25,50,65,100].map(y=>`<line x1="${P}" y1="${H-P-(y/100)*(H-2*P)}" x2="${W-P}"
-      y2="${H-P-(y/100)*(H-2*P)}" stroke="${y===65?"#E4B23C":"#EFEADF"}" stroke-width="1"
+      y2="${H-P-(y/100)*(H-2*P)}" stroke="${y===65?"#D4AF37":"#E6EFE9"}" stroke-width="1"
       stroke-dasharray="${y===65?"4 3":"0"}"/>
       <text x="6" y="${H-P-(y/100)*(H-2*P)+4}" font-size="10" fill="#5F5749">${y}</text>`).join("")}
     ${D.aylar.map((a,ix)=>`<text x="${P+(ix/11)*(W-2*P)}" y="${H-P+16}" font-size="10" fill="#5F5749"
@@ -2976,7 +2976,7 @@ function kilavuzCiz(){
     <div class="krit"><span class="kad">Kapsam</span>
       <span class="kpu" style="font-family:inherit">39 ilçe · 4 bölge</span></div>
     <div class="et">Bu Panel Hangi Excel Sekmelerini Kapsıyor?</div>
-    <p style="font-size:12.5px;color:#2E2921;margin-bottom:10px">
+    <p style="font-size:12.5px;color:#2A4538;margin-bottom:10px">
       Çalışma Dosyası (20 sekme) + Karne Dashboard (6 sekme) = <b>26 Excel sekmesi</b>,
       panelde <b>20 sekmeye</b> indirgendi. Hiçbir içerik kaybolmadı — birbirini tekrar edenler birleştirildi.</p>
     <div class="tsar" style="max-height:300px"><table>
@@ -2989,20 +2989,20 @@ function kilavuzCiz(){
   $("#kilDongu").innerHTML = D.dongu.map((d,ix)=>`<div class="adim">
     <div class="no">${ix+1}</div><div><h3>${esc(d[0])}</h3><p>${esc(d[1])}</p>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <span class="rz" style="background:#EFEADF;color:#5F5749">${esc(d[2])}</span>
-        <span class="rz" style="background:#E4B23C22;color:#8A6D2A">${esc(d[3])}</span></div></div></div>`).join("");
+        <span class="rz" style="background:#E6EFE9;color:#5F5749">${esc(d[2])}</span>
+        <span class="rz" style="background:#D4AF3722;color:#8A6D2A">${esc(d[3])}</span></div></div></div>`).join("");
   $("#kilArama").innerHTML = D.arama.map((c,ix)=>{
     const k = KR[ix];
     return `<div class="krit"><span class="kad" style="font-size:13.5px">
       <b style="color:var(--altin-sol)">${ix+1}.</b> ${esc(c)}</span>
-      <span class="rz" style="background:#E4B23C22;color:#8A6D2A">max ${k?k.max:"—"}</span></div>`;
+      <span class="rz" style="background:#D4AF3722;color:#8A6D2A">max ${k?k.max:"—"}</span></div>`;
   }).join("");
   $("#kilAkis").innerHTML = D.aramaAkis.map((a,ix)=>`<div class="krit">
     <span style="width:22px;height:22px;border-radius:50%;flex:0 0 22px;display:flex;align-items:center;
-      justify-content:center;font-family:'IBM Plex Mono';font-size:11px;background:#14120F;color:#E4B23C">${ix+1}</span>
+      justify-content:center;font-family:'IBM Plex Mono';font-size:11px;background:#0F1A14;color:#D4AF37">${ix+1}</span>
     <span class="kad"><b>${esc(a[0])}</b>
       <div style="font-size:11.5px;color:var(--sil)">${esc(a[1])}</div></span>
-    <span class="rz" style="background:#EFEADF;color:#5F5749">${esc(a[2])}</span></div>`).join("");
+    <span class="rz" style="background:#E6EFE9;color:#5F5749">${esc(a[2])}</span></div>`).join("");
 }
 
 /* ---------- AYARLAR ---------- */
@@ -3043,10 +3043,10 @@ function ayarlarCiz(){
     const yz = u.yetki==="gor"?"Sadece görür" : u.yetki==="veri"?"Sadece veri girer" : "Görür + veri girer";
     const bk = u.rol==="baskan";
     return `<div class="kisi" data-kul="${esc(u.id)}">
-      <div class="avt" style="${bk?"background:#E4B23C;color:#14120F":""}">${bas(u.ad)}</div>
-      <div class="ki"><div class="kn">${esc(u.ad)} ${bk?'<span class="rz" style="background:#E4B23C22;color:#8A6D2A;margin-left:4px">BAŞKAN</span>':""}</div>
+      <div class="avt" style="${bk?"background:#D4AF37;color:#0F1A14":""}">${bas(u.ad)}</div>
+      <div class="ki"><div class="kn">${esc(u.ad)} ${bk?'<span class="rz" style="background:#D4AF3722;color:#8A6D2A;margin-left:4px">BAŞKAN</span>':""}</div>
         <div class="kg">${esc(u.gorev)} · ID: <code>${esc(u.id)}</code> · ${u.sekmeler.length} sekme</div></div>
-      <span class="rz" style="background:#EFEADF;color:#5F5749">${yz}</span></div>`;
+      <span class="rz" style="background:#E6EFE9;color:#5F5749">${yz}</span></div>`;
   }).join("");
   $$("#kulListe [data-kul]").forEach(e=> e.onclick = ()=> kulAc(kullanicilar.find(u=>u.id===e.dataset.kul)));
   DZ = baskanMi();
