@@ -994,11 +994,10 @@ function doPost(e) {
     <h2>Teşkilat Paneli Girişi</h2><div class="alt">YediHilal İstanbul</div></div>
   <div class="mgov">
     <div class="hata" id="girisHata"></div>
-    <div class="alan"><label>Kullanıcı ID</label><input id="gId" autocomplete="username"></div>
-    <div class="alan"><label>Şifre</label><input id="gSifre" type="password" autocomplete="current-password"></div>
+    <div class="alan"><label>Kullanıcı ID</label><input id="gId" autocomplete="username" placeholder="ör. abdulkadir"></div>
     <button class="btn alt" id="bGirisYap" style="width:100%;padding:11px">Giriş Yap</button>
     <div class="notk" style="margin-top:16px;font-size:11.5px">
-      Panele yalnızca tanımlı ID ve şifre ile giriş yapılabilir. Şifresi olmayan hesaplar kabul edilmez.
+      Tanımlı kullanıcı ID'si ile doğrudan giriş yapılır. Şifre şimdilik kapalı.
     </div>
   </div>
 </div>
@@ -2358,23 +2357,11 @@ $("#bKulKaydet").onclick = ()=>{
 $("#bKulSil").onclick = ()=>{ kullanicilar = kullanicilar.filter(u=>u!==duzKul); modalKapat(); ciz(); };
 
 /* ============ GİRİŞ ============ */
-function girisZorunluGoster(){
-  document.body.classList.toggle("giris-kapali", !oturum);
-  if(!oturum) modalAc("#mGiris");
-}
-function girisYap(){
-  const id = $("#gId").value.trim().toLowerCase(), sf = $("#gSifre").value.trim();
-  const h = $("#girisHata");
-  if(!id || !sf){ h.textContent="ID ve şifre zorunludur."; h.classList.add("ac"); return; }
-  const u = kullanicilar.find(x=>x.id===id);
-  if(!u || !String(u.sifre||"").trim()){
-    h.textContent="Bu hesap için şifre tanımlı değil. Yöneticinize başvurun.";
-    h.classList.add("ac"); return;
-  }
-  if(u.sifre !== sf){ h.textContent="ID veya şifre hatalı."; h.classList.add("ac"); return; }
+const OTURUM_KEY = "yh_panel_oturum";
+
+function oturumUygula(u){
   oturum = u;
-  h.classList.remove("ac");
-  $("#gId").value=""; $("#gSifre").value="";
+  $("#girisHata").classList.remove("ac");
   $("#kimBlok").classList.remove("gizle");
   $("#kimAd").textContent = u.ad;
   const yz = u.yetki==="gor"?"Görüntüleme" : u.yetki==="veri"?"Veri girişi" : "Tam yetki";
@@ -2382,13 +2369,44 @@ function girisYap(){
   $("#bGiris").classList.add("gizle");
   $("#bCikis").classList.remove("gizle");
   document.body.classList.remove("giris-kapali");
+}
+function oturumKaydet(id){
+  try{ sessionStorage.setItem(OTURUM_KEY, id); }catch(e){}
+}
+function oturumTemizle(){
+  try{ sessionStorage.removeItem(OTURUM_KEY); }catch(e){}
+}
+function oturumYukle(){
+  try{
+    const id = sessionStorage.getItem(OTURUM_KEY);
+    if(!id) return false;
+    const u = kullanicilar.find(x=>x.id===id);
+    if(!u){ oturumTemizle(); return false; }
+    oturumUygula(u);
+    return true;
+  }catch(e){ return false; }
+}
+function girisZorunluGoster(){
+  document.body.classList.toggle("giris-kapali", !oturum);
+  if(!oturum) modalAc("#mGiris");
+}
+function girisYap(){
+  const id = $("#gId").value.trim().toLowerCase();
+  const h = $("#girisHata");
+  if(!id){ h.textContent="Kullanıcı ID zorunludur."; h.classList.add("ac"); return; }
+  const u = kullanicilar.find(x=>x.id===id);
+  if(!u){ h.textContent="Bu ID tanımlı değil."; h.classList.add("ac"); return; }
+  oturumUygula(u);
+  oturumKaydet(u.id);
+  $("#gId").value="";
   modalKapat(); navCiz(); ciz();
 }
 $("#bGiris").onclick = ()=> modalAc("#mGiris");
 $("#bGirisYap").onclick = girisYap;
-$("#gSifre").onkeydown = e=>{ if(e.key==="Enter") girisYap(); };
+$("#gId").onkeydown = e=>{ if(e.key==="Enter") girisYap(); };
 $("#bCikis").onclick = ()=>{
   oturum = null;
+  oturumTemizle();
   $("#kimBlok").classList.add("gizle");
   $("#bGiris").classList.remove("gizle");
   $("#bCikis").classList.add("gizle");
@@ -3046,6 +3064,7 @@ function ayarlarCiz(){
 }
 
 panelConfigYukle().then(()=>{
+  oturumYukle();
   girisZorunluGoster();
   disaCiz();
   navCiz(); ciz();
