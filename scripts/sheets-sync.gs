@@ -12,7 +12,7 @@
  */
 
 const SHEET_ID = '1IvpVwTdwmnyccD95zO4Hb4SqiRnzxb4VeSZ-T3HyPxw';
-const SYNC_TOKEN = 'BURAYA_GUVENLI_BIR_TOKEN_YAZIN';
+const SYNC_TOKEN = 'qjxX2O3nqEm_fVuHdL_sHDecHux6_wi1';
 
 function doPost(e) {
   try {

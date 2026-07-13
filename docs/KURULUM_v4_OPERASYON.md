@@ -8,7 +8,7 @@ Dosya: [`data/panel-config.json`](../data/panel-config.json)
 
 | Alan | Açıklama |
 |------|----------|
-| `csvUrl` | Google Sheets CSV yayın URL'i (`pub?output=csv`) |
+| `csvUrl` | Birincil CSV kaynağı (statik site: `yhteskilat.org/data/ilceler.csv` veya Sheets `export?format=csv`) |
 | `yazUrl` | Apps Script Web App `/exec` adresi |
 | `syncToken` | Panel ↔ Apps Script ortak gizli anahtar |
 | `sheetId` | Google Sheets dosya ID'si (Apps Script için) |
@@ -48,11 +48,13 @@ Canlı test:
 2. **Kaydet** → Sheets'te satır güncellenmeli
 3. Sayfayı yenileyin → CSV URL bağlıysa değişiklik geri gelmeli
 
-## 5. Şifreler
+## 5. Giriş (şifresiz geçici model)
 
-Demo `yh2026` şifreleri kaldırıldı. İlk şifreler `data/panel-config.json` içinde.
+Panel girişi şu an **yalnızca kullanıcı ID** ile yapılır; şifre alanı kapalıdır.
 
-**Canlıya aldıktan sonra:** `abdulkadir` ile giriş → **Ayarlar** → kullanıcı şifrelerini değiştirin.
+Tanımlı hesaplar `data/panel-config.json` içindedir. Yeni kullanıcı eklerken şifre opsiyoneldir (gelecekteki auth fazı için saklanabilir).
+
+**Canlı adres:** https://www.yhteskilat.org/panel/
 
 > Uyarı: `panel-config.json` repoda — gerçek üretimde Supabase Auth veya benzeri kalıcı auth sistemi kurulana kadar bu geçici bir çözümdür.
 
