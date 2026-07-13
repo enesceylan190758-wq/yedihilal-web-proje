@@ -2376,6 +2376,35 @@ $("#bKulKaydet").onclick = ()=>{
 $("#bKulSil").onclick = ()=>{ kullanicilar = kullanicilar.filter(u=>u!==duzKul); modalKapat(); ciz(); };
 
 /* ============ GİRİŞ ============ */
+const OTURUM_KEY = "yh_panel_oturum";
+
+function oturumUygula(u){
+  oturum = u;
+  $("#girisHata").classList.remove("ac");
+  $("#kimBlok").classList.remove("gizle");
+  $("#kimAd").textContent = u.ad;
+  const yz = u.yetki==="gor"?"Görüntüleme" : u.yetki==="veri"?"Veri girişi" : "Tam yetki";
+  $("#kimRol").textContent = `${u.gorev} · ${yz}`;
+  $("#bGiris").classList.add("gizle");
+  $("#bCikis").classList.remove("gizle");
+  document.body.classList.remove("giris-kapali");
+}
+function oturumKaydet(id){
+  try{ sessionStorage.setItem(OTURUM_KEY, id); }catch(e){}
+}
+function oturumTemizle(){
+  try{ sessionStorage.removeItem(OTURUM_KEY); }catch(e){}
+}
+function oturumYukle(){
+  try{
+    const id = sessionStorage.getItem(OTURUM_KEY);
+    if(!id) return false;
+    const u = kullanicilar.find(x=>x.id===id);
+    if(!u || !String(u.sifre||"").trim()){ oturumTemizle(); return false; }
+    oturumUygula(u);
+    return true;
+  }catch(e){ return false; }
+}
 function girisZorunluGoster(){
   document.body.classList.toggle("giris-kapali", !oturum);
   if(!oturum) modalAc("#mGiris");
@@ -2390,16 +2419,9 @@ function girisYap(){
     h.classList.add("ac"); return;
   }
   if(u.sifre !== sf){ h.textContent="ID veya şifre hatalı."; h.classList.add("ac"); return; }
-  oturum = u;
-  h.classList.remove("ac");
+  oturumUygula(u);
+  oturumKaydet(u.id);
   $("#gId").value=""; $("#gSifre").value="";
-  $("#kimBlok").classList.remove("gizle");
-  $("#kimAd").textContent = u.ad;
-  const yz = u.yetki==="gor"?"Görüntüleme" : u.yetki==="veri"?"Veri girişi" : "Tam yetki";
-  $("#kimRol").textContent = `${u.gorev} · ${yz}`;
-  $("#bGiris").classList.add("gizle");
-  $("#bCikis").classList.remove("gizle");
-  document.body.classList.remove("giris-kapali");
   modalKapat(); navCiz(); ciz();
 }
 $("#bGiris").onclick = ()=> modalAc("#mGiris");
@@ -2407,6 +2429,7 @@ $("#bGirisYap").onclick = girisYap;
 $("#gSifre").onkeydown = e=>{ if(e.key==="Enter") girisYap(); };
 $("#bCikis").onclick = ()=>{
   oturum = null;
+  oturumTemizle();
   $("#kimBlok").classList.add("gizle");
   $("#bGiris").classList.remove("gizle");
   $("#bCikis").classList.add("gizle");
@@ -3064,6 +3087,7 @@ function ayarlarCiz(){
 }
 
 panelConfigYukle().then(()=>{
+  oturumYukle();
   girisZorunluGoster();
   disaCiz();
   navCiz(); ciz();
