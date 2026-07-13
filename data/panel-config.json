@@ -11,7 +11,7 @@
   "kullanicilar": [
     {
       "id": "abdulkadir",
-      "sifre": "pR3JS2pa",
+      "sifre": "",
       "ad": "Abdülkadir Yaşar",
       "gorev": "Teşkilat Başkanı / İl Başkan Yrd.",
       "tel": "05xx xxx xx 00",
@@ -21,7 +21,7 @@
     },
     {
       "id": "mucahit",
-      "sifre": "wl-7WSD4",
+      "sifre": "",
       "ad": "Mücahit Tiryaki",
       "gorev": "Sekreterya Birimi",
       "tel": "05xx xxx xx 11",
@@ -31,7 +31,7 @@
     },
     {
       "id": "oguzhan",
-      "sifre": "q-OYqUb6",
+      "sifre": "",
       "ad": "Oğuzhan Koçalak",
       "gorev": "Yeni Teşkilat + İnsan Kıymetleri",
       "tel": "05xx xxx xx 12",
@@ -41,7 +41,7 @@
     },
     {
       "id": "mehmet",
-      "sifre": "oHvRH1Vf",
+      "sifre": "",
       "ad": "Mehmet Menteş",
       "gorev": "Bölge Takipçisi — B4 Marmara",
       "tel": "05xx xxx xx 13",
@@ -51,7 +51,7 @@
     },
     {
       "id": "nusret",
-      "sifre": "ku0C82ln",
+      "sifre": "",
       "ad": "Nusret Onur Anlı",
       "gorev": "Bölge Takipçisi — B3 Boğaz",
       "tel": "05xx xxx xx 14",
