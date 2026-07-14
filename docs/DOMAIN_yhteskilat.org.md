@@ -31,8 +31,8 @@ DNS yayılımı **5 dakika – 48 saat** sürebilir. Vercel'de domain yanında y
 ## 4. Canlı adresler (domain bağlandıktan sonra)
 
 - https://yhteskilat.org/
-- https://www.yhteskilat.org/panel/
-- https://yhteskilat.org/panel/ (v4 — birincil panel adresi)
+- https://www.yhteskilat.org/panel
+- https://yhteskilat.org/panel (birincil panel adresi)
 
 ## 5. SSL
 

@@ -54,7 +54,7 @@ Panel girişi şu an **yalnızca kullanıcı ID** ile yapılır; şifre alanı k
 
 Tanımlı hesaplar `data/panel-config.json` içindedir. Yeni kullanıcı eklerken şifre opsiyoneldir (gelecekteki auth fazı için saklanabilir).
 
-**Canlı adres:** https://www.yhteskilat.org/panel/
+**Canlı adres:** https://www.yhteskilat.org/panel
 
 > Uyarı: `panel-config.json` repoda — gerçek üretimde Supabase Auth veya benzeri kalıcı auth sistemi kurulana kadar bu geçici bir çözümdür.
 

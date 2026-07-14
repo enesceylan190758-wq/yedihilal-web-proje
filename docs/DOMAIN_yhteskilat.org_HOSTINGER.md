@@ -40,10 +40,10 @@ Kontrol: Authoritative DNS'te `76.76.21.21` yok → kayıtlar ya kaydedilmedi ya
 
 ## Doğrulama
 
-15–30 dk sonra tarayıcıda: **https://www.yhteskilat.org/panel/**
+15–30 dk sonra tarayıcıda: **https://www.yhteskilat.org/panel**
 
 Geçici link (şimdi çalışıyor):
-**https://yedihilal-web-proje.vercel.app/panel/**
+**https://yedihilal-web-proje.vercel.app/panel**
 
 ---
 

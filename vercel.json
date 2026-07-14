@@ -19,9 +19,9 @@
     { "source": "/", "destination": "/index.html" }
   ],
   "redirects": [
-    { "source": "/panel", "destination": "/panel/teskilat-paneli-v4", "permanent": false },
-    { "source": "/panel/", "destination": "/panel/teskilat-paneli-v4", "permanent": false },
-    { "source": "/panel/v4", "destination": "/panel/teskilat-paneli-v4", "permanent": false },
+    { "source": "/panel/teskilat-paneli-v4", "destination": "/panel", "permanent": true },
+    { "source": "/panel/teskilat-paneli-v4.html", "destination": "/panel", "permanent": true },
+    { "source": "/panel/v4", "destination": "/panel", "permanent": true },
     { "source": "/panel/v3", "destination": "/panel/teskilat-paneli-v3", "permanent": false }
   ]
 }

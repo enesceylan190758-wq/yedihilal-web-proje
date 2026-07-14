@@ -4,14 +4,14 @@
 
 ## Ana uygulama
 
-**`panel/teskilat-paneli-v4.html`** — Teşkilat Kontrol Paneli v4 (canlı)
+**`panel/index.html`** — Teşkilat Kontrol Paneli 2026 (canlı)
 - 20 sekme, 7 ilke şeridi, kaydet/geri al, dışa aktarma (PDF/Word/Excel/e-posta)
 - Ayarlar matrisi: görünürlük, kullanıcı, puanlama motoru
 - Gerçek vektör harita (39 ilçe), zoom, bölge renkleri
 - Google Sheets CSV okuma / Apps Script yazma
 - Kurulum: `docs/ISTANBUL_PANEL_CALISMA_DUZENI_v4.md`
 
-`index.html` doğrudan v4 panele yönlendirir. v3 yedek olarak `/panel/v3` adresinde kalır.
+`index.html` doğrudan `/panel` adresine yönlendirir. v3 yedek olarak `/panel/v3` adresinde kalır.
 
 ## Diğer araçlar
 
@@ -30,12 +30,14 @@
 python3 -m http.server 8080
 ```
 
-- Panel: http://localhost:8080/panel/teskilat-paneli-v4.html
+- Panel: http://localhost:8080/panel/
 - Araç listesi: http://localhost:8080/araclar.html
 
 ## Canlı adres
 
-https://www.yhteskilat.org/panel/teskilat-paneli-v4
+https://www.yhteskilat.org/panel
+
+Eski uzun adres (`/panel/teskilat-paneli-v4`) otomatik olarak `/panel`e yönlenir.
 
 ## Yapılandırma ve Sheets senkron
 

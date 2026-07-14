@@ -4,7 +4,7 @@
  */
 import fs from 'fs';
 
-const html = fs.readFileSync('panel/teskilat-paneli-v4.html', 'utf8');
+const html = fs.readFileSync('panel/index.html', 'utf8');
 const i = html.indexOf('const D = ') + 9;
 const j = html.lastIndexOf('};', html.indexOf('const KR ='));
 if (j < i) throw new Error('D nesnesi bulunamadi');
