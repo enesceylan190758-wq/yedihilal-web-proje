@@ -443,14 +443,34 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
 .trendDown{color:#A83A32;font-weight:600}
 
 /* ---------------- AYARLAR MATRİSİ ---------------- */
-.matris{width:100%;border-collapse:collapse;font-size:12.5px}
-.matris th{background:var(--murekkep);color:var(--kagit);padding:9px 7px;font-size:10px;
-  writing-mode:vertical-rl;text-orientation:mixed;height:120px;white-space:nowrap;position:sticky;top:44px}
-.matris th:first-child{writing-mode:horizontal-tb;height:auto;text-align:left;min-width:180px}
-.matris td{padding:7px;border-bottom:1px solid #E0EBE3;text-align:center}
-.matris td:first-child{text-align:left;font-weight:600}
+.matrisWrap{overflow:auto;max-height:560px;border:1px solid var(--hat);border-radius:10px;background:#fff}
+.matris{width:max-content;min-width:100%;border-collapse:separate;border-spacing:0;font-size:12.5px}
+.matris th{
+  background:linear-gradient(180deg,#F4F9F5 0%,#E8F0EA 100%);
+  color:var(--murekkep);padding:10px 8px;font-size:11px;font-weight:600;
+  text-align:center;vertical-align:bottom;border-bottom:2px solid var(--altin);
+  position:sticky;top:0;z-index:2;min-width:92px;max-width:110px}
+.matris th:first-child{
+  text-align:left;min-width:200px;max-width:240px;left:0;z-index:3;
+  background:linear-gradient(180deg,#EEF5F0 0%,#E2EBE4 100%);
+  box-shadow:2px 0 0 rgba(45,90,66,.06)}
+.matris .mBas{display:flex;flex-direction:column;align-items:center;gap:6px;line-height:1.25}
+.matris .mAvt{
+  width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:"Archivo",sans-serif;font-size:11px;font-weight:700;letter-spacing:.02em;
+  background:var(--gece);color:var(--altin);border:1px solid rgba(212,175,55,.35)}
+.matris .mAvt.herkes{background:#D4AF37;color:#0F1A14;border-color:#B8962E}
+.matris .mAd{font-family:"Archivo",sans-serif;font-size:11px;font-weight:700;
+  color:var(--murekkep);white-space:normal;word-break:break-word;max-width:94px}
+.matris .mAlt{font-size:10px;font-weight:500;color:var(--sil);letter-spacing:.02em}
+.matris td{padding:9px 8px;border-bottom:1px solid #E0EBE3;text-align:center;background:#fff}
+.matris td:first-child{
+  text-align:left;font-weight:600;position:sticky;left:0;z-index:1;background:#fff;
+  box-shadow:2px 0 0 rgba(45,90,66,.05);min-width:200px}
+.matris tbody tr:nth-child(even) td{background:#F7FBF8}
+.matris tbody tr:nth-child(even) td:first-child{background:#F7FBF8}
+.matris tr:hover td,.matris tr:hover td:first-child{background:#EEF6F0}
 .matris input[type=checkbox]{width:17px;height:17px;cursor:pointer;accent-color:#8A6D2A}
-.matris tr:hover{background:#EEF6F0}
 .motto{background:var(--murekkep);color:var(--altin);padding:14px 18px;border-radius:11px;text-align:center;
   font-size:14px;font-style:italic;margin:14px 0;border:1px solid var(--altin-sol)}
 .motto b{display:block;font-size:11px;color:#9BB8A8;font-style:normal;margin-top:6px;letter-spacing:.1em;
@@ -993,7 +1013,7 @@ function doPost(e) {
         <b>HERKES</b> sütunu: giriş yapmamış Yönetim Kurulu üyesinin göreceği sekmeler.
         Diğer sütunlar: o kullanıcı giriş yaptığında göreceği sekmeler.
         Gizli sekmeler (Reis, Ekip, Birim Planı…) <b>HERKES</b>'e açılamaz.</div>
-      <div class="tsar" style="max-height:560px"><table class="matris" id="ayarMatris"></table></div>
+      <div class="matrisWrap"><table class="matris" id="ayarMatris"></table></div>
     </div></div>
 
   <div class="iki">
@@ -3133,10 +3153,19 @@ function kilavuzCiz(){
 
 /* ---------- AYARLAR ---------- */
 function ayarlarCiz(){
-  const sut = [{id:"__herkes__", ad:"HERKES", not:"giriş yapmayan"}, ...kullanicilar];
+  const kisaAd = ad => {
+    const p = String(ad||"").trim().split(/\s+/);
+    if(p.length<=1) return p[0]||"—";
+    return p[0] + " " + p[p.length-1].charAt(0) + ".";
+  };
+  const sut = [{id:"__herkes__", ad:"HERKES", not:"Misafir", herkes:true}, ...kullanicilar];
   $("#ayarMatris").innerHTML = `
     <thead><tr><th>Sekme</th>${sut.map(u=>
-      `<th>${esc(u.ad)}${u.not?" ("+u.not+")":""}</th>`).join("")}</tr></thead>
+      `<th><div class="mBas">
+        <span class="mAvt ${u.herkes?"herkes":""}">${u.herkes?"H":bas(u.ad)}</span>
+        <span class="mAd">${esc(u.herkes?"Herkes":kisaAd(u.ad))}</span>
+        <span class="mAlt">${esc(u.herkes?"Girişsiz":(u.id||""))}</span>
+      </div></th>`).join("")}</tr></thead>
     <tbody>${D.sekmeler.map(s=>{
       const gizli = s[2]!=="acik";
       return `<tr><td>${esc(s[1])}
