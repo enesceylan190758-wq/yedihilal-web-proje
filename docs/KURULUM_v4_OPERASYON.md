@@ -28,14 +28,16 @@ Panel açılınca bu dosyayı otomatik yükler; CSV URL varsa Sheets'ten okur.
 
 ## 3. Apps Script kurulumu
 
+Ayrıntılı adımlar: [`SHEETS_YAZMA_KURULUM.md`](SHEETS_YAZMA_KURULUM.md)
+
 1. Aynı Sheets dosyasında **Uzantılar → Apps Script**
-2. [`scripts/sheets-sync.gs`](../scripts/sheets-sync.gs) içeriğini yapıştırın
-3. `SHEET_ID` = Sheets URL'deki `/d/` ile `/edit` arasındaki ID
-4. `SYNC_TOKEN` = `panel-config.json` içindeki `syncToken` ile **aynı** olmalı
-5. **Dağıt → Yeni dağıtım → Web uygulaması**
+2. [`scripts/sheets-sync.gs`](../scripts/sheets-sync.gs) içeriğini yapıştırın (SHEET_ID + SYNC_TOKEN hazır)
+3. **Dağıt → Yeni dağıtım → Web uygulaması**
    - Yürütme: **Ben**
    - Erişim: **Bağlantıya sahip herkes**
-6. `/exec` URL'ini `panel-config.json` → `yazUrl` alanına yazın
+4. `/exec` URL'ini panele yapıştırıp **Bağlantıyı test et** — veya `panel-config.json` → `yazUrl`
+
+Panel açılışta `panel_meta` (ziyaret, arşiv, karar, kullanıcı…) kaydını da geri okur.
 
 ## 4. Test
 

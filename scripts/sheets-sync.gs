@@ -1,18 +1,25 @@
 /**
- * YediHilal İstanbul Teşkilat Paneli — Google Sheets yazma uç noktası
+ * YediHilal İstanbul Teşkilat Paneli — Google Sheets senkron uç noktası
  *
- * Kurulum:
- * 1. Google Sheets'te "ilceler" adlı sekme oluşturun (panelden şablon CSV indirin)
- * 2. Uzantılar → Apps Script → bu dosyayı yapıştırın
- * 3. SHEET_ID ve SYNC_TOKEN değerlerini doldurun
- * 4. Dağıt → Yeni dağıtım → Web uygulaması
- *    Yürütme: Ben | Erişim: Bağlantıya sahip herkes
- * 5. /exec URL'ini panel → Veri Kaynağı → Apps Script kutusuna yapıştırın
- * 6. Aynı token'ı data/panel-config.json → syncToken alanına yazın
+ * KURULUM (bir kez):
+ * 1. Bu Sheets dosyasında: Uzantılar → Apps Script
+ * 2. Bu dosyanın tamamını yapıştırın (SHEET_ID ve SYNC_TOKEN zaten dolu)
+ * 3. Dağıt → Yeni dağıtım → Web uygulaması
+ *    - Yürütme: Ben
+ *    - Erişim: Bağlantıya sahip herkes
+ * 4. Çıkan /exec URL'ini panede Veri Kaynağı → Apps Script kutusuna yapıştırıp
+ *    "Bağlantıyı test et" deyin (tarayıcıya da kaydedilir)
+ *
+ * CAPABILITIES:
+ * - POST tablo=ilceler → ilçe satırı güncelle
+ * - POST tablo=diger  → panel_meta (ziyaret, arşiv, karar…) kaydet (upsert)
+ * - GET  ?aksiyon=meta&token=… → son panel_meta JSON'unu oku
+ * - GET  ?aksiyon=ping          → sağlık kontrolü
  */
 
 const SHEET_ID = '1IvpVwTdwmnyccD95zO4Hb4SqiRnzxb4VeSZ-T3HyPxw';
 const SYNC_TOKEN = 'qjxX2O3nqEm_fVuHdL_sHDecHux6_wi1';
+const META_KEY = 'panel_state';
 
 function doPost(e) {
   try {
@@ -36,8 +43,26 @@ function doPost(e) {
   }
 }
 
-function doGet() {
-  return jsonOut({ ok: true, mesaj: 'YediHilal Sheets sync aktif' });
+function doGet(e) {
+  try {
+    var p = (e && e.parameter) || {};
+    var aksiyon = String(p.aksiyon || 'ping');
+
+    if (aksiyon === 'ping') {
+      return jsonOut({ ok: true, mesaj: 'YediHilal Sheets sync aktif', sheetId: SHEET_ID });
+    }
+
+    if (aksiyon === 'meta') {
+      if (!p.token || p.token !== SYNC_TOKEN) {
+        return jsonOut({ ok: false, hata: 'Yetkisiz istek — token hatali veya eksik' });
+      }
+      return okuDiger();
+    }
+
+    return jsonOut({ ok: false, hata: 'Bilinmeyen aksiyon: ' + aksiyon });
+  } catch (err) {
+    return jsonOut({ ok: false, hata: String(err) });
+  }
 }
 
 function yazIlce(ilceAd, degisiklik) {
@@ -47,7 +72,7 @@ function yazIlce(ilceAd, degisiklik) {
 
   var sh = SpreadsheetApp.openById(SHEET_ID).getSheetByName('ilceler');
   if (!sh) {
-    return jsonOut({ ok: false, hata: 'ilceler sekmesi bulunamadi' });
+    return jsonOut({ ok: false, hata: 'ilceler sekmesi bulunamadi — once sablon CSV yukleyin' });
   }
 
   var v = sh.getDataRange().getValues();
@@ -72,17 +97,48 @@ function yazIlce(ilceAd, degisiklik) {
   return jsonOut({ ok: false, hata: 'ilce bulunamadi: ' + ilceAd });
 }
 
-function yazDiger(veri) {
+function metaSheet() {
   var ss = SpreadsheetApp.openById(SHEET_ID);
   var sh = ss.getSheetByName('panel_meta');
   if (!sh) {
     sh = ss.insertSheet('panel_meta');
-    sh.getRange(1, 1, 1, 2).setValues([['anahtar', 'json']]);
+    sh.getRange(1, 1, 1, 3).setValues([['anahtar', 'json', 'guncelleme']]);
+  }
+  return sh;
+}
+
+function yazDiger(veri) {
+  var sh = metaSheet();
+  var v = sh.getDataRange().getValues();
+  var json = JSON.stringify(veri);
+  var ts = new Date().toISOString();
+
+  for (var i = 1; i < v.length; i++) {
+    if (String(v[i][0]).trim() === META_KEY) {
+      sh.getRange(i + 1, 2, i + 1, 3).setValues([[json, ts]]);
+      return jsonOut({ ok: true, kayit: 'panel_meta', tip: 'guncelle', satir: i + 1 });
+    }
   }
 
-  var ts = new Date().toISOString();
-  sh.appendRow(['diger_' + ts, JSON.stringify(veri)]);
-  return jsonOut({ ok: true, kayit: 'panel_meta' });
+  sh.appendRow([META_KEY, json, ts]);
+  return jsonOut({ ok: true, kayit: 'panel_meta', tip: 'yeni' });
+}
+
+function okuDiger() {
+  var sh = metaSheet();
+  var v = sh.getDataRange().getValues();
+  for (var i = 1; i < v.length; i++) {
+    if (String(v[i][0]).trim() === META_KEY) {
+      var raw = String(v[i][1] || '');
+      if (!raw) return jsonOut({ ok: true, veri: {}, bos: true });
+      try {
+        return jsonOut({ ok: true, veri: JSON.parse(raw), guncelleme: String(v[i][2] || '') });
+      } catch (err) {
+        return jsonOut({ ok: false, hata: 'panel_meta JSON bozuk: ' + String(err) });
+      }
+    }
+  }
+  return jsonOut({ ok: true, veri: {}, bos: true });
 }
 
 function jsonOut(obj) {

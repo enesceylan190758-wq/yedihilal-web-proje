@@ -829,25 +829,23 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
       <div class="kart"><div class="kbas"><h2>2 · Yazma — Panelden Google Sheets'e</h2>
         <span class="yan">Çift yönlü senkron</span></div>
         <div class="kgov">
-          <p style="font-size:12.5px;color:#413B31;margin-bottom:12px">
-            Panelden bir hücreyi değiştirdiğinizde Sheets'in de güncellenmesi için bir
-            <b>Apps Script Web Uygulaması</b> gerekir. <code>scripts/sheets-sync.gs</code> dosyasındaki
-            <b>SYNC_TOKEN</b> değeri <code>data/panel-config.json → syncToken</code> ile aynı olmalıdır.
-            Dağıtım sonrası <b>/exec</b> URL'sini buraya yapıştırın.</p>
-          <div class="alan"><label>Apps Script Web App URL'i</label>
+          <div class="notk" style="margin-bottom:14px">
+            <b>Kurulum (bir kez, ~5 dk):</b><br>
+            1. Sheets → <b>Uzantılar → Apps Script</b><br>
+            2. Aşağıdaki kodun tamamını yapıştırın → Kaydet<br>
+            3. <b>Dağıt → Yeni dağıtım → Web uygulaması</b> (Yürütme: Ben · Erişim: herkes)<br>
+            4. Çıkan <code>/exec</code> adresini kutuya yapıştırıp <b>Bağlantıyı test et</b>
+          </div>
+          <div class="alan"><label>Apps Script Web App URL'i (/exec)</label>
             <input id="yazUrl" placeholder="https://script.google.com/macros/s/…/exec"></div>
-          <button class="btn ana" id="bYazTest">Bağlantıyı test et</button>
-          <button class="btn" id="bKod">Apps Script kodunu göster</button>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+            <button class="btn ana" id="bYazTest">Bağlantıyı test et</button>
+            <button class="btn" id="bKod">Kurulum kodunu göster</button>
+            <button class="btn" id="bKodKopyala">Kodu kopyala</button>
+            <button class="btn" id="bMetaYenile">Meta veri yenile</button>
+          </div>
           <div class="durum" id="durumYaz"></div>
-          <pre id="asKod" class="gizle">Tam kod: scripts/sheets-sync.gs (token + SHEET_ID zorunlu)
-
-function doPost(e) {
-  var body = JSON.parse(e.postData.contents);
-  if (!body.token || body.token !== SYNC_TOKEN) {
-    return jsonOut({ ok: false, hata: "Yetkisiz" });
-  }
-  // ilceler + diger tablolar — ayrintilar scripts/sheets-sync.gs dosyasinda
-}</pre>
+          <pre id="asKod" class="gizle" style="max-height:280px;overflow:auto;font-size:11px;white-space:pre-wrap"></pre>
         </div></div>
     </div>
 
@@ -2182,7 +2180,26 @@ $$("[data-kls]").forEach(b=> b.onclick = ()=>{
   $$("[data-kls]").forEach(x=>x.classList.toggle("on", x===b));
   klsCiz(); duzBagla();
 });
-$("#bKod").onclick = ()=> $("#asKod").classList.toggle("gizle");
+$("#bKod").onclick = async ()=>{
+  const pre = $("#asKod");
+  pre.classList.toggle("gizle");
+  if(!pre.classList.contains("gizle") && !pre.dataset.yuklu){
+    try{
+      const r = await fetch("../scripts/sheets-sync.gs",{cache:"no-store"});
+      pre.textContent = r.ok ? await r.text() : "scripts/sheets-sync.gs okunamadı — repodaki dosyayı kopyalayın.";
+      pre.dataset.yuklu = "1";
+    }catch(e){ pre.textContent = "Kod yüklenemedi: "+e.message; }
+  }
+};
+$("#bKodKopyala").onclick = async ()=>{
+  try{
+    const r = await fetch("../scripts/sheets-sync.gs",{cache:"no-store"});
+    const t = r.ok ? await r.text() : "";
+    if(!t) return toastGoster("Kod dosyası okunamadı.","hata");
+    await navigator.clipboard.writeText(t);
+    toastGoster("Apps Script kodu panoya kopyalandı.");
+  }catch(e){ toastGoster("Kopyalanamadı: "+(e.message||""),"hata"); }
+};
 
 /* ============ CSV / SHEETS ============ */
 const BASLIK = ["ilce","hat","durum","temsilci","tel","risk","oncelik","asama","koordinator_adayi","kurucu_heyet",
@@ -2246,6 +2263,69 @@ function toastGoster(m, tur="ok"){
   toastGoster._tm = setTimeout(()=> t.classList.remove("ac"), 4200);
 }
 function sheetsPostBody(obj){ return JSON.stringify({...obj, token: syncToken}); }
+
+const YAZ_URL_KEY = "yh_panel_yaz_url";
+function yazUrlSakla(url){
+  yazUrl = (url||"").trim();
+  try{ if(yazUrl) localStorage.setItem(YAZ_URL_KEY, yazUrl); }catch(e){}
+}
+function yazUrlYukle(){
+  try{
+    const u = localStorage.getItem(YAZ_URL_KEY);
+    if(u && u.trim()){ yazUrl = u.trim(); return yazUrl; }
+  }catch(e){}
+  return yazUrl||"";
+}
+function sheetsExecUrl(aksiyon){
+  const base = ((yazUrl || ($("#yazUrl")&&$("#yazUrl").value.trim()) || "").replace(/\/$/,""));
+  if(!base) return "";
+  const u = new URL(base);
+  if(aksiyon) u.searchParams.set("aksiyon", aksiyon);
+  if(syncToken) u.searchParams.set("token", syncToken);
+  return u.toString();
+}
+function metaUygula(veri){
+  if(!veri || typeof veri!=="object") return;
+  ["stk","reis","ekip","aday","birimHedef","vizyon","hatlar","ziyaretler","arsiv","progKatilim","kararlar"].forEach(k=>{
+    if(veri[k]!=null) D[k] = veri[k];
+  });
+  if(Array.isArray(veri.takvim)){
+    etkinlikler = veri.takvim.map(e=> typeof e==="object" && e.tarih ? e
+      : ({tarih:e[0],tip:e[1],baslik:e[2],ilce:e[3],kisi:e[4],not:e[5]}));
+  }
+  if(Array.isArray(veri.kullanicilar) && veri.kullanicilar.length){
+    kullanicilar = JSON.parse(JSON.stringify(veri.kullanicilar));
+  }
+  if(Array.isArray(veri.acikSekmeler)) acikSekmeler = veri.acikSekmeler.slice();
+  if(veri.tut && typeof veri.tut==="object" && typeof tut!=="undefined") Object.assign(tut, veri.tut);
+}
+function diggerPayload(){
+  return {
+    stk:D.stk, reis:D.reis, ekip:D.ekip, aday:D.aday, birimHedef:D.birimHedef,
+    vizyon:D.vizyon, hatlar:D.hatlar, takvim:etkinlikler,
+    ziyaretler:D.ziyaretler, arsiv:D.arsiv, progKatilim:D.progKatilim,
+    tut:tut, kararlar:D.kararlar,
+    kullanicilar, acikSekmeler
+  };
+}
+async function sheetsMetaYukle(sessiz){
+  const url = sheetsExecUrl("meta");
+  if(!url || !syncToken) return false;
+  try{
+    const r = await fetch(url,{cache:"no-store"});
+    const j = await r.json();
+    if(!j || !j.ok) throw new Error((j&&j.hata)||"Meta okunamadı");
+    if(j.bos){ if(!sessiz) durumYaz("#durumYaz","ok","Meta boş — ilk Kaydet sonrası dolacak."); return true; }
+    metaUygula(j.veri||{});
+    ciz();
+    if(!sessiz) durumYaz("#durumYaz","ok","Sheets meta yüklendi"+(j.guncelleme?" · "+j.guncelleme:""));
+    toastGoster("Sheets'ten ek veriler yüklendi.");
+    return true;
+  }catch(e){
+    if(!sessiz) durumYaz("#durumYaz","hata", e.message||"Meta okunamadı");
+    return false;
+  }
+}
 async function panelConfigYukle(){
   try{
     const r = await fetch("../data/panel-config.json",{cache:"no-store"});
@@ -2260,10 +2340,12 @@ async function panelConfigYukle(){
     }
     if(cfg.syncToken) syncToken = cfg.syncToken;
     if(cfg.yazUrl){
-      yazUrl = cfg.yazUrl;
+      yazUrlSakla(cfg.yazUrl);
       $("#yazUrl").value = cfg.yazUrl;
     } else {
-      durumYaz("#durumKaydet","hata","Sheets yazma kurulmadı — değişiklikler yenilemede kaybolur.");
+      const local = yazUrlYukle();
+      if(local){ $("#yazUrl").value = local; }
+      else durumYaz("#durumKaydet","hata","Sheets yazma kurulmadı — /exec URL'sini Veri Kaynağı'na yapıştırın.");
     }
     if(cfg.csvKaynaklar && cfg.csvKaynaklar.length){
       csvKaynaklar = cfg.csvKaynaklar;
@@ -2281,6 +2363,7 @@ async function panelConfigYukle(){
     } else {
       $("#kaynakYzi").textContent = "Yapılandırma yüklendi · CSV adresi tanımlı değil";
     }
+    if(yazUrl && syncToken) await sheetsMetaYukle(true);
   }catch(e){
     panelUyariGoster("Panel yapılandırması okunamadı. Ağ bağlantısını veya dosya yolunu kontrol edin.");
     $("#kaynakYzi").textContent = "Yapılandırma yüklenemedi";
@@ -2393,15 +2476,25 @@ $("#bSifirla").onclick = ()=>{
   toastGoster("Örnek veriye dönüldü. Kaydedilmemiş değişiklikler temizlendi.");
 };
 $("#bYazTest").onclick = async ()=>{
-  yazUrl = $("#yazUrl").value.trim();
-  if(!yazUrl) return durumYaz("#durumYaz","hata","Önce Apps Script /exec adresini yapıştırın.");
+  const u = $("#yazUrl").value.trim();
+  if(!u) return durumYaz("#durumYaz","hata","Önce Apps Script /exec adresini yapıştırın.");
   if(!syncToken) return durumYaz("#durumYaz","hata","syncToken yapılandırılmamış. data/panel-config.json dosyasını kontrol edin.");
+  yazUrlSakla(u);
+  $("#yazUrl").value = yazUrl;
   try{
     const r = await fetch(yazUrl,{method:"POST",body:sheetsPostBody({tablo:"ilceler",ilce:"__test__",degisiklik:{}})});
-    await r.text();
-    durumYaz("#durumYaz","ok","Bağlantı kuruldu. Panelden yaptığınız değişiklikler artık Sheets'e yazılabilir.");
-  }catch(e){ durumYaz("#durumYaz","hata","Ulaşılamadı. Dağıtımın 'Bağlantıya sahip herkes' olduğundan emin olun."); }
+    const t = await r.text();
+    let j=null; try{ j=JSON.parse(t); }catch(e){}
+    if(j && j.ok===false) throw new Error(j.hata||"Test reddedildi");
+    durumYaz("#durumYaz","ok","Bağlantı kuruldu. URL bu tarayıcıya kaydedildi. Değişiklikler artık Sheets'e yazılabilir.");
+    toastGoster("Sheets yazma bağlantısı hazır.");
+    kaydetBar();
+    await sheetsMetaYukle(true);
+  }catch(e){
+    durumYaz("#durumYaz","hata", (e&&e.message)||"Ulaşılamadı. Dağıtımın 'Bağlantıya sahip herkes' olduğundan emin olun.");
+  }
 };
+$("#bMetaYenile").onclick = ()=> sheetsMetaYukle(false);
 $("#bSheetsKaydet").onclick = async ()=>{
   const n = Object.keys(kirli).length, m = Object.keys(kirliDiger).length;
   if(!n && !m) return durumYaz("#durumKaydet","ok","Kaydedilecek değişiklik yok.");
@@ -2410,6 +2503,7 @@ $("#bSheetsKaydet").onclick = async ()=>{
     yazUrl = $("#yazUrl").value.trim();
     if(!yazUrl) return durumYaz("#durumKaydet","hata",
       `Sheets yazma kurulmadı — ${n+m} değişiklik yenilemede kaybolur. Veri Kaynağı → Apps Script URL'sini girin.`);
+    yazUrlSakla(yazUrl);
   }
   let ok=0, hata=0;
   for(const ad in kirli){
@@ -2423,17 +2517,16 @@ $("#bSheetsKaydet").onclick = async ()=>{
   }
   if(m){
     try{
-      await fetch(yazUrl,{method:"POST",body:sheetsPostBody({tablo:"diger",
-        veri:{stk:D.stk, reis:D.reis, ekip:D.ekip, aday:D.aday, birimHedef:D.birimHedef,
-              vizyon:D.vizyon, hatlar:D.hatlar, takvim:etkinlikler,
-              ziyaretler:D.ziyaretler, arsiv:D.arsiv, progKatilim:D.progKatilim,
-              tut:tut, kararlar:D.kararlar}})});
-      ok += m;
+      const r = await fetch(yazUrl,{method:"POST",body:sheetsPostBody({tablo:"diger", veri:diggerPayload()})});
+      const j = await r.json();
+      if(j && j.ok) ok += m; else hata += m;
     }catch(e){ hata += m; }
   }
-  if(!hata){ kirli={}; kirliDiger={}; kaydetDurum();
-    durumYaz("#durumKaydet","ok",`${ok} değişiklik Google Sheets'e yazıldı.`); }
-  else durumYaz("#durumKaydet","hata",`${ok} kayıt yazıldı, ${hata} yazılamadı. Sütun adlarını kontrol edin.`);
+  if(!hata){ kirli={}; kirliDiger={}; kaydetDurum(); kaydetBar();
+    durumYaz("#durumKaydet","ok",`${ok} değişiklik Google Sheets'e yazıldı.`);
+    toastGoster("Sheets'e kaydedildi.");
+  }
+  else durumYaz("#durumKaydet","hata",`${ok} kayıt yazıldı, ${hata} yazılamadı. Sütun adlarını / script sürümünü kontrol edin.`);
 };
 
 let duzKul = null;
