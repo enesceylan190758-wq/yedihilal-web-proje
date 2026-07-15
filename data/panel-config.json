@@ -5,7 +5,7 @@
     {"ad": "Canlı İlçe CSV", "url": "https://www.yhteskilat.org/data/ilceler.csv"},
     {"ad": "Google Sheets", "url": "https://docs.google.com/spreadsheets/d/1IvpVwTdwmnyccD95zO4Hb4SqiRnzxb4VeSZ-T3HyPxw/export?format=csv&gid=0"}
   ],
-  "yazUrl": "",
+  "yazUrl": "https://script.google.com/macros/s/AKfycby_Z5cItA0hPMAKh98l38pS7c_9OL7yoV5n0sYTiWwlroq6eN5mjVashHhzaGdtTsyXiw/exec",
   "syncToken": "qjxX2O3nqEm_fVuHdL_sHDecHux6_wi1",
   "sheetId": "1IvpVwTdwmnyccD95zO4Hb4SqiRnzxb4VeSZ-T3HyPxw",
   "kullanicilar": [
