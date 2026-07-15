@@ -2299,7 +2299,7 @@ function metaUygula(veri){
   if(Array.isArray(veri.acikSekmeler)) acikSekmeler = veri.acikSekmeler.slice();
   if(veri.tut && typeof veri.tut==="object" && typeof tut!=="undefined") Object.assign(tut, veri.tut);
 }
-function diggerPayload(){
+function digerPayload(){
   return {
     stk:D.stk, reis:D.reis, ekip:D.ekip, aday:D.aday, birimHedef:D.birimHedef,
     vizyon:D.vizyon, hatlar:D.hatlar, takvim:etkinlikler,
@@ -2517,7 +2517,7 @@ $("#bSheetsKaydet").onclick = async ()=>{
   }
   if(m){
     try{
-      const r = await fetch(yazUrl,{method:"POST",body:sheetsPostBody({tablo:"diger", veri:diggerPayload()})});
+      const r = await fetch(yazUrl,{method:"POST",body:sheetsPostBody({tablo:"diger", veri:digerPayload()})});
       const j = await r.json();
       if(j && j.ok) ok += m; else hata += m;
     }catch(e){ hata += m; }
