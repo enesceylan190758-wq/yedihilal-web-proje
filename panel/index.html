@@ -486,10 +486,11 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
 .yediIlke::after{right:-4px;transform:scaleX(-1)}
 .ilkeKart{display:flex;flex-direction:column;align-items:center;gap:4px;padding:4px 10px;
   border-radius:9px;cursor:default;pointer-events:none;user-select:none;position:relative;min-width:0}
-.ilkeHilal{width:22px;height:22px;position:relative;flex:0 0 auto}
-.ilkeHilal svg{width:22px;height:22px;display:block}
+.ilkeHilal{width:26px;height:26px;position:relative;flex:0 0 auto}
+.ilkeHilal svg{width:26px;height:26px;display:block}
 .ilkeNo{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  font-family:"IBM Plex Mono";font-size:9px;font-weight:600;color:#D4AF37}
+  font-family:"IBM Plex Mono";font-size:9px;font-weight:700;color:#D4AF37;
+  transform:translate(3px,-1px)}
 .ilkeAd{font-family:"Archivo";font-size:11px;font-weight:700;letter-spacing:.06em;
   text-transform:uppercase;color:#9BB8A8;white-space:nowrap}
 .ilkeKart.bos .ilkeAd{color:#3A5C4A;font-style:italic;text-transform:none;letter-spacing:0}
@@ -1584,8 +1585,22 @@ const AYET = {
  arsiv:["İnsan için ancak çalıştığının karşılığı vardır.","Necm, 39"],
  kilavuz:["Kolaylaştırın, zorlaştırmayın; müjdeleyin, nefret ettirmeyin.","Buhârî, İlim 11"],
 };
-const HILAL = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#C9A227" stroke-width="1.5">
-  <path d="M16.5 3.2A9 9 0 1 0 20.8 14a7 7 0 1 1-4.3-10.8Z"/></svg>`;
+/* YediHilal logo hilali: 7 paralel altın çizgi, sağ-üste açılan hilal */
+function yhHilalSvg(color="#D4AF37", size=18){
+  return `<svg viewBox="0 0 32 32" width="${size}" height="${size}" aria-hidden="true" fill="none"
+    stroke="${color}" stroke-linecap="round" stroke-linejoin="round">
+    <g stroke-width="1.15">
+      <path d="M9.2 25.2C5.4 20.2 5.8 10.6 12.2 5.8c1.8-1.3 3.9-2.1 6.1-2.3"/>
+      <path d="M10.6 26.1C6.7 20.8 7.2 10.9 13.7 6.3c1.8-1.3 3.9-2 6.1-2.2"/>
+      <path d="M12 26.9C8 21.4 8.6 11.2 15.2 6.8c1.8-1.2 3.9-1.9 6-2"/>
+      <path d="M13.4 27.5C9.3 21.9 10 11.5 16.6 7.2c1.8-1.2 3.8-1.9 5.9-2"/>
+      <path d="M14.8 28C10.6 22.3 11.4 11.8 18 7.6c1.7-1.1 3.7-1.8 5.7-1.8"/>
+      <path d="M16.2 28.4C12 22.6 12.8 12.1 19.4 8c1.7-1.1 3.6-1.7 5.5-1.7"/>
+      <path d="M17.6 28.6C13.4 22.8 14.2 12.4 20.7 8.3c1.6-1 3.4-1.6 5.2-1.6"/>
+    </g>
+  </svg>`;
+}
+const HILAL = yhHilalSvg("#C9A227", 18);
 function ayetCiz(){
   document.querySelectorAll("[data-ayet]").forEach(e=>{
     const a = AYET[e.dataset.ayet]; if(!a) return;
@@ -1596,12 +1611,12 @@ function ilkeCiz(){
   const el = document.getElementById("yediIlke"); if(!el) return;
   el.innerHTML = D.yediIlke.map((t,ix)=>{
     const bos = !t || t.startsWith("—");
+    const renk = bos ? "#5C5348" : "#D4AF37";
     return `${ix?'<span class="ilkeAyrac"></span>':''}
     <div class="ilkeKart ${bos?"bos":""}" title="${esc(D.yediIlkeAciklama[ix]||t)}">
       <div class="ilkeHilal">
-        <svg viewBox="0 0 24 24" fill="none" stroke="${bos?"#5C5348":"#D4AF37"}" stroke-width="1.3">
-          <path d="M16.8 3A9 9 0 1 0 21 14.3 7 7 0 1 1 16.8 3Z"/></svg>
-        <span class="ilkeNo" style="color:${bos?"#5C5348":"#D4AF37"}">${ix+1}</span></div>
+        ${yhHilalSvg(renk, 26)}
+        <span class="ilkeNo" style="color:${renk}">${ix+1}</span></div>
       <span class="ilkeAd">${esc(bos?"doldurulacak":t)}</span></div>`;
   }).join("");
 }
