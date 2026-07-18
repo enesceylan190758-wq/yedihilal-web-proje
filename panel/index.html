@@ -39,15 +39,15 @@ button{cursor:pointer;border:0;background:none}
 
 /* ---------------- ÜST BAR ---------------- */
 header{background:linear-gradient(180deg,#0B1712 0%,#142820 100%);color:var(--kagit)}
-.hbar{max-width:1680px;margin:0 auto;padding:12px 18px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-.logoKutu{background:#000;border:1px solid var(--altin-sol);border-radius:8px;padding:6px 11px;
+.hbar{max-width:1680px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.logoKutu{background:#000;border:1px solid var(--altin-sol);border-radius:9px;padding:7px 12px;
   display:flex;align-items:center;justify-content:center;flex:0 0 auto;text-decoration:none;cursor:pointer;
   transition:border-color .15s, box-shadow .15s, transform .15s}
 a.logoKutu:hover{border-color:var(--altin);box-shadow:0 0 0 2px rgba(212,175,55,.22);transform:translateY(-1px)}
 a.logoKutu:focus-visible{outline:2px solid var(--altin);outline-offset:2px}
-.logoKutu img{height:54px;width:auto;display:block;pointer-events:none}
-.hbar .t1{font-size:21px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;font-family:"Archivo";line-height:1.12}
-.hbar .t2{font-size:12px;color:#8FAF9A;letter-spacing:.12em;text-transform:uppercase;margin-top:3px}
+.logoKutu img{height:64px;width:auto;display:block;pointer-events:none}
+.hbar .t1{font-size:26px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;font-family:"Archivo";line-height:1.1}
+.hbar .t2{font-size:13.5px;color:#8FAF9A;letter-spacing:.12em;text-transform:uppercase;margin-top:4px}
 .sagUst{margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:0}
 .kaynakSat{display:flex;align-items:center;gap:7px;font-size:11px;color:#8FAF9A;padding:0 2px 5px}
 .nokta{width:6px;height:6px;border-radius:50%;background:var(--altin);box-shadow:0 0 0 2px rgba(212,175,55,.18)}
@@ -437,23 +437,23 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
 
 /* ---------------- 7 İLKE ŞERİDİ ---------------- */
 .yediIlke{display:flex;align-items:center;gap:0;flex:1;justify-content:center;min-width:0;
-  padding:4px 10px;position:relative;max-height:72px;overflow:hidden}
+  padding:6px 8px;position:relative;max-height:88px;overflow:hidden}
 .yediIlke::before,.yediIlke::after{content:"";position:absolute;top:50%;width:26px;height:1px;
   background:linear-gradient(90deg,transparent,rgba(212,175,55,.5))}
 .yediIlke::before{left:-4px}
 .yediIlke::after{right:-4px;transform:scaleX(-1)}
-.ilkeKart{display:flex;flex-direction:column;align-items:center;gap:7px;padding:6px 13px;
+.ilkeKart{display:flex;flex-direction:column;align-items:center;gap:8px;padding:6px 12px;
   border-radius:9px;cursor:default;transition:.18s;position:relative;min-width:0}
 .ilkeKart:hover{background:rgba(212,175,55,.1)}
-.ilkeHilal{width:32px;height:32px;position:relative;flex:0 0 auto}
-.ilkeHilal svg{width:32px;height:32px;display:block}
+.ilkeHilal{width:36px;height:36px;position:relative;flex:0 0 auto}
+.ilkeHilal svg{width:36px;height:36px;display:block}
 .ilkeNo{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  font-family:"IBM Plex Mono";font-size:13px;font-weight:600;color:#D4AF37}
-.ilkeAd{font-family:"Archivo";font-size:15px;font-weight:700;letter-spacing:.08em;
+  font-family:"IBM Plex Mono";font-size:14px;font-weight:600;color:#D4AF37}
+.ilkeAd{font-family:"Archivo";font-size:18px;font-weight:700;letter-spacing:.06em;
   text-transform:uppercase;color:#9BB8A8;white-space:nowrap;transition:.18s}
 .ilkeKart:hover .ilkeAd{color:#D4AF37}
 .ilkeKart.bos .ilkeAd{color:#3A5C4A;font-style:italic;text-transform:none;letter-spacing:0}
-.ilkeAyrac{width:1px;height:34px;background:rgba(212,175,55,.22);flex:0 0 auto}
+.ilkeAyrac{width:1px;height:40px;background:rgba(212,175,55,.22);flex:0 0 auto}
 @media(max-width:1400px){.yediIlke .ilkeAd{display:none}.ilkeKart{padding:6px 7px}}
 @media(max-width:900px){
   .yediIlke{flex-wrap:wrap;justify-content:center;gap:2px;padding:8px 10px 4px;order:3;width:100%}
