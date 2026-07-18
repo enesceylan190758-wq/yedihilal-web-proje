@@ -166,21 +166,21 @@ nav.anaNav button.on .navIkon{opacity:1}
 /* ---------------- HERO ---------------- */
 .hero{background:linear-gradient(145deg,#FBFCFB 0%,#F1F6F2 55%,#EAF1EC 100%);
   color:#243029;border-radius:12px;padding:14px 16px;display:grid;
-  grid-template-columns:132px 1fr;gap:14px;align-items:center;margin-bottom:14px;
+  grid-template-columns:148px 1fr;gap:14px;align-items:center;margin-bottom:14px;
   border:3px solid #8FA89A;box-shadow:0 0 0 1px rgba(63,107,82,.1),0 2px 4px rgba(45,70,55,.05),0 10px 26px rgba(45,70,55,.08)}
 .hero::after{content:none}
-.kapBlok{width:132px;min-height:118px;display:flex;flex-direction:column;justify-content:center;
-  gap:8px;padding:10px 12px;background:#fff;border:1px solid #D0DDD3;border-radius:10px;
-  box-shadow:0 1px 2px rgba(45,70,55,.03)}
-.kapBlok .kl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#6A7A70}
-.kapBlok .krow{display:flex;align-items:baseline;gap:6px;line-height:1}
-.kapBlok .kbuyuk{font-family:"IBM Plex Mono";font-size:36px;font-weight:600;color:#3F6B52}
-.kapBlok .kayrac{font-family:"IBM Plex Mono";font-size:16px;font-weight:500;color:#A0B0A6}
-.kapBlok .ktoplam{font-family:"IBM Plex Mono";font-size:18px;font-weight:600;color:#243029}
-.kapBlok .kbar{height:6px;border-radius:999px;background:#E2EBE4;overflow:hidden}
+.kapBlok{width:148px;min-height:118px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:6px;padding:12px 14px;background:#fff;border:1px solid #D0DDD3;border-radius:10px;
+  box-shadow:0 1px 2px rgba(45,70,55,.03);text-align:center}
+.kapBlok .kl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#6A7A70}
+.kapBlok .kesir{display:flex;flex-direction:column;align-items:center;gap:4px;line-height:1;width:100%}
+.kapBlok .kbuyuk{font-family:"IBM Plex Mono";font-size:40px;font-weight:600;color:#3F6B52}
+.kapBlok .kcizgi{width:72%;height:2px;background:#C5D4C9;border-radius:2px}
+.kapBlok .ktoplam{font-family:"IBM Plex Mono";font-size:22px;font-weight:600;color:#243029}
+.kapBlok .kalt{font-size:11px;color:#6A7A70;line-height:1.3;margin-top:2px}
+.kapBlok .kbar{width:100%;height:7px;border-radius:999px;background:#E2EBE4;overflow:hidden;margin-top:4px}
 .kapBlok .kbar > i{display:block;height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,#6E9B7F,#3F6B52);
   transition:width .9s cubic-bezier(.4,0,.2,1)}
-.kapBlok .kalt{font-size:11px;color:#6A7A70;line-height:1.3}
 .kpiler{display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:7px}
 .kpi{background:#fff;border:1px solid #D8E2DA;border-radius:9px;
   padding:9px 11px;transition:.15s;box-shadow:0 1px 2px rgba(45,70,55,.03)}
@@ -456,17 +456,15 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
 .ilkeKart:hover .ilkeAd{color:#D4AF37}
 .ilkeKart.bos .ilkeAd{color:#3A5C4A;font-style:italic;text-transform:none;letter-spacing:0}
 .ilkeAyrac{width:1px;height:56px;background:rgba(212,175,55,.22);flex:0 0 auto}
-@media(max-width:1600px){.ilkeAd{font-size:28px}.ilkeKart{padding:4px 7px}}
-@media(max-width:1400px){.ilkeAd{font-size:22px}}
-@media(max-width:1200px){.yediIlke .ilkeAd{display:none}.ilkeKart{padding:6px 7px}}
-@media(max-width:900px){
+@media(max-width:1200px){
   .yediIlke{flex-wrap:wrap;justify-content:center;gap:2px;padding:8px 10px 4px;order:3;width:100%}
   .yediIlke::before,.yediIlke::after{display:none}
-  .yediIlke .ilkeAd{display:none}
   .ilkeKart{padding:4px 6px}
   .ilkeAyrac{display:none}
   .hbar{align-items:flex-start}
   .sagUst{margin-left:0;width:100%}
+  .hbar .t1{font-size:36px}
+  .ilkeAd{font-size:22px}
 }
 
 /* ---------------- AYET ŞERİDİ ---------------- */
@@ -651,13 +649,13 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
   <div class="hero">
     <div class="kapBlok" aria-label="Kapsama">
       <div class="kl">Kapsama</div>
-      <div class="krow">
+      <div class="kesir">
         <span class="kbuyuk mono" id="kapS">9</span>
-        <span class="kayrac">/</span>
+        <span class="kcizgi" aria-hidden="true"></span>
         <span class="ktoplam mono">39</span>
       </div>
+      <div class="kalt">ilçe</div>
       <div class="kbar" aria-hidden="true"><i id="kapBar"></i></div>
-      <div class="kalt">ilçe mevcut</div>
     </div>
     <div style="flex:1;min-width:0">
       <div style="display:flex;align-items:center;justify-content:flex-end;margin-bottom:6px">
