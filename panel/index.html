@@ -102,18 +102,24 @@ body.girisYok .perde{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12p
 /* ---------------- ANA SEKME (üst) ---------------- */
 nav.anaNav{background:#101F18;border-top:1px solid #24382E;border-bottom:1px solid var(--altin);
   position:sticky;top:0;z-index:40}
-.nvi{max-width:none;margin:0;padding:0 14px;display:flex;gap:0;overflow-x:auto}
+.nvi{max-width:none;margin:0;padding:10px 14px;display:flex;gap:8px;overflow-x:auto;align-items:stretch}
 .nvi::-webkit-scrollbar{height:0}
-nav.anaNav button{color:#9BB8A8;padding:8px 11px;font-size:11.5px;font-weight:600;letter-spacing:.07em;
-  text-transform:uppercase;border-bottom:2px solid transparent;white-space:nowrap;font-family:"Archivo";
-  margin-bottom:-1px;transition:.15s;display:inline-flex;align-items:center;gap:6px}
-nav.anaNav button:hover{color:var(--kagit)}
-nav.anaNav button.on{color:var(--altin);border-bottom-color:var(--altin)}
-nav.anaNav .navIkon{flex:0 0 auto;opacity:.85;width:14px;height:14px}
+nav.anaNav button{color:#9BB8A8;padding:9px 14px 8px;min-width:104px;font-size:11.5px;font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;font-family:"Archivo";
+  display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+  border:1px solid #2A4034;border-radius:10px;background:linear-gradient(180deg,#15261E 0%,#101F18 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04);transition:border-color .15s, background .15s, color .15s, box-shadow .15s}
+nav.anaNav button:hover{color:var(--kagit);border-color:#3A5C4A;background:linear-gradient(180deg,#1A2E24 0%,#13241C 100%)}
+nav.anaNav button.on{color:var(--altin);border-color:rgba(212,175,55,.55);
+  background:linear-gradient(180deg,#24382E 0%,#1A2C22 100%);
+  box-shadow:inset 0 1px 0 rgba(212,175,55,.12),0 0 0 1px rgba(212,175,55,.1)}
+nav.anaNav .navIkon{flex:0 0 auto;opacity:.85;width:18px;height:18px}
 nav.anaNav button.on .navIkon{opacity:1}
+nav.anaNav button span{line-height:1.15;text-align:center}
 .navIpucu{display:none;font-size:10px;color:#6E9480;text-align:center;padding:3px 18px 4px;
   letter-spacing:.06em;background:#15261E;border-bottom:1px solid #24382E}
-@media(max-width:900px){.navIpucu{display:block}}
+@media(max-width:900px){.navIpucu{display:block}
+  nav.anaNav button{min-width:88px;padding:8px 10px 7px;font-size:10.5px}}
 
 /* ---------------- SOL PANEL + İÇERİK ---------------- */
 .panelGov{display:grid;grid-template-columns:210px minmax(0,1fr);min-height:calc(100vh - 100px);
