@@ -42,7 +42,6 @@
         "risk",
         "hata",
         "gunluk",
-        "sancaktar",
         "birim",
         "reis",
         "ekip",
@@ -77,8 +76,7 @@
         "mutat",
         "gonullu",
         "hata",
-        "gunluk",
-        "sancaktar"
+        "gunluk"
       ]
     },
     {
@@ -102,8 +100,7 @@
         "gonullu",
         "kadro",
         "acilis",
-        "mutat",
-        "sancaktar"
+        "mutat"
       ]
     },
     {
@@ -127,8 +124,7 @@
         "ozet",
         "risk",
         "kadro",
-        "hata",
-        "sancaktar"
+        "hata"
       ]
     },
     {
@@ -148,8 +144,7 @@
         "program",
         "kilavuz",
         "ozet",
-        "risk",
-        "sancaktar"
+        "risk"
       ]
     }
   ]
