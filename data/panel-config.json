@@ -2,8 +2,14 @@
   "csvUrl": "https://www.yhteskilat.org/data/ilceler.csv",
   "csvUrlSheets": "https://docs.google.com/spreadsheets/d/1IvpVwTdwmnyccD95zO4Hb4SqiRnzxb4VeSZ-T3HyPxw/export?format=csv&gid=0",
   "csvKaynaklar": [
-    {"ad": "Canlı İlçe CSV", "url": "https://www.yhteskilat.org/data/ilceler.csv"},
-    {"ad": "Google Sheets", "url": "https://docs.google.com/spreadsheets/d/1IvpVwTdwmnyccD95zO4Hb4SqiRnzxb4VeSZ-T3HyPxw/export?format=csv&gid=0"}
+    {
+      "ad": "Canlı İlçe CSV",
+      "url": "https://www.yhteskilat.org/data/ilceler.csv"
+    },
+    {
+      "ad": "Google Sheets",
+      "url": "https://docs.google.com/spreadsheets/d/1IvpVwTdwmnyccD95zO4Hb4SqiRnzxb4VeSZ-T3HyPxw/export?format=csv&gid=0"
+    }
   ],
   "yazUrl": "https://script.google.com/macros/s/AKfycby_Z5cItA0hPMAKh98l38pS7c_9OL7yoV5n0sYTiWwlroq6eN5mjVashHhzaGdtTsyXiw/exec",
   "syncToken": "qjxX2O3nqEm_fVuHdL_sHDecHux6_wi1",
@@ -17,7 +23,37 @@
       "tel": "05xx xxx xx 00",
       "rol": "baskan",
       "yetki": "gor_veri",
-      "sekmeler": ["genel", "karne", "hat", "bolge", "komisyon", "takvim", "program", "stk", "vizyon", "kilavuz", "birim", "reis", "ekip", "aday", "ziyaret", "faaliyet", "tutanak", "arsiv", "veri", "ayarlar"]
+      "sekmeler": [
+        "genel",
+        "karne",
+        "hat",
+        "bolge",
+        "komisyon",
+        "takvim",
+        "program",
+        "stk",
+        "vizyon",
+        "kilavuz",
+        "ozet",
+        "mutat",
+        "gonullu",
+        "kadro",
+        "acilis",
+        "risk",
+        "hata",
+        "gunluk",
+        "sancaktar",
+        "birim",
+        "reis",
+        "ekip",
+        "aday",
+        "ziyaret",
+        "faaliyet",
+        "tutanak",
+        "arsiv",
+        "veri",
+        "ayarlar"
+      ]
     },
     {
       "id": "mucahit",
@@ -27,7 +63,23 @@
       "tel": "05xx xxx xx 11",
       "rol": "koordinator",
       "yetki": "gor_veri",
-      "sekmeler": ["genel", "karne", "komisyon", "takvim", "stk", "kilavuz", "faaliyet", "tutanak", "arsiv"]
+      "sekmeler": [
+        "genel",
+        "karne",
+        "komisyon",
+        "takvim",
+        "stk",
+        "kilavuz",
+        "faaliyet",
+        "tutanak",
+        "arsiv",
+        "ozet",
+        "mutat",
+        "gonullu",
+        "hata",
+        "gunluk",
+        "sancaktar"
+      ]
     },
     {
       "id": "oguzhan",
@@ -37,7 +89,22 @@
       "tel": "05xx xxx xx 12",
       "rol": "koordinator",
       "yetki": "gor_veri",
-      "sekmeler": ["genel", "hat", "takvim", "program", "stk", "kilavuz", "aday", "ziyaret"]
+      "sekmeler": [
+        "genel",
+        "hat",
+        "takvim",
+        "program",
+        "stk",
+        "kilavuz",
+        "aday",
+        "ziyaret",
+        "ozet",
+        "gonullu",
+        "kadro",
+        "acilis",
+        "mutat",
+        "sancaktar"
+      ]
     },
     {
       "id": "mehmet",
@@ -47,7 +114,22 @@
       "tel": "05xx xxx xx 13",
       "rol": "koordinator",
       "yetki": "gor_veri",
-      "sekmeler": ["genel", "karne", "bolge", "komisyon", "takvim", "program", "kilavuz", "ziyaret", "faaliyet"]
+      "sekmeler": [
+        "genel",
+        "karne",
+        "bolge",
+        "komisyon",
+        "takvim",
+        "program",
+        "kilavuz",
+        "ziyaret",
+        "faaliyet",
+        "ozet",
+        "risk",
+        "kadro",
+        "hata",
+        "sancaktar"
+      ]
     },
     {
       "id": "nusret",
@@ -57,7 +139,18 @@
       "tel": "05xx xxx xx 14",
       "rol": "koordinator",
       "yetki": "gor",
-      "sekmeler": ["genel", "karne", "bolge", "komisyon", "takvim", "program", "kilavuz"]
+      "sekmeler": [
+        "genel",
+        "karne",
+        "bolge",
+        "komisyon",
+        "takvim",
+        "program",
+        "kilavuz",
+        "ozet",
+        "risk",
+        "sancaktar"
+      ]
     }
   ]
 }
