@@ -39,17 +39,16 @@ button{cursor:pointer;border:0;background:none}
 
 /* ---------------- ÜST BAR ---------------- */
 header{background:linear-gradient(180deg,#0B1712 0%,#142820 100%);color:var(--kagit)}
-.hbar{max-width:1680px;margin:0 auto;padding:18px 18px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;min-height:130px}
-.logoKutu{background:#000;border:1px solid var(--altin-sol);border-radius:10px;padding:3px 5px;
+.hbar{max-width:1680px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.logoKutu{background:#000;border:1px solid var(--altin-sol);border-radius:9px;padding:7px 12px;
   display:flex;align-items:center;justify-content:center;flex:0 0 auto;text-decoration:none;cursor:pointer;
-  transition:border-color .15s, box-shadow .15s, transform .15s;height:110px;width:110px;overflow:hidden}
+  transition:border-color .15s, box-shadow .15s, transform .15s}
 a.logoKutu:hover{border-color:var(--altin);box-shadow:0 0 0 2px rgba(212,175,55,.22);transform:translateY(-1px)}
 a.logoKutu:focus-visible{outline:2px solid var(--altin);outline-offset:2px}
-.logoKutu img{height:100%;width:100%;object-fit:contain;object-position:center;display:block;pointer-events:none;
-  transform:scale(1.22)}
-.hbar .baslikBlok{display:flex;flex-direction:column;justify-content:center;gap:6px;min-width:0}
-.hbar .t1{font-size:50px;font-weight:700;letter-spacing:.01em;text-transform:uppercase;font-family:"Archivo";line-height:1.02}
-.hbar .t2{font-size:16px;color:#8FAF9A;letter-spacing:.1em;text-transform:uppercase;margin-top:0}
+.logoKutu img{height:64px;width:auto;display:block;pointer-events:none}
+.hbar .baslikBlok{display:flex;flex-direction:column;justify-content:center;gap:4px;min-width:0}
+.hbar .t1{font-size:26px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;font-family:"Archivo";line-height:1.1}
+.hbar .t2{font-size:13.5px;color:#8FAF9A;letter-spacing:.12em;text-transform:uppercase;margin-top:0}
 .sagUst{margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:0}
 .kaynakSat{display:flex;align-items:center;gap:7px;font-size:11px;color:#8FAF9A;padding:0 2px 5px}
 .nokta{width:6px;height:6px;border-radius:50%;background:var(--altin);box-shadow:0 0 0 2px rgba(212,175,55,.18)}
@@ -71,12 +70,12 @@ nav.anaNav{background:#101F18;border-top:1px solid #24382E;border-bottom:1px sol
   position:sticky;top:0;z-index:40}
 .nvi{max-width:none;margin:0;padding:0 14px;display:flex;gap:0;overflow-x:auto}
 .nvi::-webkit-scrollbar{height:0}
-nav.anaNav button{color:#9BB8A8;padding:7px 11px;font-size:10px;font-weight:600;letter-spacing:.07em;
+nav.anaNav button{color:#9BB8A8;padding:8px 12px;font-size:12px;font-weight:600;letter-spacing:.07em;
   text-transform:uppercase;border-bottom:2px solid transparent;white-space:nowrap;font-family:"Archivo";
-  margin-bottom:-1px;transition:.15s;display:inline-flex;align-items:center;gap:6px}
+  margin-bottom:-1px;transition:.15s;display:inline-flex;align-items:center;gap:7px}
 nav.anaNav button:hover{color:var(--kagit)}
 nav.anaNav button.on{color:var(--altin);border-bottom-color:var(--altin)}
-nav.anaNav .navIkon{flex:0 0 auto;opacity:.85;width:13px;height:13px}
+nav.anaNav .navIkon{flex:0 0 auto;opacity:.85;width:16px;height:16px}
 nav.anaNav button.on .navIkon{opacity:1}
 .navIpucu{display:none;font-size:10px;color:#6E9480;text-align:center;padding:3px 18px 4px;
   letter-spacing:.06em;background:#15261E;border-bottom:1px solid #24382E}
@@ -106,12 +105,12 @@ nav.anaNav button.on .navIkon{opacity:1}
   border-radius:7px}
 .solBas b{display:block;color:#243029;font-size:12.5px;letter-spacing:.04em;margin-top:3px;text-transform:none}
 .solMenu{display:flex;flex-direction:column;gap:2px}
-.solMenu button{text-align:left;color:#334039;padding:8px 10px;border-radius:7px;font-size:9px;
+.solMenu button{text-align:left;color:#334039;padding:9px 11px;border-radius:7px;font-size:12.75px;
   font-weight:600;font-family:"Archivo";letter-spacing:.01em;transition:.15s;border:1px solid transparent;
-  background:transparent;display:flex;align-items:center;gap:8px;width:100%}
+  background:transparent;display:flex;align-items:center;gap:9px;width:100%}
 .solMenu button:hover{background:#E4EBE5;color:#1F2A23}
 .solMenu button.on{background:#FBFCFB;color:#2F5C44;border-color:#C5D6CA;box-shadow:inset 3px 0 0 #6E9B7F}
-.solMenu .navIkon{flex:0 0 auto;opacity:.7;color:#5F6B63;width:12px;height:12px}
+.solMenu .navIkon{flex:0 0 auto;opacity:.7;color:#5F6B63;width:16px;height:16px}
 .solMenu button.on .navIkon{opacity:1;color:#2F5C44}
 .solMenu button.ozel .navIkon{opacity:.9}
 .solBos{color:#5F6B63;font-size:12px;padding:10px;line-height:1.5}
@@ -134,7 +133,7 @@ nav.anaNav button.on .navIkon{opacity:1}
   .solToggle{top:10px;right:8px;width:34px;height:34px;border-radius:8px;border:1px solid var(--cizgi)}
   .panelGov.solKapali .solToggle{right:8px;width:34px;height:34px}
   .solMenu{flex-direction:row;flex-wrap:wrap;gap:6px}
-  .solMenu button{padding:8px 10px;font-size:9px}
+  .solMenu button{padding:8px 11px;font-size:12.25px}
   .icerikAlan{padding:14px 14px 100px}
 }
 
@@ -439,32 +438,32 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
 
 /* ---------------- 7 İLKE ŞERİDİ ---------------- */
 .yediIlke{display:flex;align-items:center;gap:0;flex:1;justify-content:center;min-width:0;
-  padding:4px 6px;position:relative;overflow:visible}
+  padding:6px 8px;position:relative;max-height:88px;overflow:hidden}
 .yediIlke::before,.yediIlke::after{content:"";position:absolute;top:50%;width:26px;height:1px;
   background:linear-gradient(90deg,transparent,rgba(212,175,55,.5))}
 .yediIlke::before{left:-4px}
 .yediIlke::after{right:-4px;transform:scaleX(-1)}
-.ilkeKart{display:flex;flex-direction:column;align-items:center;gap:8px;padding:4px 10px;
+.ilkeKart{display:flex;flex-direction:column;align-items:center;gap:8px;padding:6px 12px;
   border-radius:9px;cursor:default;transition:.18s;position:relative;min-width:0}
 .ilkeKart:hover{background:rgba(212,175,55,.1)}
-.ilkeHilal{width:48px;height:48px;position:relative;flex:0 0 auto}
-.ilkeHilal svg{width:48px;height:48px;display:block}
+.ilkeHilal{width:36px;height:36px;position:relative;flex:0 0 auto}
+.ilkeHilal svg{width:36px;height:36px;display:block}
 .ilkeNo{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  font-family:"IBM Plex Mono";font-size:16px;font-weight:600;color:#D4AF37}
-.ilkeAd{font-family:"Archivo";font-size:35px;font-weight:700;letter-spacing:.04em;
+  font-family:"IBM Plex Mono";font-size:14px;font-weight:600;color:#D4AF37}
+.ilkeAd{font-family:"Archivo";font-size:18px;font-weight:700;letter-spacing:.06em;
   text-transform:uppercase;color:#9BB8A8;white-space:nowrap;transition:.18s}
 .ilkeKart:hover .ilkeAd{color:#D4AF37}
 .ilkeKart.bos .ilkeAd{color:#3A5C4A;font-style:italic;text-transform:none;letter-spacing:0}
-.ilkeAyrac{width:1px;height:56px;background:rgba(212,175,55,.22);flex:0 0 auto}
-@media(max-width:1200px){
+.ilkeAyrac{width:1px;height:40px;background:rgba(212,175,55,.22);flex:0 0 auto}
+@media(max-width:1400px){.yediIlke .ilkeAd{display:none}.ilkeKart{padding:6px 7px}}
+@media(max-width:900px){
   .yediIlke{flex-wrap:wrap;justify-content:center;gap:2px;padding:8px 10px 4px;order:3;width:100%}
   .yediIlke::before,.yediIlke::after{display:none}
+  .yediIlke .ilkeAd{display:none}
   .ilkeKart{padding:4px 6px}
   .ilkeAyrac{display:none}
   .hbar{align-items:flex-start}
   .sagUst{margin-left:0;width:100%}
-  .hbar .t1{font-size:36px}
-  .ilkeAd{font-size:22px}
 }
 
 /* ---------------- AYET ŞERİDİ ---------------- */
