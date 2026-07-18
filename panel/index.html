@@ -99,23 +99,23 @@ body.girisYok .perde{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12p
   font-size:11px;font-weight:600;font-family:"Archivo";text-transform:uppercase}
 .bCikis:hover{border-color:var(--altin);color:var(--altin)}
 
-/* ---------------- ANA SEKME (üst) ---------------- */
+/* ---------------- ANA SEKME (üst) — yatay dar kutucuk v2 ---------------- */
 nav.anaNav{background:#101F18;border-top:1px solid #24382E;border-bottom:1px solid var(--altin);
   position:sticky;top:0;z-index:40}
-.nvi{max-width:none;margin:0;padding:8px 14px;display:flex;gap:6px;overflow-x:auto;align-items:stretch}
+.nvi{max-width:none;margin:0;padding:7px 12px;display:flex;flex-wrap:wrap;gap:6px;overflow-x:auto;align-items:center}
 .nvi::-webkit-scrollbar{height:0}
-nav.anaNav button{color:#9BB8A8;padding:7px 11px;min-width:0;font-size:11.5px;font-weight:600;
-  letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;font-family:"Archivo";
-  display:inline-flex;flex-direction:row;align-items:center;justify-content:center;gap:6px;
+nav.anaNav button{color:#9BB8A8;padding:6px 10px;min-width:0!important;font-size:11.5px;font-weight:600;
+  letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;font-family:"Archivo";
+  display:inline-flex!important;flex-direction:row!important;align-items:center;justify-content:flex-start;gap:6px;
   border:1px solid #2A4034;border-radius:8px;background:linear-gradient(180deg,#15261E 0%,#101F18 100%);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.04);transition:border-color .15s, background .15s, color .15s, box-shadow .15s}
 nav.anaNav button:hover{color:var(--kagit);border-color:#3A5C4A;background:linear-gradient(180deg,#1A2E24 0%,#13241C 100%)}
 nav.anaNav button.on{color:var(--altin);border-color:rgba(212,175,55,.55);
   background:linear-gradient(180deg,#24382E 0%,#1A2C22 100%);
   box-shadow:inset 0 1px 0 rgba(212,175,55,.12),0 0 0 1px rgba(212,175,55,.1)}
-nav.anaNav .navIkon{flex:0 0 auto;opacity:.85;width:14px;height:14px}
+nav.anaNav .navIkon{flex:0 0 auto;opacity:.85;width:14px!important;height:14px!important;display:block}
 nav.anaNav button.on .navIkon{opacity:1}
-nav.anaNav button span{line-height:1.1}
+nav.anaNav button span{line-height:1.1;text-align:left}
 .navIpucu{display:none;font-size:10px;color:#6E9480;text-align:center;padding:3px 18px 4px;
   letter-spacing:.06em;background:#15261E;border-bottom:1px solid #24382E}
 @media(max-width:900px){.navIpucu{display:block}
