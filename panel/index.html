@@ -159,28 +159,31 @@ nav.anaNav button.on{color:var(--altin);border-bottom-color:var(--altin)}
 .sancDurum{font-size:11px;color:var(--sil);padding:0 12px 10px;background:#fff}
 
 /* ---------------- HERO ---------------- */
-.hero{background:linear-gradient(155deg,#0F2318 0%,#1A3829 48%,#132E22 100%);
-  color:var(--kagit);border-radius:16px;padding:26px 30px;display:grid;
-  grid-template-columns:200px 1fr;gap:30px;align-items:center;margin-bottom:20px;
-  border:1px solid #2E5440;box-shadow:0 4px 28px rgba(15,26,20,.2),0 0 0 1px rgba(212,175,55,.08) inset}
-.hero::after{content:"";position:absolute}
-.gauge{position:relative;display:flex;align-items:center;justify-content:center}
-.gauge svg{width:186px;height:186px;transform:rotate(-90deg)}
+.hero{background:
+    radial-gradient(ellipse 70% 90% at 0% 50%,rgba(212,175,55,.12) 0%,transparent 55%),
+    linear-gradient(120deg,#161A18 0%,#1C2220 48%,#171B19 100%);
+  color:var(--kagit);border-radius:12px;padding:14px 16px;display:grid;
+  grid-template-columns:118px 1fr;gap:14px;align-items:center;margin-bottom:14px;
+  border:1px solid rgba(212,175,55,.22);box-shadow:0 2px 14px rgba(15,26,20,.12)}
+.hero::after{content:none}
+.gauge{position:relative;display:flex;align-items:center;justify-content:center;width:118px;height:118px}
+.gauge svg{width:118px;height:118px;transform:rotate(-90deg)}
 .gm{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.gm .say{font-family:"IBM Plex Mono";font-size:39px;font-weight:600;color:var(--altin);line-height:1}
-.gm .alt{font-family:"IBM Plex Mono";font-size:15px;color:#8FAF9A;margin-top:3px}
-.gm .lb{font-size:10.5px;letter-spacing:.16em;color:#6E9480;text-transform:uppercase;margin-top:10px}
-.kpiler{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
-.kpi{background:rgba(255,255,255,.045);border:1px solid rgba(212,175,55,.18);border-radius:11px;
-  padding:15px 16px;transition:.18s}
-.kpi:hover{background:rgba(212,175,55,.08);border-color:rgba(212,175,55,.34)}
-.kpi .v{font-family:"IBM Plex Mono";font-size:27px;font-weight:600;color:#F3EEE3;line-height:1.1}
-.kpi .v em{font-style:normal;font-size:14px;color:#8FAF9A}
-.kpi .l{font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:#A8C0B0;margin-top:7px}
-.kpi.uy{border-color:rgba(224,122,114,.34);background:rgba(224,122,114,.07)}
+.gm .say{font-family:"IBM Plex Mono";font-size:26px;font-weight:600;color:var(--altin);line-height:1}
+.gm .alt{font-family:"IBM Plex Mono";font-size:11px;color:#A8B5AC;margin-top:2px}
+.gm .lb{font-size:9px;letter-spacing:.14em;color:#8A958C;text-transform:uppercase;margin-top:5px}
+.kpiler{display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:7px}
+.kpi{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:9px;
+  padding:9px 11px;transition:.15s}
+.kpi:hover{background:rgba(212,175,55,.08);border-color:rgba(212,175,55,.28)}
+.kpi .v{font-family:"IBM Plex Mono";font-size:19px;font-weight:600;color:#F3EEE3;line-height:1.1}
+.kpi .v em{font-style:normal;font-size:12px;color:#A8B5AC}
+.kpi .l{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:#A8B5AC;margin-top:4px}
+.kpi.uy{border-color:rgba(224,122,114,.34);background:rgba(224,122,114,.08)}
 .kpi.uy .v{color:#E89A93}
 .kpi.al .v{color:var(--altin)}
-@media(max-width:1100px){.hero{grid-template-columns:1fr}}
+@media(max-width:1100px){.hero{grid-template-columns:1fr;justify-items:center}
+  .hero > div:last-child{width:100%}}
 
 
 /* ---------------- MODÜL KPI / SAYFA ---------------- */
@@ -197,7 +200,7 @@ nav.anaNav button.on{color:var(--altin);border-bottom-color:var(--altin)}
 .izgara{display:grid;grid-template-columns:1fr 372px;gap:16px;align-items:start}
 @media(max-width:1160px){.izgara{grid-template-columns:1fr}}
 .kart{background:var(--kart-yuz);border:1px solid rgba(168,198,176,.95);border-radius:12px;overflow:hidden;
-  margin-bottom:16px;box-shadow:var(--kart-golge);backdrop-filter:blur(6px)}
+  margin-bottom:16px;box-shadow:var(--kart-golge)}
 .kbas{padding:13px 17px;border-bottom:1px solid var(--hat);display:flex;align-items:center;gap:10px;
   background:var(--kart-bas)}
 .kbas h2{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
@@ -205,22 +208,25 @@ nav.anaNav button.on{color:var(--altin);border-bottom-color:var(--altin)}
 .kgov{padding:15px 17px}
 
 /* ---------------- HARİTA ---------------- */
-.hrtSar{position:relative;background:var(--kara);height:520px;overflow:hidden;transition:box-shadow .35s}
+.hrtSar{position:relative;background:var(--kara);height:520px;overflow:hidden}
 .hrtSar svg{width:100%;height:100%;display:block;cursor:grab}
 .hrtSar svg.tut{cursor:grabbing}
 .hrtBuyut{position:absolute;top:12px;right:12px;z-index:8;display:flex;align-items:center;gap:6px;
-  padding:8px 12px;border-radius:8px;background:rgba(15,26,20,.88);border:1px solid rgba(212,175,55,.55);
+  padding:8px 12px;border-radius:8px;background:rgba(15,26,20,.92);border:1px solid rgba(212,175,55,.55);
   color:var(--altin);font-family:"Archivo";font-size:11.5px;font-weight:700;letter-spacing:.08em;
-  text-transform:uppercase;backdrop-filter:blur(4px);box-shadow:0 6px 18px rgba(0,0,0,.25);transition:.15s}
+  text-transform:uppercase;box-shadow:0 6px 18px rgba(0,0,0,.25);transition:.15s}
 .hrtBuyut:hover{background:#0F2318;border-color:var(--altin);color:var(--altin2)}
-.hrtPerde{position:fixed;inset:0;background:rgba(10,18,14,.78);z-index:85;opacity:0;
-  animation:perdeAc .35s ease forwards;backdrop-filter:blur(3px)}
+.hrtPerde{position:fixed;inset:0;background:rgba(12,16,14,.86);z-index:120;opacity:0;
+  animation:perdeAc .28s ease forwards}
 @keyframes perdeAc{to{opacity:1}}
-.hrtSar.tamEkran{position:fixed;z-index:90;left:3vw;right:3vw;top:3vh;bottom:3vh;width:auto;height:auto!important;
-  border-radius:14px;border:1px solid rgba(212,175,55,.45);
-  box-shadow:0 24px 80px rgba(0,0,0,.45),0 0 0 1px rgba(212,175,55,.12) inset;
-  animation:hrtGel .45s cubic-bezier(.2,.8,.2,1)}
-@keyframes hrtGel{from{opacity:.35;transform:scale(.86)}to{opacity:1;transform:scale(1)}}
+#hrtPlaceholder{background:var(--kara);border-radius:0}
+.hrtSar.tamEkran{position:fixed!important;z-index:130;left:3vw;right:3vw;top:3.5vh;bottom:3.5vh;
+  width:auto!important;height:auto!important;margin:0;border-radius:14px;
+  border:1px solid rgba(212,175,55,.5);
+  box-shadow:0 28px 80px rgba(0,0,0,.5);
+  animation:hrtGel .4s cubic-bezier(.2,.85,.2,1)}
+.hrtSar.tamEkran svg{width:100%;height:100%}
+@keyframes hrtGel{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
 .hrtSar.tamEkran .hrtBuyut{background:var(--altin);color:#0F1A14;border-color:var(--altin)}
 @media(prefers-reduced-motion:reduce){.hrtSar.tamEkran,.hrtPerde{animation:none!important}}
 .ilcePath{stroke:#fff;stroke-width:.7;transition:fill .18s,filter .12s;cursor:pointer}
@@ -648,7 +654,7 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
       </div>
     </div>
     <div style="flex:1;min-width:0">
-      <div style="display:flex;align-items:center;justify-content:flex-end;margin-bottom:10px">
+      <div style="display:flex;align-items:center;justify-content:flex-end;margin-bottom:6px">
         <div class="gosterim" id="gosKpi" style="margin:0">
           <button data-g="kpi:sayi" class="on">Sayı</button>
           <button data-g="kpi:grafik">Grafik</button>
@@ -1852,13 +1858,27 @@ function haritaBuyutKapat(){
   const sar = $("#hrtSar");
   if(!sar || !sar.classList.contains("tamEkran")) return;
   sar.classList.remove("tamEkran");
+  const ph = $("#hrtPlaceholder");
+  if(ph && ph.parentNode){
+    ph.parentNode.insertBefore(sar, ph);
+    ph.remove();
+  }
   const perde = $("#hrtPerde"); if(perde) perde.remove();
   const b = $("#bHrtBuyut"); if(b){ b.textContent = "Büyüt"; b.title = "Haritayı büyüt"; }
   document.body.style.overflow = "";
+  // boyut değişince pan/zoom sınırını tazele
+  try{ sinirla(); uygula(); }catch(e){}
 }
 function haritaBuyutAc(){
   const sar = $("#hrtSar"); if(!sar) return;
   if(sar.classList.contains("tamEkran")){ haritaBuyutKapat(); return; }
+  // kart overflow/backdrop-filter fixed'i kırdığı için body'ye taşı
+  if(!$("#hrtPlaceholder")){
+    const ph = document.createElement("div");
+    ph.id = "hrtPlaceholder";
+    ph.style.height = sar.offsetHeight + "px";
+    sar.parentNode.insertBefore(ph, sar);
+  }
   let perde = $("#hrtPerde");
   if(!perde){
     perde = document.createElement("div");
@@ -1867,9 +1887,11 @@ function haritaBuyutAc(){
     perde.onclick = haritaBuyutKapat;
     document.body.appendChild(perde);
   }
+  document.body.appendChild(sar);
   sar.classList.add("tamEkran");
   const b = $("#bHrtBuyut"); if(b){ b.textContent = "Kapat"; b.title = "Küçült"; }
   document.body.style.overflow = "hidden";
+  requestAnimationFrame(()=>{ try{ sinirla(); uygula(); }catch(e){} });
 }
 $("#bHrtBuyut").onclick = ev=>{ ev.stopPropagation(); haritaBuyutAc(); };
 document.addEventListener("keydown", e=>{
