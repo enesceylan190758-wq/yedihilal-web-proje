@@ -71,9 +71,11 @@ nav.anaNav{background:#101F18;border-top:1px solid #24382E;border-bottom:1px sol
 .nvi::-webkit-scrollbar{height:0}
 nav.anaNav button{color:#9BB8A8;padding:8px 12px;font-size:11.5px;font-weight:600;letter-spacing:.07em;
   text-transform:uppercase;border-bottom:2px solid transparent;white-space:nowrap;font-family:"Archivo";
-  margin-bottom:-1px;transition:.15s}
+  margin-bottom:-1px;transition:.15s;display:inline-flex;align-items:center;gap:6px}
 nav.anaNav button:hover{color:var(--kagit)}
 nav.anaNav button.on{color:var(--altin);border-bottom-color:var(--altin)}
+nav.anaNav .navIkon{flex:0 0 auto;opacity:.85}
+nav.anaNav button.on .navIkon{opacity:1}
 .navIpucu{display:none;font-size:10px;color:#6E9480;text-align:center;padding:3px 18px 4px;
   letter-spacing:.06em;background:#15261E;border-bottom:1px solid #24382E}
 @media(max-width:900px){.navIpucu{display:block}}
@@ -104,10 +106,12 @@ nav.anaNav button.on{color:var(--altin);border-bottom-color:var(--altin)}
 .solMenu{display:flex;flex-direction:column;gap:2px}
 .solMenu button{text-align:left;color:#334039;padding:9px 11px;border-radius:7px;font-size:12.5px;
   font-weight:600;font-family:"Archivo";letter-spacing:.01em;transition:.15s;border:1px solid transparent;
-  background:transparent}
+  background:transparent;display:flex;align-items:center;gap:8px;width:100%}
 .solMenu button:hover{background:#E4EBE5;color:#1F2A23}
 .solMenu button.on{background:#FBFCFB;color:#2F5C44;border-color:#C5D6CA;box-shadow:inset 3px 0 0 #6E9B7F}
-.solMenu button.ozel::before{content:"●";font-size:7px;vertical-align:middle;margin-right:6px;color:#8A9A87}
+.solMenu .navIkon{flex:0 0 auto;opacity:.7;color:#5F6B63}
+.solMenu button.on .navIkon{opacity:1;color:#2F5C44}
+.solMenu button.ozel .navIkon{opacity:.9}
 .solBos{color:#5F6B63;font-size:12px;padding:10px;line-height:1.5}
 .icerikAlan{padding:18px 22px 90px;position:relative;min-width:0}
 .icerikAlan::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
@@ -1645,6 +1649,47 @@ const ilceIx  = ad => D.ilceler.findIndex(x=>x.ad===ad);
 const ekipAdlari = ()=> ["BOŞ", ...D.ekip.map(k=>k[0])];
 
 /* ============ NAV — ana grup + sol alt menü ============ */
+const NAV_IKON = {
+  durum:`<circle cx="12" cy="12" r="8"/><path d="M12 8v4l2.5 1.5"/>`,
+  teskilat:`<circle cx="9" cy="8" r="2.5"/><circle cx="16" cy="9" r="2"/><path d="M4.5 18c.6-2.6 2.6-4 4.5-4s3.9 1.4 4.5 4"/><path d="M14 18c.3-1.6 1.4-2.7 3-2.7 1.2 0 2.2.6 2.8 1.7"/>`,
+  operasyon:`<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4M16 3v4M4 11h16"/><path d="M9 15h6"/>`,
+  plan:`<circle cx="8" cy="10" r="2.5"/><circle cx="16" cy="10" r="2.5"/><path d="M4.5 18c.7-2.4 2.4-3.5 3.5-3.5S11 15.6 11.5 18"/><path d="M12.5 18c.5-2.4 2.2-3.5 3.5-3.5s2.8 1.1 3.5 3.5"/><path d="M10.5 10h3"/>`,
+  denetim:`<path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/>`,
+  sistem:`<circle cx="12" cy="12" r="3"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4l1.4-1.4M17 7l1.4-1.4"/>`,
+  genel:`<path d="M4 11.5 12 5l8 6.5"/><path d="M7 10.5V19h10v-8.5"/>`,
+  ozet:`<path d="M4 19V5h16v14H4z"/><path d="M8 15V11M12 15V9M16 15v-3"/>`,
+  karne:`<path d="M8 3h8v3H8z"/><rect x="5" y="6" width="14" height="15" rx="2"/><path d="M9 12h6M9 15h4"/>`,
+  hat:`<path d="M4 16c3-6 5-6 8 0s5 6 8 0"/><circle cx="4" cy="16" r="1.5"/><circle cx="12" cy="16" r="1.5"/><circle cx="20" cy="16" r="1.5"/>`,
+  bolge:`<path d="M4 7h7v5H4zM13 7h7v9h-7zM4 14h7v5H4z"/>`,
+  acilis:`<path d="M5 20V4h9l5 4v12H5z"/><path d="M9 12h4"/>`,
+  kadro:`<circle cx="12" cy="8" r="3"/><path d="M5 19c1-3.2 3.4-5 7-5s6 1.8 7 5"/><circle cx="5.5" cy="10" r="1.8"/><circle cx="18.5" cy="10" r="1.8"/>`,
+  gonullu:`<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 5.6-7 10-7 10z"/>`,
+  aday:`<circle cx="10" cy="8" r="3"/><path d="M3.5 19c1-3 3-4.5 6.5-4.5"/><path d="M16 10v6M13 13h6"/>`,
+  takvim:`<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4M16 3v4M4 11h16"/>`,
+  program:`<path d="M7 20V8l5-3 5 3v12"/><path d="M10 12h4M10 15h4"/>`,
+  mutat:`<path d="M4 12a8 8 0 0 1 13.5-5.5L20 4v6h-6"/><path d="M20 12a8 8 0 0 1-13.5 5.5L4 20v-6h6"/>`,
+  ziyaret:`<path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11z"/><circle cx="12" cy="10" r="2.2"/>`,
+  faaliyet:`<path d="M7 3h7l4 4v14H7V3z"/><path d="M14 3v4h4M10 12h5M10 15h5"/>`,
+  tutanak:`<path d="M6 3h9l3 3v15H6V3z"/><path d="M9 12h6M9 15h4"/><path d="M15 3v3h3"/>`,
+  komisyon:`<circle cx="8" cy="9" r="2.2"/><circle cx="16" cy="9" r="2.2"/><circle cx="12" cy="14.5" r="2.2"/><path d="M4.5 18c.5-1.8 1.8-2.8 3.5-2.8M16 15.2c1.7 0 3 1 3.5 2.8"/>`,
+  stk:`<path d="M4 20V9l8-5 8 5v11"/><path d="M9 20v-6h6v6"/>`,
+  vizyon:`<path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z"/><circle cx="12" cy="12" r="2.5"/>`,
+  birim:`<rect x="4" y="7" width="16" height="12" rx="1.5"/><path d="M9 7V5h6v2M12 11v4"/>`,
+  reis:`<path d="M12 3l2.2 5.2L20 9l-4 3.6L17.5 19 12 15.8 6.5 19 8 12.6 4 9l5.8-.8L12 3z"/>`,
+  ekip:`<circle cx="8" cy="9" r="2.3"/><circle cx="16" cy="9" r="2.3"/><path d="M3.8 18c.6-2.4 2.3-3.6 4.2-3.6s3.6 1.2 4.2 3.6"/><path d="M12 18c.5-1.8 1.8-3 3.8-3 2 0 3.5 1.2 4.2 3"/>`,
+  kilavuz:`<path d="M5 4h6a3 3 0 0 1 3 3v13a2.5 2.5 0 0 0-2.5-2.5H5V4z"/><path d="M19 4h-6a3 3 0 0 0-3 3v13a2.5 2.5 0 0 1 2.5-2.5H19V4z"/>`,
+  risk:`<path d="M12 4l9 16H3L12 4z"/><path d="M12 10v4M12 17h.01"/>`,
+  hata:`<circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5M9 11h4M11 9v4"/>`,
+  gunluk:`<path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8M8 16h5"/>`,
+  arsiv:`<path d="M4 7h16v3H4z"/><path d="M6 10v10h12V10M10 14h4"/>`,
+  veri:`<ellipse cx="12" cy="6" rx="7" ry="2.5"/><path d="M5 6v6c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6"/><path d="M5 12v6c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-6"/>`,
+  ayarlar:`<circle cx="12" cy="12" r="3"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.8 5.8l1.4 1.4M16.8 16.8l1.4 1.4M5.8 18.2l1.4-1.4M16.8 7.2l1.4-1.4"/>`,
+  varsayilan:`<circle cx="12" cy="12" r="7"/>`
+};
+function navIkon(key){
+  const inner = NAV_IKON[key] || NAV_IKON.varsayilan;
+  return `<svg class="navIkon" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">${inner}</svg>`;
+}
 const ANA_GRUPLAR = [
   {id:"durum", ad:"Durum", alt:["genel","ozet","karne"]},
   {id:"teskilat", ad:"Teşkilat", alt:["hat","bolge","acilis","kadro","gonullu","aday"]},
@@ -1686,13 +1731,13 @@ function navCiz(){
   if(!altlar.find(s=>s[0]===aktifSekme)) aktifSekme = altlar[0][0];
 
   $("#nvi").innerHTML = gruplar.map(gr=>
-    `<button type="button" data-g="${gr.id}" class="${gr.id===aktifGrup?"on":""}">${gr.ad}</button>`
+    `<button type="button" data-g="${gr.id}" class="${gr.id===aktifGrup?"on":""}">${navIkon(gr.id)}<span>${gr.ad}</span></button>`
   ).join("");
   $$("#nvi button").forEach(b=> b.onclick = ()=> grupAc(b.dataset.g));
 
   $("#solBasAd").textContent = g.ad;
   $("#solMenu").innerHTML = altlar.length
-    ? altlar.map(s=>`<button type="button" data-s="${s[0]}" class="${s[0]===aktifSekme?"on":""} ${s[2]!=="acik"?"ozel":""}">${s[1]}</button>`).join("")
+    ? altlar.map(s=>`<button type="button" data-s="${s[0]}" class="${s[0]===aktifSekme?"on":""} ${s[2]!=="acik"?"ozel":""}">${navIkon(s[0])}<span>${s[1]}</span></button>`).join("")
     : `<div class="solBos">Bu bölümde görüntüleyebileceğiniz alt sayfa yok. Giriş yapmayı deneyin.</div>`;
   $$("#solMenu button").forEach(b=> b.onclick = ()=> sekmeAc(b.dataset.s));
 
