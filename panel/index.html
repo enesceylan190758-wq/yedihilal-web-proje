@@ -39,15 +39,15 @@ button{cursor:pointer;border:0;background:none}
 
 /* ---------------- ÜST BAR ---------------- */
 header{background:linear-gradient(180deg,#0B1712 0%,#142820 100%);color:var(--kagit)}
-.hbar{max-width:1680px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-.logoKutu{background:#000;border:1px solid var(--altin-sol);border-radius:8px;padding:5px 10px;
+.hbar{max-width:1680px;margin:0 auto;padding:12px 18px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.logoKutu{background:#000;border:1px solid var(--altin-sol);border-radius:8px;padding:6px 11px;
   display:flex;align-items:center;justify-content:center;flex:0 0 auto;text-decoration:none;cursor:pointer;
   transition:border-color .15s, box-shadow .15s, transform .15s}
 a.logoKutu:hover{border-color:var(--altin);box-shadow:0 0 0 2px rgba(212,175,55,.22);transform:translateY(-1px)}
 a.logoKutu:focus-visible{outline:2px solid var(--altin);outline-offset:2px}
-.logoKutu img{height:46px;width:auto;display:block;pointer-events:none}
-.hbar .t1{font-size:18px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;font-family:"Archivo";line-height:1.15}
-.hbar .t2{font-size:11.5px;color:#8FAF9A;letter-spacing:.12em;text-transform:uppercase;margin-top:3px}
+.logoKutu img{height:54px;width:auto;display:block;pointer-events:none}
+.hbar .t1{font-size:21px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;font-family:"Archivo";line-height:1.12}
+.hbar .t2{font-size:12px;color:#8FAF9A;letter-spacing:.12em;text-transform:uppercase;margin-top:3px}
 .sagUst{margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:0}
 .kaynakSat{display:flex;align-items:center;gap:7px;font-size:11px;color:#8FAF9A;padding:0 2px 5px}
 .nokta{width:6px;height:6px;border-radius:50%;background:var(--altin);box-shadow:0 0 0 2px rgba(212,175,55,.18)}
@@ -69,7 +69,7 @@ nav.anaNav{background:#101F18;border-top:1px solid #24382E;border-bottom:1px sol
   position:sticky;top:0;z-index:40}
 .nvi{max-width:none;margin:0;padding:0 14px;display:flex;gap:0;overflow-x:auto}
 .nvi::-webkit-scrollbar{height:0}
-nav.anaNav button{color:#9BB8A8;padding:8px 12px;font-size:12.5px;font-weight:600;letter-spacing:.065em;
+nav.anaNav button{color:#9BB8A8;padding:8px 12px;font-size:12px;font-weight:600;letter-spacing:.07em;
   text-transform:uppercase;border-bottom:2px solid transparent;white-space:nowrap;font-family:"Archivo";
   margin-bottom:-1px;transition:.15s;display:inline-flex;align-items:center;gap:7px}
 nav.anaNav button:hover{color:var(--kagit)}
@@ -104,7 +104,7 @@ nav.anaNav button.on .navIkon{opacity:1}
   border-radius:7px}
 .solBas b{display:block;color:#243029;font-size:12.5px;letter-spacing:.04em;margin-top:3px;text-transform:none}
 .solMenu{display:flex;flex-direction:column;gap:2px}
-.solMenu button{text-align:left;color:#334039;padding:9px 11px;border-radius:7px;font-size:13.25px;
+.solMenu button{text-align:left;color:#334039;padding:9px 11px;border-radius:7px;font-size:12.75px;
   font-weight:600;font-family:"Archivo";letter-spacing:.01em;transition:.15s;border:1px solid transparent;
   background:transparent;display:flex;align-items:center;gap:9px;width:100%}
 .solMenu button:hover{background:#E4EBE5;color:#1F2A23}
@@ -132,7 +132,7 @@ nav.anaNav button.on .navIkon{opacity:1}
   .solToggle{top:10px;right:8px;width:34px;height:34px;border-radius:8px;border:1px solid var(--cizgi)}
   .panelGov.solKapali .solToggle{right:8px;width:34px;height:34px}
   .solMenu{flex-direction:row;flex-wrap:wrap;gap:6px}
-  .solMenu button{padding:8px 11px;font-size:12.75px}
+  .solMenu button{padding:8px 11px;font-size:12.25px}
   .icerikAlan{padding:14px 14px 100px}
 }
 
@@ -392,7 +392,7 @@ td.n{font-family:"IBM Plex Mono";text-align:right}
 .cbas .alt{font-size:12px;color:#9BB8A8;letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
 .cSek{display:flex;gap:2px;background:var(--gece2);position:sticky;top:0;z-index:2;padding:0 14px;
   border-bottom:1px solid var(--cizgi)}
-.cSek button{color:#9BB8A8;padding:10px 13px;font-size:12.5px;font-weight:700;letter-spacing:.065em;
+.cSek button{color:#9BB8A8;padding:10px 13px;font-size:12px;font-weight:700;letter-spacing:.07em;
   text-transform:uppercase;font-family:"Archivo";border-bottom:2px solid transparent;margin-bottom:-1px}
 .cSek button.on{color:var(--altin);border-bottom-color:var(--altin)}
 .cSek button:hover{color:var(--kagit)}
@@ -437,23 +437,23 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
 
 /* ---------------- 7 İLKE ŞERİDİ ---------------- */
 .yediIlke{display:flex;align-items:center;gap:0;flex:1;justify-content:center;min-width:0;
-  padding:2px 10px;position:relative;max-height:62px;overflow:hidden}
+  padding:4px 10px;position:relative;max-height:72px;overflow:hidden}
 .yediIlke::before,.yediIlke::after{content:"";position:absolute;top:50%;width:26px;height:1px;
   background:linear-gradient(90deg,transparent,rgba(212,175,55,.5))}
 .yediIlke::before{left:-4px}
 .yediIlke::after{right:-4px;transform:scaleX(-1)}
-.ilkeKart{display:flex;flex-direction:column;align-items:center;gap:6px;padding:6px 12px;
+.ilkeKart{display:flex;flex-direction:column;align-items:center;gap:7px;padding:6px 13px;
   border-radius:9px;cursor:default;transition:.18s;position:relative;min-width:0}
 .ilkeKart:hover{background:rgba(212,175,55,.1)}
-.ilkeHilal{width:28px;height:28px;position:relative;flex:0 0 auto}
-.ilkeHilal svg{width:28px;height:28px;display:block}
+.ilkeHilal{width:32px;height:32px;position:relative;flex:0 0 auto}
+.ilkeHilal svg{width:32px;height:32px;display:block}
 .ilkeNo{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  font-family:"IBM Plex Mono";font-size:12px;font-weight:600;color:#D4AF37}
-.ilkeAd{font-family:"Archivo";font-size:13px;font-weight:700;letter-spacing:.08em;
+  font-family:"IBM Plex Mono";font-size:13px;font-weight:600;color:#D4AF37}
+.ilkeAd{font-family:"Archivo";font-size:15px;font-weight:700;letter-spacing:.08em;
   text-transform:uppercase;color:#9BB8A8;white-space:nowrap;transition:.18s}
 .ilkeKart:hover .ilkeAd{color:#D4AF37}
 .ilkeKart.bos .ilkeAd{color:#3A5C4A;font-style:italic;text-transform:none;letter-spacing:0}
-.ilkeAyrac{width:1px;height:28px;background:rgba(212,175,55,.22);flex:0 0 auto}
+.ilkeAyrac{width:1px;height:34px;background:rgba(212,175,55,.22);flex:0 0 auto}
 @media(max-width:1400px){.yediIlke .ilkeAd{display:none}.ilkeKart{padding:6px 7px}}
 @media(max-width:900px){
   .yediIlke{flex-wrap:wrap;justify-content:center;gap:2px;padding:8px 10px 4px;order:3;width:100%}
