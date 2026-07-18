@@ -165,14 +165,16 @@ nav.anaNav button.on .navIkon{opacity:1}
 .hero{background:linear-gradient(145deg,#FBFCFB 0%,#F1F6F2 55%,#EAF1EC 100%);
   color:#243029;border-radius:12px;padding:14px 16px;display:grid;
   grid-template-columns:118px 1fr;gap:14px;align-items:center;margin-bottom:14px;
-  border:1px solid #D2DDD4;box-shadow:0 1px 2px rgba(45,70,55,.04),0 8px 22px rgba(45,70,55,.06)}
+  border:2px solid #9EB5A6;box-shadow:0 0 0 1px rgba(63,107,82,.08),0 2px 4px rgba(45,70,55,.05),0 10px 26px rgba(45,70,55,.08)}
 .hero::after{content:none}
+.gauge-col{display:flex;flex-direction:column;align-items:center;gap:7px;width:118px}
 .gauge{position:relative;display:flex;align-items:center;justify-content:center;width:118px;height:118px}
 .gauge svg{width:118px;height:118px;transform:rotate(-90deg)}
-.gm{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.gm .say{font-family:"IBM Plex Mono";font-size:26px;font-weight:600;color:#3F6B52;line-height:1}
-.gm .alt{font-family:"IBM Plex Mono";font-size:11px;color:#6A7A70;margin-top:2px}
-.gm .lb{font-size:9px;letter-spacing:.14em;color:#7A8A80;text-transform:uppercase;margin-top:5px}
+.gm{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.gm .say{font-family:"IBM Plex Mono";font-size:34px;font-weight:600;color:#3F6B52;line-height:1}
+.gauge-caption{text-align:center;line-height:1.2}
+.gauge-caption .gl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#6A7A70}
+.gauge-caption .gs{font-family:"IBM Plex Mono";font-size:12px;color:#5A6B62;margin-top:3px;font-weight:500}
 .kpiler{display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:7px}
 .kpi{background:#fff;border:1px solid #D8E2DA;border-radius:9px;
   padding:9px 11px;transition:.15s;box-shadow:0 1px 2px rgba(45,70,55,.03)}
@@ -639,21 +641,25 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
 <section class="sayfa on" id="s-genel">
   <div class="ayet" data-ayet="genel"></div>
   <div class="hero">
-    <div class="gauge">
-      <svg viewBox="0 0 186 186" aria-hidden="true">
-        <circle cx="93" cy="93" r="78" fill="none" stroke="#D5DED7" stroke-width="3.4"/>
-        <circle cx="93" cy="93" r="70" fill="none" stroke="#D5DED7" stroke-width="3.4"/>
-        <circle cx="93" cy="93" r="62" fill="none" stroke="#D5DED7" stroke-width="3.4"/>
-        <circle cx="93" cy="93" r="54" fill="none" stroke="#D5DED7" stroke-width="3.4"/>
-        <circle id="g4" cx="93" cy="93" r="78" fill="none" stroke="#6E9B7F" stroke-width="3.4" stroke-linecap="round"/>
-        <circle id="g3" cx="93" cy="93" r="70" fill="none" stroke="#6E9B7F" stroke-width="3.4" stroke-linecap="round"/>
-        <circle id="g2" cx="93" cy="93" r="62" fill="none" stroke="#6E9B7F" stroke-width="3.4" stroke-linecap="round"/>
-        <circle id="g1" cx="93" cy="93" r="54" fill="none" stroke="#6E9B7F" stroke-width="3.4" stroke-linecap="round"/>
-      </svg>
-      <div class="gm">
-        <div class="say mono" id="kapS">9</div>
-        <div class="alt mono">/ 39 ilçe</div>
-        <div class="lb">Kapsama</div>
+    <div class="gauge-col">
+      <div class="gauge">
+        <svg viewBox="0 0 186 186" aria-hidden="true">
+          <circle cx="93" cy="93" r="78" fill="none" stroke="#D5DED7" stroke-width="3.4"/>
+          <circle cx="93" cy="93" r="70" fill="none" stroke="#D5DED7" stroke-width="3.4"/>
+          <circle cx="93" cy="93" r="62" fill="none" stroke="#D5DED7" stroke-width="3.4"/>
+          <circle cx="93" cy="93" r="54" fill="none" stroke="#D5DED7" stroke-width="3.4"/>
+          <circle id="g4" cx="93" cy="93" r="78" fill="none" stroke="#6E9B7F" stroke-width="3.4" stroke-linecap="round"/>
+          <circle id="g3" cx="93" cy="93" r="70" fill="none" stroke="#6E9B7F" stroke-width="3.4" stroke-linecap="round"/>
+          <circle id="g2" cx="93" cy="93" r="62" fill="none" stroke="#6E9B7F" stroke-width="3.4" stroke-linecap="round"/>
+          <circle id="g1" cx="93" cy="93" r="54" fill="none" stroke="#6E9B7F" stroke-width="3.4" stroke-linecap="round"/>
+        </svg>
+        <div class="gm">
+          <div class="say mono" id="kapS">9</div>
+        </div>
+      </div>
+      <div class="gauge-caption">
+        <div class="gl">Kapsama</div>
+        <div class="gs">39 ilçeden</div>
       </div>
     </div>
     <div style="flex:1;min-width:0">
