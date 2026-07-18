@@ -487,10 +487,11 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
 .ilkeKart{display:flex;flex-direction:column;align-items:center;gap:4px;padding:4px 10px;
   border-radius:9px;cursor:default;pointer-events:none;user-select:none;position:relative;min-width:0}
 .ilkeHilal{width:26px;height:26px;position:relative;flex:0 0 auto}
-.ilkeHilal svg{width:26px;height:26px;display:block}
+.ilkeHilal img{width:26px;height:26px;display:block;object-fit:contain}
+.ilkeHilal img.soluk{filter:grayscale(1) brightness(.55);opacity:.75}
 .ilkeNo{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
   font-family:"IBM Plex Mono";font-size:9px;font-weight:700;color:#D4AF37;
-  transform:translate(3px,-1px)}
+  transform:translate(5px,0);text-shadow:0 0 3px rgba(11,15,20,.55)}
 .ilkeAd{font-family:"Archivo";font-size:11px;font-weight:700;letter-spacing:.06em;
   text-transform:uppercase;color:#9BB8A8;white-space:nowrap}
 .ilkeKart.bos .ilkeAd{color:#3A5C4A;font-style:italic;text-transform:none;letter-spacing:0}
@@ -511,7 +512,7 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
   background:linear-gradient(90deg,rgba(240,248,242,.95),rgba(228,240,232,.6) 72%,transparent);
   border-left:2px solid var(--altin);border-radius:0 8px 8px 0;
   box-shadow:0 1px 8px rgba(45,90,66,.08)}
-.ayet svg{flex:0 0 auto;opacity:.6}
+.ayet img.yhHilal{flex:0 0 auto;opacity:.75;width:18px;height:18px;object-fit:contain}
 .ayet .mt{font-size:13.5px;color:#2A4538;font-style:italic;line-height:1.45}
 .ayet .kn{font-size:11.5px;color:var(--altin-sol);font-family:"Archivo";font-weight:700;
   letter-spacing:.05em;white-space:nowrap;margin-left:auto;padding-left:14px}
@@ -1585,22 +1586,12 @@ const AYET = {
  arsiv:["İnsan için ancak çalıştığının karşılığı vardır.","Necm, 39"],
  kilavuz:["Kolaylaştırın, zorlaştırmayın; müjdeleyin, nefret ettirmeyin.","Buhârî, İlim 11"],
 };
-/* YediHilal logo hilali: 7 paralel altın çizgi (logo stili), sağ-üste açılır */
-function yhHilalSvg(color="#D4AF37", size=18){
-  return `<svg viewBox="0 0 32 32" width="${size}" height="${size}" aria-hidden="true" fill="none"
-    stroke="${color}" stroke-linecap="round" stroke-linejoin="round">
-    <g stroke-width="1.2">
-      <path d="M12.34 28.28A12.20 12.20 0 0 0 25.49 9.50"/>
-      <path d="M12.80 27.80A11.60 11.60 0 0 0 25.30 9.95"/>
-      <path d="M13.25 27.33A11.00 11.00 0 0 0 25.11 10.39"/>
-      <path d="M13.71 26.85A10.40 10.40 0 0 0 24.92 10.83"/>
-      <path d="M14.16 26.37A9.80 9.80 0 0 0 24.73 11.28"/>
-      <path d="M14.62 25.89A9.20 9.20 0 0 0 24.54 11.72"/>
-      <path d="M15.07 25.41A8.60 8.60 0 0 0 24.34 12.17"/>
-    </g>
-  </svg>`;
+/* YediHilal logo hilali — yüklenen logodan kesilmiş 7 çizgili ay */
+const YH_HILAL_SRC = "yh-hilal.png";
+function yhHilalImg(size=18, soluk=false){
+  return `<img class="yhHilal${soluk?" soluk":""}" src="${YH_HILAL_SRC}" width="${size}" height="${size}" alt="" aria-hidden="true" draggable="false">`;
 }
-const HILAL = yhHilalSvg("#C9A227", 18);
+const HILAL = yhHilalImg(18, false);
 function ayetCiz(){
   document.querySelectorAll("[data-ayet]").forEach(e=>{
     const a = AYET[e.dataset.ayet]; if(!a) return;
@@ -1615,7 +1606,7 @@ function ilkeCiz(){
     return `${ix?'<span class="ilkeAyrac"></span>':''}
     <div class="ilkeKart ${bos?"bos":""}" title="${esc(D.yediIlkeAciklama[ix]||t)}">
       <div class="ilkeHilal">
-        ${yhHilalSvg(renk, 26)}
+        ${yhHilalImg(26, bos)}
         <span class="ilkeNo" style="color:${renk}">${ix+1}</span></div>
       <span class="ilkeAd">${esc(bos?"doldurulacak":t)}</span></div>`;
   }).join("");
