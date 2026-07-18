@@ -82,34 +82,33 @@ nav.anaNav button.on{color:var(--altin);border-bottom-color:var(--altin)}
 .panelGov{display:grid;grid-template-columns:210px minmax(0,1fr);min-height:calc(100vh - 100px);
   max-width:1680px;margin:0 auto;position:relative;transition:grid-template-columns .32s cubic-bezier(.2,.8,.2,1)}
 .panelGov.solKapali{grid-template-columns:32px minmax(0,1fr)}
-.solPanel{background:#F5F6F5;border-right:1px solid #D8DED9;position:sticky;top:36px;height:calc(100vh - 36px);
-  overflow:visible;padding:12px 10px 70px;z-index:20;transition:padding .28s ease;
-  box-shadow:inset -1px 0 0 rgba(15,26,20,.03)}
+.solPanel{background:#EEF3EE;border-right:1px solid #D2DDD4;position:sticky;top:36px;height:calc(100vh - 36px);
+  overflow:visible;padding:12px 10px 70px;z-index:20;transition:padding .28s ease}
 .solIc{overflow:auto;max-height:calc(100vh - 70px);padding-right:2px;
   transition:opacity .22s ease, transform .28s cubic-bezier(.2,.8,.2,1)}
 .panelGov.solKapali .solPanel{padding:12px 0 0;overflow:visible;background:transparent;border-right:0;box-shadow:none}
 .panelGov.solKapali .solIc{opacity:0;transform:translateX(-12px);pointer-events:none;width:0;height:0;overflow:hidden}
 .solToggle{position:absolute;top:58px;right:-12px;z-index:28;width:24px;height:46px;
   display:flex;align-items:center;justify-content:center;border-radius:0 8px 8px 0;
-  background:#fff;border:1px solid #D0D7D1;border-left:0;
-  color:#6A736C;font-size:15px;font-weight:700;box-shadow:3px 0 10px rgba(15,26,20,.08);
+  background:#F7FAF7;border:1px solid #C9D5CB;border-left:0;
+  color:#5F6B63;font-size:15px;font-weight:700;box-shadow:2px 0 8px rgba(45,70,55,.06);
   transition:background .15s, color .15s, right .28s ease}
-.solToggle:hover{background:#EEF2EF;color:#8A6D2A}
+.solToggle:hover{background:#E4EDE5;color:#3F6B52}
 .solToggle span{display:block;line-height:1;transform:translateX(-1px)}
-.panelGov.solKapali .solToggle{right:-1px;border-radius:0 8px 8px 0;border:1px solid #D0D7D1;
-  width:30px;height:50px;background:#F5F6F5;box-shadow:0 3px 12px rgba(15,26,20,.1)}
+.panelGov.solKapali .solToggle{right:-1px;border-radius:0 8px 8px 0;border:1px solid #C9D5CB;
+  width:30px;height:50px;background:#EEF3EE;box-shadow:0 2px 10px rgba(45,70,55,.08)}
 .solBas{font-family:"Archivo";font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
-  color:#6A736C;padding:8px 10px;margin:0 0 8px;background:#E9ECEA;border:1px solid #DCE2DD;
+  color:#5F6B63;padding:8px 10px;margin:0 0 8px;background:#E2EAE3;border:1px solid #D0DBD3;
   border-radius:7px}
-.solBas b{display:block;color:#1A221C;font-size:12.5px;letter-spacing:.04em;margin-top:3px;text-transform:none}
+.solBas b{display:block;color:#243029;font-size:12.5px;letter-spacing:.04em;margin-top:3px;text-transform:none}
 .solMenu{display:flex;flex-direction:column;gap:2px}
-.solMenu button{text-align:left;color:#2A322C;padding:9px 11px;border-radius:7px;font-size:12.5px;
+.solMenu button{text-align:left;color:#334039;padding:9px 11px;border-radius:7px;font-size:12.5px;
   font-weight:600;font-family:"Archivo";letter-spacing:.01em;transition:.15s;border:1px solid transparent;
   background:transparent}
-.solMenu button:hover{background:#ECEFED;color:#141A16}
-.solMenu button.on{background:#FFF8E8;color:#8A6D2A;border-color:#E6D49A;box-shadow:inset 3px 0 0 #D4AF37}
-.solMenu button.ozel::before{content:"●";font-size:7px;vertical-align:middle;margin-right:6px;color:#B8962E}
-.solBos{color:#6A736C;font-size:12px;padding:10px;line-height:1.5}
+.solMenu button:hover{background:#E4EBE5;color:#1F2A23}
+.solMenu button.on{background:#FBFCFB;color:#2F5C44;border-color:#C5D6CA;box-shadow:inset 3px 0 0 #6E9B7F}
+.solMenu button.ozel::before{content:"●";font-size:7px;vertical-align:middle;margin-right:6px;color:#8A9A87}
+.solBos{color:#5F6B63;font-size:12px;padding:10px;line-height:1.5}
 .icerikAlan{padding:18px 22px 90px;position:relative;min-width:0}
 .icerikAlan::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
   background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(45,90,66,.022) 39px,rgba(45,90,66,.022) 40px);
@@ -124,7 +123,7 @@ nav.anaNav button.on{color:var(--altin);border-bottom-color:var(--altin)}
   .panelGov{grid-template-columns:1fr}
   .panelGov.solKapali{grid-template-columns:1fr}
   .solPanel{position:relative;top:0;height:auto;max-height:none;border-right:0;
-    border-bottom:1px solid #D8DED9;padding:12px 36px 12px 12px;background:#F5F6F5}
+    border-bottom:1px solid #D2DDD4;padding:12px 36px 12px 12px;background:#EEF3EE}
   .panelGov.solKapali .solPanel{padding:8px 12px;min-height:44px}
   .solToggle{top:10px;right:8px;width:34px;height:34px;border-radius:8px;border:1px solid var(--cizgi)}
   .panelGov.solKapali .solToggle{right:8px;width:34px;height:34px}
@@ -159,29 +158,29 @@ nav.anaNav button.on{color:var(--altin);border-bottom-color:var(--altin)}
 .sancDurum{font-size:11px;color:var(--sil);padding:0 12px 10px;background:#fff}
 
 /* ---------------- HERO ---------------- */
-.hero{background:
-    radial-gradient(ellipse 70% 90% at 0% 50%,rgba(212,175,55,.12) 0%,transparent 55%),
-    linear-gradient(120deg,#161A18 0%,#1C2220 48%,#171B19 100%);
-  color:var(--kagit);border-radius:12px;padding:14px 16px;display:grid;
+.hero{background:linear-gradient(145deg,#FBFCFB 0%,#F1F6F2 55%,#EAF1EC 100%);
+  color:#243029;border-radius:12px;padding:14px 16px;display:grid;
   grid-template-columns:118px 1fr;gap:14px;align-items:center;margin-bottom:14px;
-  border:1px solid rgba(212,175,55,.22);box-shadow:0 2px 14px rgba(15,26,20,.12)}
+  border:1px solid #D2DDD4;box-shadow:0 1px 2px rgba(45,70,55,.04),0 8px 22px rgba(45,70,55,.06)}
 .hero::after{content:none}
 .gauge{position:relative;display:flex;align-items:center;justify-content:center;width:118px;height:118px}
 .gauge svg{width:118px;height:118px;transform:rotate(-90deg)}
 .gm{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.gm .say{font-family:"IBM Plex Mono";font-size:26px;font-weight:600;color:var(--altin);line-height:1}
-.gm .alt{font-family:"IBM Plex Mono";font-size:11px;color:#A8B5AC;margin-top:2px}
-.gm .lb{font-size:9px;letter-spacing:.14em;color:#8A958C;text-transform:uppercase;margin-top:5px}
+.gm .say{font-family:"IBM Plex Mono";font-size:26px;font-weight:600;color:#3F6B52;line-height:1}
+.gm .alt{font-family:"IBM Plex Mono";font-size:11px;color:#6A7A70;margin-top:2px}
+.gm .lb{font-size:9px;letter-spacing:.14em;color:#7A8A80;text-transform:uppercase;margin-top:5px}
 .kpiler{display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:7px}
-.kpi{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:9px;
-  padding:9px 11px;transition:.15s}
-.kpi:hover{background:rgba(212,175,55,.08);border-color:rgba(212,175,55,.28)}
-.kpi .v{font-family:"IBM Plex Mono";font-size:19px;font-weight:600;color:#F3EEE3;line-height:1.1}
-.kpi .v em{font-style:normal;font-size:12px;color:#A8B5AC}
-.kpi .l{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:#A8B5AC;margin-top:4px}
-.kpi.uy{border-color:rgba(224,122,114,.34);background:rgba(224,122,114,.08)}
-.kpi.uy .v{color:#E89A93}
-.kpi.al .v{color:var(--altin)}
+.kpi{background:#fff;border:1px solid #D8E2DA;border-radius:9px;
+  padding:9px 11px;transition:.15s;box-shadow:0 1px 2px rgba(45,70,55,.03)}
+.kpi:hover{background:#F7FAF7;border-color:#B9C9BE}
+.kpi .v{font-family:"IBM Plex Mono";font-size:19px;font-weight:600;color:#243029;line-height:1.1}
+.kpi .v em{font-style:normal;font-size:12px;color:#6A7A70}
+.kpi .l{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:#6A7A70;margin-top:4px}
+.kpi.uy{border-color:#E8C8C4;background:#FBF4F3}
+.kpi.uy .v{color:#B35A52}
+.kpi.al .v{color:#3F6B52}
+.hero .gosterim button{background:#fff;border-color:#D2DDD4;color:#5F6B63}
+.hero .gosterim button.on{background:#E8F0EA;color:#2F5C44;border-color:#B9C9BE}
 @media(max-width:1100px){.hero{grid-template-columns:1fr;justify-items:center}
   .hero > div:last-child{width:100%}}
 
@@ -638,14 +637,14 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
   <div class="hero">
     <div class="gauge">
       <svg viewBox="0 0 186 186" aria-hidden="true">
-        <circle cx="93" cy="93" r="78" fill="none" stroke="#3A3327" stroke-width="3.4"/>
-        <circle cx="93" cy="93" r="70" fill="none" stroke="#3A3327" stroke-width="3.4"/>
-        <circle cx="93" cy="93" r="62" fill="none" stroke="#3A3327" stroke-width="3.4"/>
-        <circle cx="93" cy="93" r="54" fill="none" stroke="#3A3327" stroke-width="3.4"/>
-        <circle id="g4" cx="93" cy="93" r="78" fill="none" stroke="#D4AF37" stroke-width="3.4" stroke-linecap="round"/>
-        <circle id="g3" cx="93" cy="93" r="70" fill="none" stroke="#D4AF37" stroke-width="3.4" stroke-linecap="round"/>
-        <circle id="g2" cx="93" cy="93" r="62" fill="none" stroke="#D4AF37" stroke-width="3.4" stroke-linecap="round"/>
-        <circle id="g1" cx="93" cy="93" r="54" fill="none" stroke="#D4AF37" stroke-width="3.4" stroke-linecap="round"/>
+        <circle cx="93" cy="93" r="78" fill="none" stroke="#D5DED7" stroke-width="3.4"/>
+        <circle cx="93" cy="93" r="70" fill="none" stroke="#D5DED7" stroke-width="3.4"/>
+        <circle cx="93" cy="93" r="62" fill="none" stroke="#D5DED7" stroke-width="3.4"/>
+        <circle cx="93" cy="93" r="54" fill="none" stroke="#D5DED7" stroke-width="3.4"/>
+        <circle id="g4" cx="93" cy="93" r="78" fill="none" stroke="#6E9B7F" stroke-width="3.4" stroke-linecap="round"/>
+        <circle id="g3" cx="93" cy="93" r="70" fill="none" stroke="#6E9B7F" stroke-width="3.4" stroke-linecap="round"/>
+        <circle id="g2" cx="93" cy="93" r="62" fill="none" stroke="#6E9B7F" stroke-width="3.4" stroke-linecap="round"/>
+        <circle id="g1" cx="93" cy="93" r="54" fill="none" stroke="#6E9B7F" stroke-width="3.4" stroke-linecap="round"/>
       </svg>
       <div class="gm">
         <div class="say mono" id="kapS">9</div>
