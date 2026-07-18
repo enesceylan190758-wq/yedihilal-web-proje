@@ -80,10 +80,24 @@ nav.anaNav button.on{color:var(--altin);border-bottom-color:var(--altin)}
 
 /* ---------------- SOL PANEL + İÇERİK ---------------- */
 .panelGov{display:grid;grid-template-columns:248px minmax(0,1fr);min-height:calc(100vh - 120px);
-  max-width:1680px;margin:0 auto;position:relative}
+  max-width:1680px;margin:0 auto;position:relative;transition:grid-template-columns .32s cubic-bezier(.2,.8,.2,1)}
+.panelGov.solKapali{grid-template-columns:36px minmax(0,1fr)}
 .solPanel{background:linear-gradient(180deg,#0F2318 0%,#163028 55%,#1A3829 100%);
   border-right:1px solid var(--cizgi);position:sticky;top:48px;height:calc(100vh - 48px);
-  overflow:auto;padding:16px 12px 80px;z-index:20}
+  overflow:visible;padding:16px 12px 80px;z-index:20;transition:padding .28s ease}
+.solIc{overflow:auto;max-height:calc(100vh - 80px);padding-right:2px;
+  transition:opacity .22s ease, transform .28s cubic-bezier(.2,.8,.2,1)}
+.panelGov.solKapali .solPanel{padding:16px 0 0;overflow:visible}
+.panelGov.solKapali .solIc{opacity:0;transform:translateX(-12px);pointer-events:none;width:0;height:0;overflow:hidden}
+.solToggle{position:absolute;top:72px;right:-13px;z-index:28;width:26px;height:52px;
+  display:flex;align-items:center;justify-content:center;border-radius:0 9px 9px 0;
+  background:linear-gradient(180deg,#1A3829,#0F2318);border:1px solid var(--cizgi);border-left:0;
+  color:var(--altin);font-size:16px;font-weight:700;box-shadow:4px 0 14px rgba(15,26,20,.22);
+  transition:background .15s, color .15s, right .28s ease}
+.solToggle:hover{background:var(--gece3);color:var(--altin2)}
+.solToggle span{display:block;line-height:1;transform:translateX(-1px)}
+.panelGov.solKapali .solToggle{right:-1px;border-radius:0 9px 9px 0;border-left:1px solid var(--cizgi);
+  width:34px;height:56px;box-shadow:0 4px 16px rgba(15,26,20,.28)}
 .solBas{font-family:"Archivo";font-size:11px;letter-spacing:.14em;text-transform:uppercase;
   color:#6E9480;padding:4px 10px 12px;border-bottom:1px solid rgba(212,175,55,.18);margin-bottom:10px}
 .solBas b{display:block;color:var(--altin);font-size:13px;letter-spacing:.06em;margin-top:4px}
@@ -100,11 +114,18 @@ nav.anaNav button.on{color:var(--altin);border-bottom-color:var(--altin)}
   opacity:.55}
 .sayfa{display:none}.sayfa.on{display:block;animation:gir .3s ease}
 @keyframes gir{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .panelGov{transition:none!important}
+}
 @media(max-width:960px){
   .panelGov{grid-template-columns:1fr}
+  .panelGov.solKapali{grid-template-columns:1fr}
   .solPanel{position:relative;top:0;height:auto;max-height:none;border-right:0;
-    border-bottom:1px solid var(--cizgi);padding:12px}
+    border-bottom:1px solid var(--cizgi);padding:12px 36px 12px 12px}
+  .panelGov.solKapali .solPanel{padding:8px 12px;min-height:44px}
+  .solToggle{top:10px;right:8px;width:34px;height:34px;border-radius:8px;border:1px solid var(--cizgi)}
+  .panelGov.solKapali .solToggle{right:8px;width:34px;height:34px}
   .solMenu{flex-direction:row;flex-wrap:wrap;gap:6px}
   .solMenu button{padding:8px 11px;font-size:12px}
   .icerikAlan{padding:14px 14px 100px}
@@ -593,8 +614,13 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
 
 <div class="panelGov">
 <aside class="solPanel" id="solPanel" aria-label="Alt menü">
-  <div class="solBas">Bölüm<b id="solBasAd">—</b></div>
-  <div class="solMenu" id="solMenu"></div>
+  <button type="button" class="solToggle" id="solToggle" title="Sol paneli kapat" aria-expanded="true" aria-controls="solIc">
+    <span id="solToggleIkon">‹</span>
+  </button>
+  <div class="solIc" id="solIc">
+    <div class="solBas">Bölüm<b id="solBasAd">—</b></div>
+    <div class="solMenu" id="solMenu"></div>
+  </div>
 </aside>
 <div class="icerikAlan">
 <main>
@@ -4621,6 +4647,33 @@ function ayarlarCiz(){
     + `<div class="krit"><span class="kad">D — Kritik</span>
         <span class="kpu" style="color:${RENK.D}">${ESIK.C} altı</span></div>`;
 }
+
+/* ---- Sol panel aç/kapa ---- */
+const SOL_PANEL_KEY = "yh-sol-panel-kapali";
+function solPanelDurumUygula(kapali){
+  const gov = document.querySelector(".panelGov");
+  const btn = $("#solToggle");
+  const ikon = $("#solToggleIkon");
+  if(!gov || !btn) return;
+  gov.classList.toggle("solKapali", !!kapali);
+  btn.setAttribute("aria-expanded", kapali ? "false" : "true");
+  btn.title = kapali ? "Sol paneli aç" : "Sol paneli kapat";
+  if(ikon) ikon.textContent = kapali ? "›" : "‹";
+}
+function solPanelToggle(){
+  const gov = document.querySelector(".panelGov");
+  if(!gov) return;
+  const kapali = !gov.classList.contains("solKapali");
+  solPanelDurumUygula(kapali);
+  try{ localStorage.setItem(SOL_PANEL_KEY, kapali ? "1" : "0"); }catch(e){}
+}
+(function solPanelKur(){
+  const btn = $("#solToggle");
+  if(btn) btn.onclick = solPanelToggle;
+  let kapali = false;
+  try{ kapali = localStorage.getItem(SOL_PANEL_KEY) === "1"; }catch(e){}
+  solPanelDurumUygula(kapali);
+})();
 
 panelConfigYukle().then(()=>{
   oturumYukle();
