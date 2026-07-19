@@ -118,6 +118,8 @@ nav.anaNav button.on .navIkon{opacity:1}
 nav.anaNav button span{line-height:1.1;text-align:left}
 .navIpucu{display:none;font-size:10px;color:#6E9480;text-align:center;padding:3px 18px 4px;
   letter-spacing:.06em;background:#15261E;border-bottom:1px solid #24382E}
+/* Masaüstünde alt şerit kapalı — sol panel kullanılır */
+.nviAlt{display:none}
 @media(max-width:900px){.navIpucu{display:block}
   nav.anaNav button{padding:6px 9px;font-size:10.5px}}
 
@@ -633,6 +635,7 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
 
 /* ---------------- MOBİL (masaüstü kurallarına dokunmaz) ---------------- */
 @media(max-width:700px){
+  html,body{overflow-x:hidden}
   body{font-size:14px;background-attachment:scroll}
   .hbar{padding:10px 12px;gap:10px;align-items:flex-start}
   .logoKutu{padding:5px 8px;border-radius:8px}
@@ -647,24 +650,28 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
   .kimBtn{max-width:100%;align-items:flex-start}
   .kimMenu{left:0;right:0;min-width:0;max-width:none;width:100%}
 
+  /* Üst ana + alt sekmeler: kalıcı çift şerit */
   nav.anaNav{z-index:45}
-  .navIpucu{display:none}
-  .nvi{flex-wrap:nowrap;padding:8px 10px;gap:7px;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}
-  nav.anaNav button{padding:9px 12px;font-size:11px;min-height:42px;scroll-snap-align:start;flex:0 0 auto}
+  .navIpucu{display:none!important}
+  .nvi{flex-wrap:nowrap;padding:8px 10px 6px;gap:7px;-webkit-overflow-scrolling:touch;
+    scroll-snap-type:x proximity;border-bottom:1px solid #24382E}
+  nav.anaNav .nvi > button{padding:9px 12px;font-size:11px;min-height:42px;scroll-snap-align:start;flex:0 0 auto}
   nav.anaNav .navIkon{width:15px!important;height:15px!important}
+  .nviAlt{display:flex!important;flex-wrap:nowrap;gap:6px;padding:7px 10px 8px;overflow-x:auto;
+    -webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;background:#15261E;
+    border-bottom:1px solid rgba(212,175,55,.28)}
+  .nviAlt::-webkit-scrollbar,.nvi::-webkit-scrollbar{height:0}
+  .nviAlt button{flex:0 0 auto;scroll-snap-align:start;min-height:38px;padding:7px 11px;
+    border:1px solid #2A4034;border-radius:999px;background:#101F18;color:#9BB8A8;
+    font-family:"Archivo";font-size:11px;font-weight:600;letter-spacing:.03em;white-space:nowrap;
+    display:inline-flex;align-items:center;gap:6px}
+  .nviAlt button.on{color:#0F1A14;background:var(--altin);border-color:var(--altin)}
+  .nviAlt button .navIkon{width:13px!important;height:13px!important;opacity:.9}
+  .nviAlt .solBos{color:#6E9480;font-size:11px;padding:6px 4px;white-space:nowrap}
 
-  .panelGov{min-height:0}
-  .solPanel{padding:10px 12px 12px;position:sticky;top:0;z-index:30;
-    background:#EEF3EE;border-bottom:1px solid #D2DDD4}
-  .panelGov.solKapali .solPanel{padding:6px 12px;min-height:0;border-bottom:0;background:transparent}
-  .panelGov.solKapali .solToggle{
-    position:fixed;top:auto;bottom:calc(88px + env(safe-area-inset-bottom,0px));left:12px;right:auto;
-    width:46px;height:46px;border-radius:50%;background:#EEF3EE;border:1px solid #C9D5CB;
-    box-shadow:0 6px 18px rgba(15,26,20,.16);z-index:60}
-  .solToggle{top:8px;right:8px;width:40px;height:40px;border-radius:10px}
-  .solBas{margin-bottom:8px;padding-right:48px}
-  .solMenu{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:7px;padding-bottom:2px}
-  .solMenu button{padding:10px 12px;font-size:12px;min-height:42px;flex:0 0 auto;width:auto;white-space:nowrap}
+  /* Sol panel mobilde gizlenir — yerine #nviAlt */
+  .panelGov{min-height:0;grid-template-columns:1fr!important}
+  .solPanel,.solToggle{display:none!important}
 
   .icerikAlan{padding:12px 12px calc(130px + env(safe-area-inset-bottom,0px))}
   .ayet{padding:8px 12px;gap:8px;margin-bottom:12px}
@@ -689,34 +696,39 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
   .arac input,.arac select{min-width:0;flex:1 1 140px;width:auto}
   .btn{padding:10px 14px;min-height:42px}
   #acilis-ilce{min-width:0!important;width:100%}
+  #csvUrl{min-width:0!important;width:100%}
 
   .hrtArac{padding:10px 12px;gap:8px}
-  .seg{flex-wrap:wrap}
-  .seg button{padding:8px 11px;min-height:40px}
-  .hrtSar{height:min(58vh,360px)}
-  .hrtSar.tamEkran{left:0;right:0;top:0;bottom:0;border-radius:0;border:0}
+  .seg{flex-wrap:wrap;width:100%}
+  .seg button{padding:8px 11px;min-height:40px;flex:1 1 auto}
+  .hrtSar{height:min(52vh,340px);touch-action:pan-x pan-y}
+  .hrtSar svg{touch-action:none}
+  .hrtSar.tamEkran{left:0;right:0;top:0;bottom:0;border-radius:0;border:0;height:auto!important}
   .zoomBtn{right:10px;bottom:10px}
+  .zoomBtn button{width:40px;height:40px}
   .lejant{padding:10px 12px;gap:10px;font-size:11px}
+  .ipuc{display:none!important} /* mobilde tooltip yerine çekmece */
 
   .tsar{border-radius:10px;-webkit-overflow-scrolling:touch}
-  .tsar::after{content:"← kaydır →";display:block;text-align:center;font-size:10px;letter-spacing:.08em;
+  .tsar::after{content:"← tabloyu kaydır →";display:block;text-align:center;font-size:10px;letter-spacing:.08em;
     text-transform:uppercase;color:#6E9480;padding:6px;background:#F4F9F5;border-top:1px solid #E0EBE3;
     font-family:"Archivo";position:sticky;left:0}
   th{top:0;padding:9px 8px;font-size:10px}
   td{padding:9px 8px;font-size:13px}
-  .duz{min-width:52px;padding:6px 7px;font-size:13px}
+  .duz{min-width:52px;padding:6px 7px;font-size:16px}
 
-  .tkGun{min-height:64px;padding:5px}
+  .tkGun{min-height:58px;padding:4px}
   .tkGun .no{font-size:11px}
-  .tkEt{font-size:10px;padding:2px 4px;white-space:normal}
+  .tkEt{font-size:10px;padding:2px 4px;white-space:normal;max-height:2.6em}
   .tkAy{flex-wrap:wrap}
   .tkAy h3{font-size:15px;min-width:0;flex:1}
   .tkAy button{width:36px;height:36px}
+  .tkBas{font-size:9.5px;padding:6px 2px}
 
   .matrisWrap{max-height:70vh;-webkit-overflow-scrolling:touch}
-  .matris th:first-child,.matris td:first-child{min-width:140px;max-width:160px}
-  .matris th{min-width:72px;padding:8px 6px}
-  .matris .mAd{max-width:72px;font-size:10px}
+  .matris th:first-child,.matris td:first-child{min-width:120px;max-width:140px}
+  .matris th{min-width:68px;padding:8px 5px}
+  .matris .mAd{max-width:68px;font-size:10px}
 
   .kaydetBar{left:12px;right:72px;bottom:calc(12px + env(safe-area-inset-bottom,0px));
     padding:10px 12px;gap:8px;flex-wrap:wrap;border-radius:12px}
@@ -733,7 +745,23 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
   .mbas h2{font-size:17px}
   .mgov{padding:14px 16px}
   .alan input,.alan select,.alan textarea{font-size:16px}
-  .cek{width:min(100vw,490px)}
+
+  /* İlçe paneli: yan çekmece değil, alttan sheet */
+  .cek{top:auto;left:0;right:0;bottom:0;width:100%;max-height:min(78dvh,82vh);
+    border-radius:18px 18px 0 0;transform:translateY(110%);
+    box-shadow:0 -12px 40px rgba(0,0,0,.28);padding-bottom:env(safe-area-inset-bottom,0px)}
+  .cek.ac{transform:none}
+  .cek::before{content:"";display:block;width:42px;height:4px;border-radius:999px;background:#C5D6CA;
+    margin:10px auto 0}
+  .cbas{padding:12px 16px 14px;border-radius:0}
+  .cbas h2{font-size:18px}
+  .cbas .alt{font-size:11px;letter-spacing:.06em}
+  .cSek{padding:0 10px;overflow-x:auto;-webkit-overflow-scrolling:touch;flex-wrap:nowrap}
+  .cSek button{flex:0 0 auto;padding:10px 12px;min-height:40px}
+  .cgov{padding:14px 16px 24px}
+  .cgov .mono[style*="font-size:42px"]{font-size:28px!important}
+  .krit{flex-wrap:wrap;gap:6px}
+  .krit > span[style*="190px"],.krit > span[style*="flex:0 0 190px"]{flex:1 1 100%!important;max-width:100%}
   .formSat input,.formSat select,.formSat textarea{font-size:16px}
 
   .sat{flex-wrap:wrap;gap:6px}
@@ -744,6 +772,7 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
   .disaMenu{left:0;right:0;min-width:0}
   .gosterim{margin-left:0}
   .iki,.cift,.izgara,.formGrid{grid-template-columns:1fr}
+  .toast{bottom:calc(100px + env(safe-area-inset-bottom,0px));font-size:13px}
 }
 @media print{
   header,nav,.solPanel,.disaAktar,.kaydetBar,.sancFab,.sancPanel,.hrtArac,.zoomBtn,.hrtBuyut,.gosterim{display:none!important}
@@ -786,7 +815,11 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
 
 <div class="panelUyari" id="panelUyari"></div>
 
-<nav class="anaNav"><div class="nvi" id="nvi"></div><div class="navIpucu">Ana menüde kaydırın → · Alt sayfalar solda</div></nav>
+<nav class="anaNav">
+  <div class="nvi" id="nvi"></div>
+  <div class="nviAlt" id="nviAlt" aria-label="Alt sekmeler"></div>
+  <div class="navIpucu">Ana menüde kaydırın → · Alt sayfalar solda / altta</div>
+</nav>
 
 <div class="panelGov">
 <aside class="solPanel" id="solPanel" aria-label="Alt menü">
@@ -1873,11 +1906,24 @@ function grupGorunurAlt(g){
     return s || [id, id, "acik"];
   });
 }
+function mobilMi(){
+  return typeof window.matchMedia==="function" && window.matchMedia("(max-width:700px)").matches;
+}
+function altMenuHtml(altlar){
+  if(!altlar.length){
+    return `<div class="solBos">Bu bölümde görüntüleyebileceğiniz alt sayfa yok.</div>`;
+  }
+  return altlar.map(s=>
+    `<button type="button" data-s="${s[0]}" class="${s[0]===aktifSekme?"on":""} ${s[2]!=="acik"?"ozel":""}">${navIkon(s[0])}<span>${s[1]}</span></button>`
+  ).join("");
+}
 function navCiz(){
   const gruplar = ANA_GRUPLAR.filter(g=> grupGorunurAlt(g).length);
+  const altNav = $("#nviAlt");
   if(!gruplar.length){
     $("#nvi").innerHTML = "";
     $("#solMenu").innerHTML = "";
+    if(altNav) altNav.innerHTML = "";
     $$(".sayfa").forEach(x=>x.classList.remove("on"));
     return;
   }
@@ -1891,18 +1937,22 @@ function navCiz(){
   ).join("");
   $$("#nvi button").forEach(b=> b.onclick = ()=> grupAc(b.dataset.g));
 
+  const altHtml = altMenuHtml(altlar);
   $("#solBasAd").textContent = g.ad;
-  $("#solMenu").innerHTML = altlar.length
-    ? altlar.map(s=>`<button type="button" data-s="${s[0]}" class="${s[0]===aktifSekme?"on":""} ${s[2]!=="acik"?"ozel":""}">${navIkon(s[0])}<span>${s[1]}</span></button>`).join("")
-    : `<div class="solBos">Bu bölümde görüntüleyebileceğiniz alt sayfa yok. Giriş yapmayı deneyin.</div>`;
+  $("#solMenu").innerHTML = altHtml;
   $$("#solMenu button").forEach(b=> b.onclick = ()=> sekmeAc(b.dataset.s));
+  if(altNav){
+    altNav.innerHTML = altHtml;
+    $$("#nviAlt button").forEach(b=> b.onclick = ()=> sekmeAc(b.dataset.s));
+    const onBtn = $("#nviAlt button.on");
+    if(onBtn && onBtn.scrollIntoView){
+      try{ onBtn.scrollIntoView({inline:"center", block:"nearest", behavior:"smooth"}); }catch(e){}
+    }
+  }
 
   $$(".sayfa").forEach(x=>x.classList.remove("on"));
   const el = $("#s-"+aktifSekme); if(el) el.classList.add("on");
   if(aktifSekme==="takvim") takvimCiz();
-}
-function mobilMi(){
-  return typeof window.matchMedia==="function" && window.matchMedia("(max-width:700px)").matches;
 }
 function grupAc(gid){
   aktifGrup = gid;
@@ -1911,8 +1961,7 @@ function grupAc(gid){
   if(altlar.length) aktifSekme = altlar[0][0];
   navCiz();
   if(typeof modullerCiz==="function") modullerCiz();
-  /* Mobilde grup seçince alt menüyü aç — kullanıcı alt sayfa seçebilsin */
-  if(mobilMi() && typeof solPanelDurumUygula==="function") solPanelDurumUygula(false);
+  if(mobilMi()) window.scrollTo({top:0, behavior:"smooth"});
 }
 function sekmeAc(k){
   if(!sekmeGorunurMu(k)) return;
@@ -1922,11 +1971,7 @@ function sekmeAc(k){
   navCiz();
   if(k==="takvim") takvimCiz();
   if(typeof modullerCiz==="function") modullerCiz();
-  /* Mobilde alt sayfa seçince menüyü kapat — içerik alanı açılsın */
-  if(mobilMi() && typeof solPanelDurumUygula==="function"){
-    solPanelDurumUygula(true);
-    try{ localStorage.setItem(SOL_PANEL_KEY, "1"); }catch(e){}
-  }
+  if(mobilMi()) window.scrollTo({top:0, behavior:"smooth"});
 }
 
 /* ============ GÖSTERGE + KPI ============ */
@@ -2015,7 +2060,9 @@ function haritaCiz(){
            <span>Aşama<em>${String(i.asama||"—").split("—")[0]}</em></span><span>Takipçi<em>${esc(i.takipci)}</em></span>`;
     });
     p.addEventListener("mouseleave", ()=> ipuc.style.opacity=0);
-    p.addEventListener("click", ()=>{
+    p.addEventListener("click", e=>{
+      if(e.cancelable) e.preventDefault();
+      e.stopPropagation();
       if(bolgeDuzen){
         const i = ilceBul(ad); if(!i) return;
         const yeni = document.getElementById("hedefHat").value;
@@ -2025,6 +2072,8 @@ function haritaCiz(){
         ciz();
         return;
       }
+      /* Mobilde harita zoom’unu sıfırla — ilçe paneli sheet olarak açılsın */
+      if(mobilMi()){ k=1; tx=0; ty=0; uygula(); }
       cekAc(ad);
     });
   });
@@ -2113,19 +2162,42 @@ if(logoAna){
   });
 }
 (function(){
-  let sur=false,sx=0,sy=0;
-  svg.addEventListener("mousedown", e=>{ sur=true; sx=e.clientX; sy=e.clientY; svg.classList.add("tut"); });
-  window.addEventListener("mouseup", ()=>{ sur=false; svg.classList.remove("tut"); });
-  window.addEventListener("mousemove", e=>{
+  let sur=false,sx=0,sy=0,surMoved=false;
+  const baslat = (x,y)=>{ sur=true; surMoved=false; sx=x; sy=y; svg.classList.add("tut"); };
+  const bitir = ()=>{ sur=false; svg.classList.remove("tut"); };
+  const kaydir = (x,y)=>{
     if(!sur) return;
+    const dx=x-sx, dy=y-sy;
+    if(Math.abs(dx)+Math.abs(dy)>6) surMoved=true;
     const r = svg.getBoundingClientRect();
-    tx += (e.clientX-sx)*(1000/r.width); ty += (e.clientY-sy)*(520/r.height);
-    sx=e.clientX; sy=e.clientY; sinirla(); uygula();
-  });
+    tx += dx*(1000/r.width); ty += dy*(520/r.height);
+    sx=x; sy=y; sinirla(); uygula();
+  };
+  svg.addEventListener("mousedown", e=>{ if(e.button!==0) return; baslat(e.clientX,e.clientY); });
+  window.addEventListener("mouseup", bitir);
+  window.addEventListener("mousemove", e=> kaydir(e.clientX,e.clientY));
+  svg.addEventListener("touchstart", e=>{
+    if(e.touches.length!==1) return;
+    const t=e.touches[0]; baslat(t.clientX,t.clientY);
+  }, {passive:true});
+  svg.addEventListener("touchmove", e=>{
+    if(!sur || e.touches.length!==1) return;
+    e.preventDefault();
+    const t=e.touches[0]; kaydir(t.clientX,t.clientY);
+  }, {passive:false});
+  svg.addEventListener("touchend", bitir);
+  svg.addEventListener("touchcancel", bitir);
   svg.addEventListener("wheel", e=>{
     e.preventDefault();
     const r = svg.getBoundingClientRect();
     zoom(e.deltaY<0?1.22:1/1.22, (e.clientX-r.left)*(1000/r.width), (e.clientY-r.top)*(520/r.height));
+  }, {passive:false});
+  /* Çift dokunuşla tarayıcı zoom’unu engelle */
+  let sonDok=0;
+  svg.addEventListener("touchend", e=>{
+    const simdi=Date.now();
+    if(simdi-sonDok<280){ e.preventDefault(); }
+    sonDok=simdi;
   }, {passive:false});
 })();
 
@@ -2294,7 +2366,9 @@ function cekAc(ad, koru){
   $("#dGov").innerHTML = i.durum==="MEVCUT" ? cekMevcut(i) : cekHedef(i);
   $$("#dGov .cPanel").forEach(p=> p.classList.toggle("on", p.dataset.d===dAktif));
   duzBagla();
-  $("#cek").classList.add("ac"); $("#cek").setAttribute("aria-hidden","false");
+  const cek = $("#cek");
+  cek.classList.add("ac"); cek.setAttribute("aria-hidden","false");
+  cek.scrollTop = 0;
   $("#perde").classList.add("ac");
 }
 function cekMevcut(i){
@@ -5004,15 +5078,10 @@ function solPanelToggle(){
     const kayit = localStorage.getItem(SOL_PANEL_KEY);
     if(kayit === "1") kapali = true;
     else if(kayit === "0") kapali = false;
-    else kapali = mobilMi(); /* ilk açılışta mobilde kapalı */
-  }catch(e){ kapali = mobilMi(); }
+  }catch(e){}
+  /* Mobilde sol panel gizli; masaüstü tercihi korunur */
+  if(mobilMi()) kapali = true;
   solPanelDurumUygula(kapali);
-  if(typeof window.matchMedia==="function"){
-    const mq = window.matchMedia("(max-width:700px)");
-    const onChange = ()=>{ if(mq.matches) solPanelDurumUygula(true); };
-    if(mq.addEventListener) mq.addEventListener("change", onChange);
-    else if(mq.addListener) mq.addListener(onChange);
-  }
 })();
 
 panelConfigYukle().then(()=>{
