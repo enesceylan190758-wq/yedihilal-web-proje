@@ -189,7 +189,7 @@ nav.anaNav button span{line-height:1.1;text-align:left}
 }
 
 /* ---------------- SANCAKTAR CANLI CHAT ---------------- */
-.sancFab{position:fixed;right:22px;bottom:22px;z-index:70;width:58px;height:58px;border-radius:50%;
+.sancFab{position:fixed;right:22px;bottom:22px;z-index:76;width:58px;height:58px;border-radius:50%;
   background:linear-gradient(145deg,#D4AF37,#8A6D2A);color:#0F1A14;font-family:"Archivo";font-weight:800;
   font-size:12px;letter-spacing:.04em;box-shadow:0 10px 28px rgba(15,26,20,.28);display:flex;
   align-items:center;justify-content:center;text-align:center;line-height:1.15;transition:.18s}
@@ -200,17 +200,25 @@ nav.anaNav button span{line-height:1.1;text-align:left}
   border-radius:16px;box-shadow:0 16px 48px rgba(15,26,20,.22);display:none;flex-direction:column;overflow:hidden}
 .sancPanel.ac{display:flex;animation:gir .25s ease}
 .sancBas{background:linear-gradient(155deg,#0F2318,#1A3829);color:var(--kagit);padding:12px 14px;
-  display:flex;align-items:center;gap:10px}
+  display:flex;align-items:center;gap:8px}
 .sancBas h3{font-family:"Archivo";font-size:14px;letter-spacing:.06em;text-transform:uppercase}
-.sancBas .yan{font-size:11px;color:#9BB8A8;margin-left:auto}
-.sancKapat{color:#9BB8A8;font-size:18px;padding:2px 8px;border-radius:6px}
+.sancBas .yan{font-size:11px;color:#9BB8A8;margin-left:auto;white-space:nowrap}
+.sancKapat{color:#9BB8A8;font-size:18px;padding:2px 8px;border-radius:6px;flex:0 0 auto}
 .sancKapat:hover{color:var(--altin)}
 .sancHazir{display:flex;gap:6px;flex-wrap:wrap;padding:10px 12px;border-bottom:1px solid var(--hat);background:#F7FBF8}
 .sancHazir button{font-size:11.5px;padding:5px 9px;border:1px solid var(--hat);border-radius:999px;background:#fff;color:var(--murekkep)}
 .sancHazir button:hover{border-color:var(--altin);color:var(--altin-sol)}
-#sancaktar-chat{flex:1;overflow:auto;padding:12px;background:linear-gradient(180deg,#F2F7F3,#E8F0EA)}
+#sancaktar-chat{flex:1;overflow:auto;padding:12px;background:linear-gradient(180deg,#F2F7F3,#E8F0EA);
+  -webkit-overflow-scrolling:touch;min-height:0}
+.sancMsg{margin:8px 0;padding:10px 12px;border-radius:10px;max-width:92%}
+.sancMsg.user{background:rgba(212,175,55,.15);margin-left:auto;border:1px solid rgba(212,175,55,.35)}
+.sancMsg.ai{background:rgba(255,255,255,.65);border:1px solid var(--hat)}
+.sancMsg .rol{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--sil);margin-bottom:4px}
+.sancMsg .gov{font-size:14px;line-height:1.5;white-space:pre-wrap}
+.sancMsg.yukleniyor .gov{color:var(--sil);font-style:italic}
 .sancAlt{display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--hat);background:#fff}
 .sancAlt input{flex:1;min-width:0;padding:9px 11px;border:1px solid var(--hat);border-radius:8px}
+.sancAlt input:disabled,.sancAlt button:disabled{opacity:.55;cursor:wait}
 .sancDurum{font-size:11px;color:var(--sil);padding:0 12px 10px;background:#fff}
 
 /* ---------------- HERO ---------------- */
@@ -1613,9 +1621,10 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
   <div class="sancBas">
     <div>
       <h3>Sancaktar AI</h3>
-      <div style="font-size:11px;color:#9BB8A8;margin-top:2px">Canlı operasyon asistanı</div>
+      <div style="font-size:11px;color:#9BB8A8;margin-top:2px">Panel verisine bağlı canlı asistan</div>
     </div>
     <span class="yan" id="sancaktar-durum">Hazır</span>
+    <button type="button" class="sancKapat" onclick="sancaktarTemizle()" title="Sohbeti temizle" aria-label="Sohbeti temizle">⌫</button>
     <button type="button" class="sancKapat" onclick="sancaktarToggle()" aria-label="Kapat">✕</button>
   </div>
   <div class="sancHazir">
@@ -1624,13 +1633,14 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
     <button type="button" onclick="sancaktarHazir('sapka')">Şapka</button>
     <button type="button" onclick="sancaktarHazir('hedef')">HEDEF</button>
     <button type="button" onclick="sancaktarHazir('ziyaret')">Ziyaret</button>
+    <button type="button" onclick="sancaktarHazir('karne')">Karne</button>
   </div>
   <div id="sancaktar-chat"></div>
   <div class="sancAlt">
-    <input type="text" id="sancaktar-input" placeholder="Sorunuzu yazın…" onkeydown="if(event.key==='Enter')sancaktarGonder()">
-    <button class="btn ana" type="button" onclick="sancaktarGonder()">Gönder</button>
+    <input type="text" id="sancaktar-input" placeholder="Sorunuzu yazın…" autocomplete="off" enterkeyhint="send" onkeydown="if(event.key==='Enter'){event.preventDefault();sancaktarGonder()}">
+    <button class="btn ana" type="button" id="sancaktar-gonder" onclick="sancaktarGonder()">Gönder</button>
   </div>
-  <div class="sancDurum">Yerel motor açık · API anahtarı Ayarlar'da</div>
+  <div class="sancDurum" id="sancaktar-altNot">Konuşmalar bu cihazda saklanır · API anahtarı Ayarlar → Sancaktar</div>
 </div>
 
 <!-- ============ MODALLER ============ -->
@@ -4251,101 +4261,233 @@ function gunlukTemizle(){
 }
 
 /* ---------- SANCAKTAR AI ---------- */
+const SANC_SOHBET_KEY = "yh-sancaktar-sohbet";
+let sancaktarBusy = false;
+let sancaktarGecmis = [];
+
 function sancaktarBaglam(){
   const m=mevcut(), h=hedef();
   const bosHat=Object.values(D.hatlar||{}).filter(x=>x.takipci==="BOŞ").map(x=>x.kod+" "+x.ad);
   const krit=m.filter(i=>i.risk==="KRİTİK"||i.risk==="Yüksek");
   const bosKadro=(D.kadro||[]).filter(k=>!k.ad).length;
-  const hatalar=hataTopla().slice(0,8);
+  const hatalar=(typeof hataTopla==="function"?hataTopla():[]).slice(0,8);
+  const sira=[...m].sort((a,b)=>b.puan-a.puan);
   return {
     kapsama:`${m.length}/39 MEVCUT, ${h.length} HEDEF`,
     bosHat, krit: krit.map(i=>i.ad+" ("+i.risk+")"),
     bosKadro, riskAcik:(D.riskler||[]).filter(r=>r.durum==="Açık").length,
     gonullu:(D.gonullu||[]).length, mutatAktif:(D.mutat||[]).filter(x=>x.durum==="Aktif").length,
-    ziyaret:(D.ziyaretler||[]).length, hatalar:hatalar.map(f=>f.sev+": "+f.kayit+" — "+f.sorun)
+    ziyaret:(D.ziyaretler||[]).length, hatalar:hatalar.map(f=>f.sev+": "+f.kayit+" — "+f.sorun),
+    enIyi:sira.slice(0,5).map(i=>i.ad+" "+i.puan),
+    enZayif:sira.slice(-5).reverse().map(i=>i.ad+" "+i.puan)
   };
+}
+function sancaktarIlceBul(soru){
+  const s=(soru||"").toLocaleLowerCase("tr-TR");
+  return (D.ilceler||[]).find(i=>{
+    const ad=String(i.ad||"").toLocaleLowerCase("tr-TR");
+    const kisa=ad.split(" (")[0];
+    return s.includes(ad) || s.includes(kisa);
+  }) || null;
 }
 function sancaktarYerelYanit(soru){
   const ctx=sancaktarBaglam();
-  const s=(soru||"").toLowerCase();
-  let cevap="";
-  if(/özet|ozet|genel|durum/.test(s)){
-    cevap=`İstanbul özeti: ${ctx.kapsama}. Boş hat: ${ctx.bosHat.join(", ")||"yok"}. `+
-      `Kritik/yüksek riskli MEVCUT: ${ctx.krit.join(", ")||"yok"}. `+
-      `Açık risk kaydı: ${ctx.riskAcik}. Boş kadro rolü: ${ctx.bosKadro}. `+
-      `Aktif mutat: ${ctx.mutatAktif}, gönüllü: ${ctx.gonullu}, ziyaret: ${ctx.ziyaret}.`;
-  } else if(/risk/.test(s)){
-    cevap=`Risk odağı: ${(D.riskler||[]).filter(r=>r.durum==="Açık").slice(0,8).map(r=>r.ilce+"/"+r.seviye+": "+r.konu).join(" · ")||"Açık risk yok."}`;
-  } else if(/şapka|sapka|kadro|boş/.test(s)){
-    const bos=(D.kadro||[]).filter(k=>!k.ad).slice(0,12);
-    cevap=bos.length? ("Boş roller: "+bos.map(k=>k.ilce+"·"+k.rol).join(", ")) : "Boş şapka görünmüyor.";
-  } else if(/hedef|açılış|acilis/.test(s)){
-    const top=(D.acilis||[]).slice().sort((a,b)=>Object.values(b.adimlar||{}).filter(Boolean).length-Object.values(a.adimlar||{}).filter(Boolean).length);
-    cevap="HEDEF ilerleme (üst 8): "+top.slice(0,8).map(a=>a.ilce+" "+Object.values(a.adimlar||{}).filter(Boolean).length+"/12").join(" · ");
-  } else if(/ziyaret/.test(s)){
-    cevap=`Kayıtlı ziyaret: ${ctx.ziyaret}. Kritik riskli ve ziyaretsiz: `+
-      mevcut().filter(i=>i.risk==="KRİTİK"&&!(D.ziyaretler||[]).some(z=>z.ilce===i.ad)).map(i=>i.ad).join(", ")||"yok";
-  } else {
-    cevap=`Panel bağlamı: ${ctx.kapsama}. Sorunuzu netleştirin veya hazır düğmelerden birini kullanın. `+
-      `Denetim bulguları: ${ctx.hatalar.slice(0,3).join(" | ")||"yok"}.`;
+  const s=(soru||"").toLocaleLowerCase("tr-TR");
+  const ilce=sancaktarIlceBul(soru);
+  if(ilce){
+    if(ilce.durum==="MEVCUT"){
+      return `${ilce.ad}: ${ilce.puan} puan · sınıf ${SIN[ilce.sinif]||ilce.sinif} · risk ${ilce.risk}. `+
+        `Hat ${ilce.hat} (${ilce.hatAd}). Temsilci: ${ilce.temsilci||"—"} · Tel: ${ilce.tel||"—"}. `+
+        `YK ${ilce.yk||0}/${ilce.ykHedef||12} · Merkez: ${ilce.merkez||"—"}. `+
+        `Detay için haritada veya Karnede ilçeyi açabilirsiniz.`;
+    }
+    const ac=(D.acilis||[]).find(a=>a.ilce===ilce.ad);
+    const adim=ac?Object.values(ac.adimlar||{}).filter(Boolean).length:0;
+    return `${ilce.ad} HEDEF ilçe. Öncelik ${ilce.onc||"—"} · Aşama: ${ilce.asama||"—"}. `+
+      `Takipçi: ${ilce.takipci||"—"}. Açılış checklist: ${adim}/12.`;
   }
-  return cevap;
+  if(/merhaba|selam|hey|nasıl|nasilsin/.test(s)){
+    return `Merhaba — Sancaktar AI buradayım. Panel verisine bağlıyım (${ctx.kapsama}). `+
+      `Özet, risk, şapka, HEDEF, ziyaret veya bir ilçe adı sorabilirsiniz.`;
+  }
+  if(/özet|ozet|genel|durum|ne durumda/.test(s)){
+    return `İstanbul özeti: ${ctx.kapsama}.\n`+
+      `• Boş hat: ${ctx.bosHat.join(", ")||"yok"}\n`+
+      `• Kritik/yüksek riskli: ${ctx.krit.join(", ")||"yok"}\n`+
+      `• Açık risk kaydı: ${ctx.riskAcik} · Boş kadro: ${ctx.bosKadro}\n`+
+      `• Aktif mutat: ${ctx.mutatAktif} · Gönüllü: ${ctx.gonullu} · Ziyaret: ${ctx.ziyaret}\n`+
+      `• En iyi: ${ctx.enIyi.join(", ")||"—"}\n`+
+      `• En zayıf: ${ctx.enZayif.join(", ")||"—"}`;
+  }
+  if(/karne|puan|sıralama|sirala|siralama/.test(s)){
+    return `Karne sıralaması (üst 5): ${ctx.enIyi.join(" · ")||"—"}.\n`+
+      `En düşük 5: ${ctx.enZayif.join(" · ")||"—"}.\n`+
+      `Tam tablo için Durum → Karne sekmesine gidin.`;
+  }
+  if(/risk/.test(s)){
+    const acik=(D.riskler||[]).filter(r=>r.durum==="Açık").slice(0,10);
+    return acik.length
+      ? ("Açık riskler:\n"+acik.map(r=>`• ${r.ilce} / ${r.seviye}: ${r.konu}`).join("\n"))
+      : "Açık risk kaydı yok.";
+  }
+  if(/şapka|sapka|kadro/.test(s) || (/boş|bos/.test(s) && /rol|hat|şapka|sapka|kadro/.test(s))){
+    const bos=(D.kadro||[]).filter(k=>!k.ad).slice(0,15);
+    const hatBos=ctx.bosHat.length? `\nBoş hat takipçisi: ${ctx.bosHat.join(", ")}` : "";
+    return (bos.length? ("Boş şapkalar:\n"+bos.map(k=>`• ${k.ilce} · ${k.rol}`).join("\n")) : "Boş şapka görünmüyor.")+hatBos;
+  }
+  if(/hedef|açılış|acilis|checklist/.test(s)){
+    const top=(D.acilis||[]).slice().sort((a,b)=>Object.values(b.adimlar||{}).filter(Boolean).length-Object.values(a.adimlar||{}).filter(Boolean).length);
+    return "HEDEF açılış ilerlemesi (üst 10):\n"+
+      top.slice(0,10).map(a=>`• ${a.ilce}: ${Object.values(a.adimlar||{}).filter(Boolean).length}/12`).join("\n");
+  }
+  if(/ziyaret/.test(s)){
+    const kritYok=mevcut().filter(i=>i.risk==="KRİTİK"&&!(D.ziyaretler||[]).some(z=>z.ilce===i.ad)).map(i=>i.ad);
+    return `Kayıtlı ziyaret: ${ctx.ziyaret}.\nKritik riskli ve ziyaretsiz: ${kritYok.join(", ")||"yok"}.`;
+  }
+  if(/hat|bölge|bolge/.test(s)){
+    const hs=Object.values(D.hatlar||{}).map(h=>{
+      const il=D.ilceler.filter(i=>i.hat===h.kod);
+      const mv=il.filter(i=>i.durum==="MEVCUT");
+      return `${h.kod} ${h.ad}: ${mv.length}/${il.length} mevcut · takipçi ${h.takipci}`;
+    });
+    return "Hat durumu:\n"+hs.map(x=>"• "+x).join("\n");
+  }
+  if(/hata|denetim|tutarsız|tutarsiz/.test(s)){
+    return ctx.hatalar.length
+      ? ("Denetim bulguları:\n"+ctx.hatalar.map(x=>"• "+x).join("\n"))
+      : "Kritik denetim bulgusu yok.";
+  }
+  if(/gönüllü|gonullu|mutat|program/.test(s)){
+    return `Gönüllü: ${ctx.gonullu} · Aktif mutat: ${ctx.mutatAktif} · Program kaydı: ${(D.programlar||[]).length}. `+
+      `Detay için Operasyon sekmelerine bakın.`;
+  }
+  return `Panel bağlamı: ${ctx.kapsama}.\n`+
+    `Şunları sorabilirsiniz: özet, risk, şapka, HEDEF, ziyaret, karne, hat durumu veya bir ilçe adı (örn. «Üsküdar»).\n`+
+    `Son denetim: ${ctx.hatalar.slice(0,2).join(" | ")||"temiz"}.`;
 }
-function sancaktarMesaj(rol, metin){
-  const kut=$("#sancaktar-chat"); if(!kut) return;
+function sancaktarKaydet(){
+  try{ localStorage.setItem(SANC_SOHBET_KEY, JSON.stringify(sancaktarGecmis.slice(-80))); }catch(e){}
+}
+function sancaktarYukleGecmis(){
+  try{
+    const ham=localStorage.getItem(SANC_SOHBET_KEY);
+    const arr=ham?JSON.parse(ham):[];
+    sancaktarGecmis=Array.isArray(arr)?arr:[];
+  }catch(e){ sancaktarGecmis=[]; }
+}
+function sancaktarMesaj(rol, metin, opts){
+  const kut=$("#sancaktar-chat"); if(!kut) return null;
   const div=document.createElement("div");
-  div.style.cssText="margin:8px 0;padding:10px 12px;border-radius:10px;max-width:92%;"+
-    (rol==="user"?"background:rgba(212,175,55,.15);margin-left:auto;border:1px solid rgba(212,175,55,.35)"
-                 :"background:rgba(255,255,255,.65);border:1px solid var(--hat)");
-  div.innerHTML=`<div style="font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--sil);margin-bottom:4px">${rol==="user"?"Siz":"Sancaktar"}</div>
-    <div style="font-size:14px;line-height:1.5;white-space:pre-wrap">${esc(metin)}</div>`;
+  div.className="sancMsg "+(rol==="user"?"user":"ai")+(opts&&opts.yukleniyor?" yukleniyor":"");
+  div.innerHTML=`<div class="rol">${rol==="user"?"Siz":"Sancaktar"}</div><div class="gov">${esc(metin)}</div>`;
   kut.appendChild(div); kut.scrollTop=kut.scrollHeight;
+  if(!opts||!opts.yukleniyor){
+    sancaktarGecmis.push({rol, metin, t:Date.now()});
+    sancaktarKaydet();
+  }
+  return div;
 }
-function sancaktarHazir(tip){
-  const map={ozet:"İstanbul teşkilat özetini ver",risk:"Açık riskleri özetle",sapka:"Boş şapkaları listele",
-    hedef:"HEDEF ilçe açılış ilerlemesini özetle",ziyaret:"Ziyaret durumunu özetle"};
-  $("#sancaktar-input").value=map[tip]||tip; sancaktarGonder();
-}
-async function sancaktarGonder(){
-  const inp=$("#sancaktar-input"); if(!inp) return;
-  const soru=inp.value.trim(); if(!soru) return;
-  inp.value=""; sancaktarMesaj("user", soru);
-  const yerel=sancaktarYerelYanit(soru);
-  const key=(localStorage.getItem("yh-sancaktar-api")||($("#sancaktar-api")&&$("#sancaktar-api").value)||"").trim();
-  if(!key){
-    sancaktarMesaj("ai", yerel);
-    $("#sancaktar-durum").textContent="Yerel özet motoru yanıt verdi (API anahtarı yok).";
+function sancaktarCizGecmis(){
+  const kut=$("#sancaktar-chat"); if(!kut) return;
+  kut.innerHTML="";
+  if(!sancaktarGecmis.length){
+    sancaktarMesaj("ai",
+      "Merhaba — Sancaktar AI aktif. Panel verisine bağlıyım; sorularınız burada kalır.\n"+
+      "Hazır düğmelerden seçin veya yazın (örn. «özet», «risk», «Üsküdar»).");
     return;
   }
-  $("#sancaktar-durum").textContent="Bulut yanıtı deneniyor…";
-  try{
-    const ctx=sancaktarBaglam();
-    const r=await fetch("https://api.openai.com/v1/chat/completions",{
-      method:"POST",
-      headers:{"Content-Type":"application/json","Authorization":"Bearer "+key},
-      body:JSON.stringify({
-        model:"gpt-4o-mini",
-        messages:[
-          {role:"system",content:"Sen YediHilal İstanbul teşkilat paneli asistanısın. Kısa, operasyonel Türkçe yanıt ver. Veri:\n"+JSON.stringify(ctx)},
-          {role:"user",content:soru}
-        ],
-        temperature:0.3, max_tokens:500
-      })
-    });
-    if(!r.ok) throw new Error("API "+r.status);
-    const j=await r.json();
-    const txt=j.choices?.[0]?.message?.content || yerel;
-    sancaktarMesaj("ai", txt);
-    $("#sancaktar-durum").textContent="OpenAI yanıtı alındı.";
-  }catch(e){
-    sancaktarMesaj("ai", yerel+"\n\n(Bulut hata: "+e.message+" — tarayıcı CORS veya anahtar. Yerel özet kullanıldı.)");
-    $("#sancaktar-durum").textContent="Bulut başarısız; yerel motor kullanıldı.";
+  sancaktarGecmis.forEach(m=>{
+    const div=document.createElement("div");
+    div.className="sancMsg "+(m.rol==="user"?"user":"ai");
+    div.innerHTML=`<div class="rol">${m.rol==="user"?"Siz":"Sancaktar"}</div><div class="gov">${esc(m.metin)}</div>`;
+    kut.appendChild(div);
+  });
+  kut.scrollTop=kut.scrollHeight;
+}
+function sancaktarTemizle(){
+  if(!confirm("Sancaktar sohbet geçmişi silinsin mi?")) return;
+  sancaktarGecmis=[];
+  sancaktarKaydet();
+  const kut=$("#sancaktar-chat"); if(kut) kut.innerHTML="";
+  sancaktarMesaj("ai", "Sohbet temizlendi. Yeni sorunu bekliyorum.");
+  $("#sancaktar-durum").textContent="Hazır";
+}
+function sancaktarHazir(tip){
+  const map={
+    ozet:"İstanbul teşkilat özetini ver",
+    risk:"Açık riskleri özetle",
+    sapka:"Boş şapkaları listele",
+    hedef:"HEDEF ilçe açılış ilerlemesini özetle",
+    ziyaret:"Ziyaret durumunu özetle",
+    karne:"Karne sıralamasını özetle"
+  };
+  const inp=$("#sancaktar-input"); if(!inp) return;
+  inp.value=map[tip]||tip;
+  sancaktarGonder();
+}
+function sancaktarKilit(acik){
+  sancaktarBusy=!!acik;
+  const inp=$("#sancaktar-input"), btn=$("#sancaktar-gonder");
+  if(inp) inp.disabled=!!acik;
+  if(btn){ btn.disabled=!!acik; btn.textContent=acik?"…":"Gönder"; }
+}
+async function sancaktarGonder(){
+  const inp=$("#sancaktar-input"); if(!inp || sancaktarBusy) return;
+  const soru=inp.value.trim(); if(!soru) return;
+  inp.value="";
+  sancaktarMesaj("user", soru);
+  sancaktarKilit(true);
+  const bekle=sancaktarMesaj("ai", "Yanıt hazırlanıyor…", {yukleniyor:true});
+  const yerel=sancaktarYerelYanit(soru);
+  const key=(localStorage.getItem("yh-sancaktar-api")||($("#sancaktar-api")&&$("#sancaktar-api").value)||"").trim();
+  let cevap=yerel, durum="Yerel motor yanıt verdi";
+  if(key){
+    $("#sancaktar-durum").textContent="Bulut yanıtı…";
+    try{
+      const ctx=sancaktarBaglam();
+      const history=sancaktarGecmis.filter(m=>!m._tmp).slice(-8).map(m=>({
+        role:m.rol==="user"?"user":"assistant", content:m.metin
+      }));
+      const r=await fetch("https://api.openai.com/v1/chat/completions",{
+        method:"POST",
+        headers:{"Content-Type":"application/json","Authorization":"Bearer "+key},
+        body:JSON.stringify({
+          model:"gpt-4o-mini",
+          messages:[
+            {role:"system",content:"Sen YediHilal İstanbul teşkilat paneli asistanı Sancaktar'sın. Kısa, operasyonel Türkçe yanıt ver. Veri:\n"+JSON.stringify(ctx)},
+            ...history.slice(0,-1),
+            {role:"user",content:soru}
+          ],
+          temperature:0.3, max_tokens:700
+        })
+      });
+      if(!r.ok) throw new Error("API "+r.status);
+      const j=await r.json();
+      cevap=j.choices?.[0]?.message?.content || yerel;
+      durum="Bulut yanıtı alındı";
+    }catch(e){
+      cevap=yerel+"\n\n(Bulut bağlanamadı: "+e.message+" — yerel özet kullanıldı.)";
+      durum="Yerel motor (bulut yok)";
+    }
   }
+  if(bekle&&bekle.parentNode) bekle.remove();
+  sancaktarMesaj("ai", cevap);
+  $("#sancaktar-durum").textContent=durum;
+  const alt=$("#sancaktar-altNot");
+  if(alt) alt.textContent=key
+    ? "Konuşmalar bu cihazda saklanır · Bulut API bağlı"
+    : "Konuşmalar bu cihazda saklanır · API anahtarı Ayarlar → Sancaktar";
+  sancaktarKilit(false);
+  if(inp) inp.focus();
 }
 function sancaktarAnahtarKaydet(){
   const v=($("#sancaktar-api")&&$("#sancaktar-api").value||"").trim();
   if(v) localStorage.setItem("yh-sancaktar-api", v); else localStorage.removeItem("yh-sancaktar-api");
   toastGoster(v?"API anahtarı tarayıcıya kaydedildi.":"Anahtar boş.");
+  const alt=$("#sancaktar-altNot");
+  if(alt) alt.textContent=v
+    ? "Konuşmalar bu cihazda saklanır · Bulut API bağlı"
+    : "Konuşmalar bu cihazda saklanır · API anahtarı Ayarlar → Sancaktar";
 }
 function sancaktarAnahtarSil(){
   localStorage.removeItem("yh-sancaktar-api");
@@ -4358,7 +4500,11 @@ function sancaktarToggle(){
   const ac=!p.classList.contains("ac");
   p.classList.toggle("ac", ac);
   if(f) f.classList.toggle("acik", ac);
-  if(ac){ sancaktarCiz(); const inp=$("#sancaktar-input"); if(inp) inp.focus(); }
+  if(ac){
+    sancaktarCiz();
+    const inp=$("#sancaktar-input");
+    if(inp) setTimeout(()=>inp.focus(), 80);
+  }
 }
 function sancaktarAc(){ const p=$("#sancPanel"); if(p && !p.classList.contains("ac")) sancaktarToggle(); }
 function sancaktarCiz(){
@@ -4366,9 +4512,11 @@ function sancaktarCiz(){
     $("#sancaktar-api").value=localStorage.getItem("yh-sancaktar-api")||"";
     $("#sancaktar-api").dataset.y="1";
   }
-  if($("#sancaktar-chat") && !$("#sancaktar-chat").dataset.init){
-    $("#sancaktar-chat").dataset.init="1";
-    sancaktarMesaj("ai", "Merhaba — panel verisine bağlıyım. Sağ alttaki asistan her zaman açık. Hazır sorulardan birini seçin veya yazın.");
+  const kut=$("#sancaktar-chat"); if(!kut) return;
+  if(!kut.dataset.init){
+    kut.dataset.init="1";
+    sancaktarYukleGecmis();
+    sancaktarCizGecmis();
   }
 }
 
