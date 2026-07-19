@@ -46,7 +46,18 @@ function doPost(e) {
 function doGet(e) {
   try {
     var p = (e && e.parameter) || {};
-    var aksiyon = String(p.aksiyon || 'ping');
+    var aksiyon = String(p.aksiyon || '');
+
+    if (!aksiyon) {
+      return HtmlService.createHtmlOutput(
+        '<div style="font-family:sans-serif;padding:24px;max-width:520px">' +
+        '<h2>YediHilal Sheets Sync</h2>' +
+        '<p>Bu adres panelin yazma uç noktasıdır. Tarayıcıda açmak veri göstermez.</p>' +
+        '<p>Verileri görmek için Google Sheets dosyasını açın.</p>' +
+        '<p><a href="https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/edit" target="_blank">Sheets dosyasını aç</a></p>' +
+        '<p style="color:#666;font-size:13px">Sağlık kontrolü: <code>?aksiyon=ping</code></p></div>'
+      );
+    }
 
     if (aksiyon === 'ping') {
       return jsonOut({ ok: true, mesaj: 'YediHilal Sheets sync aktif', sheetId: SHEET_ID });
