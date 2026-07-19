@@ -20,7 +20,7 @@
       "sifre": "",
       "ad": "Abdülkadir Yaşar",
       "gorev": "Teşkilat Başkanı / İl Başkan Yrd.",
-      "tel": "05xx xxx xx 00",
+      "tel": "0507 821 06 96",
       "rol": "baskan",
       "yetki": "gor_veri",
       "sekmeler": [
@@ -59,7 +59,7 @@
       "sifre": "",
       "ad": "Mücahit Tiryaki",
       "gorev": "Sekreterya Birimi",
-      "tel": "05xx xxx xx 11",
+      "tel": "0538 466 09 85",
       "rol": "koordinator",
       "yetki": "gor_veri",
       "sekmeler": [
@@ -83,8 +83,8 @@
       "id": "oguzhan",
       "sifre": "",
       "ad": "Oğuzhan Koçalak",
-      "gorev": "Yeni Teşkilat + İnsan Kıymetleri",
-      "tel": "05xx xxx xx 12",
+      "gorev": "Bölge Takipçi Yrd. + Arama — Trakya & Haliç",
+      "tel": "0543 256 53 58",
       "rol": "koordinator",
       "yetki": "gor_veri",
       "sekmeler": [
@@ -107,8 +107,8 @@
       "id": "mehmet",
       "sifre": "",
       "ad": "Mehmet Menteş",
-      "gorev": "Bölge Takipçisi — B4 Marmara",
-      "tel": "05xx xxx xx 13",
+      "gorev": "Bölge Takipçi Yrd. + Arama — Marmara & Boğaz",
+      "tel": "0532 791 17 53",
       "rol": "koordinator",
       "yetki": "gor_veri",
       "sekmeler": [
@@ -131,8 +131,8 @@
       "id": "nusret",
       "sifre": "",
       "ad": "Nusret Onur Anlı",
-      "gorev": "Bölge Takipçisi — B3 Boğaz",
-      "tel": "05xx xxx xx 14",
+      "gorev": "Bölge Takipçisi — B1 Haliç & B2 Trakya",
+      "tel": "0530 961 89 89",
       "rol": "koordinator",
       "yetki": "gor",
       "sekmeler": [
@@ -146,6 +146,51 @@
         "ozet",
         "risk"
       ]
+    },
+    {
+      "id": "serdar",
+      "sifre": "",
+      "ad": "Serdar Alkurt",
+      "gorev": "Bölge Takipçisi — B3 Boğaz & B4 Marmara",
+      "tel": "0561 618 22 34",
+      "rol": "koordinator",
+      "yetki": "gor_veri"
+    },
+    {
+      "id": "burak",
+      "sifre": "",
+      "ad": "Burak İncecik",
+      "gorev": "Ziyaret ve Denetim",
+      "tel": "0534 358 40 18",
+      "rol": "koordinator",
+      "yetki": "gor_veri"
+    },
+    {
+      "id": "omer",
+      "sifre": "",
+      "ad": "Ömer Faruk Balta",
+      "gorev": "Kamp ve Organizasyon",
+      "tel": "0532 176 28 94",
+      "rol": "uye",
+      "yetki": "gor"
+    },
+    {
+      "id": "eyup",
+      "sifre": "",
+      "ad": "Eyüp Yazıcı",
+      "gorev": "Ziyaret ve Denetim",
+      "tel": "0538 054 82 68",
+      "rol": "uye",
+      "yetki": "gor"
+    },
+    {
+      "id": "hakan",
+      "sifre": "",
+      "ad": "Hakan Ayva",
+      "gorev": "Kamp ve Organizasyon",
+      "tel": "0537 552 25 40",
+      "rol": "uye",
+      "yetki": "gor"
     }
   ]
 }
