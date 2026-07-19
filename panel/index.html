@@ -2749,7 +2749,9 @@ function hedefler(){
   }).join("") + `<div class="notk" style="margin-top:14px">
     ${ilerleyen===0
       ? `<b>30 ilçenin 30'u da 1. aşamada.</b> Yani hiçbir hedef ilçede henüz koordinatör bulunamadı.
-         Huninin tıkandığı yer burasıdır — ve sebebi 2 hattın takipçisiz olmasıdır.`
+         Huninin tıkandığı yer burasıdır${Object.values(D.hatlar).some(h=>h.takipci==="BOŞ")
+           ? " — ve sebebi "+Object.values(D.hatlar).filter(h=>h.takipci==="BOŞ").length+" hattın takipçisiz olmasıdır."
+           : " — 4 hat da sahipli; şimdi saha temasını hızlandırmak gerekir."}`
       : `<b>${ilerleyen} ilçe 1. aşamayı geçti.</b> ${say[0]} ilçe hâlâ koordinatör arıyor.`}</div>`;
 
   const bas = {1:"ÖNCELİK 1 — Şimdi girilecek",2:"ÖNCELİK 2 — Orta vade",3:"ÖNCELİK 3 — Ertelenen"};
