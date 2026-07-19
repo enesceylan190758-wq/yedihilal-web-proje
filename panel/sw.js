@@ -1,5 +1,5 @@
 /* YediHilal Panel — PWA service worker */
-const CACHE = "yh-panel-v3";
+const CACHE = "yh-panel-v4";
 const SHELL = [
   "/panel/",
   "/panel/index.html",
