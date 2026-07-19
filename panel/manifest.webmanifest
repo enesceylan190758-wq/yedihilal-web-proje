@@ -1,0 +1,35 @@
+{
+  "id": "/panel/",
+  "name": "YediHilal Teşkilat Paneli",
+  "short_name": "YediHilal",
+  "description": "YediHilal İstanbul teşkilat kontrol paneli — 39 ilçe, 4 hat.",
+  "start_url": "/panel/?kaynak=pwa",
+  "scope": "/panel/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0B1712",
+  "theme_color": "#0B1712",
+  "lang": "tr",
+  "dir": "ltr",
+  "categories": ["business", "productivity"],
+  "icons": [
+    {
+      "src": "/panel/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/panel/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/panel/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

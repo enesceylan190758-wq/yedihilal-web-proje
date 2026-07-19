@@ -4,6 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>YediHilal İstanbul — Teşkilat Kontrol Paneli</title>
+<meta name="theme-color" content="#0B1712">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="YediHilal">
+<meta name="description" content="YediHilal İstanbul teşkilat kontrol paneli — telefona kurulabilir uygulama.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -793,6 +802,20 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
   #s-veri #csvKaynakUrl{overflow-wrap:anywhere;word-break:break-all}
   #s-veri .dip{flex-wrap:wrap;gap:6px}
 }
+
+/* PWA kurulum şeridi */
+.pwaKur{position:fixed;left:12px;right:12px;bottom:calc(78px + env(safe-area-inset-bottom,0px));
+  z-index:75;display:none;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;
+  background:linear-gradient(145deg,#0F2318,#1A3829);border:1px solid rgba(212,175,55,.45);
+  color:var(--kagit);box-shadow:0 12px 32px rgba(15,26,20,.28)}
+.pwaKur.ac{display:flex}
+.pwaKur .metin{flex:1;min-width:0;font-size:12.5px;line-height:1.35}
+.pwaKur .metin b{display:block;font-family:"Archivo";font-size:13px;color:var(--altin);margin-bottom:2px}
+.pwaKur .kur{background:var(--altin);color:#0F1A14;border:0;border-radius:8px;padding:9px 12px;
+  font-family:"Archivo";font-weight:700;font-size:12px;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
+.pwaKur .kapatPwa{background:transparent;border:1px solid #3A5C4A;color:#9BB8A8;width:34px;height:34px;
+  border-radius:8px;font-size:16px;flex:0 0 auto}
+@media(min-width:701px){.pwaKur{left:auto;right:22px;width:min(360px,calc(100vw - 44px));bottom:92px}}
 @media print{
   header,nav,.solPanel,.disaAktar,.kaydetBar,.sancFab,.sancPanel,.hrtArac,.zoomBtn,.hrtBuyut,.gosterim{display:none!important}
   .sayfa{display:block!important} body{background:#fff}
@@ -1580,6 +1603,11 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
 </div><!-- .panelGov -->
 
 <!-- SANCAKTAR CANLI ASİSTAN -->
+<div class="pwaKur" id="pwaKur" role="dialog" aria-label="Uygulamayı kur">
+  <div class="metin"><b>Telefona kur</b>Ana ekrana ekleyip uygulama gibi kullan.</div>
+  <button type="button" class="kur" id="pwaKurBtn">Kur</button>
+  <button type="button" class="kapatPwa" id="pwaKurKapat" aria-label="Kapat">×</button>
+</div>
 <button type="button" class="sancFab" id="sancFab" onclick="sancaktarToggle()" title="Sancaktar AI">SAN<br>AI</button>
 <div class="sancPanel" id="sancPanel" aria-live="polite">
   <div class="sancBas">
@@ -5120,6 +5148,51 @@ panelConfigYukle().then(()=>{
   const qv = new URLSearchParams(location.search).get("veri");
   if(qv && !$("#csvUrl").value){ $("#csvUrl").value = qv; sheetsBagla(qv,true); }
 });
+
+/* ---- PWA: service worker + ana ekrana kur ---- */
+(function pwaKurulum(){
+  if("serviceWorker" in navigator){
+    navigator.serviceWorker.register("/panel/sw.js", {scope: "/panel/"}).catch(()=>{});
+  }
+  const bar = document.getElementById("pwaKur");
+  const btn = document.getElementById("pwaKurBtn");
+  const kapat = document.getElementById("pwaKurKapat");
+  if(!bar || !btn) return;
+  const KEY = "yh-pwa-kur-gizle";
+  const standalone = window.matchMedia("(display-mode: standalone)").matches
+    || window.navigator.standalone === true;
+  if(standalone){ bar.remove(); return; }
+  let deferred = null;
+  const gizli = ()=>{ try{ return localStorage.getItem(KEY)==="1"; }catch(e){ return false; } };
+  const goster = ()=>{ if(!gizli()) bar.classList.add("ac"); };
+  window.addEventListener("beforeinstallprompt", e=>{
+    e.preventDefault();
+    deferred = e;
+    goster();
+  });
+  btn.onclick = async ()=>{
+    if(deferred){
+      deferred.prompt();
+      try{ await deferred.userChoice; }catch(e){}
+      deferred = null;
+      bar.classList.remove("ac");
+      return;
+    }
+    /* iOS / desteklemeyen tarayıcı: kısa yönerge */
+    const ios = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    alert(ios
+      ? "Kurulum (iPhone):\n1) Paylaş (□↑) düğmesine dokun\n2) «Ana Ekrana Ekle»yi seç\n3) Ekle"
+      : "Kurulum:\nTarayıcı menüsünden «Uygulamayı yükle» veya «Ana ekrana ekle»yi seçin.");
+  };
+  if(kapat) kapat.onclick = ()=>{
+    bar.classList.remove("ac");
+    try{ localStorage.setItem(KEY,"1"); }catch(e){}
+  };
+  /* iOS’ta beforeinstallprompt yok — mobilde kısa süre sonra hatırlat */
+  if(!standalone && /iPad|iPhone|iPod/.test(navigator.userAgent) && !gizli()){
+    setTimeout(goster, 2500);
+  }
+})();
 
 </script>
 </body>
