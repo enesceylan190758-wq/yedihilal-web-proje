@@ -773,6 +773,25 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
   .gosterim{margin-left:0}
   .iki,.cift,.izgara,.formGrid{grid-template-columns:1fr}
   .toast{bottom:calc(100px + env(safe-area-inset-bottom,0px));font-size:13px}
+
+  /* Veri Kaynağı — taşan/kırpılan blokları düzelt */
+  #s-veri .kart{overflow:visible}
+  #s-veri .kbas{flex-direction:column;align-items:flex-start;gap:4px}
+  #s-veri .kbas h2{white-space:normal;line-height:1.3;font-size:12.5px;max-width:100%}
+  #s-veri .kbas .yan{margin-left:0;white-space:normal}
+  #s-veri .iki{display:flex;flex-direction:column;gap:12px}
+  #s-veri .iki > *{min-width:0;max-width:100%}
+  #s-veri .kgov{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  #s-veri #csvUrl,#s-veri #yazUrl{width:100%!important;min-width:0!important;flex:1 1 100%!important;font-size:16px}
+  #s-veri .cipler{gap:8px}
+  #s-veri .cipler .cip{max-width:100%;white-space:normal;text-align:left;line-height:1.3;height:auto;padding:9px 12px}
+  #s-veri #csvOnizle,#s-veri #klsIcerik .tsar{max-height:min(48vh,300px)!important;overflow:auto;-webkit-overflow-scrolling:touch}
+  #s-veri .adim{grid-template-columns:28px minmax(0,1fr);gap:10px}
+  #s-veri .adim h3{font-size:13.5px}
+  #s-veri .adim p{font-size:12.5px;overflow-wrap:anywhere}
+  #s-veri .notk{overflow-wrap:anywhere;word-break:break-word}
+  #s-veri #csvKaynakUrl{overflow-wrap:anywhere;word-break:break-all}
+  #s-veri .dip{flex-wrap:wrap;gap:6px}
 }
 @media print{
   header,nav,.solPanel,.disaAktar,.kaydetBar,.sancFab,.sancPanel,.hrtArac,.zoomBtn,.hrtBuyut,.gosterim{display:none!important}
@@ -1131,9 +1150,9 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
             <p><b>Dosya → İçe aktar</b> ile CSV'yi açın. Sonra <b>Dosya → Paylaş → Web'de yayınla → .csv</b>.</p></div></div>
           <div class="adim"><div class="no">3</div><div>
             <h3>Bağlantıyı yapıştırın</h3>
-            <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:stretch">
               <input id="csvUrl" placeholder="https://docs.google.com/…/pub?output=csv"
-                style="flex:1;min-width:200px;padding:9px 11px;border:1px solid var(--hat);border-radius:7px">
+                style="flex:1 1 220px;min-width:0;width:100%;padding:9px 11px;border:1px solid var(--hat);border-radius:7px">
               <button class="btn ana" id="bBagla">Bağla</button></div>
             <div class="durum" id="durumOku"></div></div></div>
         </div></div>
@@ -3143,10 +3162,12 @@ function csvYonetimCiz(){
       : "Henüz CSV kaynağı bağlı değil — yukarıdan bir kaynak seçin veya URL yapıştırın.";
   }
   $("#csvSatSay").textContent = D.ilceler.length;
-  const cols = [
-    ["ad","İlçe"],["hat","Hat"],["durum","Durum"],["temsilci","Temsilci"],["tel","Tel"],
-    ["risk","Risk"],["onc","Önc."],["asama","Aşama"],["yk","YK"],["toplanti","Top."],["merkez","Merkez"]
-  ];
+  const cols = mobilMi()
+    ? [["ad","İlçe"],["hat","Hat"],["durum","Durum"],["temsilci","Temsilci"],["risk","Risk"]]
+    : [
+      ["ad","İlçe"],["hat","Hat"],["durum","Durum"],["temsilci","Temsilci"],["tel","Tel"],
+      ["risk","Risk"],["onc","Önc."],["asama","Aşama"],["yk","YK"],["toplanti","Top."],["merkez","Merkez"]
+    ];
   oniz.innerHTML = `<table>
     <thead><tr>${cols.map(([,lb])=>`<th class="dz">${lb}</th>`).join("")}</tr></thead>
     <tbody>${D.ilceler.map(i=>`<tr>${cols.map(([k])=>{
