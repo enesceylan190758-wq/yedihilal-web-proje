@@ -154,7 +154,21 @@
       "gorev": "Bölge Takipçisi — B3 Boğaz & B4 Marmara",
       "tel": "0561 618 22 34",
       "rol": "koordinator",
-      "yetki": "gor_veri"
+      "yetki": "gor_veri",
+      "sekmeler": [
+        "genel",
+        "karne",
+        "bolge",
+        "komisyon",
+        "takvim",
+        "program",
+        "kilavuz",
+        "ziyaret",
+        "faaliyet",
+        "ozet",
+        "risk",
+        "kadro"
+      ]
     },
     {
       "id": "burak",
@@ -163,7 +177,17 @@
       "gorev": "Ziyaret ve Denetim",
       "tel": "0534 358 40 18",
       "rol": "koordinator",
-      "yetki": "gor_veri"
+      "yetki": "gor_veri",
+      "sekmeler": [
+        "genel",
+        "karne",
+        "takvim",
+        "ziyaret",
+        "faaliyet",
+        "tutanak",
+        "ozet",
+        "kilavuz"
+      ]
     },
     {
       "id": "omer",
@@ -172,7 +196,14 @@
       "gorev": "Kamp ve Organizasyon",
       "tel": "0532 176 28 94",
       "rol": "uye",
-      "yetki": "gor"
+      "yetki": "gor",
+      "sekmeler": [
+        "genel",
+        "takvim",
+        "program",
+        "ozet",
+        "kilavuz"
+      ]
     },
     {
       "id": "eyup",
@@ -181,7 +212,14 @@
       "gorev": "Ziyaret ve Denetim",
       "tel": "0538 054 82 68",
       "rol": "uye",
-      "yetki": "gor"
+      "yetki": "gor",
+      "sekmeler": [
+        "genel",
+        "takvim",
+        "ziyaret",
+        "ozet",
+        "kilavuz"
+      ]
     },
     {
       "id": "hakan",
@@ -190,7 +228,14 @@
       "gorev": "Kamp ve Organizasyon",
       "tel": "0537 552 25 40",
       "rol": "uye",
-      "yetki": "gor"
+      "yetki": "gor",
+      "sekmeler": [
+        "genel",
+        "takvim",
+        "program",
+        "ozet",
+        "kilavuz"
+      ]
     }
   ]
 }
