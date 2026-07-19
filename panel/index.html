@@ -189,14 +189,14 @@ nav.anaNav button span{line-height:1.1;text-align:left}
 }
 
 /* ---------------- SANCAKTAR CANLI CHAT ---------------- */
-.sancFab{position:fixed;right:188px;bottom:228px;z-index:76;width:58px;height:58px;border-radius:50%;
+.sancFab{position:fixed;right:22px;bottom:22px;z-index:76;width:58px;height:58px;border-radius:50%;
   background:linear-gradient(145deg,#D4AF37,#8A6D2A);color:#0F1A14;font-family:"Archivo";font-weight:800;
   font-size:12px;letter-spacing:.04em;box-shadow:0 10px 28px rgba(15,26,20,.28);display:flex;
   align-items:center;justify-content:center;text-align:center;line-height:1.15;transition:.18s}
 .sancFab:hover{transform:translateY(-2px);background:linear-gradient(145deg,#E8C84A,#D4AF37)}
 .sancFab.acik{background:#0F2318;color:var(--altin);border:1px solid var(--altin)}
-.sancPanel{position:fixed;right:188px;bottom:302px;z-index:76;width:min(380px,calc(100vw - 210px));
-  height:min(520px,calc(100vh - 330px));background:var(--kart-yuz);border:1px solid rgba(168,198,176,.95);
+.sancPanel{position:fixed;right:22px;bottom:92px;z-index:76;width:min(380px,calc(100vw - 28px));
+  height:min(520px,calc(100vh - 130px));background:var(--kart-yuz);border:1px solid rgba(168,198,176,.95);
   border-radius:16px;box-shadow:0 16px 48px rgba(15,26,20,.22);display:none;flex-direction:column;overflow:hidden}
 .sancPanel.ac{display:flex;animation:gir .25s ease}
 .sancBas{background:linear-gradient(155deg,#0F2318,#1A3829);color:var(--kagit);padding:12px 14px;
@@ -395,10 +395,8 @@ td.n{font-family:"IBM Plex Mono";text-align:right}
 .tkEt:hover{filter:brightness(.95)}
 .tkAy{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
 .tkAy h3{font-size:17px;font-weight:700;min-width:150px}
-.tkAy button{width:30px;height:30px;border:1px solid var(--hat);border-radius:7px;background:#fff;font-size:15px}
-.tkAy button:hover{border-color:var(--altin)}
-.tkAy .tkAySag{margin-left:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap;flex:0 0 auto}
-.tkAySag .btn{flex:0 0 auto;white-space:nowrap;writing-mode:horizontal-tb}
+.tkAy > button{width:30px;height:30px;border:1px solid var(--hat);border-radius:7px;background:#fff;font-size:15px}
+.tkAy > button:hover{border-color:var(--altin)}
 .durumCip{display:inline-flex;align-items:center;gap:6px;padding:7px 11px;border-radius:8px;
   border:1px solid var(--hat);background:#fff;font-size:12px;font-weight:600;font-family:"Archivo";
   letter-spacing:.02em;cursor:pointer;transition:.15s;color:var(--murekkep)}
@@ -774,10 +772,9 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
   .tkEt{font-size:10px;padding:2px 4px;white-space:normal;max-height:2.6em}
   .tkAy{flex-wrap:wrap}
   .tkAy h3{font-size:15px;min-width:0;flex:1}
-  .tkAy button{width:36px;height:36px}
-  .tkAy .tkAySag{margin-left:0;width:100%}
+  .tkAy > button{width:36px;height:36px}
   #s-takvim .arac{flex-direction:column;align-items:stretch;gap:10px}
-  #s-takvim .arac > .cipler{width:100%}
+  #s-takvim .arac > .cipler{width:100%;flex-wrap:wrap}
   .davetliEkle{grid-template-columns:1fr}
   .durumCip{flex:1 1 calc(50% - 6px);justify-content:center;min-height:40px}
   #eDurumCipler{display:flex;flex-wrap:wrap;gap:6px}
@@ -792,14 +789,13 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
   .kaydetBar{left:12px;right:72px;bottom:calc(12px + env(safe-area-inset-bottom,0px));
     padding:10px 12px;gap:8px;flex-wrap:wrap;border-radius:12px}
   .kaydetBar button{padding:9px 12px;min-height:40px;flex:1 1 auto}
-  .sancFab{right:108px;bottom:calc(168px + env(safe-area-inset-bottom,0px));width:52px;height:52px;font-size:11px}
-  .sancPanel{right:14px;left:14px;width:auto;bottom:calc(232px + env(safe-area-inset-bottom,0px));
-    height:min(70dvh,calc(100dvh - 240px));border-radius:14px}
+  .sancFab{right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));width:52px;height:52px;font-size:11px}
+  .sancPanel{right:10px;left:10px;width:auto;bottom:calc(74px + env(safe-area-inset-bottom,0px));
+    height:min(70dvh,calc(100dvh - 120px));border-radius:14px}
   .sancHazir button{padding:8px 10px;min-height:36px}
   .sancAlt input{padding:11px;font-size:16px}
   .sonRaporSerit{justify-content:stretch}
   .sonRaporSerit .btn{width:100%}
-  .tkAySag .btn{width:100%}
 
   .modal{width:calc(100vw - 20px);max-height:min(90dvh,92vh);border-radius:14px}
   .modal.gnis{width:calc(100vw - 20px)}
@@ -868,7 +864,7 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
   font-family:"Archivo";font-weight:700;font-size:12px;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
 .pwaKur .kapatPwa{background:transparent;border:1px solid #3A5C4A;color:#9BB8A8;width:34px;height:34px;
   border-radius:8px;font-size:16px;flex:0 0 auto}
-@media(min-width:701px){.pwaKur{left:auto;right:22px;width:min(360px,calc(100vw - 44px));bottom:280px}}
+@media(min-width:701px){.pwaKur{left:auto;right:22px;width:min(360px,calc(100vw - 44px));bottom:92px}}
 @media print{
   header,nav,.solPanel,.disaAktar,.kaydetBar,.sancFab,.sancPanel,.pwaKur,.hrtArac,.zoomBtn,.hrtBuyut,.gosterim{display:none!important}
   .sayfa{display:block!important} body{background:#fff}
@@ -1092,6 +1088,7 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
           <button class="cip on" data-gor="ay">Ay Görünümü</button>
           <button class="cip" data-gor="liste">Liste</button>
           <button class="btn alt gizle" id="bEtkinlikEkle">+ Etkinlik Ekle</button>
+          <button class="btn" type="button" id="bTakvimRapor">Ay Sonu Raporu</button>
         </div>
       </div>
       <div id="takvimAy">
@@ -1100,9 +1097,6 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
           <h3 id="ayAd">—</h3>
           <button id="ayIleri" type="button" aria-label="Sonraki ay">›</button>
           <span style="font-size:12px;color:var(--sil)" id="ayOzet"></span>
-          <div class="tkAySag">
-            <button class="btn" type="button" id="bTakvimRapor">Ay Sonu Raporu</button>
-          </div>
         </div>
         <div class="tkGrid" id="tkGrid"></div>
         <div class="tkDurumLegend" id="tkDurumLegend"></div>
