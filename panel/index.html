@@ -2492,7 +2492,7 @@ function saglar(){
   }
   if(kritik.length) U.push(["",`<b>${kritik.length} temsilcilik KRİTİK</b>${kritik.map(i=>i.ad.split(" (")[0]).join(", ")} — asil temsilci ve genç kadro meselesi.`]);
   if(yuksek.length) U.push(["sari",`<b>${yuksek.length} temsilcilik yüksek riskli</b>${yuksek.map(i=>i.ad).join(", ")}`]);
-  if(yatsiYok.length===m.length && m.length) U.push(["sari",`<b>«Yatsıya Kadar» hiçbir ilçede yapılmadı</b>10 puan × ${m.length} ilçe = <b>${m.length*10} puan</b> yerde duruyor. En ucuz kazanç burada.`]);
+  if(yatsiYok.length===m.length && m.length) U.push(["sari",`<b>«Yatsıya Kadar» hiçbir ilçede yapılmadı</b>5 puan × ${m.length} ilçe = <b>${m.length*5} puan</b> yerde duruyor. En ucuz kazanç burada.`]);
   else if(yatsiYok.length) U.push(["sari",`<b>«Yatsıya Kadar» ${yatsiYok.length} ilçede yapılmadı</b>${yatsiYok.map(i=>i.ad.split(" (")[0]).join(", ")}`]);
   if(sabahYok.length) U.push(["sari",`<b>Sabah Namazı Buluşması ${sabahYok.length} ilçede yok</b>${sabahYok.map(i=>i.ad.split(" (")[0]).join(", ")}`]);
   if(okulYok.length) U.push(["sari",`<b>${okulYok.length} ilçe hiç okul ziyareti yapmamış</b>${okulYok.map(i=>i.ad.split(" (")[0]).join(", ")}`]);
