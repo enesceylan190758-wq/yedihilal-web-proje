@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>YediHilal İstanbul — Teşkilat Kontrol Paneli</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -630,6 +630,121 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
   font-size:14px;font-style:italic;margin:14px 0;border:1px solid var(--altin-sol)}
 .motto b{display:block;font-size:11px;color:#9BB8A8;font-style:normal;margin-top:6px;letter-spacing:.1em;
   text-transform:uppercase;font-family:"Archivo"}
+
+/* ---------------- MOBİL (masaüstü kurallarına dokunmaz) ---------------- */
+@media(max-width:700px){
+  body{font-size:14px;background-attachment:scroll}
+  .hbar{padding:10px 12px;gap:10px;align-items:flex-start}
+  .logoKutu{padding:5px 8px;border-radius:8px}
+  .logoKutu img{height:40px}
+  .hbar .baslikBlok{flex:1 1 140px;gap:2px}
+  .hbar .t1{font-size:15px;letter-spacing:.01em}
+  .hbar .t2{font-size:10.5px;letter-spacing:.08em}
+  .yediIlke{display:none!important}
+  .sagUst{margin-left:0;width:100%;align-items:stretch}
+  .altinCizgi{min-width:0}
+  .girisSerit{min-width:0;width:100%;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:7px 10px}
+  .kimBtn{max-width:100%;align-items:flex-start}
+  .kimMenu{left:0;right:0;min-width:0;max-width:none;width:100%}
+
+  nav.anaNav{z-index:45}
+  .navIpucu{display:none}
+  .nvi{flex-wrap:nowrap;padding:8px 10px;gap:7px;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}
+  nav.anaNav button{padding:9px 12px;font-size:11px;min-height:42px;scroll-snap-align:start;flex:0 0 auto}
+  nav.anaNav .navIkon{width:15px!important;height:15px!important}
+
+  .panelGov{min-height:0}
+  .solPanel{padding:10px 12px 12px;position:sticky;top:0;z-index:30;
+    background:#EEF3EE;border-bottom:1px solid #D2DDD4}
+  .panelGov.solKapali .solPanel{padding:6px 12px;min-height:0;border-bottom:0;background:transparent}
+  .panelGov.solKapali .solToggle{
+    position:fixed;top:auto;bottom:calc(88px + env(safe-area-inset-bottom,0px));left:12px;right:auto;
+    width:46px;height:46px;border-radius:50%;background:#EEF3EE;border:1px solid #C9D5CB;
+    box-shadow:0 6px 18px rgba(15,26,20,.16);z-index:60}
+  .solToggle{top:8px;right:8px;width:40px;height:40px;border-radius:10px}
+  .solBas{margin-bottom:8px;padding-right:48px}
+  .solMenu{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:7px;padding-bottom:2px}
+  .solMenu button{padding:10px 12px;font-size:12px;min-height:42px;flex:0 0 auto;width:auto;white-space:nowrap}
+
+  .icerikAlan{padding:12px 12px calc(130px + env(safe-area-inset-bottom,0px))}
+  .ayet{padding:8px 12px;gap:8px;margin-bottom:12px}
+  .ayet .mt{font-size:12.5px}
+  .kart{margin-bottom:12px;border-radius:10px}
+  .kbas{padding:11px 13px;flex-wrap:wrap;gap:8px}
+  .kbas h2{font-size:12px}
+  .kgov{padding:12px}
+
+  .hero{padding:12px;gap:10px;border-width:2px}
+  .kapBlok{width:100%;max-width:220px;min-height:0;padding:10px 12px}
+  .kapBlok .kbuyuk{font-size:34px}
+  .kapBlok .ktoplam{font-size:18px}
+  .kpiler{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .kpi{padding:10px}
+  .kpi .v{font-size:18px}
+  .modKpi .kpi .v{font-size:18px}
+
+  .modFiltre{gap:7px}
+  .modFiltre input[type=search],.modFiltre select{min-width:0;width:100%;flex:1 1 100%}
+  .arac{gap:7px}
+  .arac input,.arac select{min-width:0;flex:1 1 140px;width:auto}
+  .btn{padding:10px 14px;min-height:42px}
+  #acilis-ilce{min-width:0!important;width:100%}
+
+  .hrtArac{padding:10px 12px;gap:8px}
+  .seg{flex-wrap:wrap}
+  .seg button{padding:8px 11px;min-height:40px}
+  .hrtSar{height:min(58vh,360px)}
+  .hrtSar.tamEkran{left:0;right:0;top:0;bottom:0;border-radius:0;border:0}
+  .zoomBtn{right:10px;bottom:10px}
+  .lejant{padding:10px 12px;gap:10px;font-size:11px}
+
+  .tsar{border-radius:10px;-webkit-overflow-scrolling:touch}
+  .tsar::after{content:"← kaydır →";display:block;text-align:center;font-size:10px;letter-spacing:.08em;
+    text-transform:uppercase;color:#6E9480;padding:6px;background:#F4F9F5;border-top:1px solid #E0EBE3;
+    font-family:"Archivo";position:sticky;left:0}
+  th{top:0;padding:9px 8px;font-size:10px}
+  td{padding:9px 8px;font-size:13px}
+  .duz{min-width:52px;padding:6px 7px;font-size:13px}
+
+  .tkGun{min-height:64px;padding:5px}
+  .tkGun .no{font-size:11px}
+  .tkEt{font-size:10px;padding:2px 4px;white-space:normal}
+  .tkAy{flex-wrap:wrap}
+  .tkAy h3{font-size:15px;min-width:0;flex:1}
+  .tkAy button{width:36px;height:36px}
+
+  .matrisWrap{max-height:70vh;-webkit-overflow-scrolling:touch}
+  .matris th:first-child,.matris td:first-child{min-width:140px;max-width:160px}
+  .matris th{min-width:72px;padding:8px 6px}
+  .matris .mAd{max-width:72px;font-size:10px}
+
+  .kaydetBar{left:12px;right:72px;bottom:calc(12px + env(safe-area-inset-bottom,0px));
+    padding:10px 12px;gap:8px;flex-wrap:wrap;border-radius:12px}
+  .kaydetBar button{padding:9px 12px;min-height:40px;flex:1 1 auto}
+  .sancFab{right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));width:52px;height:52px;font-size:11px}
+  .sancPanel{right:10px;left:10px;width:auto;bottom:calc(74px + env(safe-area-inset-bottom,0px));
+    height:min(70dvh,calc(100dvh - 120px));border-radius:14px}
+  .sancHazir button{padding:8px 10px;min-height:36px}
+  .sancAlt input{padding:11px;font-size:16px}
+
+  .modal{width:calc(100vw - 20px);max-height:min(90dvh,92vh);border-radius:14px}
+  .modal.gnis{width:calc(100vw - 20px)}
+  .mbas{padding:14px 16px}
+  .mbas h2{font-size:17px}
+  .mgov{padding:14px 16px}
+  .alan input,.alan select,.alan textarea{font-size:16px}
+  .cek{width:min(100vw,490px)}
+  .formSat input,.formSat select,.formSat textarea{font-size:16px}
+
+  .sat{flex-wrap:wrap;gap:6px}
+  .cbg{flex:1 1 100%;order:3}
+  .kisi{gap:10px;padding:12px 0}
+  .disaAktar{margin-left:0;width:100%}
+  .disaBtn{width:100%;justify-content:center;min-height:42px}
+  .disaMenu{left:0;right:0;min-width:0}
+  .gosterim{margin-left:0}
+  .iki,.cift,.izgara,.formGrid{grid-template-columns:1fr}
+}
 @media print{
   header,nav,.solPanel,.disaAktar,.kaydetBar,.sancFab,.sancPanel,.hrtArac,.zoomBtn,.hrtBuyut,.gosterim{display:none!important}
   .sayfa{display:block!important} body{background:#fff}
@@ -1786,6 +1901,9 @@ function navCiz(){
   const el = $("#s-"+aktifSekme); if(el) el.classList.add("on");
   if(aktifSekme==="takvim") takvimCiz();
 }
+function mobilMi(){
+  return typeof window.matchMedia==="function" && window.matchMedia("(max-width:700px)").matches;
+}
 function grupAc(gid){
   aktifGrup = gid;
   const g = ANA_GRUPLAR.find(x=>x.id===gid);
@@ -1793,6 +1911,8 @@ function grupAc(gid){
   if(altlar.length) aktifSekme = altlar[0][0];
   navCiz();
   if(typeof modullerCiz==="function") modullerCiz();
+  /* Mobilde grup seçince alt menüyü aç — kullanıcı alt sayfa seçebilsin */
+  if(mobilMi() && typeof solPanelDurumUygula==="function") solPanelDurumUygula(false);
 }
 function sekmeAc(k){
   if(!sekmeGorunurMu(k)) return;
@@ -1802,6 +1922,11 @@ function sekmeAc(k){
   navCiz();
   if(k==="takvim") takvimCiz();
   if(typeof modullerCiz==="function") modullerCiz();
+  /* Mobilde alt sayfa seçince menüyü kapat — içerik alanı açılsın */
+  if(mobilMi() && typeof solPanelDurumUygula==="function"){
+    solPanelDurumUygula(true);
+    try{ localStorage.setItem(SOL_PANEL_KEY, "1"); }catch(e){}
+  }
 }
 
 /* ============ GÖSTERGE + KPI ============ */
@@ -4875,8 +5000,19 @@ function solPanelToggle(){
   const btn = $("#solToggle");
   if(btn) btn.onclick = solPanelToggle;
   let kapali = false;
-  try{ kapali = localStorage.getItem(SOL_PANEL_KEY) === "1"; }catch(e){}
+  try{
+    const kayit = localStorage.getItem(SOL_PANEL_KEY);
+    if(kayit === "1") kapali = true;
+    else if(kayit === "0") kapali = false;
+    else kapali = mobilMi(); /* ilk açılışta mobilde kapalı */
+  }catch(e){ kapali = mobilMi(); }
   solPanelDurumUygula(kapali);
+  if(typeof window.matchMedia==="function"){
+    const mq = window.matchMedia("(max-width:700px)");
+    const onChange = ()=>{ if(mq.matches) solPanelDurumUygula(true); };
+    if(mq.addEventListener) mq.addEventListener("change", onChange);
+    else if(mq.addListener) mq.addListener(onChange);
+  }
 })();
 
 panelConfigYukle().then(()=>{
