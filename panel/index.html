@@ -393,10 +393,32 @@ td.n{font-family:"IBM Plex Mono";text-align:right}
 .tkEt{font-size:11px;padding:3px 5px;border-radius:4px;margin-bottom:3px;cursor:pointer;
   border-left:3px solid;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .tkEt:hover{filter:brightness(.95)}
-.tkAy{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.tkAy{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
 .tkAy h3{font-size:17px;font-weight:700;min-width:150px}
 .tkAy button{width:30px;height:30px;border:1px solid var(--hat);border-radius:7px;background:#fff;font-size:15px}
 .tkAy button:hover{border-color:var(--altin)}
+.tkAy .tkAySag{margin-left:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.durumCip{display:inline-flex;align-items:center;gap:6px;padding:7px 11px;border-radius:8px;
+  border:1px solid var(--hat);background:#fff;font-size:12px;font-weight:600;font-family:"Archivo";
+  letter-spacing:.02em;cursor:pointer;transition:.15s;color:var(--murekkep)}
+.durumCip i{width:9px;height:9px;border-radius:50%;display:block;flex:0 0 auto}
+.durumCip.on{border-color:currentColor;box-shadow:inset 0 0 0 1px currentColor}
+.durumCip:disabled{opacity:.45;cursor:not-allowed}
+.davetliSat{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 0;border-bottom:1px solid #E8E2D5}
+.davetliSat .kn{font-weight:600;font-size:13.5px}
+.davetliSat .kg{font-size:11.5px;color:var(--sil)}
+.davetliEkle{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
+.davetliEkle .alan{margin-bottom:0}
+.tkRaporKutu{margin-top:16px;padding:14px;border:1px solid var(--hat);border-radius:12px;background:#F7FBF8}
+.tkRaporBar{display:flex;height:14px;border-radius:999px;overflow:hidden;background:#E8E2D5;margin:10px 0 14px}
+.tkRaporBar span{display:block;height:100%}
+.tkRaporListe{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
+.tkRaporKart{padding:10px 12px;border-radius:10px;border:1px solid var(--hat);background:#fff}
+.tkRaporKart .v{font-family:"IBM Plex Mono";font-size:22px;font-weight:600;line-height:1}
+.tkRaporKart .l{font-size:11.5px;color:var(--sil);margin-top:4px}
+.tkDurumLegend{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+.tkEt .tkDurumNokta{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:4px;
+  vertical-align:middle}
 
 /* ---------------- KİŞİ KARTI ---------------- */
 .kisi{display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid #E0EBE3;
@@ -740,6 +762,13 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
   .tkAy{flex-wrap:wrap}
   .tkAy h3{font-size:15px;min-width:0;flex:1}
   .tkAy button{width:36px;height:36px}
+  .tkAy .tkAySag{margin-left:0;width:100%}
+  #s-takvim .arac{flex-direction:column;align-items:stretch;gap:10px}
+  #s-takvim .arac > .cipler{width:100%}
+  .davetliEkle{grid-template-columns:1fr}
+  .durumCip{flex:1 1 calc(50% - 6px);justify-content:center;min-height:40px}
+  #eDurumCipler{display:flex;flex-wrap:wrap;gap:6px}
+  .tkRaporListe{grid-template-columns:1fr 1fr}
   .tkBas{font-size:9.5px;padding:6px 2px}
 
   .matrisWrap{max-height:70vh;-webkit-overflow-scrolling:touch}
@@ -1051,12 +1080,19 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
       </div>
       <div id="takvimAy">
         <div class="tkAy">
-          <button id="ayGeri">‹</button><h3 id="ayAd">—</h3><button id="ayIleri">›</button>
-          <span style="font-size:12px;color:var(--sil);margin-left:8px" id="ayOzet"></span>
+          <button id="ayGeri" type="button" aria-label="Önceki ay">‹</button>
+          <h3 id="ayAd">—</h3>
+          <button id="ayIleri" type="button" aria-label="Sonraki ay">›</button>
+          <span style="font-size:12px;color:var(--sil)" id="ayOzet"></span>
+          <div class="tkAySag">
+            <button class="btn" type="button" id="bTakvimRapor">Ay Sonu Raporu</button>
+          </div>
         </div>
         <div class="tkGrid" id="tkGrid"></div>
+        <div class="tkDurumLegend" id="tkDurumLegend"></div>
       </div>
       <div id="takvimListe" class="gizle"></div>
+      <div class="tkRaporKutu gizle" id="takvimRapor"></div>
     </div>
   </div>
 </section>
@@ -1719,16 +1755,36 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
 
 <div class="modal" id="mEtkinlik">
   <div class="mbas"><button class="kapat" data-kapat>✕</button>
-    <h2 id="etkBaslik">Etkinlik Ekle</h2><div class="alt">Teşkilat takvimi</div></div>
+    <h2 id="etkBaslik">Etkinlik Ekle</h2><div class="alt">Teşkilat takvimi · durum &amp; davetli</div></div>
   <div class="mgov">
     <div class="alan"><label>Tarih</label><input id="eTarih" type="date"></div>
     <div class="alan"><label>Tip</label><select id="eTip"></select></div>
     <div class="alan"><label>Başlık</label><input id="eBaslik"></div>
     <div class="alan"><label>İlçe / Yer</label><input id="eIlce"></div>
-    <div class="alan"><label>Kim</label><input id="eKisi"></div>
+    <div class="alan"><label>Sorumlu / özet</label><input id="eKisi" placeholder="Kısa not — örn. Başkan"></div>
+    <div class="alan"><label>Durum</label>
+      <div id="eDurumCipler" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+      <input type="hidden" id="eDurum" value="Bekliyor"></div>
+    <div class="alan"><label>Davetli kişiler</label>
+      <div id="eDavetliListe"></div>
+      <div class="davetliEkle">
+        <div class="alan"><label>Panel kullanıcısı</label>
+          <select id="eDavetliKul"><option value="">Seçin…</option></select></div>
+        <div class="alan"><label>veya ad soyad</label>
+          <input id="eDavetliAd" placeholder="Ad Soyad"></div>
+        <div class="alan"><label>Telefon / mesaj</label>
+          <input id="eDavetliTel" placeholder="05xx…" inputmode="tel"></div>
+        <div class="alan"><label>E-posta</label>
+          <input id="eDavetliMail" type="email" placeholder="ornek@mail.com"></div>
+      </div>
+      <button class="btn" type="button" id="bDavetliEkle" style="margin-top:8px">+ Kişi Ekle</button>
+      <p style="font-size:11.5px;color:var(--sil);margin-top:8px;line-height:1.45">
+        Bildirimler: eklenme anı + görüşmeden 1 gün önce.
+        <b>Şu an yalnızca oturum açan size</b> toast / tarayıcı bildirimi gider; diğer kişilere mail veya mesaj henüz gönderilmez.</p>
+    </div>
     <div class="alan"><label>Not</label><textarea id="eNot" rows="2"></textarea></div>
-    <div style="display:flex;gap:8px">
-      <button class="btn alt" id="bEtkKaydet" style="flex:1;padding:11px">Kaydet</button>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn alt" id="bEtkKaydet" style="flex:1;padding:11px;min-width:140px">Kaydet</button>
       <button class="btn" id="bEtkSil" style="display:none">Sil</button>
     </div>
   </div>
@@ -1753,6 +1809,19 @@ const RISKRENK = {"KRİTİK":"#A83A32","Yüksek":"#B4713A","Orta":"#B8962E","Dü
 const HEDRENK = {1:"#E8F0EA",2:"#DCE8DF",3:"#D0E0D4"};
 const TIPRENK = {"Teşkilat Ziyareti":"#C9962F","STK Ziyareti":"#3E8E6B",
   "Yeni Teşkilat Görüşmesi":"#7B6CA8","Program/Kamp":"#A83A32","Toplantı":"#5A6B7C"};
+const ETK_DURUMLAR = [
+  {id:"Bekliyor", renk:"#5A6B7C"},
+  {id:"Gidildi", renk:"#2F6F8F"},
+  {id:"Yapıldı", renk:"#3E8E6B"},
+  {id:"Tamamlandı", renk:"#1F6B4A"},
+  {id:"Ertelendi", renk:"#C9962F"},
+  {id:"Gidilemedi", renk:"#B4713A"},
+  {id:"İptal edildi", renk:"#A83A32"}
+];
+const DURUMRENK = Object.fromEntries(ETK_DURUMLAR.map(d=>[d.id, d.renk]));
+/* Bildirimler şimdilik yalnızca oturum açan kullanıcıya (size) gider. */
+const TAKVIM_BILDIRIM_SADECE_BEN = true;
+const TAKVIM_BILDIRIM_KEY = "yh-takvim-bildirim-v1";
 const RISKLER = ["KRİTİK","Yüksek","Orta","Düşük","—"];
 const ASAMALAR = ["1 — Koordinatör arayışı","2 — İlk toplantı","3 — Kurucu heyet",
                   "4 — Mekân","5 — Açılış"];
@@ -1762,7 +1831,17 @@ let oturum = null;
 let gecisSahibiId = null; /* üye geçiş menüsü yalnızca bu hesap için (başkan) */
 let kullanicilar = JSON.parse(JSON.stringify(D.kullanicilar));
 let acikSekmeler = D.sekmeler.filter(s=>s[2]==="acik").map(s=>s[0]);
-let etkinlikler = D.etkinlik.map(e=>({tarih:e[0],tip:e[1],baslik:e[2],ilce:e[3],kisi:e[4],not:e[5]}));
+function etkinlikId(){ return "e"+Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
+function etkinlikNormalize(e){
+  if(!e || typeof e!=="object") return e;
+  if(!e.id) e.id = etkinlikId();
+  if(!e.durum || !DURUMRENK[e.durum]) e.durum = "Bekliyor";
+  if(!Array.isArray(e.davetliler)) e.davetliler = [];
+  if(!e.bildirim || typeof e.bildirim!=="object") e.bildirim = {};
+  return e;
+}
+let etkinlikler = D.etkinlik.map(e=>({tarih:e[0],tip:e[1],baslik:e[2],ilce:e[3],kisi:e[4],not:e[5]})).map(etkinlikNormalize);
+let etkDavetliler = [];
 let kirli = {}, kirliDiger = {}, yazUrl = "", syncToken = "", aktifSekme = "genel", acikIlce = null, DZ = false;
 let csvKaynaklar = [
   {ad:"Canlı İlçe CSV", url:"https://www.yhteskilat.org/data/ilceler.csv"},
@@ -2731,7 +2810,73 @@ function kisiAc(ad){
 /* ============ TAKVİM ============ */
 let tkTipler = Object.keys(TIPRENK).slice();
 let tkDonem = 0, tkGorunum = "ay", tkAy = new Date(2026,6,1), duzEtk = null;
+let etkDurumSec = "Bekliyor";
+
+function etkDurumRenk(e){
+  return DURUMRENK[(e && e.durum) || "Bekliyor"] || "#5A6B7C";
+}
+function tarihISO(d){
+  const x = d instanceof Date ? d : new Date(d);
+  return `${x.getFullYear()}-${String(x.getMonth()+1).padStart(2,"0")}-${String(x.getDate()).padStart(2,"0")}`;
+}
+function yarinISO(){
+  const d = new Date(); d.setHours(12,0,0,0); d.setDate(d.getDate()+1);
+  return tarihISO(d);
+}
+function bildirimAnahtarOku(){
+  try{ return JSON.parse(localStorage.getItem(TAKVIM_BILDIRIM_KEY)||"{}"); }catch(e){ return {}; }
+}
+function bildirimAnahtarYaz(o){
+  try{ localStorage.setItem(TAKVIM_BILDIRIM_KEY, JSON.stringify(o)); }catch(e){}
+}
+function bildirimIzinIste(){
+  try{
+    if(typeof Notification!=="undefined" && Notification.permission==="default")
+      Notification.requestPermission().catch(()=>{});
+  }catch(e){}
+}
+/** Şimdilik yalnızca oturum açan kullanıcıya bildirim. */
+function takvimBildirimGonder(baslik, govde, anahtar){
+  if(!TAKVIM_BILDIRIM_SADECE_BEN) return; // ileride davetlilere de açılacak
+  const kim = oturum ? (oturum.ad||oturum.id) : "Misafir";
+  const key = anahtar || (baslik+"|"+govde);
+  const kayit = bildirimAnahtarOku();
+  if(kayit[key]) return;
+  kayit[key] = Date.now();
+  bildirimAnahtarYaz(kayit);
+  toastGoster(`${baslik} — ${govde}`);
+  try{
+    if(typeof Notification!=="undefined" && Notification.permission==="granted"){
+      new Notification(baslik, {body: govde + " · " + kim, tag: key.slice(0,80)});
+    }
+  }catch(e){}
+}
+function takvimGunOnceKontrol(){
+  const yarin = yarinISO();
+  etkinlikler.forEach(e=>{
+    if(!e || e.tarih!==yarin) return;
+    if(["İptal edildi","Tamamlandı"].includes(e.durum)) return;
+    const dav = (e.davetliler||[]).map(d=>d.ad).filter(Boolean);
+    const kim = dav.length ? dav.join(", ") : (e.kisi||"sorumlu");
+    takvimBildirimGonder(
+      "Yarın görüşme / program",
+      `${e.baslik} · ${e.tarih} · ${kim}`,
+      "gunonce|"+(e.id||e.baslik)+"|"+e.tarih
+    );
+  });
+}
+function takvimDavetliBildirim(e, yeniDavetliler){
+  if(!yeniDavetliler || !yeniDavetliler.length) return;
+  const adlar = yeniDavetliler.map(d=>d.ad).join(", ");
+  takvimBildirimGonder(
+    "Takvime kişi eklendi",
+    `${e.baslik} · ${e.tarih} → ${adlar} (şimdilik bildirim yalnızca size)`,
+    "ekle|"+(e.id||e.baslik)+"|"+adlar+"|"+e.tarih
+  );
+}
+
 function takvimCiz(){
+  etkinlikler.forEach(etkinlikNormalize);
   const duz = duzenleyebilir("takvim");
   $("#takvimYetki").textContent = duz ? "Veri girişi yetkiniz var"
     : "Görüntüleme modunda — veri girişini Başkan veya yetkili personel yapar";
@@ -2743,10 +2888,17 @@ function takvimCiz(){
     tkTipler = tkTipler.includes(t) ? tkTipler.filter(x=>x!==t) : [...tkTipler,t];
     takvimCiz();
   });
+  const leg = $("#tkDurumLegend");
+  if(leg){
+    leg.innerHTML = ETK_DURUMLAR.map(d=>
+      `<span class="durumCip" style="cursor:default;color:${d.renk}"><i style="background:${d.renk}"></i>${esc(d.id)}</span>`
+    ).join("");
+  }
   const liste = filtreli();
   $("#takvimAy").classList.toggle("gizle", tkGorunum!=="ay");
   $("#takvimListe").classList.toggle("gizle", tkGorunum!=="liste");
   if(tkGorunum==="ay") ayCiz(liste); else listeCiz(liste);
+  takvimGunOnceKontrol();
 }
 function filtreli(){
   let l = etkinlikler.filter(e=> tkTipler.includes(e.tip));
@@ -2760,7 +2912,7 @@ const AYAD = ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağust
 function ayCiz(liste){
   const y = tkAy.getFullYear(), m = tkAy.getMonth();
   $("#ayAd").textContent = `${AYAD[m]} ${y}`;
-  const ayE = liste.filter(e=>{ const d=new Date(e.tarih); return d.getFullYear()===y && d.getMonth()===m; });
+  const ayE = liste.filter(e=>{ const d=new Date(e.tarih+"T12:00:00"); return d.getFullYear()===y && d.getMonth()===m; });
   $("#ayOzet").textContent = `${ayE.length} etkinlik`;
   let b0 = new Date(y,m,1).getDay()-1; if(b0<0) b0=6;
   const gs = new Date(y,m+1,0).getDate();
@@ -2771,14 +2923,17 @@ function ayCiz(liste){
     const ge = liste.filter(e=>e.tarih===ds);
     const bug = BUGUN.getFullYear()===y && BUGUN.getMonth()===m && BUGUN.getDate()===g;
     h += `<div class="tkGun ${bug?"bugun":""}"><div class="no">${g}</div>` +
-      ge.map(e=>`<div class="tkEt" data-e="${esc(e.tarih)}|${esc(e.baslik)}"
-        style="border-left-color:${TIPRENK[e.tip]};background:${TIPRENK[e.tip]}18;color:${TIPRENK[e.tip]}"
-        title="${esc(e.baslik)}">${esc(e.baslik)}</div>`).join("") + `</div>`;
+      ge.map(e=>{
+        const dr = etkDurumRenk(e);
+        return `<div class="tkEt" data-eid="${esc(e.id)}"
+        style="border-left-color:${dr};background:${dr}18;color:${dr}"
+        title="${esc(e.baslik)} · ${esc(e.durum||"Bekliyor")}">${esc(e.baslik)}</div>`;
+      }).join("") + `</div>`;
   }
   $("#tkGrid").innerHTML = h;
-  $$("#tkGrid .tkEt").forEach(e=> e.onclick = ()=>{
-    const [t,b] = e.dataset.e.split("|");
-    etkinlikAc(etkinlikler.find(x=>x.tarih===t && x.baslik===b));
+  $$("#tkGrid .tkEt").forEach(el=> el.onclick = ()=>{
+    const e = etkinlikler.find(x=>x.id===el.dataset.eid);
+    if(e) etkinlikAc(e);
   });
 }
 function listeCiz(liste){
@@ -2788,33 +2943,130 @@ function listeCiz(liste){
     return;
   }
   $("#takvimListe").innerHTML = liste.map(e=>{
-    const d = new Date(e.tarih);
-    return `<div class="kisi" data-e="${esc(e.tarih)}|${esc(e.baslik)}">
-      <div class="avt" style="background:${TIPRENK[e.tip]};color:#fff;font-size:11px;flex-direction:column;line-height:1.1">
+    const d = new Date(e.tarih+"T12:00:00");
+    const dr = etkDurumRenk(e);
+    const dav = (e.davetliler||[]).map(x=>x.ad).filter(Boolean).join(", ");
+    return `<div class="kisi" data-eid="${esc(e.id)}">
+      <div class="avt" style="background:${dr};color:#fff;font-size:11px;flex-direction:column;line-height:1.1">
         <span>${d.getDate()}</span><span style="font-size:8px">${AYAD[d.getMonth()].slice(0,3)}</span></div>
       <div class="ki"><div class="kn">${esc(e.baslik)}</div>
-        <div class="kg">${esc(e.ilce)} · ${esc(e.kisi)}${e.not?" · "+esc(e.not):""}</div></div>
-      <span class="rz" style="background:${TIPRENK[e.tip]}22;color:${TIPRENK[e.tip]}">${e.tip}</span></div>`;
+        <div class="kg">${esc(e.ilce)} · ${esc(e.kisi||dav||"—")}${e.not?" · "+esc(e.not):""}</div></div>
+      <span class="rz" style="background:${dr}22;color:${dr}">${esc(e.durum||"Bekliyor")}</span>
+      <span class="rz" style="background:${TIPRENK[e.tip]}22;color:${TIPRENK[e.tip]}">${esc(e.tip)}</span></div>`;
   }).join("");
-  $$("#takvimListe .kisi").forEach(e=> e.onclick = ()=>{
-    const [t,b] = e.dataset.e.split("|");
-    etkinlikAc(etkinlikler.find(x=>x.tarih===t && x.baslik===b));
+  $$("#takvimListe .kisi").forEach(el=> el.onclick = ()=>{
+    const e = etkinlikler.find(x=>x.id===el.dataset.eid);
+    if(e) etkinlikAc(e);
   });
+}
+function etkDurumCiplerCiz(aktif, duz){
+  const el = $("#eDurumCipler"); if(!el) return;
+  el.innerHTML = ETK_DURUMLAR.map(d=>
+    `<button type="button" class="durumCip ${aktif===d.id?"on":""}" data-durum="${esc(d.id)}"
+      style="color:${d.renk}" ${duz?"":"disabled"}><i style="background:${d.renk}"></i>${esc(d.id)}</button>`
+  ).join("");
+  $$("#eDurumCipler .durumCip").forEach(b=> b.onclick = ()=>{
+    if(b.disabled) return;
+    etkDurumSec = b.dataset.durum;
+    $("#eDurum").value = etkDurumSec;
+    etkDurumCiplerCiz(etkDurumSec, true);
+  });
+}
+function etkDavetliListeCiz(duz){
+  const el = $("#eDavetliListe"); if(!el) return;
+  if(!etkDavetliler.length){
+    el.innerHTML = `<p style="font-size:12.5px;color:var(--sil);margin:0 0 8px">Henüz davetli yok — aşağıdan ekleyin.</p>`;
+    return;
+  }
+  el.innerHTML = etkDavetliler.map((d,ix)=>`<div class="davetliSat">
+    <div style="flex:1;min-width:0">
+      <div class="kn">${esc(d.ad)}</div>
+      <div class="kg">${esc([d.tel,d.mail].filter(Boolean).join(" · ")||"İletişim yok")}</div>
+    </div>
+    ${duz?`<button type="button" class="btn sil" data-davsil="${ix}">✕</button>`:""}
+  </div>`).join("");
+  $$("[data-davsil]").forEach(b=> b.onclick = ()=>{
+    etkDavetliler.splice(+b.dataset.davsil,1);
+    etkDavetliListeCiz(true);
+  });
+}
+function etkDavetliKulDoldur(){
+  const sel = $("#eDavetliKul"); if(!sel) return;
+  const kay = (typeof kullanicilar!=="undefined" && kullanicilar.length) ? kullanicilar : (D.kullanicilar||[]);
+  sel.innerHTML = `<option value="">Seçin…</option>` + kay.map(u=>
+    `<option value="${esc(u.id)}" data-ad="${esc(u.ad)}" data-tel="${esc(u.tel||"")}">${esc(u.ad)}</option>`
+  ).join("");
 }
 function etkinlikAc(e){
   duzEtk = e||null;
   $("#etkBaslik").textContent = e ? "Etkinliği Düzenle" : "Etkinlik Ekle";
   $("#eTip").innerHTML = Object.keys(TIPRENK).map(t=>`<option ${e&&e.tip===t?"selected":""}>${t}</option>`).join("");
-  $("#eTarih").value = e?e.tarih:new Date().toISOString().slice(0,10);
+  $("#eTarih").value = e?e.tarih:tarihISO(new Date());
   $("#eBaslik").value = e?e.baslik:"";
   $("#eIlce").value = e?e.ilce:"";
   $("#eKisi").value = e?e.kisi:"";
   $("#eNot").value = e?e.not:"";
+  etkDurumSec = (e && e.durum && DURUMRENK[e.durum]) ? e.durum : "Bekliyor";
+  $("#eDurum").value = etkDurumSec;
+  etkDavetliler = e && Array.isArray(e.davetliler) ? JSON.parse(JSON.stringify(e.davetliler)) : [];
   const duz = duzenleyebilir("takvim");
-  ["eTarih","eTip","eBaslik","eIlce","eKisi","eNot"].forEach(id=> $("#"+id).disabled = !duz);
+  ["eTarih","eTip","eBaslik","eIlce","eKisi","eNot","eDavetliKul","eDavetliAd","eDavetliTel","eDavetliMail"].forEach(id=>{
+    const n = $("#"+id); if(n) n.disabled = !duz;
+  });
+  const bAdd = $("#bDavetliEkle"); if(bAdd) bAdd.classList.toggle("gizle", !duz);
+  etkDurumCiplerCiz(etkDurumSec, duz);
+  etkDavetliKulDoldur();
+  etkDavetliListeCiz(duz);
   $("#bEtkKaydet").style.display = duz?"":"none";
   $("#bEtkSil").style.display = (duz&&e)?"":"none";
+  bildirimIzinIste();
   modalAc("#mEtkinlik");
+}
+function takvimAyRaporCiz(){
+  const kutu = $("#takvimRapor"); if(!kutu) return;
+  const y = tkAy.getFullYear(), m = tkAy.getMonth();
+  const ayE = etkinlikler.filter(e=>{
+    const d = new Date(e.tarih+"T12:00:00");
+    return d.getFullYear()===y && d.getMonth()===m && tkTipler.includes(e.tip);
+  });
+  const say = {};
+  ETK_DURUMLAR.forEach(d=> say[d.id]=0);
+  ayE.forEach(e=>{ const k = DURUMRENK[e.durum]?e.durum:"Bekliyor"; say[k]=(say[k]||0)+1; });
+  const top = ayE.length || 1;
+  kutu.classList.remove("gizle");
+  kutu.innerHTML = `
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px">
+      <b style="font-size:14px;letter-spacing:.06em;text-transform:uppercase">${esc(AYAD[m])} ${y} — Durum Raporu</b>
+      <span style="font-size:12px;color:var(--sil)">${ayE.length} etkinlik</span>
+      <button type="button" class="btn" id="bTakvimRaporKapat" style="margin-left:auto">Kapat</button>
+    </div>
+    <div class="tkRaporBar">${ETK_DURUMLAR.map(d=>{
+      const n = say[d.id]||0; if(!n) return "";
+      return `<span title="${esc(d.id)}: ${n}" style="width:${(n/top*100).toFixed(1)}%;background:${d.renk}"></span>`;
+    }).join("")}</div>
+    <div class="tkRaporListe">${ETK_DURUMLAR.map(d=>`
+      <div class="tkRaporKart" style="border-left:4px solid ${d.renk}">
+        <div class="v" style="color:${d.renk}">${say[d.id]||0}</div>
+        <div class="l">${esc(d.id)}</div>
+      </div>`).join("")}</div>
+    <div style="margin-top:14px">
+      ${ayE.length ? ayE.sort((a,b)=>a.tarih.localeCompare(b.tarih)).map(e=>{
+        const dr = etkDurumRenk(e);
+        return `<div class="krit" style="cursor:pointer" data-rapor-eid="${esc(e.id)}">
+          <span class="kad"><b>${esc(e.baslik)}</b>
+            <div style="font-size:11.5px;color:var(--sil)">${esc(e.tarih)} · ${esc(e.tip)} · ${esc((e.davetliler||[]).map(x=>x.ad).join(", ")||e.kisi||"—")}</div>
+          </span>
+          <span class="rz" style="background:${dr}22;color:${dr}">${esc(e.durum||"Bekliyor")}</span>
+        </div>`;
+      }).join("") : `<p style="font-size:13px;color:var(--sil)">Bu ayda etkinlik yok.</p>`}
+    </div>`;
+  const kapat = $("#bTakvimRaporKapat");
+  if(kapat) kapat.onclick = ()=> kutu.classList.add("gizle");
+  $$("[data-rapor-eid]").forEach(el=> el.onclick = ()=>{
+    const e = etkinlikler.find(x=>x.id===el.dataset.raporEid);
+    if(e) etkinlikAc(e);
+  });
+  kutu.scrollIntoView({behavior:"smooth", block:"nearest"});
 }
 $("#ayGeri").onclick = ()=>{ tkAy.setMonth(tkAy.getMonth()-1); takvimCiz(); };
 $("#ayIleri").onclick = ()=>{ tkAy.setMonth(tkAy.getMonth()+1); takvimCiz(); };
@@ -2827,13 +3079,57 @@ $$("[data-gor]").forEach(b=> b.onclick = ()=>{
   $$("[data-gor]").forEach(x=>x.classList.toggle("on", x===b)); takvimCiz();
 });
 $("#bEtkinlikEkle").onclick = ()=> etkinlikAc(null);
+$("#bTakvimRapor") && ($("#bTakvimRapor").onclick = ()=> takvimAyRaporCiz());
+$("#bDavetliEkle") && ($("#bDavetliEkle").onclick = ()=>{
+  const kul = $("#eDavetliKul");
+  let ad = ($("#eDavetliAd").value||"").trim();
+  let tel = ($("#eDavetliTel").value||"").trim();
+  let mail = ($("#eDavetliMail").value||"").trim();
+  let userId = "";
+  if(kul && kul.value){
+    const opt = kul.options[kul.selectedIndex];
+    ad = ad || (opt.dataset.ad||opt.textContent||"").trim();
+    tel = tel || (opt.dataset.tel||"").trim();
+    userId = kul.value;
+  }
+  if(!ad) return toastGoster("Davetli adı gerekli.","hata");
+  if(etkDavetliler.some(d=>d.ad===ad && (d.userId||"")===(userId||"")))
+    return toastGoster("Bu kişi zaten listede.","hata");
+  etkDavetliler.push({ad, tel, mail, userId});
+  if(kul) kul.value = "";
+  $("#eDavetliAd").value = "";
+  $("#eDavetliTel").value = "";
+  $("#eDavetliMail").value = "";
+  etkDavetliListeCiz(true);
+});
+$("#eDavetliKul") && ($("#eDavetliKul").onchange = ()=>{
+  const opt = $("#eDavetliKul").options[$("#eDavetliKul").selectedIndex];
+  if(!opt || !opt.value) return;
+  if(!$("#eDavetliAd").value) $("#eDavetliAd").value = opt.dataset.ad||"";
+  if(!$("#eDavetliTel").value) $("#eDavetliTel").value = opt.dataset.tel||"";
+});
 $("#bEtkKaydet").onclick = ()=>{
-  const y = {tarih:$("#eTarih").value, tip:$("#eTip").value, baslik:$("#eBaslik").value,
-             ilce:$("#eIlce").value, kisi:$("#eKisi").value, not:$("#eNot").value};
-  if(!y.tarih || !y.baslik) return;
-  if(duzEtk) Object.assign(duzEtk,y); else etkinlikler.push(y);
+  const eskiDav = duzEtk && Array.isArray(duzEtk.davetliler) ? duzEtk.davetliler.slice() : [];
+  const y = {
+    id: (duzEtk && duzEtk.id) || etkinlikId(),
+    tarih:$("#eTarih").value, tip:$("#eTip").value, baslik:$("#eBaslik").value,
+    ilce:$("#eIlce").value, kisi:$("#eKisi").value, not:$("#eNot").value,
+    durum: $("#eDurum").value || etkDurumSec || "Bekliyor",
+    davetliler: JSON.parse(JSON.stringify(etkDavetliler)),
+    bildirim: (duzEtk && duzEtk.bildirim) ? {...duzEtk.bildirim} : {}
+  };
+  if(!y.tarih || !y.baslik) return toastGoster("Tarih ve başlık gerekli.","hata");
+  if(!DURUMRENK[y.durum]) y.durum = "Bekliyor";
+  if(duzEtk) Object.assign(duzEtk,y); else etkinlikler.push(etkinlikNormalize(y));
+  const hedef = duzEtk || etkinlikler[etkinlikler.length-1];
+  const yeni = (hedef.davetliler||[]).filter(d=>
+    !eskiDav.some(x=>x.ad===d.ad && (x.userId||"")===(d.userId||""))
+  );
+  takvimDavetliBildirim(hedef, yeni);
   kirliDiger["takvim."+y.tarih] = y.baslik;
   modalKapat(); ciz();
+  const rapor = $("#takvimRapor");
+  if(rapor && !rapor.classList.contains("gizle")) takvimAyRaporCiz();
 };
 $("#bEtkSil").onclick = ()=>{ etkinlikler = etkinlikler.filter(x=>x!==duzEtk); modalKapat(); ciz(); };
 
@@ -3112,7 +3408,7 @@ function metaUygula(veri){
   });
   if(Array.isArray(veri.takvim)){
     etkinlikler = veri.takvim.map(e=> typeof e==="object" && e.tarih ? e
-      : ({tarih:e[0],tip:e[1],baslik:e[2],ilce:e[3],kisi:e[4],not:e[5]}));
+      : ({tarih:e[0],tip:e[1],baslik:e[2],ilce:e[3],kisi:e[4],not:e[5]})).map(etkinlikNormalize);
   }
   if(Array.isArray(veri.kullanicilar) && veri.kullanicilar.length){
     kullanicilar = JSON.parse(JSON.stringify(veri.kullanicilar));
@@ -3289,7 +3585,8 @@ $("#bSifirla").onclick = ()=>{
   if(!confirm("Tüm yerel değişiklikler silinip gömülü örnek veriye dönülecek. Emin misiniz?")) return;
   Object.keys(D).forEach(k=> delete D[k]);
   Object.assign(D, JSON.parse(JSON.stringify(D_SNAPSHOT)));
-  etkinlikler = D.etkinlik.map(e=>({tarih:e[0],tip:e[1],baslik:e[2],ilce:e[3],kisi:e[4],not:e[5]}));
+  etkinlikler = D.etkinlik.map(e=>({tarih:e[0],tip:e[1],baslik:e[2],ilce:e[3],kisi:e[4],not:e[5]})).map(etkinlikNormalize);
+  etkDavetliler = [];
   kullanicilar = JSON.parse(JSON.stringify(D.kullanicilar));
   kirli={}; kirliDiger={}; yedek=null;
   faal = {ilce:"", ay:"Temmuz", dolduran:"", veri:{}};
@@ -4691,8 +4988,9 @@ function sayfaVeri(s){
       ["Kişi","Görev","Statü","Kapasite","Sorumlu Bölge","İletişim"],
       D.ekip.map(k=>[k[0],k[1],k[2],k[3],k[4],k[6]]));
     case "takvim": return P("Teşkilat Takvimi",
-      ["Tarih","Tip","Başlık","İlçe / Yer","Kim","Not"],
-      etkinlikler.map(e=>[e.tarih,e.tip,e.baslik,e.ilce,e.kisi,e.not]));
+      ["Tarih","Tip","Başlık","İlçe / Yer","Sorumlu","Durum","Davetliler","Not"],
+      etkinlikler.map(e=>[e.tarih,e.tip,e.baslik,e.ilce,e.kisi,e.durum||"Bekliyor",
+        (e.davetliler||[]).map(d=>d.ad).join(", "),e.not]));
     case "program": return P("Program ve Kamp Katılım",
       ["Temsilcilik","Bölge", ...D.programlar.flatMap(p=>[p.ad+" HEDEF", p.ad+" KATILAN"])],
       Object.entries(D.progKatilim).map(([ad,v])=>{
