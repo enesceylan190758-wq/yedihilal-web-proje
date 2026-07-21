@@ -1896,8 +1896,8 @@ const AYET = {
  arsiv:["İnsan için ancak çalıştığının karşılığı vardır.","Necm, 39"],
  kilavuz:["Kolaylaştırın, zorlaştırmayın; müjdeleyin, nefret ettirmeyin.","Buhârî, İlim 11"],
 };
-const HILAL = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#C9A227" stroke-width="1.5">
-  <path d="M16.5 3.2A9 9 0 1 0 20.8 14a7 7 0 1 1-4.3-10.8Z"/></svg>`;
+const HILAL = `<svg viewBox="0 0 24 24" width="18" height="18" fill="#D4AF37" stroke="none">
+  <path fill-rule="evenodd" d="M16.5 3.2A9 9 0 1 0 20.8 14a7 7 0 1 1-4.3-10.8Z"/></svg>`;
 function ayetCiz(){
   document.querySelectorAll("[data-ayet]").forEach(e=>{
     const a = AYET[e.dataset.ayet]; if(!a) return;
@@ -1908,11 +1908,12 @@ function ilkeCiz(){
   const el = document.getElementById("yediIlke"); if(!el) return;
   el.innerHTML = D.yediIlke.map((t,ix)=>{
     const bos = !t || t.startsWith("—");
+    const renk = bos ? "#5C5348" : "#D4AF37";
     return `${ix?'<span class="ilkeAyrac"></span>':''}
     <div class="ilkeKart ${bos?"bos":""}" title="${esc(D.yediIlkeAciklama[ix]||t)}">
       <div class="ilkeHilal">
-        <svg viewBox="0 0 24 24" fill="none" stroke="${bos?"#5C5348":"#D4AF37"}" stroke-width="1.3">
-          <path d="M16.8 3A9 9 0 1 0 21 14.3 7 7 0 1 1 16.8 3Z"/></svg></div>
+        <svg viewBox="0 0 24 24" fill="${renk}" stroke="none">
+          <path fill-rule="evenodd" d="M16.8 3A9 9 0 1 0 21 14.3 7 7 0 1 1 16.8 3Z"/></svg></div>
       <span class="ilkeAd">${esc(bos?"doldurulacak":t)}</span></div>`;
   }).join("");
 }
