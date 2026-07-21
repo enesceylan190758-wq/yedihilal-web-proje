@@ -125,46 +125,26 @@ nav.anaNav button.on{color:var(--altin);border-color:rgba(212,175,55,.55);
 nav.anaNav .navIkon{flex:0 0 auto;opacity:.85;width:14px!important;height:14px!important;display:block}
 nav.anaNav button.on .navIkon{opacity:1}
 nav.anaNav button span{line-height:1.1;text-align:left}
-.navIpucu{display:none;font-size:10px;color:#6E9480;text-align:center;padding:3px 18px 4px;
-  letter-spacing:.06em;background:#15261E;border-bottom:1px solid #24382E}
-/* Masaüstünde alt şerit kapalı — sol panel kullanılır */
-.nviAlt{display:none}
-@media(max-width:900px){.navIpucu{display:block}
-  nav.anaNav button{padding:6px 9px;font-size:10.5px}}
+.navGrup{position:relative;flex:0 0 auto}
+.navGrup > .navAna{margin:0}
+.navDrop{display:none;position:absolute;top:calc(100% + 4px);left:0;min-width:min(240px,88vw);
+  background:linear-gradient(180deg,#1A2E24 0%,#15261E 100%);border:1px solid #3A5C4A;
+  border-radius:0 0 10px 10px;box-shadow:0 10px 28px rgba(0,0,0,.32);z-index:55;padding:6px;
+  flex-direction:column;gap:2px}
+.navGrup:hover .navDrop,.navGrup.acik .navDrop{display:flex}
+.navDrop button{width:100%;text-align:left;color:#B8CFC0;padding:8px 11px;border-radius:7px;
+  font-size:11px;font-weight:600;font-family:"Archivo";letter-spacing:.02em;transition:.15s;
+  border:1px solid transparent;background:transparent;display:flex;align-items:center;gap:8px;
+  white-space:nowrap;text-transform:none;box-shadow:none;min-width:0}
+.navDrop button:hover{color:var(--kagit);background:#24382E;border-color:#3A5C4A}
+.navDrop button.on{color:var(--altin);background:#24382E;border-color:rgba(212,175,55,.35);
+  box-shadow:inset 3px 0 0 var(--altin)}
+.navDrop .navIkon{flex:0 0 auto;opacity:.75;width:14px!important;height:14px!important}
+.navDrop button.on .navIkon{opacity:1}
+.navDrop .navBos{color:#6E9480;font-size:11px;padding:8px 10px;line-height:1.45}
 
-/* ---------------- SOL PANEL + İÇERİK ---------------- */
-.panelGov{display:grid;grid-template-columns:210px minmax(0,1fr);min-height:calc(100vh - 100px);
-  max-width:1680px;margin:0 auto;position:relative;transition:grid-template-columns .32s cubic-bezier(.2,.8,.2,1)}
-.panelGov.solKapali{grid-template-columns:32px minmax(0,1fr)}
-.solPanel{background:#EEF3EE;border-right:1px solid #D2DDD4;position:sticky;top:36px;height:calc(100vh - 36px);
-  overflow:visible;padding:12px 10px 70px;z-index:20;transition:padding .28s ease}
-.solIc{overflow:auto;max-height:calc(100vh - 70px);padding-right:2px;
-  transition:opacity .22s ease, transform .28s cubic-bezier(.2,.8,.2,1)}
-.panelGov.solKapali .solPanel{padding:12px 0 0;overflow:visible;background:transparent;border-right:0;box-shadow:none}
-.panelGov.solKapali .solIc{opacity:0;transform:translateX(-12px);pointer-events:none;width:0;height:0;overflow:hidden}
-.solToggle{position:absolute;top:58px;right:-12px;z-index:28;width:24px;height:46px;
-  display:flex;align-items:center;justify-content:center;border-radius:0 8px 8px 0;
-  background:#F7FAF7;border:1px solid #C9D5CB;border-left:0;
-  color:#5F6B63;font-size:15px;font-weight:700;box-shadow:2px 0 8px rgba(45,70,55,.06);
-  transition:background .15s, color .15s, right .28s ease}
-.solToggle:hover{background:#E4EDE5;color:#3F6B52}
-.solToggle span{display:block;line-height:1;transform:translateX(-1px)}
-.panelGov.solKapali .solToggle{right:-1px;border-radius:0 8px 8px 0;border:1px solid #C9D5CB;
-  width:30px;height:50px;background:#EEF3EE;box-shadow:0 2px 10px rgba(45,70,55,.08)}
-.solBas{font-family:"Archivo";font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
-  color:#5F6B63;padding:8px 10px;margin:0 0 8px;background:#E2EAE3;border:1px solid #D0DBD3;
-  border-radius:7px}
-.solBas b{display:block;color:#243029;font-size:12.5px;letter-spacing:.04em;margin-top:3px;text-transform:none}
-.solMenu{display:flex;flex-direction:column;gap:2px}
-.solMenu button{text-align:left;color:#334039;padding:8px 10px;border-radius:7px;font-size:11.5px;
-  font-weight:600;font-family:"Archivo";letter-spacing:.01em;transition:.15s;border:1px solid transparent;
-  background:transparent;display:flex;align-items:center;gap:8px;width:100%}
-.solMenu button:hover{background:#E4EBE5;color:#1F2A23}
-.solMenu button.on{background:#FBFCFB;color:#2F5C44;border-color:#C5D6CA;box-shadow:inset 3px 0 0 #6E9B7F}
-.solMenu .navIkon{flex:0 0 auto;opacity:.7;color:#5F6B63;width:14px;height:14px}
-.solMenu button.on .navIkon{opacity:1;color:#2F5C44}
-.solMenu button.ozel .navIkon{opacity:.9}
-.solBos{color:#5F6B63;font-size:12px;padding:10px;line-height:1.5}
+/* ---------------- İÇERİK ALANI ---------------- */
+.panelGov{max-width:1680px;margin:0 auto;min-height:calc(100vh - 100px)}
 .icerikAlan{padding:18px 22px 90px;position:relative;min-width:0}
 .icerikAlan::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
   background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(45,90,66,.022) 39px,rgba(45,90,66,.022) 40px);
@@ -173,18 +153,8 @@ nav.anaNav button span{line-height:1.1;text-align:left}
 @keyframes gir{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
-  .panelGov{transition:none!important}
 }
 @media(max-width:960px){
-  .panelGov{grid-template-columns:1fr}
-  .panelGov.solKapali{grid-template-columns:1fr}
-  .solPanel{position:relative;top:0;height:auto;max-height:none;border-right:0;
-    border-bottom:1px solid #D2DDD4;padding:12px 36px 12px 12px;background:#EEF3EE}
-  .panelGov.solKapali .solPanel{padding:8px 12px;min-height:44px}
-  .solToggle{top:10px;right:8px;width:34px;height:34px;border-radius:8px;border:1px solid var(--cizgi)}
-  .panelGov.solKapali .solToggle{right:8px;width:34px;height:34px}
-  .solMenu{flex-direction:row;flex-wrap:wrap;gap:6px}
-  .solMenu button{padding:8px 10px;font-size:11.5px}
   .icerikAlan{padding:14px 14px 100px}
 }
 
@@ -700,28 +670,14 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
   .kimBtn{max-width:100%;align-items:flex-start}
   .kimMenu{left:0;right:0;min-width:0;max-width:none;width:100%}
 
-  /* Üst ana + alt sekmeler: kalıcı çift şerit */
+  /* Üst ana menü + hover alt liste */
   nav.anaNav{z-index:45}
-  .navIpucu{display:none!important}
-  .nvi{flex-wrap:nowrap;padding:8px 10px 6px;gap:7px;-webkit-overflow-scrolling:touch;
-    scroll-snap-type:x proximity;border-bottom:1px solid #24382E}
-  nav.anaNav .nvi > button{padding:9px 12px;font-size:11px;min-height:42px;scroll-snap-align:start;flex:0 0 auto}
+  .nvi{flex-wrap:nowrap;padding:8px 10px;gap:7px;-webkit-overflow-scrolling:touch;
+    scroll-snap-type:x proximity}
+  nav.anaNav .navAna{padding:9px 12px;font-size:11px;min-height:42px;scroll-snap-align:start;flex:0 0 auto}
   nav.anaNav .navIkon{width:15px!important;height:15px!important}
-  .nviAlt{display:flex!important;flex-wrap:nowrap;gap:6px;padding:7px 10px 8px;overflow-x:auto;
-    -webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;background:#15261E;
-    border-bottom:1px solid rgba(212,175,55,.28)}
-  .nviAlt::-webkit-scrollbar,.nvi::-webkit-scrollbar{height:0}
-  .nviAlt button{flex:0 0 auto;scroll-snap-align:start;min-height:38px;padding:7px 11px;
-    border:1px solid #2A4034;border-radius:999px;background:#101F18;color:#9BB8A8;
-    font-family:"Archivo";font-size:11px;font-weight:600;letter-spacing:.03em;white-space:nowrap;
-    display:inline-flex;align-items:center;gap:6px}
-  .nviAlt button.on{color:#0F1A14;background:var(--altin);border-color:var(--altin)}
-  .nviAlt button .navIkon{width:13px!important;height:13px!important;opacity:.9}
-  .nviAlt .solBos{color:#6E9480;font-size:11px;padding:6px 4px;white-space:nowrap}
-
-  /* Sol panel mobilde gizlenir — yerine #nviAlt */
-  .panelGov{min-height:0;grid-template-columns:1fr!important}
-  .solPanel,.solToggle{display:none!important}
+  .navDrop{position:fixed;left:12px;right:12px;width:auto;min-width:0;top:auto}
+  .navGrup.acik .navDrop{display:flex}
 
   .icerikAlan{padding:12px 12px calc(130px + env(safe-area-inset-bottom,0px))}
   .ayet{padding:8px 12px;gap:8px;margin-bottom:12px}
@@ -866,7 +822,7 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
   border-radius:8px;font-size:16px;flex:0 0 auto}
 @media(min-width:701px){.pwaKur{left:auto;right:22px;width:min(360px,calc(100vw - 44px));bottom:92px}}
 @media print{
-  header,nav,.solPanel,.disaAktar,.kaydetBar,.sancFab,.sancPanel,.pwaKur,.hrtArac,.zoomBtn,.hrtBuyut,.gosterim{display:none!important}
+  header,nav,.disaAktar,.kaydetBar,.sancFab,.sancPanel,.pwaKur,.hrtArac,.zoomBtn,.hrtBuyut,.gosterim{display:none!important}
   .sayfa{display:block!important} body{background:#fff}
   .kart{break-inside:avoid;border:1px solid #ccc}
 }
@@ -908,20 +864,9 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
 
 <nav class="anaNav">
   <div class="nvi" id="nvi"></div>
-  <div class="nviAlt" id="nviAlt" aria-label="Alt sekmeler"></div>
-  <div class="navIpucu">Ana menüde kaydırın → · Alt sayfalar solda / altta</div>
 </nav>
 
 <div class="panelGov">
-<aside class="solPanel" id="solPanel" aria-label="Alt menü">
-  <button type="button" class="solToggle" id="solToggle" title="Sol paneli kapat" aria-expanded="true" aria-controls="solIc">
-    <span id="solToggleIkon">‹</span>
-  </button>
-  <div class="solIc" id="solIc">
-    <div class="solBas">Bölüm<b id="solBasAd">—</b></div>
-    <div class="solMenu" id="solMenu"></div>
-  </div>
-</aside>
 <div class="icerikAlan">
 <main>
 <!-- ============ GENEL DURUM ============ -->
@@ -2141,19 +2086,26 @@ function mobilMi(){
 }
 function altMenuHtml(altlar){
   if(!altlar.length){
-    return `<div class="solBos">Bu bölümde görüntüleyebileceğiniz alt sayfa yok.</div>`;
+    return `<div class="navBos">Bu bölümde görüntüleyebileceğiniz alt sayfa yok.</div>`;
   }
   return altlar.map(s=>
     `<button type="button" data-s="${s[0]}" class="${s[0]===aktifSekme?"on":""} ${s[2]!=="acik"?"ozel":""}">${navIkon(s[0])}<span>${s[1]}</span></button>`
   ).join("");
 }
+function navDropKapat(){
+  $$(".navGrup.acik").forEach(g=> g.classList.remove("acik"));
+}
+function navGrupKonum(g){
+  const drop = g.querySelector(".navDrop");
+  const btn = g.querySelector(".navAna");
+  if(!drop || !btn || !mobilMi()) return;
+  const r = btn.getBoundingClientRect();
+  drop.style.top = Math.round(r.bottom + 4) + "px";
+}
 function navCiz(){
   const gruplar = ANA_GRUPLAR.filter(g=> grupGorunurAlt(g).length);
-  const altNav = $("#nviAlt");
   if(!gruplar.length){
     $("#nvi").innerHTML = "";
-    $("#solMenu").innerHTML = "";
-    if(altNav) altNav.innerHTML = "";
     $$(".sayfa").forEach(x=>x.classList.remove("on"));
     return;
   }
@@ -2162,23 +2114,38 @@ function navCiz(){
   const altlar = grupGorunurAlt(g);
   if(!altlar.find(s=>s[0]===aktifSekme)) aktifSekme = altlar[0][0];
 
-  $("#nvi").innerHTML = gruplar.map(gr=>
-    `<button type="button" data-g="${gr.id}" class="${gr.id===aktifGrup?"on":""}">${navIkon(gr.id)}<span>${gr.ad}</span></button>`
-  ).join("");
-  $$("#nvi button").forEach(b=> b.onclick = ()=> grupAc(b.dataset.g));
+  $("#nvi").innerHTML = gruplar.map(gr=>{
+    const alt = grupGorunurAlt(gr);
+    const acik = gr.id===aktifGrup;
+    return `<div class="navGrup ${acik?"on":""}" data-g="${gr.id}">
+      <button type="button" class="navAna ${acik?"on":""}" data-g="${gr.id}" aria-haspopup="true" aria-expanded="${acik?"true":"false"}">${navIkon(gr.id)}<span>${gr.ad}</span></button>
+      <div class="navDrop" role="menu">${altMenuHtml(alt)}</div>
+    </div>`;
+  }).join("");
 
-  const altHtml = altMenuHtml(altlar);
-  $("#solBasAd").textContent = g.ad;
-  $("#solMenu").innerHTML = altHtml;
-  $$("#solMenu button").forEach(b=> b.onclick = ()=> sekmeAc(b.dataset.s));
-  if(altNav){
-    altNav.innerHTML = altHtml;
-    $$("#nviAlt button").forEach(b=> b.onclick = ()=> sekmeAc(b.dataset.s));
-    const onBtn = $("#nviAlt button.on");
-    if(onBtn && onBtn.scrollIntoView){
-      try{ onBtn.scrollIntoView({inline:"center", block:"nearest", behavior:"smooth"}); }catch(e){}
-    }
-  }
+  $$("#nvi .navAna").forEach(b=>{
+    b.onclick = (ev)=>{
+      ev.stopPropagation();
+      const gid = b.dataset.g;
+      if(mobilMi()){
+        const wrap = b.closest(".navGrup");
+        const acik = wrap && wrap.classList.contains("acik");
+        navDropKapat();
+        if(wrap && !acik){
+          wrap.classList.add("acik");
+          navGrupKonum(wrap);
+          b.setAttribute("aria-expanded","true");
+        } else grupAc(gid);
+      } else grupAc(gid);
+    };
+  });
+  $$("#nvi .navDrop button[data-s]").forEach(b=>{
+    b.onclick = (ev)=>{
+      ev.stopPropagation();
+      navDropKapat();
+      sekmeAc(b.dataset.s);
+    };
+  });
 
   $$(".sayfa").forEach(x=>x.classList.remove("on"));
   const el = $("#s-"+aktifSekme); if(el) el.classList.add("on");
@@ -2189,6 +2156,7 @@ function grupAc(gid){
   const g = ANA_GRUPLAR.find(x=>x.id===gid);
   const altlar = g ? grupGorunurAlt(g) : [];
   if(altlar.length) aktifSekme = altlar[0][0];
+  navDropKapat();
   navCiz();
   if(typeof modullerCiz==="function") modullerCiz();
   if(mobilMi()) window.scrollTo({top:0, behavior:"smooth"});
@@ -2198,6 +2166,7 @@ function sekmeAc(k){
   const g = grupBul(k);
   aktifGrup = g.id;
   aktifSekme = k;
+  navDropKapat();
   navCiz();
   if(k==="takvim") takvimCiz();
   if(typeof modullerCiz==="function") modullerCiz();
@@ -6071,37 +6040,13 @@ function ayarlarCiz(){
         <span class="kpu" style="color:${RENK.D}">${ESIK.C} altı</span></div>`;
 }
 
-/* ---- Sol panel aç/kapa ---- */
-const SOL_PANEL_KEY = "yh-sol-panel-kapali";
-function solPanelDurumUygula(kapali){
-  const gov = document.querySelector(".panelGov");
-  const btn = $("#solToggle");
-  const ikon = $("#solToggleIkon");
-  if(!gov || !btn) return;
-  gov.classList.toggle("solKapali", !!kapali);
-  btn.setAttribute("aria-expanded", kapali ? "false" : "true");
-  btn.title = kapali ? "Sol paneli aç" : "Sol paneli kapat";
-  if(ikon) ikon.textContent = kapali ? "›" : "‹";
-}
-function solPanelToggle(){
-  const gov = document.querySelector(".panelGov");
-  if(!gov) return;
-  const kapali = !gov.classList.contains("solKapali");
-  solPanelDurumUygula(kapali);
-  try{ localStorage.setItem(SOL_PANEL_KEY, kapali ? "1" : "0"); }catch(e){}
-}
-(function solPanelKur(){
-  const btn = $("#solToggle");
-  if(btn) btn.onclick = solPanelToggle;
-  let kapali = false;
-  try{
-    const kayit = localStorage.getItem(SOL_PANEL_KEY);
-    if(kayit === "1") kapali = true;
-    else if(kayit === "0") kapali = false;
-  }catch(e){}
-  /* Mobilde sol panel gizli; masaüstü tercihi korunur */
-  if(mobilMi()) kapali = true;
-  solPanelDurumUygula(kapali);
+/* ---- Nav dropdown: mobil dış tık + yeniden konum ---- */
+(function navDropKur(){
+  document.addEventListener("click", (ev)=>{
+    if(ev.target.closest(".navGrup")) return;
+    navDropKapat();
+  });
+  window.addEventListener("resize", ()=> navDropKapat());
 })();
 
 panelConfigYukle().then(()=>{
