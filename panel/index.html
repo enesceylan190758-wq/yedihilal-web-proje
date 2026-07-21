@@ -146,6 +146,7 @@ nav.anaNav button span{line-height:1.1;text-align:left}
 .navDrop .navIkon{flex:0 0 auto;opacity:.75;width:14px!important;height:14px!important}
 .navDrop button.on .navIkon{opacity:1}
 .navDrop .navBos{color:#6E9480;font-size:11px;padding:8px 10px;line-height:1.45}
+.nviAlt{display:none}
 
 /* ---------------- İÇERİK ALANI ---------------- */
 .panelGov{max-width:1680px;margin:0 auto;min-height:calc(100vh - 100px)}
@@ -514,8 +515,6 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
   border-radius:9px;cursor:default;pointer-events:none;user-select:none;position:relative;min-width:0}
 .ilkeHilal{width:22px;height:22px;position:relative;flex:0 0 auto}
 .ilkeHilal svg{width:22px;height:22px;display:block}
-.ilkeNo{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  font-family:"IBM Plex Mono";font-size:9px;font-weight:600;color:#D4AF37}
 .ilkeAd{font-family:"Archivo";font-size:11px;font-weight:700;letter-spacing:.06em;
   text-transform:uppercase;color:#9BB8A8;white-space:nowrap}
 .ilkeKart.bos .ilkeAd{color:#3A5C4A;font-style:italic;text-transform:none;letter-spacing:0}
@@ -674,14 +673,23 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
   .kimBtn{max-width:100%;align-items:flex-start}
   .kimMenu{left:0;right:0;min-width:0;max-width:none;width:100%}
 
-  /* Üst ana menü + hover alt liste */
-  nav.anaNav{z-index:45}
-  .nvi{flex-wrap:nowrap;padding:8px 10px;gap:7px;overflow-x:auto;-webkit-overflow-scrolling:touch;
+  /* Üst ana menü + alt sekme şeridi (mobil) */
+  nav.anaNav{z-index:45;overflow:visible}
+  .nvi{flex-wrap:nowrap;padding:8px 10px 6px;gap:7px;overflow-x:auto;-webkit-overflow-scrolling:touch;
     scroll-snap-type:x proximity}
   nav.anaNav .navAna{padding:9px 12px;font-size:11px;min-height:42px;scroll-snap-align:start;flex:0 0 auto}
   nav.anaNav .navIkon{width:15px!important;height:15px!important}
-  .navDrop{position:fixed;left:12px;right:12px;width:auto;min-width:0;top:auto}
-  .navGrup.acik .navDrop{display:flex}
+  .navDrop{display:none!important}
+  .nviAlt{display:flex;flex-wrap:nowrap;gap:6px;padding:0 10px 10px;overflow-x:auto;
+    -webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;border-top:1px solid #24382E}
+  .nviAlt button{flex:0 0 auto;scroll-snap-align:start;padding:8px 11px;font-size:11px;
+    min-height:38px;border-radius:8px;color:#B8CFC0;border:1px solid #2A4034;
+    background:linear-gradient(180deg,#15261E 0%,#101F18 100%);
+    text-transform:none;letter-spacing:.02em;box-shadow:none}
+  .nviAlt button.on{color:var(--altin);border-color:rgba(212,175,55,.55);
+    background:linear-gradient(180deg,#24382E 0%,#1A2C22 100%);
+    box-shadow:inset 0 1px 0 rgba(212,175,55,.12)}
+  .nviAlt .navBos{color:#6E9480;font-size:11px;padding:8px 4px;white-space:nowrap}
 
   .icerikAlan{padding:12px 12px calc(130px + env(safe-area-inset-bottom,0px))}
   .ayet{padding:8px 12px;gap:8px;margin-bottom:12px}
@@ -868,6 +876,7 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
 
 <nav class="anaNav">
   <div class="nvi" id="nvi"></div>
+  <div class="nviAlt" id="nviAlt" role="navigation" aria-label="Alt sekmeler"></div>
 </nav>
 
 <div class="panelGov">
@@ -1903,8 +1912,7 @@ function ilkeCiz(){
     <div class="ilkeKart ${bos?"bos":""}" title="${esc(D.yediIlkeAciklama[ix]||t)}">
       <div class="ilkeHilal">
         <svg viewBox="0 0 24 24" fill="none" stroke="${bos?"#5C5348":"#D4AF37"}" stroke-width="1.3">
-          <path d="M16.8 3A9 9 0 1 0 21 14.3 7 7 0 1 1 16.8 3Z"/></svg>
-        <span class="ilkeNo" style="color:${bos?"#5C5348":"#D4AF37"}">${ix+1}</span></div>
+          <path d="M16.8 3A9 9 0 1 0 21 14.3 7 7 0 1 1 16.8 3Z"/></svg></div>
       <span class="ilkeAd">${esc(bos?"doldurulacak":t)}</span></div>`;
   }).join("");
 }
@@ -2086,7 +2094,7 @@ function grupGorunurAlt(g){
   });
 }
 function mobilMi(){
-  return typeof window.matchMedia==="function" && window.matchMedia("(max-width:700px)").matches;
+  return typeof window.matchMedia==="function" && window.matchMedia("(max-width:960px)").matches;
 }
 function altMenuHtml(altlar){
   if(!altlar.length){
@@ -2099,17 +2107,12 @@ function altMenuHtml(altlar){
 function navDropKapat(){
   $$(".navGrup.acik").forEach(g=> g.classList.remove("acik"));
 }
-function navGrupKonum(g){
-  const drop = g.querySelector(".navDrop");
-  const btn = g.querySelector(".navAna");
-  if(!drop || !btn || !mobilMi()) return;
-  const r = btn.getBoundingClientRect();
-  drop.style.top = Math.round(r.bottom + 4) + "px";
-}
 function navCiz(){
   const gruplar = ANA_GRUPLAR.filter(g=> grupGorunurAlt(g).length);
+  const nviAlt = $("#nviAlt");
   if(!gruplar.length){
     $("#nvi").innerHTML = "";
+    if(nviAlt) nviAlt.innerHTML = "";
     $$(".sayfa").forEach(x=>x.classList.remove("on"));
     return;
   }
@@ -2127,20 +2130,20 @@ function navCiz(){
     </div>`;
   }).join("");
 
+  if(nviAlt){
+    nviAlt.innerHTML = altMenuHtml(altlar);
+    $$("#nviAlt button[data-s]").forEach(b=>{
+      b.onclick = (ev)=>{
+        ev.stopPropagation();
+        sekmeAc(b.dataset.s);
+      };
+    });
+  }
+
   $$("#nvi .navAna").forEach(b=>{
     b.onclick = (ev)=>{
       ev.stopPropagation();
-      const gid = b.dataset.g;
-      if(mobilMi()){
-        const wrap = b.closest(".navGrup");
-        const acik = wrap && wrap.classList.contains("acik");
-        navDropKapat();
-        if(wrap && !acik){
-          wrap.classList.add("acik");
-          navGrupKonum(wrap);
-          b.setAttribute("aria-expanded","true");
-        } else grupAc(gid);
-      } else grupAc(gid);
+      grupAc(b.dataset.g);
     };
   });
   $$("#nvi .navDrop button[data-s]").forEach(b=>{
