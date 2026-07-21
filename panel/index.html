@@ -110,8 +110,8 @@ body.girisYok .perde{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12p
 
 /* ---------------- ANA SEKME (üst) — yatay dar kutucuk v2 ---------------- */
 nav.anaNav{background:#101F18;border-top:1px solid #24382E;border-bottom:1px solid var(--altin);
-  position:sticky;top:0;z-index:40}
-.nvi{max-width:none;margin:0;padding:7px 12px;display:flex;flex-wrap:wrap;gap:6px;overflow-x:auto;align-items:center}
+  position:sticky;top:0;z-index:40;overflow:visible}
+.nvi{max-width:none;margin:0;padding:7px 12px;display:flex;flex-wrap:wrap;gap:6px;overflow:visible;align-items:center}
 .nvi::-webkit-scrollbar{height:0}
 nav.anaNav button{color:#9BB8A8;padding:6px 10px;min-width:0!important;font-size:11.5px;font-weight:600;
   letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;font-family:"Archivo";
@@ -127,11 +127,15 @@ nav.anaNav button.on .navIkon{opacity:1}
 nav.anaNav button span{line-height:1.1;text-align:left}
 .navGrup{position:relative;flex:0 0 auto}
 .navGrup > .navAna{margin:0}
-.navDrop{display:none;position:absolute;top:calc(100% + 4px);left:0;min-width:min(240px,88vw);
+.navDrop{display:none;position:absolute;top:100%;left:0;min-width:min(240px,88vw);
   background:linear-gradient(180deg,#1A2E24 0%,#15261E 100%);border:1px solid #3A5C4A;
   border-radius:0 0 10px 10px;box-shadow:0 10px 28px rgba(0,0,0,.32);z-index:55;padding:6px;
-  flex-direction:column;gap:2px}
-.navGrup:hover .navDrop,.navGrup.acik .navDrop{display:flex}
+  margin-top:4px;flex-direction:column;gap:2px}
+.navDrop::before{content:"";position:absolute;top:-6px;left:0;right:0;height:6px}
+.navGrup.acik .navDrop{display:flex}
+@media (min-width:961px){
+  .navGrup:hover .navDrop{display:flex}
+}
 .navDrop button{width:100%;text-align:left;color:#B8CFC0;padding:8px 11px;border-radius:7px;
   font-size:11px;font-weight:600;font-family:"Archivo";letter-spacing:.02em;transition:.15s;
   border:1px solid transparent;background:transparent;display:flex;align-items:center;gap:8px;
@@ -672,7 +676,7 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
 
   /* Üst ana menü + hover alt liste */
   nav.anaNav{z-index:45}
-  .nvi{flex-wrap:nowrap;padding:8px 10px;gap:7px;-webkit-overflow-scrolling:touch;
+  .nvi{flex-wrap:nowrap;padding:8px 10px;gap:7px;overflow-x:auto;-webkit-overflow-scrolling:touch;
     scroll-snap-type:x proximity}
   nav.anaNav .navAna{padding:9px 12px;font-size:11px;min-height:42px;scroll-snap-align:start;flex:0 0 auto}
   nav.anaNav .navIkon{width:15px!important;height:15px!important}
