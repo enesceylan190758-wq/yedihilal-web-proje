@@ -600,6 +600,17 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
   border-right:1px solid var(--hat)}
 .gosterim button:last-child{border-right:0}
 .gosterim button.on{background:var(--murekkep);color:var(--altin)}
+.bolgeIzgara{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.bolgeKartKutu{border:1px solid #D5E3D8;border-radius:12px;padding:16px 16px 14px;background:#FBFDFB;
+  border-left:5px solid var(--altin);min-width:0}
+.bolgeKartKutu .bkUst{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.bolgeKartKutu .bkKod{font-family:"Archivo";font-size:22px;font-weight:800;letter-spacing:.04em;line-height:1;color:var(--murekkep)}
+.bolgeKartKutu .bkAd{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6E9480;margin-top:4px}
+.bolgeKartKutu .bkBar{height:8px;border-radius:999px;background:#E6EFE9;overflow:hidden;margin:12px 0 6px}
+.bolgeKartKutu .bkBar > i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#6E9B7F,#D4AF37)}
+.bolgeKartKutu .bkMeta{display:flex;justify-content:space-between;gap:8px;font-size:11.5px;color:#5F5749;margin-bottom:10px}
+.bolgeKartKutu .bkChip{display:flex;gap:5px;flex-wrap:wrap;margin-top:10px}
+@media(max-width:900px){.bolgeIzgara{grid-template-columns:1fr}}
 .grafikAlan{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:center;padding:8px 0}
 .donutKart{display:flex;flex-direction:column;align-items:center;gap:7px;min-width:120px}
 .donutKart .dl{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--sil);
@@ -1005,7 +1016,11 @@ pre{background:var(--gece);color:#D9D2C4;padding:14px;border-radius:9px;overflow
 <section class="sayfa" id="s-bolge">
   <div class="ayet" data-ayet="bolge"></div>
   <div class="kart"><div class="kbas"><h2>Bölge (Hat) Yapısı</h2>
-    <span class="yan">Bölgeler temsilcilik sayısına değil, HATTIN KARAKTERİNE göre kuruldu</span></div>
+    <span class="yan">Bölgeler temsilcilik sayısına değil, HATTIN KARAKTERİNE göre kuruldu</span>
+    <div class="gosterim" id="gosBolge" style="margin-left:auto">
+      <button type="button" data-g="bolge:liste" class="on">Liste</button>
+      <button type="button" data-g="bolge:kart">Kart</button>
+    </div></div>
     <div class="kgov" id="bolgeKart"></div></div>
 </section>
 
@@ -2765,7 +2780,54 @@ function hedefler(){
 /* ============ BÖLGE ============ */
 function bolgeCiz(){
   DZ = duzenleyebilir("bolge") || baskanMi();
-  $("#bolgeKart").innerHTML = Object.values(D.hatlar).map(h=>{
+  const hatlar = Object.values(D.hatlar);
+  if(GOS.bolge==="kart"){
+    $("#bolgeKart").innerHTML = `<div class="bolgeIzgara">${hatlar.map(h=>{
+      const il = D.ilceler.filter(i=>i.hat===h.kod);
+      const m = il.filter(i=>i.durum==="MEVCUT");
+      const ort = m.length ? m.reduce((a,i)=>a+(i.puan||0),0)/m.length : 0;
+      const bos = h.takipci==="BOŞ";
+      const rc = hatRenk[h.kod] || "#D4AF37";
+      const oran = il.length ? Math.round(m.length/il.length*100) : 0;
+      return `<div class="bolgeKartKutu" style="border-left-color:${rc}">
+        <div class="bkUst">
+          <div>
+            <div class="bkKod" style="color:${rc}">${esc(h.kod)}</div>
+            <div class="bkAd">${esc(h.ad)}</div>
+          </div>
+          <div style="text-align:right">
+            <span class="rz" style="background:#E6EFE9;color:#6E9480">${esc(h.yaka)} YAKASI</span>
+            <div style="margin-top:8px;font-size:20px;font-weight:700;font-family:'IBM Plex Sans';color:var(--murekkep)">
+              ${m.length}<span style="font-size:13px;color:#6E9480;font-weight:600"> / ${il.length}</span></div>
+            <div style="font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#6E9480;font-weight:700">mevcut</div>
+          </div>
+        </div>
+        <div class="bkBar"><i style="width:${oran}%;background:${rc}"></i></div>
+        <div class="bkMeta">
+          <span>Kapsama %${oran}</span>
+          <span>Ort. puan ${m.length ? ort.toFixed(0) : "—"}</span>
+        </div>
+        <div style="font-size:12.5px;color:#413B31;line-height:1.45">
+          ${DZ ? ed(`hatlar.${h.kod}.karakter`, h.karakter, "txt", null, "width:100%") : esc(h.karakter)}</div>
+        <div style="font-size:12px;margin-top:8px"><b>1. iş:</b>
+          ${DZ ? ed(`hatlar.${h.kod}.is`, h.is, "txt", null, "width:100%") : esc(h.is)}</div>
+        <div style="margin-top:10px;display:flex;align-items:center;gap:7px;flex-wrap:wrap">
+          <span style="font-size:10px;letter-spacing:.1em;color:var(--sil);font-weight:700">TAKİPÇİ</span>
+          ${DZ ? `<span style="min-width:160px;flex:1">${ed(`hatlar.${h.kod}.takipci`, h.takipci, "sel", ekipAdlari())}</span>`
+               : `<span class="rz" data-kisi="${esc(h.takipci)}" style="cursor:${bos?"default":"pointer"};
+                   background:${bos?"#A83A3222":"#3E8E6B22"};color:${bos?"#A83A32":"#3E8E6B"}">
+                   ${bos?"⚠ ATANMADI":esc(h.takipci)}</span>`}
+        </div>
+        <div class="bkChip">${il.map(i=>{
+          const c = i.durum==="MEVCUT" ? RENK[i.sinif] : "#B8B0A0";
+          return `<span class="rz" data-git="${esc(i.ad)}" style="cursor:pointer;background:${c}22;color:${c}">
+            ${esc(i.ad.split(" (")[0])}${i.durum==="MEVCUT"?" "+i.puan:""}</span>`;
+        }).join("")}</div>
+      </div>`;
+    }).join("")}</div>`;
+    return;
+  }
+  $("#bolgeKart").innerHTML = hatlar.map(h=>{
     const il = D.ilceler.filter(i=>i.hat===h.kod);
     const m = il.filter(i=>i.durum==="MEVCUT");
     const bos = h.takipci==="BOŞ";
@@ -5043,7 +5105,7 @@ function bar(veri, genislik){
       <span class="cbg" style="flex:0 0 ${genislik||160}px"><i style="width:${Math.max(2,v.d/mx*100)}%;background:${v.c}"></i></span>
       <span class="kpu" style="color:${v.c}">${v.d}</span></div>`).join("")}</div>`;
 }
-let GOS = {kpi:"sayi", hat:"liste", sira:"liste", kriter:"liste", prog:"liste", arsiv:"tablo"};
+let GOS = {kpi:"sayi", hat:"liste", sira:"liste", kriter:"liste", prog:"liste", arsiv:"tablo", bolge:"liste"};
 $$("[data-g]").forEach(b=> b.onclick = ()=>{
   const [k,v] = b.dataset.g.split(":");
   GOS[k] = v;
