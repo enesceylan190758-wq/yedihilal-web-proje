@@ -44,3 +44,7 @@ Thumbs.db
 ngrok.exe
 ngrok
 ngrok.log
+
+# keep prototype zip
+!dist/
+!dist/*.zip
