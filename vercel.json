@@ -8,46 +8,98 @@
   "trailingSlash": false,
   "headers": [
     {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive, nosnippet, noimageindex"
+        }
+      ]
+    },
+    {
       "source": "/data/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=3600" },
-        { "key": "Access-Control-Allow-Origin", "value": "*" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
       ]
     },
     {
       "source": "/panel(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
       ]
     },
     {
       "source": "/panel/sw.js",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
-        { "key": "Service-Worker-Allowed", "value": "/panel/" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        },
+        {
+          "key": "Service-Worker-Allowed",
+          "value": "/panel/"
+        }
       ]
     },
     {
       "source": "/panel/manifest.webmanifest",
       "headers": [
-        { "key": "Content-Type", "value": "application/manifest+json" },
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+        {
+          "key": "Content-Type",
+          "value": "application/manifest+json"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
       ]
     },
     {
       "source": "/panel/icons/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
       ]
     }
   ],
   "rewrites": [
-    { "source": "/", "destination": "/index.html" }
+    {
+      "source": "/",
+      "destination": "/index.html"
+    }
   ],
   "redirects": [
-    { "source": "/panel/teskilat-paneli-v4", "destination": "/panel", "permanent": true },
-    { "source": "/panel/teskilat-paneli-v4.html", "destination": "/panel", "permanent": true },
-    { "source": "/panel/v4", "destination": "/panel", "permanent": true },
-    { "source": "/panel/v3", "destination": "/panel/teskilat-paneli-v3", "permanent": false }
+    {
+      "source": "/panel/teskilat-paneli-v4",
+      "destination": "/panel",
+      "permanent": true
+    },
+    {
+      "source": "/panel/teskilat-paneli-v4.html",
+      "destination": "/panel",
+      "permanent": true
+    },
+    {
+      "source": "/panel/v4",
+      "destination": "/panel",
+      "permanent": true
+    },
+    {
+      "source": "/panel/v3",
+      "destination": "/panel/teskilat-paneli-v3",
+      "permanent": false
+    }
   ]
 }
