@@ -76,11 +76,11 @@ Paylaştığınız Drive klasörüne erişemiyorum — Google oturum açma istiy
 
 | ID | Şifre | Kim | Yetki | Gördüğü |
 |---|---|---|---|---|
-| `abdulkadir` | `yh2026` | Abdülkadir Yaşar — Teşkilat Başkanı | Tam yetki | 14 sekmenin hepsi + kullanıcı yönetimi |
-| `mucahit` | `yh2026` | Mücahit Tiryaki — Sekreterya | Görür + veri girer | Genel, Karne, Takvim, Komisyon, STK |
-| `oguzhan` | `yh2026` | Oğuzhan Koçalak — Yeni Teşkilat | Görür + veri girer | Genel, Hat, Aday Havuzu, Takvim, STK |
-| `mehmet` | `yh2026` | Mehmet Menteş — B4 Takipçisi | Görür + veri girer | Genel, Karne, Bölge, Komisyon, Takvim |
-| `nusret` | `yh2026` | Nusret Onur Anlı — B3 Takipçisi | **Sadece görür** | Aynı sekmeler, ama hiçbir hücreyi değiştiremez |
+| `abdulkadir` | — | Abdülkadir Yaşar — Teşkilat Başkanı | Tam yetki | 14 sekmenin hepsi + kullanıcı yönetimi |
+| `mucahit` | — | Mücahit Tiryaki — Sekreterya | Görür + veri girer | Genel, Karne, Takvim, Komisyon, STK |
+| `oguzhan` | — | Oğuzhan Koçalak — Yeni Teşkilat | Görür + veri girer | Genel, Hat, Aday Havuzu, Takvim, STK |
+| `mehmet` | — | Mehmet Menteş — B4 Takipçisi | Görür + veri girer | Genel, Karne, Bölge, Komisyon, Takvim |
+| `nusret` | — | Nusret Onur Anlı — B3 Takipçisi | **Sadece görür** | Aynı sekmeler, ama hiçbir hücreyi değiştiremez |
 
 **Denemenizi öneririm:**
 1. Giriş yapmadan paneli açın → YK üyesinin gördüğü ekran budur (8 sekme).

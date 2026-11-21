@@ -113,7 +113,7 @@ Her sayfanın sağ üstündeki **Dışa Aktar** çipi:
 
 ## 5. Deneme hesapları
 
-> **Güncelleme:** Şifreler artık `data/panel-config.json` dosyasında. Demo `yh2026` kaldırıldı.
+> **Güncelleme:** Şifreler artık `data/panel-config.json` dosyasında. Demo şifre kaldırıldı.
 
 | ID | Kim | Yetki | Sekme |
 |---|---|---|---|
